@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Product & Usage Survey — Organic / Natural Range</title>
+<style>
+  :root{
+    --bg:#faf8f3;--card:#fff;--ink:#202b25;--muted:#56655c;--green:#2e7d4f;--green-dark:#1d5b39;
+    --line:#e6e1d6;--accent:#eaf3ee;--soft:#eef6f1;--soft-line:#bfe0cd;--warn-bg:#fff4e0;--warn-ink:#7a4f00;--warn-line:#f0d59a;--pill:#e8f1ec;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;-webkit-text-size-adjust:100%;}
+  .wrap{max-width:920px;margin:0 auto;padding:18px 16px 70px;}
+  header.hero{background:linear-gradient(135deg,var(--green),var(--green-dark));color:#fff;border-radius:18px;padding:30px 24px;margin-bottom:16px;}
+  .kick{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;opacity:.85;margin:0 0 8px;}
+  header.hero h1{font-size:1.6rem;line-height:1.24;margin:0 0 10px;}
+  header.hero p{margin:0;opacity:.94;font-size:.97rem;}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0 4px;}
+  .btn{background:var(--green);color:#fff;border:none;border-radius:10px;padding:11px 18px;font-size:.95rem;font-weight:600;cursor:pointer;}
+  .btn.alt{background:#fff;color:var(--green-dark);border:1px solid var(--soft-line);}
+  .btn:hover{filter:brightness(.96);}
+  .howto{font-size:.93rem;color:var(--muted);margin:12px 2px 18px;}
+  h2.sec{font-size:1.18rem;margin:30px 0 12px;color:var(--green-dark);padding-top:8px;display:flex;align-items:center;gap:10px;border-top:2px solid var(--accent);}
+  h2.sec .n{background:var(--green);color:#fff;font-size:.82rem;width:27px;height:27px;min-width:27px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;margin:12px 0;}
+  label.f{display:block;font-size:.9rem;font-weight:600;color:var(--green-dark);margin:12px 0 5px;}
+  .row{display:flex;flex-wrap:wrap;gap:14px;}
+  .row > div{flex:1 1 220px;}
+  input[type=text],input[type=number],select,textarea{
+    width:100%;font-size:.95rem;font-family:inherit;color:var(--ink);
+    border:1px solid var(--line);border-radius:9px;padding:9px 11px;background:#fff;
+  }
+  textarea{min-height:64px;resize:vertical;}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--soft-line);border-color:var(--green);}
+  .opts{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:4px;}
+  .opts label{font-size:.93rem;font-weight:400;color:var(--ink);display:inline-flex;align-items:center;gap:6px;cursor:pointer;}
+  .hint{font-size:.8rem;color:var(--muted);margin:4px 2px 0;}
+  .note{background:var(--soft);border:1px solid var(--soft-line);border-radius:12px;padding:12px 15px;margin:12px 0;font-size:.93rem;}
+  .note .lbl{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--green);background:#fff;border:1px solid var(--soft-line);padding:2px 9px;border-radius:999px;margin-bottom:6px;}
+  .warn{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:12px 15px;font-size:.92rem;margin:12px 0;}
+
+  /* product blocks */
+  .prod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:12px 0;page-break-inside:avoid;break-inside:avoid;}
+  .prod h3{margin:0 0 2px;font-size:1.05rem;color:var(--green-dark);display:flex;align-items:baseline;gap:9px;}
+  .prod h3 .num{background:var(--accent);color:var(--green-dark);font-size:.78rem;font-weight:700;width:24px;height:24px;min-width:24px;border-radius:7px;display:inline-flex;align-items:center;justify-content:center;}
+  .prod .sub{font-size:.82rem;color:var(--muted);font-weight:400;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px 16px;margin-top:10px;}
+  .grid .full{grid-column:1 / -1;}
+  .mini{font-size:.83rem;font-weight:600;color:var(--green-dark);margin:0 0 3px;display:block;}
+  .inline-unit{display:flex;align-items:center;gap:7px;}
+  .inline-unit input{flex:1;}
+  .inline-unit .u{font-size:.85rem;color:var(--muted);white-space:nowrap;}
+
+  /* quick-survey rows */
+  .qcat{font-size:.95rem;color:var(--green-dark);margin:0 0 10px;padding-bottom:6px;border-bottom:1px dashed var(--soft-line);display:flex;align-items:center;gap:8px;}
+  .qcat .ic{font-size:1.05rem;}
+  .qitem{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;padding:9px 0;border-bottom:1px solid var(--line);}
+  .qitem:last-child{border-bottom:0;}
+  .qbuy{flex:1 1 180px;font-size:.94rem;display:inline-flex;align-items:center;gap:8px;cursor:pointer;}
+  .qbuy .qname{font-weight:600;color:var(--ink);}
+  .qbuy .qsub{font-weight:400;color:var(--muted);font-size:.82rem;}
+  .qfields{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+  .qfields input[type=number]{width:96px;padding:7px 9px;}
+  .qfields .u{font-size:.8rem;color:var(--muted);white-space:nowrap;margin-right:4px;}
+
+  .foot{margin-top:40px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;}
+
+  @media (max-width:560px){ .grid{grid-template-columns:1fr;} }
+
+  @media print{
+    body{background:#fff;}
+    .wrap{max-width:100%;padding:0;}
+    .toolbar,.howto{display:none;}
+    header.hero{background:none;color:var(--ink);border:0;border-bottom:3px solid var(--green);border-radius:0;padding:0 0 12px;margin-bottom:14px;}
+    header.hero h1{color:var(--green-dark);}
+    header.hero p{opacity:1;color:var(--muted);}
+    .card,.prod,.note{box-shadow:none;}
+    input[type=text],input[type=number],select,textarea{border:0;border-bottom:1px solid #9aa39c;border-radius:0;background:none;min-height:26px;}
+    .opts label{border:0;}
+    h2.sec{break-after:avoid;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <p class="kick">Customer Research · 2026</p>
+    <h1>Product &amp; Usage Survey</h1>
+    <p>Help us understand what you cook with at home — what you buy, how much you use, and what you pay. It takes about 5 minutes. There are no right answers; honest replies help us bring you genuinely pure products at a fair price.</p>
+  </header>
+
+  <div class="toolbar">
+    <button class="btn" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    <button class="btn alt" onclick="if(confirm('Clear all answers on this page?')){document.querySelectorAll('input,textarea,select').forEach(function(e){if(e.type==='checkbox'||e.type==='radio'){e.checked=false}else{e.value=''}});}">Clear form</button>
+  </div>
+  <p class="howto">Fill it on screen, or print blank copies to use in person. To collect online instead, this same set of questions can be pasted into Google&nbsp;Forms.</p>
+
+  <!-- ============ SECTION 1: ABOUT YOU ============ -->
+  <h2 class="sec"><span class="n">1</span> A little about your household</h2>
+  <div class="card">
+    <div class="row">
+      <div>
+        <label class="f">Name <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <input type="text" name="name" placeholder="Your name">
+      </div>
+      <div>
+        <label class="f">Phone / WhatsApp <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <input type="text" name="phone" placeholder="So we can share offers">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label class="f">Area / City</label>
+        <input type="text" name="area" placeholder="e.g. Kothrud, Pune">
+      </div>
+      <div>
+        <label class="f">Pin code</label>
+        <input type="text" name="pin" placeholder="e.g. 411038">
+      </div>
+    </div>
+    <div class="row">
+      <div>
+        <label class="f">How many people eat at home daily?</label>
+        <div class="opts">
+          <label><input type="radio" name="hh"> 1–2</label>
+          <label><input type="radio" name="hh"> 3–4</label>
+          <label><input type="radio" name="hh"> 5–6</label>
+          <label><input type="radio" name="hh"> 7+</label>
+        </div>
+      </div>
+      <div>
+        <label class="f">Who usually buys the groceries?</label>
+        <div class="opts">
+          <label><input type="radio" name="buyer"> Me</label>
+          <label><input type="radio" name="buyer"> Spouse</label>
+          <label><input type="radio" name="buyer"> Parents</label>
+          <label><input type="radio" name="buyer"> Shared</label>
+        </div>
+      </div>
+    </div>
+    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="shop"> Local kirana shop</label>
+      <label><input type="checkbox" name="shop"> Supermarket</label>
+      <label><input type="checkbox" name="shop"> Online (BigBasket / Amazon etc.)</label>
+      <label><input type="checkbox" name="shop"> Wholesale / mandi</label>
+      <label><input type="checkbox" name="shop"> Directly from a farmer / maker</label>
+    </div>
+    <label class="f">Roughly, how much does your home spend on groceries each month?</label>
+    <div class="opts">
+      <label><input type="radio" name="spend"> Under ₹3,000</label>
+      <label><input type="radio" name="spend"> ₹3,000–6,000</label>
+      <label><input type="radio" name="spend"> ₹6,000–10,000</label>
+      <label><input type="radio" name="spend"> ₹10,000–15,000</label>
+      <label><input type="radio" name="spend"> Over ₹15,000</label>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 2: PER PRODUCT ============ -->
+  <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
+  <div class="note">
+    <span class="lbl">How to fill this part</span><br>
+    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, <b>what you pay</b>, and whether you'd <b>try a pure/organic version</b> — and the price that would feel fair. If you don't use an item, just tick "Don't use" and skip to the next.
+  </div>
+
+  <div id="products"></div>
+
+  <!-- ============ SECTION 3: QUICK SURVEY (OTHER ITEMS) ============ -->
+  <h2 class="sec"><span class="n">3</span> Other items — a quick tick</h2>
+  <div class="note">
+    <span class="lbl">Just three quick things</span><br>
+    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b>, jot <b>how much a month</b> and the <b>price you pay</b>. Skip anything you don't use — it's fine to leave most blank.
+  </div>
+
+  <div id="quick"></div>
+
+  <div class="card">
+    <label class="f">Anything else you'd love in a pure / organic version that isn't listed anywhere above?</label>
+    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, organic tea..."></textarea>
+  </div>
+
+  <!-- ============ SECTION 4: WHAT MATTERS ============ -->
+  <h2 class="sec"><span class="n">4</span> What matters most to you</h2>
+  <div class="card">
+    <label class="f">When buying food staples, rank these from 1 (most important) to 5 (least).</label>
+    <div class="grid">
+      <div class="inline-unit"><span class="mini" style="flex:1">Low price</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Purity / no additives</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Taste &amp; freshness</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Trusted brand / proof (lab tests)</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Convenience / home delivery</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+    </div>
+
+    <label class="f">How much extra would you pay for a genuinely pure / additive-free version of a staple?</label>
+    <div class="opts">
+      <label><input type="radio" name="premium"> Nothing extra</label>
+      <label><input type="radio" name="premium"> Up to 10% more</label>
+      <label><input type="radio" name="premium"> 10–25% more</label>
+      <label><input type="radio" name="premium"> 25–50% more</label>
+      <label><input type="radio" name="premium"> 50%+ more</label>
+    </div>
+
+    <div class="row">
+      <div>
+        <label class="f">Would you buy these online with home delivery?</label>
+        <div class="opts">
+          <label><input type="radio" name="online"> Yes</label>
+          <label><input type="radio" name="online"> Maybe</label>
+          <label><input type="radio" name="online"> No, prefer in person</label>
+        </div>
+      </div>
+      <div>
+        <label class="f">Interested in a monthly subscription (auto-delivery)?</label>
+        <div class="opts">
+          <label><input type="radio" name="sub"> Yes</label>
+          <label><input type="radio" name="sub"> Maybe</label>
+          <label><input type="radio" name="sub"> No</label>
+        </div>
+      </div>
+    </div>
+
+    <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
+    <textarea placeholder="Tell us in your own words..."></textarea>
+  </div>
+
+  <!-- ============ SUBMIT ============ -->
+  <h2 class="sec"><span class="n">5</span> Send us your answers</h2>
+  <div class="card" style="text-align:center;">
+    <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap the button below — your answers will open as a ready-to-send WhatsApp message. Just press send.</p>
+    <div class="toolbar" style="justify-content:center;">
+      <button class="btn" style="font-size:1.02rem;padding:14px 22px;" onclick="sendWhatsApp()">📲 Send my answers on WhatsApp</button>
+      <button class="btn alt" onclick="copyAnswers()">📋 Copy all answers</button>
+    </div>
+    <p id="copymsg" class="hint" style="min-height:18px;margin-top:10px;"></p>
+    <p class="hint">If WhatsApp doesn't open, tap “Copy all answers” and paste it into a WhatsApp / SMS / email to us.</p>
+  </div>
+
+  <div class="warn">🙏 Thank you! Your answers stay private and are used only to plan our product range. We will not share your details.</div>
+
+  <p class="foot">Customer Research Survey · Organic / Natural Range · 2026 · For internal product-planning use.</p>
+
+</div>
+
+<script>
+/* Product list with respondent-friendly clarifiers and natural monthly units */
+var PRODUCTS = [
+  {name:"Organic Haldi",            sub:"Turmeric powder",                  unit:"grams / month"},
+  {name:"Natural Toor Dal",         sub:"Arhar / pigeon-pea dal",           unit:"kg / month"},
+  {name:"Chana Dal",                sub:"Split Bengal gram",                unit:"kg / month"},
+  {name:"Natural Mirchi Powder",    sub:"Red chilli powder",                unit:"grams / month"},
+  {name:"Organic Mustard",          sub:"Mohori / rai seeds",               unit:"grams / month"},
+  {name:"Organic Pink Salt",        sub:"Rock / Himalayan salt",            unit:"kg / month"},
+  {name:"Premium Kala Masala",      sub:"Authentic black / goda masala",    unit:"grams / month"},
+  {name:"Javas Chutney",            sub:"Flaxseed dry chutney",             unit:"grams / month"},
+  {name:"Karala Chutney",           sub:"Niger seed dry chutney",           unit:"grams / month"},
+  {name:"Chia Seeds",               sub:"",                                 unit:"grams / month"},
+  {name:"Coriander Powder",         sub:"Dhania powder",                    unit:"grams / month"},
+  {name:"Jaggery",                  sub:"Gud",                              unit:"kg / month"},
+  {name:"Black Wheat",              sub:"Kala gehu",                        unit:"kg / month"},
+  {name:"Black Rice",               sub:"Kala chawal",                      unit:"kg / month"},
+  {name:"Groundnut Chutney",        sub:"Dry peanut chutney",               unit:"grams / month"}
+];
+
+var box = document.getElementById('products');
+PRODUCTS.forEach(function(p, i){
+  var n = i + 1;
+  var sub = p.sub ? ' <span class="sub">('+p.sub+')</span>' : '';
+  var el = document.createElement('div');
+  el.className = 'prod';
+  el.innerHTML =
+    '<h3><span class="num">'+n+'</span> '+p.name+sub+'</h3>'+
+    '<div style="margin-top:8px"><span class="mini">Do you use this?</span>'+
+      '<div class="opts">'+
+        '<label><input type="radio" name="use'+n+'"> ✅ I use this</label>'+
+        '<label><input type="radio" name="use'+n+'"> ❌ Don\'t use (skip below)</label>'+
+      '</div>'+
+    '</div>'+
+    '<div class="grid">'+
+      '<div><span class="mini">Brand / where you buy it now</span><input type="text" placeholder="Brand name or shop"></div>'+
+      '<div><span class="mini">How much per month</span><div class="inline-unit"><input type="number" min="0" placeholder="amount"><span class="u">'+p.unit+'</span></div></div>'+
+      '<div><span class="mini">Pack size you usually buy</span><input type="text" placeholder="e.g. 500 g / 1 kg pack"></div>'+
+      '<div><span class="mini">Price you pay for that pack (₹)</span><input type="number" min="0" placeholder="₹"></div>'+
+      '<div class="full"><span class="mini">Would you try our pure / organic version?</span>'+
+        '<div class="opts">'+
+          '<label><input type="radio" name="try'+n+'"> Yes</label>'+
+          '<label><input type="radio" name="try'+n+'"> Maybe</label>'+
+          '<label><input type="radio" name="try'+n+'"> No</label>'+
+        '</div></div>'+
+      '<div class="full"><span class="mini">If yes — a fair price you\'d happily pay for it (₹ per pack)</span><input type="number" min="0" placeholder="₹" style="max-width:200px"></div>'+
+    '</div>';
+  box.appendChild(el);
+});
+
+/* ===== QUICK SURVEY — items to add later (one light row each) =====
+   Each category: {cat, icon, unit, items:[ [name, sub?, unitOverride?] ]} */
+var QUICK = [
+  {cat:"More dals, grains & flours", icon:"🌾", unit:"kg / month", items:[
+    ["Moong Dal"],["Masoor Dal"],["Urad Dal"],["Rajma","kidney beans"],["Kabuli Chana","white chickpea"],
+    ["Chowli","black-eyed peas"],["Matki","moth beans"],["Rice (regular)","sona masoori / basmati"],
+    ["Poha","flattened rice"],["Rava / Suji","semolina"],["Wheat Atta"],["Multigrain Atta"],["Besan","gram flour"],
+    ["Jowar","sorghum"],["Bajra","pearl millet"],["Ragi","finger millet"],["Foxtail Millet","kang"],["Little Millet","sava"]
+  ]},
+  {cat:"More spices & masalas", icon:"🌶️", unit:"grams / month", items:[
+    ["Jeera","cumin"],["Methi","fenugreek seeds"],["Hing","asafoetida"],["Whole Garam Spices","clove/cardamom/cinnamon"],
+    ["Bay Leaf","tej patta"],["Garam Masala"],["Sambar / Rasam Powder"],["Chaat Masala"]
+  ]},
+  {cat:"Salt & sweeteners", icon:"🧂", unit:"kg / month", items:[
+    ["Sea Salt"],["Jaggery Powder"],["White Sugar"],["Honey","",  "grams / month"]
+  ]},
+  {cat:"Oils & fats", icon:"🫙", unit:"litre / month", items:[
+    ["Cold-pressed Groundnut Oil"],["Mustard Oil"],["Coconut Oil"],["Sesame (Til) Oil"],
+    ["Ghee","A2 / desi cow"],["Refined Oil","sunflower / soybean"]
+  ]},
+  {cat:"Seeds, dry fruits & nuts", icon:"🥜", unit:"grams / month", items:[
+    ["Almonds","badam"],["Cashews","kaju"],["Walnuts","akhrot"],["Raisins","kishmish"],["Dates","khajur"],
+    ["Anjeer","figs"],["Pumpkin Seeds"],["Sunflower Seeds"],["Sesame Seeds","til"]
+  ]},
+  {cat:"More dry chutneys & pickles", icon:"🥣", unit:"grams / month", items:[
+    ["Curry-leaf Chutney"],["Garlic Chutney"],["Til Chutney","sesame"],["Dry Coconut Chutney"],["Pickle (Achaar)","mango/lime/mixed"]
+  ]},
+  {cat:"Beverages", icon:"🍵", unit:"grams / month", items:[
+    ["Tea","CTC / green"],["Filter Coffee"],["Packaged Juice / Drinks","", "packs / month"]
+  ]},
+  {cat:"Dairy & fresh", icon:"🥛", unit:"kg / month", items:[
+    ["Milk","", "litre / month"],["Curd","dahi"],["Paneer","", "grams / month"]
+  ]},
+  {cat:"Bakery & snacks", icon:"🍪", unit:"packs / month", items:[
+    ["Bread / Rusk"],["Biscuits"],["Roasted Chana / Makhana","", "grams / month"],["Chips / Namkeen"]
+  ]},
+  {cat:"Home care", icon:"🧴", unit:"units / month", items:[
+    ["Dishwash"],["Detergent"],["Floor Cleaner"],["Handwash"],["Agarbatti / Dhoop"]
+  ]},
+  {cat:"Personal care", icon:"🧼", unit:"units / month", items:[
+    ["Soap"],["Shampoo"],["Toothpaste"],["Hair Oil"]
+  ]}
+];
+
+var qbox = document.getElementById('quick');
+QUICK.forEach(function(group){
+  var card = document.createElement('div');
+  card.className = 'card';
+  var html = '<h3 class="qcat"><span class="ic">'+group.icon+'</span> '+group.cat+'</h3>';
+  group.items.forEach(function(it){
+    var name = it[0];
+    var sub  = it[1] ? ' <span class="qsub">('+it[1]+')</span>' : '';
+    var unit = it[2] || group.unit;
+    html +=
+      '<div class="qitem" data-unit="'+unit+'">'+
+        '<label class="qbuy"><input type="checkbox" class="buy"> <span class="qname">'+name+'</span>'+sub+'</label>'+
+        '<div class="qfields">'+
+          '<input type="number" min="0" placeholder="qty"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
+          '<input type="number" min="0" placeholder="₹ price">'+
+        '</div>'+
+      '</div>';
+  });
+  card.innerHTML = html;
+  qbox.appendChild(card);
+});
+
+/* ====== Send-back logic ====== */
+/* Put YOUR WhatsApp number here: country code + number, digits only, no + or spaces.
+   Example for India: "919812345678". Leave "" to let the sender pick the contact. */
+var WHATSAPP_NUMBER = "917709932222";
+
+function getText(el){ return (el.textContent||'').replace(/\s+/g,' ').trim(); }
+
+/* Walk the form in document order and build a readable text summary */
+function collectAnswers(){
+  var lines = ["*Product & Usage Survey — My Answers*"];
+  document.querySelectorAll('.card, .prod').forEach(function(block){
+    if(block.classList.contains('prod')){
+      lines.push("");
+      lines.push("*"+getText(block.querySelector('h3'))+"*");
+    }
+    // Quick-survey card: emit one compact line per ticked / filled item, then skip generic walk
+    var qitems = block.querySelectorAll('.qitem');
+    if(qitems.length){
+      var head = block.querySelector('.qcat');
+      var emitted = [];
+      qitems.forEach(function(it){
+        var buy   = it.querySelector('input.buy');
+        var nums  = it.querySelectorAll('input[type=number]');
+        var qty   = nums[0] ? nums[0].value.trim() : "";
+        var price = nums[1] ? nums[1].value.trim() : "";
+        if(!(buy && buy.checked) && !qty && !price) return;
+        var parts = [];
+        if(qty)   parts.push(qty + " " + (it.getAttribute('data-unit')||"").replace(' / ','/'));
+        if(price) parts.push("₹" + price);
+        emitted.push("• " + getText(it.querySelector('.qname')) + (parts.length ? ": " + parts.join(", ") : ""));
+      });
+      if(emitted.length){
+        lines.push("");
+        lines.push("*" + getText(head) + "*");
+        emitted.forEach(function(l){ lines.push(l); });
+      }
+      return;
+    }
+    var q = "";
+    block.querySelectorAll('label.f, .mini, .opts, input[type=text], input[type=number], textarea, select').forEach(function(node){
+      if(node.matches('label.f') || node.matches('.mini')){ q = getText(node); return; }
+      if(node.matches('.opts')){
+        var picks = [];
+        node.querySelectorAll('input').forEach(function(inp){ if(inp.checked) picks.push(getText(inp.parentElement)); });
+        if(picks.length) lines.push("• "+q+": "+picks.join(", "));
+        return;
+      }
+      if(node.closest('.opts')) return;           // already handled inside an option group
+      if(node.id === 'copymsg') return;
+      var v = (node.value||'').trim();
+      if(v) lines.push("• "+q+": "+v);
+    });
+  });
+  return lines.join("\n");
+}
+
+function sendWhatsApp(){
+  var txt = collectAnswers();
+  var base = WHATSAPP_NUMBER ? "https://wa.me/"+WHATSAPP_NUMBER : "https://wa.me/";
+  window.open(base + "?text=" + encodeURIComponent(txt), "_blank");
+}
+
+function copyAnswers(){
+  var txt = collectAnswers();
+  var msg = document.getElementById('copymsg');
+  function ok(){ msg.textContent = "✅ Copied! Now paste it into a WhatsApp, SMS or email to us."; }
+  function fail(){ msg.textContent = "Couldn't copy automatically — your answers are selected, press copy on your keyboard."; }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(txt).then(ok, fail);
+  } else {
+    var ta = document.createElement('textarea');
+    ta.value = txt; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand('copy'); ok(); }catch(e){ fail(); }
+    document.body.removeChild(ta);
+  }
+}
+</script>
+</body>
+</html>
