@@ -88,7 +88,7 @@
   <header class="hero">
     <p class="kick">Customer Research · 2026</p>
     <h1>Product &amp; Usage Survey</h1>
-    <p>Help us understand what you cook with at home — what you buy, how much you use, and what you pay. It takes about 5 minutes. There are no right answers; honest replies help us bring you genuinely pure products at a fair price.</p>
+    <p>Help us understand what you cook with at home — what you buy and how much you use. It takes about 5 minutes. There are no right answers; honest replies help us bring you genuinely pure products.</p>
   </header>
 
   <div class="toolbar">
@@ -165,7 +165,7 @@
   <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
   <div class="note">
     <span class="lbl">How to fill this part</span><br>
-    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, <b>what you pay</b>, and whether you'd <b>try a pure/natural version</b> — and the price that would feel fair. If you don't use an item, just tick "Don't use" and skip to the next.
+    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, and whether you'd <b>try a pure/natural version</b>. If you don't use an item, just tick "Don't use" and skip to the next.
   </div>
 
   <div id="products"></div>
@@ -285,7 +285,6 @@ PRODUCTS.forEach(function(p, i){
       '<div><span class="mini">Brand / where you buy it now</span><input type="text" placeholder="Brand name or shop"></div>'+
       '<div><span class="mini">How much per month</span><div class="inline-unit"><input type="number" min="0" placeholder="amount"><span class="u">'+p.unit+'</span></div></div>'+
       '<div><span class="mini">Pack size you usually buy</span><input type="text" placeholder="e.g. 500 g / 1 kg pack"></div>'+
-      '<div><span class="mini">Price you pay for that pack (₹)</span><input type="number" min="0" placeholder="₹"></div>'+
       '<div class="full"><span class="mini">Would you try our pure / natural version?</span>'+
         '<div class="opts">'+
           '<label><input type="radio" name="try'+n+'"> Yes</label>'+
@@ -451,15 +450,14 @@ function collectObject(){
     var tx = block.querySelectorAll('input[type=text]');
     var nm = block.querySelectorAll('input[type=number]');
     var brand = tx[0]?tx[0].value.trim():"", pack = tx[1]?tx[1].value.trim():"";
-    var qty = nm[0]?nm[0].value.trim():"", price = nm[1]?nm[1].value.trim():"";
+    var qty = nm[0]?nm[0].value.trim():"";
     var unitEl = block.querySelector('.inline-unit .u'); var unit = unitEl?getText(unitEl):"";
-    if(!uses && !brand && !pack && !qty && !price && !willTry){ o[name] = ""; return; }
+    if(!uses && !brand && !pack && !qty && !willTry){ o[name] = ""; return; }
     var parts = [];
     if(uses)    parts.push(uses);
     if(qty)     parts.push("Qty: "+qty+(unit?(" "+unit):""));
     if(brand)   parts.push("Brand: "+brand);
     if(pack)    parts.push("Pack: "+pack);
-    if(price)   parts.push("Price: ₹"+price);
     if(willTry) parts.push("Try ours: "+willTry);
     o[name] = parts.join(" | ");
   });
