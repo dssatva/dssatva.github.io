@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Product & Usage Survey — Organic / Natural Range</title>
+<title>Product & Usage Survey — Natural Range</title>
 <style>
   :root{
     --bg:#faf8f3;--card:#fff;--ink:#202b25;--muted:#56655c;--green:#2e7d4f;--green-dark:#1d5b39;
@@ -107,7 +107,7 @@
       </div>
       <div>
         <label class="f">Phone / WhatsApp <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
-        <input type="text" name="phone" placeholder="So we can share offers">
+        <input type="text" name="phone" placeholder="Your phone or WhatsApp number">
       </div>
     </div>
     <div class="row">
@@ -140,11 +140,14 @@
         </div>
       </div>
     </div>
-    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all)</span></label>
+    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
     <div class="opts">
       <label><input type="checkbox" name="shop"> Local kirana shop</label>
       <label><input type="checkbox" name="shop"> Supermarket</label>
-      <label><input type="checkbox" name="shop"> Online (BigBasket / Amazon etc.)</label>
+      <label><input type="checkbox" name="shop"> Blinkit</label>
+      <label><input type="checkbox" name="shop"> Swiggy (Instamart)</label>
+      <label><input type="checkbox" name="shop"> Amazon</label>
+      <label><input type="checkbox" name="shop"> Online (BigBasket etc.)</label>
       <label><input type="checkbox" name="shop"> Wholesale / mandi</label>
       <label><input type="checkbox" name="shop"> Directly from a farmer / maker</label>
     </div>
@@ -162,7 +165,7 @@
   <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
   <div class="note">
     <span class="lbl">How to fill this part</span><br>
-    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, <b>what you pay</b>, and whether you'd <b>try a pure/organic version</b> — and the price that would feel fair. If you don't use an item, just tick "Don't use" and skip to the next.
+    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, <b>what you pay</b>, and whether you'd <b>try a pure/natural version</b> — and the price that would feel fair. If you don't use an item, just tick "Don't use" and skip to the next.
   </div>
 
   <div id="products"></div>
@@ -170,15 +173,15 @@
   <!-- ============ SECTION 3: QUICK SURVEY (OTHER ITEMS) ============ -->
   <h2 class="sec"><span class="n">3</span> Other items — a quick tick</h2>
   <div class="note">
-    <span class="lbl">Just three quick things</span><br>
-    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b>, jot <b>how much a month</b> and the <b>price you pay</b>. Skip anything you don't use — it's fine to leave most blank.
+    <span class="lbl">Just a quick tick</span><br>
+    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b>, jot the <b>quantity</b> and <b>how many times a month</b> you buy it (pick 1, 2, 3, or “More…” to type a number). Skip anything you don't use — it's fine to leave most blank.
   </div>
 
   <div id="quick"></div>
 
   <div class="card">
-    <label class="f">Anything else you'd love in a pure / organic version that isn't listed anywhere above?</label>
-    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, organic tea..."></textarea>
+    <label class="f">Anything else you'd love in a pure / natural version that isn't listed anywhere above?</label>
+    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, natural tea..."></textarea>
   </div>
 
   <!-- ============ SECTION 4: WHAT MATTERS ============ -->
@@ -228,39 +231,40 @@
   <!-- ============ SUBMIT ============ -->
   <h2 class="sec"><span class="n">5</span> Send us your answers</h2>
   <div class="card" style="text-align:center;">
-    <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap the button below — your answers will open as a ready-to-send WhatsApp message. Just press send.</p>
+    <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap submit to send us your answers.</p>
     <div class="toolbar" style="justify-content:center;">
-      <button class="btn" style="font-size:1.02rem;padding:14px 22px;" onclick="sendWhatsApp()">📲 Send my answers on WhatsApp</button>
+      <button class="btn" style="font-size:1.02rem;padding:14px 22px;" onclick="submitSurvey()">✅ Submit my answers</button>
+      <button class="btn alt" onclick="sendWhatsApp()">📲 Send on WhatsApp</button>
       <button class="btn alt" onclick="copyAnswers()">📋 Copy all answers</button>
     </div>
     <p id="copymsg" class="hint" style="min-height:18px;margin-top:10px;"></p>
-    <p class="hint">If WhatsApp doesn't open, tap “Copy all answers” and paste it into a WhatsApp / SMS / email to us.</p>
+    <p class="hint">If submit doesn’t work, tap “Send on WhatsApp”, or “Copy all answers” and paste it into a WhatsApp / SMS / email to us.</p>
   </div>
 
   <div class="warn">🙏 Thank you! Your answers stay private and are used only to plan our product range. We will not share your details.</div>
 
-  <p class="foot">Customer Research Survey · Organic / Natural Range · 2026 · For internal product-planning use.</p>
+  <p class="foot">Customer Research Survey · Natural Range · 2026 · For internal product-planning use.</p>
 
 </div>
 
 <script>
 /* Product list with respondent-friendly clarifiers and natural monthly units */
 var PRODUCTS = [
-  {name:"Organic Haldi",            sub:"Turmeric powder",                  unit:"grams / month"},
+  {name:"Natural Haldi",            sub:"Turmeric powder",                  unit:"grams / month"},
   {name:"Natural Toor Dal",         sub:"Arhar / pigeon-pea dal",           unit:"kg / month"},
-  {name:"Chana Dal",                sub:"Split Bengal gram",                unit:"kg / month"},
   {name:"Natural Mirchi Powder",    sub:"Red chilli powder",                unit:"grams / month"},
-  {name:"Organic Mustard",          sub:"Mohori / rai seeds",               unit:"grams / month"},
-  {name:"Organic Pink Salt",        sub:"Rock / Himalayan salt",            unit:"kg / month"},
+  {name:"Natural Mustard",          sub:"Mohori / rai seeds",               unit:"grams / month"},
+  {name:"Natural Pink Salt",        sub:"Rock / Himalayan salt",            unit:"kg / month"},
+  {name:"Coriander Powder",         sub:"Dhania powder",                    unit:"grams / month"},
+  {name:"Chia Seeds",               sub:"",                                 unit:"grams / month"},
   {name:"Premium Kala Masala",      sub:"Authentic black / goda masala",    unit:"grams / month"},
   {name:"Javas Chutney",            sub:"Flaxseed dry chutney",             unit:"grams / month"},
   {name:"Karala Chutney",           sub:"Niger seed dry chutney",           unit:"grams / month"},
-  {name:"Chia Seeds",               sub:"",                                 unit:"grams / month"},
-  {name:"Coriander Powder",         sub:"Dhania powder",                    unit:"grams / month"},
   {name:"Jaggery",                  sub:"Gud",                              unit:"kg / month"},
   {name:"Black Wheat",              sub:"Kala gehu",                        unit:"kg / month"},
   {name:"Black Rice",               sub:"Kala chawal",                      unit:"kg / month"},
-  {name:"Groundnut Chutney",        sub:"Dry peanut chutney",               unit:"grams / month"}
+  {name:"Groundnut Chutney",        sub:"Dry peanut chutney",               unit:"grams / month"},
+  {name:"Chana Dal",                sub:"Split Bengal gram",                unit:"kg / month"}
 ];
 
 var box = document.getElementById('products');
@@ -282,13 +286,12 @@ PRODUCTS.forEach(function(p, i){
       '<div><span class="mini">How much per month</span><div class="inline-unit"><input type="number" min="0" placeholder="amount"><span class="u">'+p.unit+'</span></div></div>'+
       '<div><span class="mini">Pack size you usually buy</span><input type="text" placeholder="e.g. 500 g / 1 kg pack"></div>'+
       '<div><span class="mini">Price you pay for that pack (₹)</span><input type="number" min="0" placeholder="₹"></div>'+
-      '<div class="full"><span class="mini">Would you try our pure / organic version?</span>'+
+      '<div class="full"><span class="mini">Would you try our pure / natural version?</span>'+
         '<div class="opts">'+
           '<label><input type="radio" name="try'+n+'"> Yes</label>'+
           '<label><input type="radio" name="try'+n+'"> Maybe</label>'+
           '<label><input type="radio" name="try'+n+'"> No</label>'+
         '</div></div>'+
-      '<div class="full"><span class="mini">If yes — a fair price you\'d happily pay for it (₹ per pack)</span><input type="number" min="0" placeholder="₹" style="max-width:200px"></div>'+
     '</div>';
   box.appendChild(el);
 });
@@ -306,34 +309,9 @@ var QUICK = [
     ["Jeera","cumin"],["Methi","fenugreek seeds"],["Hing","asafoetida"],["Whole Garam Spices","clove/cardamom/cinnamon"],
     ["Bay Leaf","tej patta"],["Garam Masala"],["Sambar / Rasam Powder"],["Chaat Masala"]
   ]},
-  {cat:"Salt & sweeteners", icon:"🧂", unit:"kg / month", items:[
-    ["Sea Salt"],["Jaggery Powder"],["White Sugar"],["Honey","",  "grams / month"]
-  ]},
   {cat:"Oils & fats", icon:"🫙", unit:"litre / month", items:[
     ["Cold-pressed Groundnut Oil"],["Mustard Oil"],["Coconut Oil"],["Sesame (Til) Oil"],
     ["Ghee","A2 / desi cow"],["Refined Oil","sunflower / soybean"]
-  ]},
-  {cat:"Seeds, dry fruits & nuts", icon:"🥜", unit:"grams / month", items:[
-    ["Almonds","badam"],["Cashews","kaju"],["Walnuts","akhrot"],["Raisins","kishmish"],["Dates","khajur"],
-    ["Anjeer","figs"],["Pumpkin Seeds"],["Sunflower Seeds"],["Sesame Seeds","til"]
-  ]},
-  {cat:"More dry chutneys & pickles", icon:"🥣", unit:"grams / month", items:[
-    ["Curry-leaf Chutney"],["Garlic Chutney"],["Til Chutney","sesame"],["Dry Coconut Chutney"],["Pickle (Achaar)","mango/lime/mixed"]
-  ]},
-  {cat:"Beverages", icon:"🍵", unit:"grams / month", items:[
-    ["Tea","CTC / green"],["Filter Coffee"],["Packaged Juice / Drinks","", "packs / month"]
-  ]},
-  {cat:"Dairy & fresh", icon:"🥛", unit:"kg / month", items:[
-    ["Milk","", "litre / month"],["Curd","dahi"],["Paneer","", "grams / month"]
-  ]},
-  {cat:"Bakery & snacks", icon:"🍪", unit:"packs / month", items:[
-    ["Bread / Rusk"],["Biscuits"],["Roasted Chana / Makhana","", "grams / month"],["Chips / Namkeen"]
-  ]},
-  {cat:"Home care", icon:"🧴", unit:"units / month", items:[
-    ["Dishwash"],["Detergent"],["Floor Cleaner"],["Handwash"],["Agarbatti / Dhoop"]
-  ]},
-  {cat:"Personal care", icon:"🧼", unit:"units / month", items:[
-    ["Soap"],["Shampoo"],["Toothpaste"],["Hair Oil"]
   ]}
 ];
 
@@ -350,8 +328,15 @@ QUICK.forEach(function(group){
       '<div class="qitem" data-unit="'+unit+'">'+
         '<label class="qbuy"><input type="checkbox" class="buy"> <span class="qname">'+name+'</span>'+sub+'</label>'+
         '<div class="qfields">'+
-          '<input type="number" min="0" placeholder="qty"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
-          '<input type="number" min="0" placeholder="₹ price">'+
+          '<input type="number" min="0" class="qqty" placeholder="qty"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
+          '<select class="qfreq" onchange="toggleFreqMore(this)">'+
+            '<option value="">times / month</option>'+
+            '<option value="1">1× a month</option>'+
+            '<option value="2">2× a month</option>'+
+            '<option value="3">3× a month</option>'+
+            '<option value="more">More…</option>'+
+          '</select>'+
+          '<input type="number" min="4" class="qfreqmore" placeholder="how many?" style="display:none;width:96px;">'+
         '</div>'+
       '</div>';
   });
@@ -364,7 +349,25 @@ QUICK.forEach(function(group){
    Example for India: "919812345678". Leave "" to let the sender pick the contact. */
 var WHATSAPP_NUMBER = "917709932222";
 
+/* ====== Google Sheet logging ======
+   Paste the Apps Script Web App URL between the quotes to log every submission
+   into your Google Sheet. Leave it "" and the Submit button falls back to WhatsApp. */
+var SHEET_ENDPOINT = "";
+
 function getText(el){ return (el.textContent||'').replace(/\s+/g,' ').trim(); }
+
+/* Show/hide the "specify" box when "More…" is chosen for an other-item's monthly frequency */
+function toggleFreqMore(sel){
+  var more = sel.parentElement.querySelector('.qfreqmore');
+  if(more) more.style.display = (sel.value === 'more') ? '' : 'none';
+}
+/* Read how many times a month an other-item is bought (handles the "More…" case) */
+function quickFreq(it){
+  var sel = it.querySelector('.qfreq');
+  if(!sel) return "";
+  if(sel.value === 'more'){ var m = it.querySelector('.qfreqmore'); return m ? m.value.trim() : ""; }
+  return sel.value;
+}
 
 /* Walk the form in document order and build a readable text summary */
 function collectAnswers(){
@@ -380,14 +383,14 @@ function collectAnswers(){
       var head = block.querySelector('.qcat');
       var emitted = [];
       qitems.forEach(function(it){
-        var buy   = it.querySelector('input.buy');
-        var nums  = it.querySelectorAll('input[type=number]');
-        var qty   = nums[0] ? nums[0].value.trim() : "";
-        var price = nums[1] ? nums[1].value.trim() : "";
-        if(!(buy && buy.checked) && !qty && !price) return;
+        var buy  = it.querySelector('input.buy');
+        var qel  = it.querySelector('.qqty');
+        var qty  = qel ? qel.value.trim() : "";
+        var freq = quickFreq(it);
+        if(!(buy && buy.checked) && !qty && !freq) return;
         var parts = [];
-        if(qty)   parts.push(qty + " " + (it.getAttribute('data-unit')||"").replace(' / ','/'));
-        if(price) parts.push("₹" + price);
+        if(qty)  parts.push(qty + " " + (it.getAttribute('data-unit')||"").replace(' / ','/'));
+        if(freq) parts.push(freq + "× a month");
         emitted.push("• " + getText(it.querySelector('.qname')) + (parts.length ? ": " + parts.join(", ") : ""));
       });
       if(emitted.length){
@@ -434,6 +437,71 @@ function copyAnswers(){
     try{ document.execCommand('copy'); ok(); }catch(e){ fail(); }
     document.body.removeChild(ta);
   }
+}
+
+/* Build a structured record: one field per main product + a list of other items,
+   plus the full readable summary as a backstop column. */
+function collectObject(){
+  var o = { "Timestamp": new Date().toLocaleString() };
+  document.querySelectorAll('.prod').forEach(function(block){
+    var name = getText(block.querySelector('h3')).replace(/^\d+\s*/,'').trim();
+    var opts = block.querySelectorAll('.opts');
+    var uses = "";    if(opts[0]) opts[0].querySelectorAll('input').forEach(function(i){ if(i.checked) uses = getText(i.parentElement); });
+    var willTry = ""; if(opts[1]) opts[1].querySelectorAll('input').forEach(function(i){ if(i.checked) willTry = getText(i.parentElement); });
+    var tx = block.querySelectorAll('input[type=text]');
+    var nm = block.querySelectorAll('input[type=number]');
+    var brand = tx[0]?tx[0].value.trim():"", pack = tx[1]?tx[1].value.trim():"";
+    var qty = nm[0]?nm[0].value.trim():"", price = nm[1]?nm[1].value.trim():"";
+    var unitEl = block.querySelector('.inline-unit .u'); var unit = unitEl?getText(unitEl):"";
+    if(!uses && !brand && !pack && !qty && !price && !willTry){ o[name] = ""; return; }
+    var parts = [];
+    if(uses)    parts.push(uses);
+    if(qty)     parts.push("Qty: "+qty+(unit?(" "+unit):""));
+    if(brand)   parts.push("Brand: "+brand);
+    if(pack)    parts.push("Pack: "+pack);
+    if(price)   parts.push("Price: ₹"+price);
+    if(willTry) parts.push("Try ours: "+willTry);
+    o[name] = parts.join(" | ");
+  });
+  var others = [];
+  document.querySelectorAll('.qitem').forEach(function(it){
+    var buy = it.querySelector('input.buy');
+    var qel = it.querySelector('.qqty');
+    var qty = qel?qel.value.trim():"", freq = quickFreq(it);
+    if((buy&&buy.checked)||qty||freq){
+      var s = getText(it.querySelector('.qname')); var extra=[];
+      if(qty) extra.push(qty+" "+(it.getAttribute('data-unit')||""));
+      if(freq) extra.push(freq+"× a month");
+      if(extra.length) s += " ("+extra.join(", ")+")";
+      others.push(s);
+    }
+  });
+  o["Other items used"] = others.join(", ");
+  o["Full responses"] = collectAnswers();
+  return o;
+}
+
+function showThanks(){
+  document.querySelector('.wrap').innerHTML =
+    '<div style="text-align:center;padding:70px 22px;">'+
+    '<div style="font-size:3rem">🌿</div>'+
+    '<h1 style="color:var(--green-dark);margin:.4em 0">Thank you!</h1>'+
+    '<p style="color:var(--muted);font-size:1.05rem">Your answers have been received. We really appreciate your time. 🙏</p>'+
+    '</div>';
+  window.scrollTo(0,0);
+}
+
+function submitSurvey(){
+  var msg = document.getElementById('copymsg');
+  if(!SHEET_ENDPOINT){ sendWhatsApp(); return; }   // not configured yet → use WhatsApp
+  if(msg) msg.textContent = "Sending…";
+  fetch(SHEET_ENDPOINT, {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
+    body: JSON.stringify(collectObject())
+  }).then(function(){ showThanks(); })
+    .catch(function(){ if(msg) msg.textContent = "Couldn't submit online — please tap “Send on WhatsApp”."; });
 }
 </script>
 </body>
