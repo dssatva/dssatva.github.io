@@ -174,7 +174,7 @@
   <h2 class="sec"><span class="n">3</span> Other items — a quick tick</h2>
   <div class="note">
     <span class="lbl">Just a quick tick</span><br>
-    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b>, jot the <b>quantity</b> and <b>how many times a month</b> you buy it (pick 1, 2, 3, or “More…” to type a number). Skip anything you don't use — it's fine to leave most blank.
+    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b> and jot the <b>quantity</b>. Skip anything you don't use — it's fine to leave most blank.
   </div>
 
   <div id="quick"></div>
@@ -336,14 +336,6 @@ QUICK.forEach(function(group){
         '<label class="qbuy"><input type="checkbox" class="buy"> <span class="qname">'+name+'</span>'+sub+'</label>'+
         '<div class="qfields">'+
           '<input type="number" min="0" class="qqty" placeholder="qty"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
-          '<select class="qfreq" onchange="toggleFreqMore(this)">'+
-            '<option value="">times / month</option>'+
-            '<option value="1">1× a month</option>'+
-            '<option value="2">2× a month</option>'+
-            '<option value="3">3× a month</option>'+
-            '<option value="more">More…</option>'+
-          '</select>'+
-          '<input type="number" min="4" class="qfreqmore" placeholder="how many?" style="display:none;width:96px;">'+
         '</div>'+
       '</div>';
   });
@@ -363,18 +355,6 @@ var SHEET_ENDPOINT = "";
 
 function getText(el){ return (el.textContent||'').replace(/\s+/g,' ').trim(); }
 
-/* Show/hide the "specify" box when "More…" is chosen for an other-item's monthly frequency */
-function toggleFreqMore(sel){
-  var more = sel.parentElement.querySelector('.qfreqmore');
-  if(more) more.style.display = (sel.value === 'more') ? '' : 'none';
-}
-/* Read how many times a month an other-item is bought (handles the "More…" case) */
-function quickFreq(it){
-  var sel = it.querySelector('.qfreq');
-  if(!sel) return "";
-  if(sel.value === 'more'){ var m = it.querySelector('.qfreqmore'); return m ? m.value.trim() : ""; }
-  return sel.value;
-}
 
 /* Walk the form in document order and build a readable text summary */
 function collectAnswers(){
@@ -393,11 +373,9 @@ function collectAnswers(){
         var buy  = it.querySelector('input.buy');
         var qel  = it.querySelector('.qqty');
         var qty  = qel ? qel.value.trim() : "";
-        var freq = quickFreq(it);
-        if(!(buy && buy.checked) && !qty && !freq) return;
+        if(!(buy && buy.checked) && !qty) return;
         var parts = [];
         if(qty)  parts.push(qty + " " + (it.getAttribute('data-unit')||"").replace(' / ','/'));
-        if(freq) parts.push(freq + "× a month");
         emitted.push("• " + getText(it.querySelector('.qname')) + (parts.length ? ": " + parts.join(", ") : ""));
       });
       if(emitted.length){
@@ -472,11 +450,10 @@ function collectObject(){
   document.querySelectorAll('.qitem').forEach(function(it){
     var buy = it.querySelector('input.buy');
     var qel = it.querySelector('.qqty');
-    var qty = qel?qel.value.trim():"", freq = quickFreq(it);
-    if((buy&&buy.checked)||qty||freq){
+    var qty = qel?qel.value.trim():"";
+    if((buy&&buy.checked)||qty){
       var s = getText(it.querySelector('.qname')); var extra=[];
       if(qty) extra.push(qty+" "+(it.getAttribute('data-unit')||""));
-      if(freq) extra.push(freq+"× a month");
       if(extra.length) s += " ("+extra.join(", ")+")";
       others.push(s);
     }
