@@ -282,9 +282,8 @@ PRODUCTS.forEach(function(p, i){
       '</div>'+
     '</div>'+
     '<div class="grid">'+
-      '<div><span class="mini">Brand / where you buy it now</span><input type="text" placeholder="Brand name or shop"></div>'+
-      '<div><span class="mini">Pack size you usually buy</span><input type="text" placeholder="e.g. 500 g / 1 kg pack"></div>'+
-      '<div class="full"><span class="mini">How much do you buy a month?</span>'+
+      '<div class="full"><span class="mini">Brand / where you buy it now</span><input type="text" placeholder="Brand name or shop"></div>'+
+      '<div class="full"><span class="mini">How much / what pack size do you usually buy?</span>'+
         '<div class="opts">'+
           '<label><input type="radio" name="amt'+n+'"> 200 g</label>'+
           '<label><input type="radio" name="amt'+n+'"> 500 g</label>'+
@@ -292,7 +291,7 @@ PRODUCTS.forEach(function(p, i){
           '<label><input type="radio" name="amt'+n+'"> 5 kg</label>'+
           '<label><input type="radio" name="amt'+n+'"> Other</label>'+
         '</div>'+
-        '<input type="text" class="amt-other" placeholder="Or type another amount" style="max-width:220px;margin-top:6px">'+
+        '<input type="text" class="amt-other" placeholder="Or type another size / amount" style="max-width:240px;margin-top:6px">'+
       '</div>'+
       '<div class="full"><span class="mini">Would you try our pure / natural version?</span>'+
         '<div class="opts">'+
@@ -458,15 +457,14 @@ function collectObject(){
     var amt = "";     if(opts[1]) opts[1].querySelectorAll('input').forEach(function(i){ if(i.checked) amt = getText(i.parentElement); });
     var willTry = ""; if(opts[2]) opts[2].querySelectorAll('input').forEach(function(i){ if(i.checked) willTry = getText(i.parentElement); });
     var tx = block.querySelectorAll('input[type=text]');
-    var brand = tx[0]?tx[0].value.trim():"", pack = tx[1]?tx[1].value.trim():"";
+    var brand = tx[0]?tx[0].value.trim():"";
     var otherEl = block.querySelector('.amt-other'); var otherV = otherEl?otherEl.value.trim():"";
     if(otherV && (amt === "Other" || !amt)) amt = otherV;   // typed amount wins when "Other" picked
-    if(!uses && !brand && !pack && !amt && !willTry){ o[name] = ""; return; }
+    if(!uses && !brand && !amt && !willTry){ o[name] = ""; return; }
     var parts = [];
     if(uses)    parts.push(uses);
-    if(amt)     parts.push("Buys/month: "+amt);
+    if(amt)     parts.push("Buys: "+amt);
     if(brand)   parts.push("Brand: "+brand);
-    if(pack)    parts.push("Pack: "+pack);
     if(willTry) parts.push("Try ours: "+willTry);
     o[name] = parts.join(" | ");
   });
