@@ -168,7 +168,7 @@
   <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
   <div class="note">
     <span class="lbl">How to fill this part</span><br>
-    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, and whether you'd <b>try a pure/natural version</b>. If you don't use an item, just tick "Don't use" and skip to the next.
+    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, and whether you'd <b>try a pure version</b>. If you don't use an item, just tick "Don't use" and skip to the next.
   </div>
 
   <div id="products"></div>
@@ -183,8 +183,8 @@
   <div id="quick"></div>
 
   <div class="card">
-    <label class="f">Anything else you'd love in a pure / natural version that isn't listed anywhere above?</label>
-    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, natural tea..."></textarea>
+    <label class="f">Anything else you'd love in a pure version that isn't listed anywhere above?</label>
+    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
   </div>
 
   <!-- ============ SECTION 4: WHAT MATTERS ============ -->
@@ -251,13 +251,13 @@
 </div>
 
 <script>
-/* Product list with respondent-friendly clarifiers and natural monthly units */
+/* Product list with respondent-friendly clarifiers and sensible monthly units */
 var PRODUCTS = [
-  {name:"Natural Haldi",            sub:"Turmeric powder",                  unit:"grams / month"},
-  {name:"Natural Toor Dal",         sub:"Arhar / pigeon-pea dal",           unit:"kg / month"},
-  {name:"Natural Mirchi Powder",    sub:"Red chilli powder",                unit:"grams / month"},
-  {name:"Natural Mustard",          sub:"Mohori / rai seeds",               unit:"grams / month"},
-  {name:"Natural Pink Salt",        sub:"Rock / Himalayan salt",            unit:"kg / month"},
+  {name:"Haldi",                    sub:"Turmeric powder",                  unit:"grams / month"},
+  {name:"Toor Dal",                 sub:"Arhar / pigeon-pea dal",           unit:"kg / month"},
+  {name:"Mirchi Powder",            sub:"Red chilli powder",                unit:"grams / month"},
+  {name:"Mustard",                  sub:"Mohori / rai seeds",               unit:"grams / month"},
+  {name:"Pink Salt",                sub:"Rock / Himalayan salt",            unit:"kg / month"},
   {name:"Coriander Powder",         sub:"Dhania powder",                    unit:"grams / month"},
   {name:"Chia Seeds",               sub:"",                                 unit:"grams / month"},
   {name:"Premium Kala Masala",      sub:"Authentic black / goda masala",    unit:"grams / month"},
@@ -296,7 +296,7 @@ PRODUCTS.forEach(function(p, i){
         '</div>'+
         '<input type="text" class="amt-other" placeholder="Or type another size / amount" style="max-width:240px;margin-top:6px">'+
       '</div>'+
-      '<div class="full"><span class="mini">Would you try our pure / natural version?</span>'+
+      '<div class="full"><span class="mini">Would you try our pure version?</span>'+
         '<div class="opts">'+
           '<label><input type="radio" name="try'+n+'"> Yes</label>'+
           '<label><input type="radio" name="try'+n+'"> Maybe</label>'+
