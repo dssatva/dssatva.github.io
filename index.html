@@ -65,6 +65,10 @@
   .qfields{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
   .qfields input[type=number]{width:96px;padding:7px 9px;}
   .qfields .u{font-size:.8rem;color:var(--muted);white-space:nowrap;margin-right:4px;}
+  .qpick{display:inline-flex;gap:5px;}
+  .qp{font:inherit;font-size:.85rem;line-height:1;padding:7px 12px;border:1px solid var(--soft-line);background:var(--soft);color:var(--green-dark);border-radius:999px;cursor:pointer;font-weight:600;}
+  .qp:hover{background:var(--pill);}
+  .qp.active{background:var(--green);color:#fff;border-color:var(--green);}
 
   .foot{margin-top:40px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--line);padding-top:16px;}
 
@@ -105,11 +109,11 @@
   <div class="card">
     <div class="row">
       <div>
-        <label class="f">Name <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <label class="f">Name</label>
         <input type="text" name="name" placeholder="Your name">
       </div>
       <div>
-        <label class="f">Phone / WhatsApp <span style="font-weight:400;color:var(--muted)">(optional)</span></label>
+        <label class="f">Phone / WhatsApp</label>
         <input type="text" name="phone" placeholder="Your phone or WhatsApp number">
       </div>
     </div>
@@ -337,12 +341,32 @@ QUICK.forEach(function(group){
       '<div class="qitem" data-unit="'+unit+'">'+
         '<label class="qbuy"><input type="checkbox" class="buy"> <span class="qname">'+name+'</span>'+sub+'</label>'+
         '<div class="qfields">'+
-          '<input type="number" min="0" class="qqty" placeholder="qty"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
+          '<span class="qpick">'+
+            '<button type="button" class="qp" data-v="1">1</button>'+
+            '<button type="button" class="qp" data-v="2">2</button>'+
+            '<button type="button" class="qp" data-v="5">5</button>'+
+          '</span>'+
+          '<input type="number" min="0" class="qqty" placeholder="or type"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
         '</div>'+
       '</div>';
   });
   card.innerHTML = html;
   qbox.appendChild(card);
+});
+
+/* Quick-pick 1/2/5 buttons fill the qty box (and tick the item) for easy choosing */
+qbox.addEventListener('click', function(e){
+  var b = e.target.closest('.qp'); if(!b) return;
+  var item = b.closest('.qitem');
+  item.querySelector('.qqty').value = b.getAttribute('data-v');
+  var buy = item.querySelector('.buy'); if(buy) buy.checked = true;
+  item.querySelectorAll('.qp').forEach(function(x){ x.classList.remove('active'); });
+  b.classList.add('active');
+});
+qbox.addEventListener('input', function(e){
+  if(e.target.classList.contains('qqty')){
+    e.target.closest('.qitem').querySelectorAll('.qp').forEach(function(x){ x.classList.remove('active'); });
+  }
 });
 
 /* ====== Send-back logic ====== */
