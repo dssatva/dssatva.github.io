@@ -105,7 +105,7 @@
   <p class="howto">Fill it on screen, or print blank copies to use in person. To collect online instead, this same set of questions can be pasted into Google&nbsp;Forms.</p>
 
   <!-- ============ SECTION 1: ABOUT YOU ============ -->
-  <h2 class="sec"><span class="n">1</span> A little about your household</h2>
+  <h2 class="sec"><span class="n">1</span> About you &amp; your household</h2>
   <div class="card">
     <div class="row">
       <div>
@@ -147,25 +147,6 @@
         </div>
       </div>
     </div>
-    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
-    <div class="opts">
-      <label><input type="checkbox" name="shop"> Local kirana shop</label>
-      <label><input type="checkbox" name="shop"> Supermarket</label>
-      <label><input type="checkbox" name="shop"> Blinkit</label>
-      <label><input type="checkbox" name="shop"> Swiggy (Instamart)</label>
-      <label><input type="checkbox" name="shop"> Amazon</label>
-      <label><input type="checkbox" name="shop"> Online (BigBasket etc.)</label>
-      <label><input type="checkbox" name="shop"> Wholesale / mandi</label>
-      <label><input type="checkbox" name="shop"> Directly from a farmer / maker</label>
-    </div>
-    <label class="f">Roughly, how much does your home spend on groceries each month?</label>
-    <div class="opts">
-      <label><input type="radio" name="spend"> Under ₹3,000</label>
-      <label><input type="radio" name="spend"> ₹3,000–6,000</label>
-      <label><input type="radio" name="spend"> ₹6,000–10,000</label>
-      <label><input type="radio" name="spend"> ₹10,000–15,000</label>
-      <label><input type="radio" name="spend"> Over ₹15,000</label>
-    </div>
   </div>
 
   <!-- ============ SECTION 2: PER PRODUCT ============ -->
@@ -186,8 +167,42 @@
 
   <div id="products"></div>
 
-  <!-- ============ SECTION 3: WHAT MATTERS ============ -->
-  <h2 class="sec"><span class="n">3</span> What matters most to you</h2>
+  <!-- ============ SECTION 3: SHOPPING HABITS ============ -->
+  <h2 class="sec"><span class="n">3</span> Your shopping habits</h2>
+  <div class="card">
+    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="shop"> Local kirana shop</label>
+      <label><input type="checkbox" name="shop"> Supermarket</label>
+      <label><input type="checkbox" name="shop"> Blinkit</label>
+      <label><input type="checkbox" name="shop"> Swiggy (Instamart)</label>
+      <label><input type="checkbox" name="shop"> Amazon</label>
+      <label><input type="checkbox" name="shop"> Online (BigBasket etc.)</label>
+      <label><input type="checkbox" name="shop"> Wholesale / mandi</label>
+      <label><input type="checkbox" name="shop"> Directly from a farmer / maker</label>
+    </div>
+
+    <label class="f">How often do you shop for groceries?</label>
+    <div class="opts">
+      <label><input type="radio" name="freq"> Once a month (stock up)</label>
+      <label><input type="radio" name="freq"> Every week or two</label>
+      <label><input type="radio" name="freq"> Whenever something runs out</label>
+      <label><input type="radio" name="freq"> Daily / very often</label>
+    </div>
+
+    <label class="f">Roughly, how much does your home spend on groceries each month?</label>
+    <div class="opts">
+      <label><input type="radio" name="spend"> Under ₹3,000</label>
+      <label><input type="radio" name="spend"> ₹3,000–6,000</label>
+      <label><input type="radio" name="spend"> ₹6,000–10,000</label>
+      <label><input type="radio" name="spend"> ₹10,000–15,000</label>
+      <label><input type="radio" name="spend"> Over ₹15,000</label>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4: WHAT MATTERS (answer genuinely) ============ -->
+  <h2 class="sec"><span class="n">4</span> What matters most to you</h2>
+  <div class="warn">⭐ <b>Please answer this section genuinely.</b> These few questions decide what we make and how we price it — there are no right or wrong answers, your honest view is what helps us most. 🙏</div>
   <div class="card">
     <label class="f">When buying food staples, rank these from 1 (most important) to 5 (least).</label>
     <div class="grid">
@@ -207,6 +222,16 @@
       <label><input type="radio" name="premium"> 50%+ more</label>
     </div>
 
+    <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
+    <textarea placeholder="Tell us in your own words..."></textarea>
+
+    <label class="f">Anything else you'd love in a pure version that isn't listed above?</label>
+    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
+  </div>
+
+  <!-- ============ SECTION 5: HOW YOU'D LIKE TO BUY ============ -->
+  <h2 class="sec"><span class="n">5</span> How you'd like to buy from us</h2>
+  <div class="card">
     <div class="row">
       <div>
         <label class="f">Would you buy these online with home delivery?</label>
@@ -226,30 +251,16 @@
       </div>
     </div>
 
-    <label class="f">How often do you shop for groceries?</label>
-    <div class="opts">
-      <label><input type="radio" name="freq"> Once a month (stock up)</label>
-      <label><input type="radio" name="freq"> Every week or two</label>
-      <label><input type="radio" name="freq"> Whenever something runs out</label>
-      <label><input type="radio" name="freq"> Daily / very often</label>
-    </div>
-
     <label class="f">If we offered a simple, easy-to-use app personalised to your preferences (your usual items, reminders, one-tap reorder), would you use it?</label>
     <div class="opts">
       <label><input type="radio" name="app"> Yes, I'd love that</label>
       <label><input type="radio" name="app"> Maybe</label>
       <label><input type="radio" name="app"> No, I prefer ordering another way</label>
     </div>
-
-    <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
-    <textarea placeholder="Tell us in your own words..."></textarea>
-
-    <label class="f">Anything else you'd love in a pure version that isn't listed above?</label>
-    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
   </div>
 
   <!-- ============ SUBMIT ============ -->
-  <h2 class="sec"><span class="n">4</span> Send us your answers</h2>
+  <h2 class="sec"><span class="n">6</span> Send us your answers</h2>
   <div class="card" style="text-align:center;">
     <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap submit to send us your answers.</p>
     <div class="toolbar" style="justify-content:center;">
