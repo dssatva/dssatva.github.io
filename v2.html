@@ -382,9 +382,7 @@ PRODUCTS.forEach(function(p, i){
           '<label><input type="radio" name="amt'+n+'"> 500 g</label>'+
           '<label><input type="radio" name="amt'+n+'"> 1 kg</label>'+
           '<label><input type="radio" name="amt'+n+'"> 5 kg</label>'+
-          '<label><input type="radio" name="amt'+n+'"> Other</label>'+
         '</div>'+
-        '<input type="text" class="amt-other" placeholder="Or type another size / amount" style="max-width:240px;margin-top:6px">'+
       '</div>'+
     '</div>';
   box.appendChild(el);
@@ -480,8 +478,6 @@ function collectObject(){
     var opts = block.querySelectorAll('.opts');
     var uses = "";    if(opts[0]) opts[0].querySelectorAll('input').forEach(function(i){ if(i.checked) uses = getText(i.parentElement); });
     var amt = "";     if(opts[1]) opts[1].querySelectorAll('input').forEach(function(i){ if(i.checked) amt = getText(i.parentElement); });
-    var otherEl = block.querySelector('.amt-other'); var otherV = otherEl?otherEl.value.trim():"";
-    if(otherV && (amt === "Other" || !amt)) amt = otherV;   // typed amount wins when "Other" picked
     if(!uses && !amt){ o[name] = ""; return; }
     var parts = [];
     if(uses)    parts.push(uses);
