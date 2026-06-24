@@ -177,22 +177,8 @@
 
   <div id="products"></div>
 
-  <!-- ============ SECTION 3: QUICK SURVEY (OTHER ITEMS) ============ -->
-  <h2 class="sec"><span class="n">3</span> Other items — a quick tick</h2>
-  <div class="note">
-    <span class="lbl">Just a quick tick</span><br>
-    These are items we plan to add <b>later</b>. For any you buy, just tick <b>“I buy this”</b> and jot the <b>quantity</b>. Skip anything you don't use — it's fine to leave most blank.
-  </div>
-
-  <div id="quick"></div>
-
-  <div class="card">
-    <label class="f">Anything else you'd love in a pure version that isn't listed anywhere above?</label>
-    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
-  </div>
-
-  <!-- ============ SECTION 4: WHAT MATTERS ============ -->
-  <h2 class="sec"><span class="n">4</span> What matters most to you</h2>
+  <!-- ============ SECTION 3: WHAT MATTERS ============ -->
+  <h2 class="sec"><span class="n">3</span> What matters most to you</h2>
   <div class="card">
     <label class="f">When buying food staples, rank these from 1 (most important) to 5 (least).</label>
     <div class="grid">
@@ -231,12 +217,30 @@
       </div>
     </div>
 
+    <label class="f">How often do you shop for groceries?</label>
+    <div class="opts">
+      <label><input type="radio" name="freq"> Once a month (stock up)</label>
+      <label><input type="radio" name="freq"> Every week or two</label>
+      <label><input type="radio" name="freq"> Whenever something runs out</label>
+      <label><input type="radio" name="freq"> Daily / very often</label>
+    </div>
+
+    <label class="f">If we offered a simple, easy-to-use app personalised to your preferences (your usual items, reminders, one-tap reorder), would you use it?</label>
+    <div class="opts">
+      <label><input type="radio" name="app"> Yes, I'd love that</label>
+      <label><input type="radio" name="app"> Maybe</label>
+      <label><input type="radio" name="app"> No, I prefer ordering another way</label>
+    </div>
+
     <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
     <textarea placeholder="Tell us in your own words..."></textarea>
+
+    <label class="f">Anything else you'd love in a pure version that isn't listed above?</label>
+    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
   </div>
 
   <!-- ============ SUBMIT ============ -->
-  <h2 class="sec"><span class="n">5</span> Send us your answers</h2>
+  <h2 class="sec"><span class="n">4</span> Send us your answers</h2>
   <div class="card" style="text-align:center;">
     <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap submit to send us your answers.</p>
     <div class="toolbar" style="justify-content:center;">
@@ -263,14 +267,14 @@ var PRODUCTS = [
   {name:"Pink Salt",                sub:"Rock / Himalayan salt",            unit:"kg / month"},
   {name:"Coriander Powder",         sub:"Dhania powder",                    unit:"grams / month"},
   {name:"Chia Seeds",               sub:"",                                 unit:"grams / month"},
+  {name:"Jaggery",                  sub:"Gud",                              unit:"kg / month"},
+  {name:"Wheat",                    sub:"Kapli, black or any",              unit:"kg / month"},
+  {name:"Black / Brown Rice",       sub:"Kala chawal / brown rice",         unit:"kg / month"},
+  {name:"Groundnut Chutney",        sub:"Dry peanut chutney",               unit:"grams / month"},
   {name:"Premium Kala Masala",      sub:"Authentic black / goda masala",    unit:"grams / month"},
   {name:"Javas Chutney",            sub:"Flaxseed dry chutney",             unit:"grams / month"},
   {name:"Karala Chutney",           sub:"Niger seed dry chutney",           unit:"grams / month"},
-  {name:"Jaggery",                  sub:"Gud",                              unit:"kg / month"},
-  {name:"Wheat",                    sub:"Kapli, black or any",              unit:"kg / month"},
-  {name:"Black Rice",               sub:"Kala chawal",                      unit:"kg / month"},
-  {name:"Groundnut Chutney",        sub:"Dry peanut chutney",               unit:"grams / month"},
-  {name:"Chana Dal",                sub:"Split Bengal gram",                unit:"kg / month"}
+  {name:"Kanda Lasun Masala",       sub:"Onion–garlic masala",              unit:"grams / month"}
 ];
 
 var box = document.getElementById('products');
@@ -307,66 +311,6 @@ PRODUCTS.forEach(function(p, i){
         '</div></div>'+
     '</div>';
   box.appendChild(el);
-});
-
-/* ===== QUICK SURVEY — items to add later (one light row each) =====
-   Each category: {cat, icon, unit, items:[ [name, sub?, unitOverride?] ]} */
-var QUICK = [
-  {cat:"More dals, grains & flours", icon:"🌾", unit:"kg / month", items:[
-    ["Moong Dal"],["Masoor Dal"],["Urad Dal"],["Rajma","kidney beans"],["Kabuli Chana","white chickpea"],
-    ["Chowli","black-eyed peas"],["Matki","moth beans"],["Rice (regular)","sona masoori / basmati"],
-    ["Poha","flattened rice"],["Rava / Suji","semolina"],["Wheat Atta"],["Multigrain Atta"],["Besan","gram flour"],
-    ["Jowar","sorghum"],["Bajra","pearl millet"],["Ragi","finger millet"],["Foxtail Millet","kang"],["Little Millet","sava"]
-  ]},
-  {cat:"More spices & masalas", icon:"🌶️", unit:"grams / month", items:[
-    ["Jeera","cumin"],["Methi","fenugreek seeds"],["Hing","asafoetida"],["Whole Garam Spices","clove/cardamom/cinnamon"],
-    ["Bay Leaf","tej patta"],["Garam Masala"],["Sambar / Rasam Powder"],["Chaat Masala"]
-  ]},
-  {cat:"Oils & fats", icon:"🫙", unit:"litre / month", items:[
-    ["Cold-pressed Groundnut Oil"],["Mustard Oil"],["Coconut Oil"],["Sesame (Til) Oil"],
-    ["Ghee","A2 / desi cow"],["Refined Oil","sunflower / soybean"]
-  ]}
-];
-
-var qbox = document.getElementById('quick');
-QUICK.forEach(function(group){
-  var card = document.createElement('div');
-  card.className = 'card';
-  var html = '<h3 class="qcat"><span class="ic">'+group.icon+'</span> '+group.cat+'</h3>';
-  group.items.forEach(function(it){
-    var name = it[0];
-    var sub  = it[1] ? ' <span class="qsub">('+it[1]+')</span>' : '';
-    var unit = it[2] || group.unit;
-    html +=
-      '<div class="qitem" data-unit="'+unit+'">'+
-        '<label class="qbuy"><input type="checkbox" class="buy"> <span class="qname">'+name+'</span>'+sub+'</label>'+
-        '<div class="qfields">'+
-          '<span class="qpick">'+
-            '<button type="button" class="qp" data-v="1">1</button>'+
-            '<button type="button" class="qp" data-v="2">2</button>'+
-            '<button type="button" class="qp" data-v="5">5</button>'+
-          '</span>'+
-          '<input type="number" min="0" class="qqty" placeholder="or type"><span class="u">'+unit.replace(' / ',' /')+'</span>'+
-        '</div>'+
-      '</div>';
-  });
-  card.innerHTML = html;
-  qbox.appendChild(card);
-});
-
-/* Quick-pick 1/2/5 buttons fill the qty box (and tick the item) for easy choosing */
-qbox.addEventListener('click', function(e){
-  var b = e.target.closest('.qp'); if(!b) return;
-  var item = b.closest('.qitem');
-  item.querySelector('.qqty').value = b.getAttribute('data-v');
-  var buy = item.querySelector('.buy'); if(buy) buy.checked = true;
-  item.querySelectorAll('.qp').forEach(function(x){ x.classList.remove('active'); });
-  b.classList.add('active');
-});
-qbox.addEventListener('input', function(e){
-  if(e.target.classList.contains('qqty')){
-    e.target.closest('.qitem').querySelectorAll('.qp').forEach(function(x){ x.classList.remove('active'); });
-  }
 });
 
 /* ====== Send-back logic ====== */
