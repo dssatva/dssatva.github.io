@@ -172,7 +172,16 @@
   <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
   <div class="note">
     <span class="lbl">How to fill this part</span><br>
-    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>which brand / where you get it now</b>, <b>how much you use a month</b>, and whether you'd <b>try a pure version</b>. If you don't use an item, just tick "Don't use" and skip to the next.
+    These are the products we're launching first. For each one, tell us: <b>do you use it</b>, <b>how much you use a month</b>, and whether you'd <b>try a pure version</b>. If you don't use an item, just tick "Don't use" and skip to the next.
+  </div>
+
+  <div class="card">
+    <label class="f">Which brands do you usually buy for these staples? <span style="font-weight:400;color:var(--muted)">(up to 3 — leave blank if you buy loose / unbranded)</span></label>
+    <div class="grid">
+      <input type="text" name="brand1" placeholder="Brand 1">
+      <input type="text" name="brand2" placeholder="Brand 2">
+      <input type="text" name="brand3" placeholder="Brand 3">
+    </div>
   </div>
 
   <div id="products"></div>
@@ -292,7 +301,6 @@ PRODUCTS.forEach(function(p, i){
       '</div>'+
     '</div>'+
     '<div class="grid">'+
-      '<div class="full"><span class="mini">Brand</span><input type="text" placeholder="Brand name"></div>'+
       '<div class="full"><span class="mini">How much / what pack size do you usually buy?</span>'+
         '<div class="opts">'+
           '<label><input type="radio" name="amt'+n+'"> 200 g</label>'+
@@ -404,15 +412,12 @@ function collectObject(){
     var uses = "";    if(opts[0]) opts[0].querySelectorAll('input').forEach(function(i){ if(i.checked) uses = getText(i.parentElement); });
     var amt = "";     if(opts[1]) opts[1].querySelectorAll('input').forEach(function(i){ if(i.checked) amt = getText(i.parentElement); });
     var willTry = ""; if(opts[2]) opts[2].querySelectorAll('input').forEach(function(i){ if(i.checked) willTry = getText(i.parentElement); });
-    var tx = block.querySelectorAll('input[type=text]');
-    var brand = tx[0]?tx[0].value.trim():"";
     var otherEl = block.querySelector('.amt-other'); var otherV = otherEl?otherEl.value.trim():"";
     if(otherV && (amt === "Other" || !amt)) amt = otherV;   // typed amount wins when "Other" picked
-    if(!uses && !brand && !amt && !willTry){ o[name] = ""; return; }
+    if(!uses && !amt && !willTry){ o[name] = ""; return; }
     var parts = [];
     if(uses)    parts.push(uses);
     if(amt)     parts.push("Buys: "+amt);
-    if(brand)   parts.push("Brand: "+brand);
     if(willTry) parts.push("Try ours: "+willTry);
     o[name] = parts.join(" | ");
   });
