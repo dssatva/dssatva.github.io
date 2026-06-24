@@ -147,6 +147,14 @@
         </div>
       </div>
     </div>
+    <label class="f">Your age group</label>
+    <div class="opts">
+      <label><input type="radio" name="age"> Under 25</label>
+      <label><input type="radio" name="age"> 25–34</label>
+      <label><input type="radio" name="age"> 35–44</label>
+      <label><input type="radio" name="age"> 45–54</label>
+      <label><input type="radio" name="age"> 55+</label>
+    </div>
   </div>
 
   <!-- ============ SECTION 2: PER PRODUCT ============ -->
@@ -198,6 +206,16 @@
       <label><input type="radio" name="spend"> ₹10,000–15,000</label>
       <label><input type="radio" name="spend"> Over ₹15,000</label>
     </div>
+
+    <label class="f">How do you usually discover new food brands? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="discover"> Instagram / reels</label>
+      <label><input type="checkbox" name="discover"> WhatsApp / family &amp; friends</label>
+      <label><input type="checkbox" name="discover"> Amazon / Blinkit / Swiggy</label>
+      <label><input type="checkbox" name="discover"> Shop shelf</label>
+      <label><input type="checkbox" name="discover"> YouTube</label>
+      <label><input type="checkbox" name="discover"> Google search</label>
+    </div>
   </div>
 
   <!-- ============ SECTION 4: WHAT MATTERS (answer genuinely) ============ -->
@@ -211,6 +229,32 @@
       <div class="inline-unit"><span class="mini" style="flex:1">Taste &amp; freshness</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
       <div class="inline-unit"><span class="mini" style="flex:1">Trusted brand / proof (lab tests)</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
       <div class="inline-unit"><span class="mini" style="flex:1">Convenience / home delivery</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+    </div>
+
+    <label class="f">How concerned are you about adulteration / chemicals in everyday staples?</label>
+    <div class="opts">
+      <label><input type="radio" name="concern"> Not really concerned</label>
+      <label><input type="radio" name="concern"> Somewhat concerned</label>
+      <label><input type="radio" name="concern"> Very concerned</label>
+    </div>
+
+    <label class="f">Why would you choose pure / natural staples? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="whypure"> For my family's health</label>
+      <label><input type="checkbox" name="whypure"> For kids / elderly at home</label>
+      <label><input type="checkbox" name="whypure"> Better taste</label>
+      <label><input type="checkbox" name="whypure"> To avoid chemicals / adulteration</label>
+      <label><input type="checkbox" name="whypure"> Fitness / diet</label>
+      <label><input type="checkbox" name="whypure"> Religious / festival use</label>
+    </div>
+
+    <label class="f">What proof would make you trust a brand's "purity" claim? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="proof"> Lab / FSSAI certificate</label>
+      <label><input type="checkbox" name="proof"> Source &amp; farmer story</label>
+      <label><input type="checkbox" name="proof"> A free sample to try</label>
+      <label><input type="checkbox" name="proof"> Clear "no additives" label</label>
+      <label><input type="checkbox" name="proof"> A friend's recommendation</label>
     </div>
 
     <label class="f">How much extra would you pay for a genuinely pure / additive-free version of a staple?</label>
@@ -259,8 +303,19 @@
     </div>
   </div>
 
+  <!-- ============ SECTION 6: EARLY ACCESS ============ -->
+  <h2 class="sec"><span class="n">6</span> Be the first to try</h2>
+  <div class="card">
+    <label class="f">Would you like a free sample and early access when we launch?</label>
+    <div class="opts">
+      <label><input type="radio" name="sample"> Yes, please contact me</label>
+      <label><input type="radio" name="sample"> No, thanks</label>
+    </div>
+    <p class="hint">We'll use the name &amp; number you gave at the top — no need to type again.</p>
+  </div>
+
   <!-- ============ SUBMIT ============ -->
-  <h2 class="sec"><span class="n">6</span> Send us your answers</h2>
+  <h2 class="sec"><span class="n">7</span> Send us your answers</h2>
   <div class="card" style="text-align:center;">
     <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap submit to send us your answers.</p>
     <div class="toolbar" style="justify-content:center;">
