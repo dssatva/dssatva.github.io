@@ -219,11 +219,11 @@
   <div class="card">
     <label class="f">When buying food staples, rank these from 1 (most important) to 5 (least).</label>
     <div class="grid">
-      <div class="inline-unit"><span class="mini" style="flex:1">Low price</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Purity / no additives</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Taste &amp; freshness</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Trusted brand / proof (lab tests)</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Convenience / home delivery</span><input type="number" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Low price</span><input type="number" name="rank_price" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Purity / no additives</span><input type="number" name="rank_purity" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Taste &amp; freshness</span><input type="number" name="rank_taste" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Trusted brand / proof (lab tests)</span><input type="number" name="rank_proof" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
+      <div class="inline-unit"><span class="mini" style="flex:1">Convenience / home delivery</span><input type="number" name="rank_conv" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
     </div>
 
     <label class="f">How concerned are you about adulteration / chemicals in everyday staples?</label>
@@ -262,10 +262,10 @@
     </div>
 
     <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
-    <textarea placeholder="Tell us in your own words..."></textarea>
+    <textarea name="switch" placeholder="Tell us in your own words..."></textarea>
 
     <label class="f">Anything else you'd love in a pure version that isn't listed above?</label>
-    <textarea placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
+    <textarea name="wishlist" placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
   </div>
 
   <!-- ============ SECTION 5: HOW YOU'D LIKE TO BUY ============ -->
@@ -465,10 +465,58 @@ function copyAnswers(){
   }
 }
 
-/* Build a structured record: one field per main product + a list of other items,
+/* Helpers to read each question by its name attribute */
+function radioVal(nm){ var v=""; document.querySelectorAll('input[name="'+nm+'"]').forEach(function(i){ if(i.checked) v=getText(i.parentElement); }); return v; }
+function checkVals(nm){ var a=[]; document.querySelectorAll('input[name="'+nm+'"]').forEach(function(i){ if(i.checked) a.push(getText(i.parentElement)); }); return a.join(", "); }
+function fieldVal(nm){ var el=document.querySelector('[name="'+nm+'"]'); return el?(el.value||"").trim():""; }
+
+/* Build a structured record: one column per question + per product,
    plus the full readable summary as a backstop column. */
 function collectObject(){
   var o = { "Timestamp": new Date().toLocaleString() };
+
+  // Section 1 — about you
+  o["Name"]               = fieldVal('name');
+  o["Phone"]              = fieldVal('phone');
+  o["Area/City"]          = fieldVal('area');
+  o["Household size"]     = radioVal('hh');
+  o["Who buys groceries"] = radioVal('buyer');
+  o["Age group"]          = radioVal('age');
+
+  // Section 3 — shopping habits
+  o["Where buys"]         = checkVals('shop');
+  o["Shop frequency"]     = radioVal('freq');
+  o["Monthly spend"]      = radioVal('spend');
+  o["Brand discovery"]    = checkVals('discover');
+
+  // Section 4 — what matters
+  o["Rank: Low price"]    = fieldVal('rank_price');
+  o["Rank: Purity"]       = fieldVal('rank_purity');
+  o["Rank: Taste"]        = fieldVal('rank_taste');
+  o["Rank: Trust/proof"]  = fieldVal('rank_proof');
+  o["Rank: Convenience"]  = fieldVal('rank_conv');
+  o["Pay extra"]          = radioVal('premium');
+  o["Adulteration concern"] = radioVal('concern');
+  o["Why buy pure"]       = checkVals('whypure');
+  o["Trust proof"]        = checkVals('proof');
+  o["Switch trigger"]     = fieldVal('switch');
+  o["Wishlist"]           = fieldVal('wishlist');
+
+  // Section 5 — how you'd buy
+  o["Buy online"]         = radioVal('online');
+  o["Subscription"]       = radioVal('sub');
+  o["App interest"]       = radioVal('app');
+
+  // Section 6 — early access
+  o["Sample/early access"]= radioVal('sample');
+
+  // Section 2 — would try pure (consolidated)
+  o["Would try pure versions"] = radioVal('trypure');
+
+  // Section 7 — brands
+  o["Brand 1"]            = fieldVal('brand1');
+  o["Brand 2"]            = fieldVal('brand2');
+
   document.querySelectorAll('.prod').forEach(function(block){
     var name = getText(block.querySelector('h3')).replace(/^\d+\s*/,'').trim();
     var opts = block.querySelectorAll('.opts');
