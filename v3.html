@@ -95,6 +95,10 @@
   .qchip.active{background:var(--green);color:#fff;border-color:var(--green);}
   .qotherbox{width:120px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.88rem;}
   .qbucket{margin:0 0 16px;}
+  .qbucket .opts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px 16px;}
+  .qbucket .opts label{display:inline-flex;align-items:center;gap:7px;justify-self:start;cursor:pointer;}
+  .qogrid{display:grid;grid-template-columns:repeat(2,1fr);gap:4px 16px;}
+  @media(max-width:520px){ .qogrid{grid-template-columns:1fr;} }
   .qbucket .qcat{font-size:1rem;color:var(--green-dark);font-weight:700;margin:0 0 8px;padding-bottom:6px;border-bottom:1px dashed var(--soft-line);}
   .qorow{display:flex;align-items:center;gap:10px;padding:6px 0;}
   .qoname{flex:1 1 150px;font-size:.93rem;color:var(--ink);}
@@ -270,7 +274,7 @@ function renderBuckets(){
     var v = otherQty[p.name] ? ' value="'+esc(otherQty[p.name])+'"' : '';
     orows += '<div class="qorow"><span class="qoname">'+p.name+'</span><input type="text" class="qoqty" data-name="'+p.name+'" placeholder="other amount"'+v+'></div>';
   });
-  html += '<div class="qbucket"><h3 class="qcat">Other amount <span style="font-weight:400;color:var(--muted);font-size:.8rem">(only if you buy a different size)</span></h3>'+orows+'</div>';
+  html += '<div class="qbucket"><h3 class="qcat">Other amount <span style="font-weight:400;color:var(--muted);font-size:.8rem">(only if you buy a different size)</span></h3><div class="qogrid">'+orows+'</div></div>';
   box.innerHTML = html;
 }
 renderBuckets();
