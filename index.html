@@ -86,6 +86,14 @@
     .opts label{border:0;}
     h2.sec{break-after:avoid;}
   }
+  .qrow{display:flex;flex-wrap:wrap;align-items:center;gap:8px 10px;padding:10px 0;border-bottom:1px solid var(--line);}
+  .qrow:last-child{border-bottom:0;}
+  .qlabel{flex:1 1 150px;font-size:.95rem;color:var(--ink);}
+  .qlabel .qsub{color:var(--muted);font-weight:400;font-size:.83rem;}
+  .qchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;}
+  .qchip{font:inherit;font-size:.85rem;line-height:1;padding:8px 12px;border:1px solid var(--soft-line);background:var(--soft);color:var(--green-dark);border-radius:999px;cursor:pointer;font-weight:600;}
+  .qchip.active{background:var(--green);color:#fff;border-color:var(--green);}
+  .qotherbox{width:120px;padding:7px 9px;border:1px solid var(--line);border-radius:8px;font:inherit;font-size:.88rem;}
 </style>
 </head>
 <body>
@@ -104,7 +112,7 @@
   </div>
 
   <!-- ============ SECTION 1: ABOUT YOU ============ -->
-  <h2 class="sec"><span class="n">1</span> About you &amp; your household</h2>
+  <h2 class="sec"><span class="n">1</span> About you</h2>
   <div class="card">
     <div class="row">
       <div>
@@ -113,146 +121,33 @@
       </div>
       <div>
         <label class="f">Phone / WhatsApp</label>
-        <input type="text" name="phone" placeholder="Your phone or WhatsApp number">
+        <input type="text" name="phone" placeholder="To send you a free sample">
       </div>
-    </div>
-    <div class="row">
-      <div>
-        <label class="f">Area / City</label>
-        <input type="text" name="area" placeholder="e.g. Kothrud, Pune">
-      </div>
-    </div>
-    <div class="row">
-      <div>
-        <label class="f">How many people eat at home daily?</label>
-        <div class="opts">
-          <label><input type="radio" name="hh"> 1–2</label>
-          <label><input type="radio" name="hh"> 3–4</label>
-          <label><input type="radio" name="hh"> 5–6</label>
-          <label><input type="radio" name="hh"> 7+</label>
-        </div>
-      </div>
-      <div>
-        <label class="f">Who usually buys the groceries?</label>
-        <div class="opts">
-          <label><input type="radio" name="buyer"> Me</label>
-          <label><input type="radio" name="buyer"> Spouse</label>
-          <label><input type="radio" name="buyer"> Parents</label>
-          <label><input type="radio" name="buyer"> Shared</label>
-        </div>
-      </div>
-    </div>
-    <label class="f">Your age group</label>
-    <div class="opts">
-      <label><input type="radio" name="age"> Under 25</label>
-      <label><input type="radio" name="age"> 25–34</label>
-      <label><input type="radio" name="age"> 35–44</label>
-      <label><input type="radio" name="age"> 45–54</label>
-      <label><input type="radio" name="age"> 55+</label>
     </div>
   </div>
 
-  <!-- ============ SECTION 2: PER PRODUCT ============ -->
-  <h2 class="sec"><span class="n">2</span> Our first range — a few details on each</h2>
+  <!-- ============ SECTION 2: PRODUCTS ============ -->
+  <h2 class="sec"><span class="n">2</span> Which of these do you buy regularly?</h2>
   <div class="note">
-    <span class="lbl">How to fill this part</span><br>
-    These are the products we're launching first. For each one, tell us: <b>do you use it</b> and <b>how much you use a month</b>. If you don't use an item, just tick "Don't use" and skip to the next.
+    <span class="lbl">Quick tick</span><br>
+    Just tap the staples you usually buy — skip the rest. Takes a few seconds.
+  </div>
+  <div class="card">
+    <label class="f">For each item you buy, tap the size you usually get. <span style="font-weight:400;color:var(--muted)">(skip the ones you don't buy)</span></label>
+    <div id="products"></div>
   </div>
 
-  <div id="products"></div>
-
+  <!-- ============ SECTION 3: QUICK QUESTIONS ============ -->
+  <h2 class="sec"><span class="n">3</span> A few quick questions</h2>
   <div class="card">
-    <label class="f">Would you like to try SATVA's pure versions of these staples?</label>
+    <label class="f">Would you try SATVA's pure versions of these?</label>
     <div class="opts">
       <label><input type="radio" name="trypure"> Yes, I'd like to try</label>
       <label><input type="radio" name="trypure"> Maybe / some of them</label>
       <label><input type="radio" name="trypure"> No</label>
     </div>
-  </div>
 
-  <!-- ============ SECTION 3: SHOPPING HABITS ============ -->
-  <h2 class="sec"><span class="n">3</span> Your shopping habits</h2>
-  <div class="card">
-    <label class="f">Where do you usually buy these items? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
-    <div class="opts">
-      <label><input type="checkbox" name="shop"> Local kirana shop</label>
-      <label><input type="checkbox" name="shop"> Supermarket</label>
-      <label><input type="checkbox" name="shop"> Blinkit</label>
-      <label><input type="checkbox" name="shop"> Swiggy (Instamart)</label>
-      <label><input type="checkbox" name="shop"> Amazon</label>
-      <label><input type="checkbox" name="shop"> Online (BigBasket etc.)</label>
-      <label><input type="checkbox" name="shop"> Wholesale / mandi</label>
-      <label><input type="checkbox" name="shop"> Directly from a farmer / maker</label>
-    </div>
-
-    <label class="f">How often do you shop for groceries?</label>
-    <div class="opts">
-      <label><input type="radio" name="freq"> Once a month (stock up)</label>
-      <label><input type="radio" name="freq"> Every week or two</label>
-      <label><input type="radio" name="freq"> Whenever something runs out</label>
-      <label><input type="radio" name="freq"> Daily / very often</label>
-    </div>
-
-    <label class="f">Roughly, how much does your home spend on groceries each month?</label>
-    <div class="opts">
-      <label><input type="radio" name="spend"> Under ₹3,000</label>
-      <label><input type="radio" name="spend"> ₹3,000–6,000</label>
-      <label><input type="radio" name="spend"> ₹6,000–10,000</label>
-      <label><input type="radio" name="spend"> ₹10,000–15,000</label>
-      <label><input type="radio" name="spend"> Over ₹15,000</label>
-    </div>
-
-    <label class="f">How do you usually discover new food brands? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
-    <div class="opts">
-      <label><input type="checkbox" name="discover"> Instagram / reels</label>
-      <label><input type="checkbox" name="discover"> WhatsApp / family &amp; friends</label>
-      <label><input type="checkbox" name="discover"> Amazon / Blinkit / Swiggy</label>
-      <label><input type="checkbox" name="discover"> Shop shelf</label>
-      <label><input type="checkbox" name="discover"> YouTube</label>
-      <label><input type="checkbox" name="discover"> Google search</label>
-    </div>
-  </div>
-
-  <!-- ============ SECTION 4: WHAT MATTERS (answer genuinely) ============ -->
-  <h2 class="sec"><span class="n">4</span> What matters most to you</h2>
-  <div class="warn">⭐ <b>Please answer this section genuinely.</b> These few questions decide what we make and how we price it — there are no right or wrong answers, your honest view is what helps us most. 🙏</div>
-  <div class="card">
-    <label class="f">When buying food staples, rank these from 1 (most important) to 5 (least).</label>
-    <div class="grid">
-      <div class="inline-unit"><span class="mini" style="flex:1">Low price</span><input type="number" name="rank_price" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Purity / no additives</span><input type="number" name="rank_purity" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Taste &amp; freshness</span><input type="number" name="rank_taste" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Trusted brand / proof (lab tests)</span><input type="number" name="rank_proof" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-      <div class="inline-unit"><span class="mini" style="flex:1">Convenience / home delivery</span><input type="number" name="rank_conv" min="1" max="5" style="width:70px;flex:none" placeholder="1–5"></div>
-    </div>
-
-    <label class="f">How concerned are you about adulteration / chemicals in everyday staples?</label>
-    <div class="opts">
-      <label><input type="radio" name="concern"> Not really concerned</label>
-      <label><input type="radio" name="concern"> Somewhat concerned</label>
-      <label><input type="radio" name="concern"> Very concerned</label>
-    </div>
-
-    <label class="f">Why would you choose pure / natural staples? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
-    <div class="opts">
-      <label><input type="checkbox" name="whypure"> For my family's health</label>
-      <label><input type="checkbox" name="whypure"> For kids / elderly at home</label>
-      <label><input type="checkbox" name="whypure"> Better taste</label>
-      <label><input type="checkbox" name="whypure"> To avoid chemicals / adulteration</label>
-      <label><input type="checkbox" name="whypure"> Fitness / diet</label>
-      <label><input type="checkbox" name="whypure"> Religious / festival use</label>
-    </div>
-
-    <label class="f">What proof would make you trust a brand's "purity" claim? <span style="font-weight:400;color:var(--muted)">(tick all that is applicable)</span></label>
-    <div class="opts">
-      <label><input type="checkbox" name="proof"> Lab / FSSAI certificate</label>
-      <label><input type="checkbox" name="proof"> Source &amp; farmer story</label>
-      <label><input type="checkbox" name="proof"> A free sample to try</label>
-      <label><input type="checkbox" name="proof"> Clear "no additives" label</label>
-      <label><input type="checkbox" name="proof"> A friend's recommendation</label>
-    </div>
-
-    <label class="f">How much extra would you pay for a genuinely pure / additive-free version of a staple?</label>
+    <label class="f">How much extra would you pay for genuinely pure / additive-free staples?</label>
     <div class="opts">
       <label><input type="radio" name="premium"> Nothing extra</label>
       <label><input type="radio" name="premium"> Up to 10% more</label>
@@ -261,66 +156,45 @@
       <label><input type="radio" name="premium"> 50%+ more</label>
     </div>
 
-    <label class="f">What's the <b>one thing</b> that would make you switch to a new brand of these staples?</label>
-    <textarea name="switch" placeholder="Tell us in your own words..."></textarea>
-
-    <label class="f">Anything else you'd love in a pure version that isn't listed above?</label>
-    <textarea name="wishlist" placeholder="Write freely — e.g. A2 ghee, papad, cold-pressed coconut oil, green tea..."></textarea>
-  </div>
-
-  <!-- ============ SECTION 5: HOW YOU'D LIKE TO BUY ============ -->
-  <h2 class="sec"><span class="n">5</span> How you'd like to buy from us</h2>
-  <div class="card">
-    <div class="row">
-      <div>
-        <label class="f">Would you buy these online with home delivery?</label>
-        <div class="opts">
-          <label><input type="radio" name="online"> Yes</label>
-          <label><input type="radio" name="online"> Maybe</label>
-          <label><input type="radio" name="online"> No, prefer in person</label>
-        </div>
-      </div>
-      <div>
-        <label class="f">Interested in a monthly subscription (auto-delivery)?</label>
-        <div class="opts">
-          <label><input type="radio" name="sub"> Yes</label>
-          <label><input type="radio" name="sub"> Maybe</label>
-          <label><input type="radio" name="sub"> No</label>
-        </div>
-      </div>
+    <label class="f">What matters <b>most</b> to you? <span style="font-weight:400;color:var(--muted)">(pick one)</span></label>
+    <div class="opts">
+      <label><input type="radio" name="matters"> Purity / no additives</label>
+      <label><input type="radio" name="matters"> Low price</label>
+      <label><input type="radio" name="matters"> Taste &amp; freshness</label>
+      <label><input type="radio" name="matters"> Trusted brand &amp; proof</label>
+      <label><input type="radio" name="matters"> Convenience / delivery</label>
     </div>
 
-    <label class="f">If we offered a simple, easy-to-use app personalised to your preferences (your usual items, reminders, one-tap reorder), would you use it?</label>
+    <label class="f">What proof would make you trust a "purity" claim? <span style="font-weight:400;color:var(--muted)">(tick all that apply)</span></label>
+    <div class="opts">
+      <label><input type="checkbox" name="proof"> Lab / FSSAI certificate</label>
+      <label><input type="checkbox" name="proof"> Source &amp; farmer story</label>
+      <label><input type="checkbox" name="proof"> A free sample to try</label>
+      <label><input type="checkbox" name="proof"> Clear "no additives" label</label>
+      <label><input type="checkbox" name="proof"> A friend's recommendation</label>
+    </div>
+
+    <label class="f">Would you use a simple, easy app to reorder your usual items?</label>
     <div class="opts">
       <label><input type="radio" name="app"> Yes, I'd love that</label>
       <label><input type="radio" name="app"> Maybe</label>
-      <label><input type="radio" name="app"> No, I prefer ordering another way</label>
+      <label><input type="radio" name="app"> No</label>
     </div>
   </div>
 
-  <!-- ============ SECTION 6: EARLY ACCESS ============ -->
-  <h2 class="sec"><span class="n">6</span> Be the first to try</h2>
+  <!-- ============ SECTION 4: EARLY ACCESS ============ -->
+  <h2 class="sec"><span class="n">4</span> Be the first to try</h2>
   <div class="card">
     <label class="f">Would you like a free sample and early access when we launch?</label>
     <div class="opts">
       <label><input type="radio" name="sample"> Yes, please contact me</label>
       <label><input type="radio" name="sample"> No, thanks</label>
     </div>
-    <p class="hint">We'll use the name &amp; number you gave at the top — no need to type again.</p>
-  </div>
-
-  <!-- ============ SECTION 7: BRANDS ============ -->
-  <h2 class="sec"><span class="n">7</span> One last thing</h2>
-  <div class="card">
-    <label class="f">Which brands do you usually buy for staples like these? <span style="font-weight:400;color:var(--muted)">(leave blank if you buy loose / unbranded)</span></label>
-    <div class="grid">
-      <input type="text" name="brand1" placeholder="Brand 1">
-      <input type="text" name="brand2" placeholder="Brand 2">
-    </div>
+    <p class="hint">We'll use the name &amp; number you gave at the top.</p>
   </div>
 
   <!-- ============ SUBMIT ============ -->
-  <h2 class="sec"><span class="n">8</span> Send us your answers</h2>
+  <h2 class="sec"><span class="n">5</span> Send us your answers</h2>
   <div class="card" style="text-align:center;">
     <p style="margin:2px 0 14px;font-size:.95rem;color:var(--muted)">Tap submit to send us your answers.</p>
     <div class="toolbar" style="justify-content:center;">
@@ -358,30 +232,33 @@ var PRODUCTS = [
 ];
 
 var box = document.getElementById('products');
-PRODUCTS.forEach(function(p, i){
-  var n = i + 1;
-  var sub = p.sub ? ' <span class="sub">('+p.sub+')</span>' : '';
-  var el = document.createElement('div');
-  el.className = 'prod';
-  el.innerHTML =
-    '<h3><span class="num">'+n+'</span> '+p.name+sub+'</h3>'+
-    '<div style="margin-top:8px"><span class="mini">Do you use this?</span>'+
-      '<div class="opts">'+
-        '<label><input type="radio" name="use'+n+'"> ✅ I use this</label>'+
-        '<label><input type="radio" name="use'+n+'"> ❌ Don\'t use (skip below)</label>'+
-      '</div>'+
-    '</div>'+
-    '<div class="grid">'+
-      '<div class="full"><span class="mini">How much / what pack size do you usually buy?</span>'+
-        '<div class="opts">'+
-          '<label><input type="radio" name="amt'+n+'"> 200 g</label>'+
-          '<label><input type="radio" name="amt'+n+'"> 500 g</label>'+
-          '<label><input type="radio" name="amt'+n+'"> 1 kg</label>'+
-          '<label><input type="radio" name="amt'+n+'"> 5 kg</label>'+
-        '</div>'+
-      '</div>'+
+PRODUCTS.forEach(function(p){
+  var sub = p.sub ? ' <span class="qsub">('+p.sub+')</span>' : '';
+  var row = document.createElement('div');
+  row.className = 'qrow';
+  row.setAttribute('data-name', p.name);
+  row.innerHTML =
+    '<div class="qlabel">'+p.name+sub+'</div>'+
+    '<div class="qchips">'+
+      '<button type="button" class="qchip" data-q="200 g">200 g</button>'+
+      '<button type="button" class="qchip" data-q="500 g">500 g</button>'+
+      '<button type="button" class="qchip" data-q="1 kg">1 kg</button>'+
+      '<button type="button" class="qchip" data-q="5 kg">5 kg</button>'+
+      '<button type="button" class="qchip" data-q="other">Other</button>'+
+      '<input type="text" class="qotherbox" placeholder="how much?" style="display:none">'+
     '</div>';
-  box.appendChild(el);
+  box.appendChild(row);
+});
+box.addEventListener('click', function(e){
+  var b = e.target.closest('.qchip'); if(!b) return;
+  var row = b.closest('.qrow');
+  var ob = row.querySelector('.qotherbox');
+  var wasActive = b.classList.contains('active');
+  row.querySelectorAll('.qchip').forEach(function(x){ x.classList.remove('active'); });
+  if(wasActive){ ob.style.display='none'; ob.value=''; return; }
+  b.classList.add('active');
+  if(b.getAttribute('data-q')==='other'){ ob.style.display='inline-block'; ob.focus(); }
+  else { ob.style.display='none'; ob.value=''; }
 });
 
 /* ====== Send-back logic ====== */
@@ -404,6 +281,19 @@ function collectAnswers(){
     if(block.classList.contains('prod')){
       lines.push("");
       lines.push("*"+getText(block.querySelector('h3'))+"*");
+    }
+    // Quantity rows: emit one line per item with a size chosen
+    var qrows = block.querySelectorAll('.qrow');
+    if(qrows.length){
+      var picks = [];
+      qrows.forEach(function(row){
+        var active = row.querySelector('.qchip.active'); if(!active) return;
+        var q = active.getAttribute('data-q');
+        if(q === 'other'){ var t2 = row.querySelector('.qotherbox').value.trim(); if(!t2) return; q = t2; }
+        picks.push("• " + row.getAttribute('data-name') + ": " + q);
+      });
+      if(picks.length){ lines.push(""); lines.push("*Items I buy*"); picks.forEach(function(l){ lines.push(l); }); }
+      return;
     }
     // Quick-survey card: emit one compact line per ticked / filled item, then skip generic walk
     var qitems = block.querySelectorAll('.qitem');
@@ -474,74 +364,23 @@ function fieldVal(nm){ var el=document.querySelector('[name="'+nm+'"]'); return 
    plus the full readable summary as a backstop column. */
 function collectObject(){
   var o = { "Timestamp": new Date().toLocaleString() };
-
-  // Section 1 — about you
-  o["Name"]               = fieldVal('name');
-  o["Phone"]              = fieldVal('phone');
-  o["Area/City"]          = fieldVal('area');
-  o["Household size"]     = radioVal('hh');
-  o["Who buys groceries"] = radioVal('buyer');
-  o["Age group"]          = radioVal('age');
-
-  // Section 3 — shopping habits
-  o["Where buys"]         = checkVals('shop');
-  o["Shop frequency"]     = radioVal('freq');
-  o["Monthly spend"]      = radioVal('spend');
-  o["Brand discovery"]    = checkVals('discover');
-
-  // Section 4 — what matters
-  o["Rank: Low price"]    = fieldVal('rank_price');
-  o["Rank: Purity"]       = fieldVal('rank_purity');
-  o["Rank: Taste"]        = fieldVal('rank_taste');
-  o["Rank: Trust/proof"]  = fieldVal('rank_proof');
-  o["Rank: Convenience"]  = fieldVal('rank_conv');
-  o["Pay extra"]          = radioVal('premium');
-  o["Adulteration concern"] = radioVal('concern');
-  o["Why buy pure"]       = checkVals('whypure');
-  o["Trust proof"]        = checkVals('proof');
-  o["Switch trigger"]     = fieldVal('switch');
-  o["Wishlist"]           = fieldVal('wishlist');
-
-  // Section 5 — how you'd buy
-  o["Buy online"]         = radioVal('online');
-  o["Subscription"]       = radioVal('sub');
-  o["App interest"]       = radioVal('app');
-
-  // Section 6 — early access
-  o["Sample/early access"]= radioVal('sample');
-
-  // Section 2 — would try pure (consolidated)
+  o["Name"]                    = fieldVal('name');
+  o["Phone"]                   = fieldVal('phone');
+  var buys = [];
+  document.querySelectorAll('#products .qrow').forEach(function(row){
+    var active = row.querySelector('.qchip.active'); if(!active) return;
+    var q = active.getAttribute('data-q');
+    if(q === 'other'){ var t = row.querySelector('.qotherbox').value.trim(); if(!t) return; q = t; }
+    buys.push(row.getAttribute('data-name') + ': ' + q);
+  });
+  o["Buys regularly"]          = buys.join(", ");
   o["Would try pure versions"] = radioVal('trypure');
-
-  // Section 7 — brands
-  o["Brand 1"]            = fieldVal('brand1');
-  o["Brand 2"]            = fieldVal('brand2');
-
-  document.querySelectorAll('.prod').forEach(function(block){
-    var name = getText(block.querySelector('h3')).replace(/^\d+\s*/,'').trim();
-    var opts = block.querySelectorAll('.opts');
-    var uses = "";    if(opts[0]) opts[0].querySelectorAll('input').forEach(function(i){ if(i.checked) uses = getText(i.parentElement); });
-    var amt = "";     if(opts[1]) opts[1].querySelectorAll('input').forEach(function(i){ if(i.checked) amt = getText(i.parentElement); });
-    if(!uses && !amt){ o[name] = ""; return; }
-    var parts = [];
-    if(uses)    parts.push(uses);
-    if(amt)     parts.push("Buys: "+amt);
-    o[name] = parts.join(" | ");
-  });
-  var others = [];
-  document.querySelectorAll('.qitem').forEach(function(it){
-    var buy = it.querySelector('input.buy');
-    var qel = it.querySelector('.qqty');
-    var qty = qel?qel.value.trim():"";
-    if((buy&&buy.checked)||qty){
-      var s = getText(it.querySelector('.qname')); var extra=[];
-      if(qty) extra.push(qty+" "+(it.getAttribute('data-unit')||""));
-      if(extra.length) s += " ("+extra.join(", ")+")";
-      others.push(s);
-    }
-  });
-  o["Other items used"] = others.join(", ");
-  o["Full responses"] = collectAnswers();
+  o["Pay extra"]               = radioVal('premium');
+  o["Matters most"]            = radioVal('matters');
+  o["Trust proof"]             = checkVals('proof');
+  o["App interest"]            = radioVal('app');
+  o["Sample/early access"]     = radioVal('sample');
+  o["Full responses"]          = collectAnswers();
   return o;
 }
 
