@@ -19,28 +19,28 @@
   var PRODUCTS = [
     { mr:"हळद", en:"Haldi", glyph:"हळ",
       d:"The everyday base of every Maharashtrian kitchen — bhaji, varan, amti.",
-      img:"assets/p-haldi.jpg", tint:"linear-gradient(150deg,#8a5c06,#d29a12)" },
+      img:"assets/p-haldi.jpg", tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
     { mr:"लाल तिखट", en:"Mirchi Powder", glyph:"ति",
       d:"Colour and heat, ground from whole dried chillies.",
-      img:"assets/p-mirchi.jpg", tint:"linear-gradient(150deg,#6e0d05,#b32309)" },
+      img:"assets/p-mirchi.jpg", tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
     { mr:"धणे पूड", en:"Coriander Powder", glyph:"धणे",
       d:"Warm and nutty — the quiet base under a good rassa.",
-      img:"assets/p-dhane.jpg", tint:"linear-gradient(150deg,#4f4a12,#8a7f22)" },
+      img:"assets/p-dhane.jpg", tint:"linear-gradient(150deg,#bcae63,#948537)" },
     { mr:"काळा मसाला", en:"Premium Kala Masala", glyph:"काळा",
       d:"The dark roasted Marathwada blend that makes a rassa taste like home.",
-      img:"assets/p-kala.jpg", tint:"linear-gradient(150deg,#241b0d,#4d3c1c)" },
+      img:"assets/p-kala.jpg", tint:"linear-gradient(150deg,#8d7a55,#635232)" },
     { mr:"कांदा लसूण मसाला", en:"Kanda Lasun Masala", glyph:"कां",
       d:"Onion, garlic and chilli — what a misal or usal cannot do without.",
-      img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#7d1608,#b6321a)" },
+      img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#d1674a,#b03f24)" },
     { mr:"शेंगदाणा चटणी", en:"Groundnut Chutney", glyph:"शें",
       d:"Dry groundnut chutney for bhakri, thalipeeth and a bowl of dahi.",
-      img:"assets/p-shengdana.jpg", tint:"linear-gradient(150deg,#8a4a12,#c4791f)" },
+      img:"assets/p-shengdana.jpg", tint:"linear-gradient(150deg,#dd9a4e,#bf7420)" },
     { mr:"जवस चटणी", en:"Javas Chutney", glyph:"ज",
       d:"Roasted flaxseed chutney — earthy, nutty, and gone before you expect.",
-      img:"assets/p-javas.jpg", tint:"linear-gradient(150deg,#4a3a12,#7d6320)" },
+      img:"assets/p-javas.jpg", tint:"linear-gradient(150deg,#b3a05c,#8d7a32)" },
     { mr:"कारळे चटणी", en:"Karala Chutney", glyph:"का",
       d:"Niger-seed chutney, the Marathwada favourite alongside bhakri.",
-      img:"assets/p-karala.jpg", tint:"linear-gradient(150deg,#2f2a16,#5c5228)" }
+      img:"assets/p-karala.jpg", tint:"linear-gradient(150deg,#9aa07a,#727950)" }
   ];
 
   var MORTAR = '<svg class="mortar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/></svg>';
