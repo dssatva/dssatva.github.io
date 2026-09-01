@@ -42,6 +42,7 @@
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
       <li><a href="#range">Our Range</a></li>
+      <li><a href="#freshness">Freshness</a></li>
       <li><a href="#why">Why SATVA</a></li>
       <li><a href="#story">Our Story</a></li>
       <li><a href="#feedback">Feedback</a></li>
@@ -69,7 +70,7 @@
         <div class="copy">
           <p class="kick mr">शुद्ध घरगुती मसाले · Dil Se Pure</p>
           <h1 class="dsp">Bringing absolute purity<em>to the heart of the <span class="goldtext">Indian kitchen</span>.</em></h1>
-          <p>Single spices and everyday blends — turmeric, chilli and coriander through to kanda lasun, garam, biryani and pav bhaji — ground in small batches in Marathwada.</p>
+          <p>Single spices and everyday blends, ground in small batches in Marathwada — for kitchens that have started reading the back of the packet.</p>
           <div class="cta-row">
             <a class="btn-gold" href="#range">See the range</a>
             <a class="btn-ghost" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20send%20me%20SATVA%20prices.">Ask for prices</a>
@@ -119,7 +120,7 @@
         <div class="copy">
           <p class="kick mr">आमची श्रेणी · The range</p>
           <h1 class="dsp">Every masala.<em>One <span class="goldtext">promise</span>.</em></h1>
-          <p>Natural. Pure. Homemade. Authentic. Four words on our label that we would rather be judged on than advertise.</p>
+          <p>Natural. Pure. Homemade. Authentic. Four words on our label — and the only four we would like to be judged on.</p>
           <div class="cta-row">
             <a class="btn-gold" href="#range">Meet the range</a>
             <a class="btn-ghost" href="#feedback">Tried a sample?</a>
@@ -176,19 +177,58 @@
   </div>
 </section>
 
+<div class="marquee" aria-hidden="true">
+  <div class="mtrack"><span>मिसळ</span><span>उसळ</span><span>पिठलं</span><span>भाकरी</span><span>रस्सा</span><span>वरण</span><span>आमटी</span><span>पाव भाजी</span><span>बिर्याणी</span><span>चाट</span><span>भेळ</span><span>कालवण</span><span>झुणका</span><span>मटण रस्सा</span><span>चिकन रस्सा</span><span>थालीपीठ</span><span>मिसळ</span><span>उसळ</span><span>पिठलं</span><span>भाकरी</span><span>रस्सा</span><span>वरण</span><span>आमटी</span><span>पाव भाजी</span><span>बिर्याणी</span><span>चाट</span><span>भेळ</span><span>कालवण</span><span>झुणका</span><span>मटण रस्सा</span><span>चिकन रस्सा</span><span>थालीपीठ</span></div>
+</div>
+
 <!-- ============ range ============ -->
 <section class="range" id="range">
   <div class="wrap">
     <div class="sechead reveal">
       <div>
-        <p class="kick">Our first range</p>
+        <p class="kick">The range</p>
         <h2 class="dsp big">Our everyday masalas</h2>
         <div class="rule"></div>
       </div>
       <p class="lede">Single spices and the blends a Maharashtrian kitchen actually reaches for. The range keeps growing — pack sizes and prices on WhatsApp, quoted honestly, per gram.</p>
     </div>
 
+    <div class="tabs" id="tabs" role="tablist" aria-label="Filter the range"></div>
     <div class="grid-p" id="grid"></div>
+  </div>
+</section>
+
+<!-- ============ traceability ============ -->
+<section class="trace" id="freshness">
+  <div class="wrap tracegrid">
+    <div class="reveal">
+      <p class="kick">Freshness you can check</p>
+      <h2 class="dsp big">Every pouch tells you<br>the day it was ground</h2>
+      <p>Packed masala is judged on one thing before it is even opened: whether it smells of anything at all. That suspicion is why most of India still buys loose. So rather than ask you to trust us, we put the answer on the pouch.</p>
+      <ul class="tracelist">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>A grind date, not just a best-before.</b> The actual day that batch went through the grinder.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>A batch code you can ask about.</b> Send us the code on WhatsApp and we will tell you what went into that grind.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>Batches small enough to matter.</b> One bad lot of raw material should never reach thirty kitchens.</span></li>
+      </ul>
+    </div>
+    <div class="reveal d1">
+      <div class="label frame" style="--r:20px">
+        <div class="lhead">
+          <img src="assets/logo-h-dark.png" alt="DS SATVA">
+          <span class="vegmark" title="Vegetarian"><i></i></span>
+        </div>
+        <dl>
+          <dt>Masala</dt><dd>Kanda Lasun</dd>
+          <dt>Batch</dt><dd>KL&#8209;2609&#8209;03</dd>
+          <dt>Ground on</dt><dd>12 September 2026</dd>
+          <dt>Net</dt><dd>100 g</dd>
+        </dl>
+        <p class="lfoot">Example of the sticker on the back of every pouch. Message us the batch code and we will tell you where that grind came from.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -205,7 +245,7 @@
       <div class="wcard frame reveal" style="--r:18px"><span class="n dsp">01</span><h3>Small batches</h3><p>We grind in batches small enough that one bad lot of raw material never reaches thirty kitchens.</p></div>
       <div class="wcard frame reveal d1" style="--r:18px"><span class="n dsp">02</span><h3>Whole spices in</h3><p>Blends start from whole spices, so we can see what went in — the single biggest place adulteration hides.</p></div>
       <div class="wcard frame reveal d2" style="--r:18px"><span class="n dsp">03</span><h3>Marathwada recipes</h3><p>Kanda lasun, garam and meat masala the way they are made here, not softened for a national palate.</p></div>
-      <div class="wcard frame reveal d3" style="--r:18px"><span class="n dsp">04</span><h3>Batch traceable</h3><p>Every pouch carries a batch code and grind date. Ask about any batch and we will tell you where it came from.</p></div>
+      <div class="wcard frame reveal d3" style="--r:18px"><span class="n dsp">04</span><h3>Criticised before it is sold</h3><p>Every masala goes to home kitchens for a verdict before it goes on sale. If they tell us it is wrong, it does not ship until it is not.</p></div>
     </div>
   </div>
 </section>
@@ -224,14 +264,33 @@
 </section>
 
 <!-- ============ story ============ -->
+<!-- TO FILL: the one thing only you can write is a personal memory - a specific
+     kitchen, a specific person, a specific March afternoon. Drop it in as a new
+     <p> after the first one and this section becomes unanswerable. Everything
+     written here is true of the venture as it stands; nothing is invented. -->
 <section class="story" id="story">
   <div class="wrap storygrid">
     <div class="reveal">
-      <p class="kick">Our story</p>
-      <h2 class="dsp big">Started in a kitchen,<br>not a boardroom</h2>
-      <p>SATVA began with a simple, annoying discovery: the masala on the shelf did not taste like the masala at home. Not because the recipe was lost — because somewhere between the field and the pouch, things get added that were never spices.</p>
-      <p>So we started grinding small quantities ourselves, in Chhatrapati Sambhajinagar, and giving them to the people whose opinion is hardest to fool: homemakers and women running tiffin kitchens. Every batch since has been shaped by what they told us to fix.</p>
-      <p><a class="btn-gold" href="#feedback" style="margin-top:8px">Read how we test</a></p>
+      <p class="kick">Why we began</p>
+      <h2 class="dsp big">The masala at home never<br>tasted like the masala<br>on the shelf</h2>
+
+      <p class="first">There is a moment most Indian kitchens know. You open a new packet, put in the same two spoons you always do, and the rassa comes out flat. Not bad. Just not <em>it</em>. You add a little more. Still not it. And somewhere at the back of your mind is the masala that used to be made at home in March, dried on a sheet in the sun, and you know exactly what is missing.</p>
+
+      <p>Nothing had been taken out of that packet. Things had been put into it.</p>
+
+      <blockquote class="pull">Six rupees in every ten spent on spices in India are still spent loose &mdash; at the chakki, watching it being ground. Seeing it is the only proof anyone has ever been offered.</blockquote>
+
+      <p>So when the recalls came in 2024 and Indian masala was pulled off shelves in Hong Kong and Singapore, those families were not surprised. They had been voting with their feet for years.</p>
+
+      <p>SATVA began there. Not with a factory &mdash; with a few kilos, a small grind, and one question: <b>if we made it the way it is made at home, would anyone be able to tell?</b></p>
+
+      <p>We did the only honest thing we could think of. We are giving it away, free, by the kilo &mdash; to homemakers, and to the women running tiffin kitchens out of their own homes, the palates that are hardest to fool. And we do not ask them whether they liked it. We ask them what is <em>wrong</em> with it. Too spicy. Not enough salt. Colour is off. Smell is weak.</p>
+
+      <p>Every one of those answers changes the next batch.</p>
+
+      <p><b>Dil Se Pure</b> is not a line we bought from an agency. It is the whole method &mdash; made from the heart, with nothing hidden in it. One person, a small batch at a time, and a growing list of women who tell us the truth. That is all it is. So far, it is enough.</p>
+
+      <p class="sign"><b>SATVA</b>Chhatrapati Sambhajinagar, Marathwada</p>
     </div>
     <div class="storyart frame reveal d1" style="--r:26px">
       <img src="assets/logo-stack-dark.png" alt="DS SATVA — Dil Se Pure">
@@ -239,23 +298,38 @@
   </div>
 </section>
 
-<!-- ============ feedback ============ -->
-<section class="fb" id="feedback">
-  <div class="wrap fbgrid">
+<!-- ============ what the testers say ============ -->
+<!-- TO FILL: as real feedback lands in the Responses sheet, replace the three
+     .vcard.empty blocks below with actual quotes. Keep them unflattering - the
+     critical ones are the reason anyone will believe the good ones. -->
+<section class="voices" id="feedback">
+  <div class="wrap">
     <div class="reveal">
       <p class="kick">Tested, not assumed</p>
-      <h2 class="dsp big">Every batch is judged<br>by the people who cook</h2>
-      <p>We hand out free samples and then ask for the one thing most brands never want: what is <em>wrong</em> with it. Too spicy, not enough salt, colour off, smell weak — it all goes on a form, and the next batch changes because of it.</p>
-      <p>If you have a SATVA sample in your kitchen, please tell us honestly how it went. It takes two minutes.</p>
-      <p><a class="btn-gold" href="https://dssatva.github.io/feedback/">Give sample feedback</a></p>
+      <h2 class="dsp big">The three questions<br>we actually ask</h2>
+      <p class="lede">Most brands ask whether you liked it. That question has never improved a masala. These are the three on our feedback form, and every answer goes straight to the person who does the grinding.</p>
     </div>
-    <div class="fbcard frame reveal d1" style="--r:22px">
-      <span class="num dsp goldtext">2 kg</span>
-      <small>Of each masala, given away free</small>
-      <div style="height:22px"></div>
-      <span class="num dsp goldtext">Every</span>
-      <small>Batch changes with the feedback</small>
+    <div class="vgrid">
+      <div class="vcard reveal" style="--r:20px">
+        <p class="q">&ldquo;Compared to the masala you usually buy &mdash; better, the same, or worse?&rdquo;</p>
+        <span class="who">Question one</span>
+      </div>
+      <div class="vcard reveal d1" style="--r:20px">
+        <p class="q">&ldquo;What should we change? Too spicy. Not enough salt. Colour off. Smell weak.&rdquo;</p>
+        <span class="who">Question two</span>
+      </div>
+      <div class="vcard reveal d2" style="--r:20px">
+        <p class="q">&ldquo;Would you buy it with your own money?&rdquo;</p>
+        <span class="who">Question three</span>
+      </div>
+      <div class="vcard empty reveal d3" style="--r:20px">
+        <p class="q">Real answers will appear here as the forms come back &mdash; the unflattering ones included.</p>
+        <span class="who">Coming soon</span>
+      </div>
     </div>
+    <p class="vnote">Have a SATVA sample in your kitchen? Please be blunt with us &mdash; it takes two minutes.
+      <a class="btn-gold" style="margin-left:10px" href="https://dssatva.github.io/feedback/">Give sample feedback</a>
+    </p>
   </div>
 </section>
 
@@ -301,6 +375,7 @@
       <img class="logo" src="assets/logo-h-cream.png" alt="DS SATVA">
       <nav>
         <a href="#range">Our Range</a>
+        <a href="#freshness">Freshness</a>
         <a href="#why">Why SATVA</a>
         <a href="#story">Our Story</a>
         <a href="#feedback">Feedback</a>

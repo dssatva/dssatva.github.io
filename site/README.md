@@ -82,6 +82,29 @@ and both update:
 
 No copy anywhere says how many masalas there are, so nothing goes stale.
 
+## The two places only you can fill in
+
+**A personal memory in Our Story.** Everything in that section is true of the venture
+as it stands - nothing is invented, and there is deliberately no made-up grandmother
+or childhood scene in it. The one thing that would make it unanswerable is a real,
+specific memory: a particular kitchen, a particular person, a particular afternoon.
+Drop it in as a second `<p>` in the story column and the whole section lifts. There is
+a `TO FILL` comment marking the spot.
+
+**Real tester quotes.** The "three questions we actually ask" section currently shows
+the questions, plus one dashed card saying real answers are coming. As feedback lands
+in the Responses sheet, replace the dashed card with actual quotes - `.vcard` blocks.
+Keep the unflattering ones; they are the reason anyone will believe the good ones.
+
+## Where the story's facts come from
+
+The claims in Our Story are drawn from `../India-Masala-Consumption-Research.md`:
+loose and unbranded spice is roughly 60% of the Indian market by value (hence "six
+rupees in every ten"), and the April 2024 ethylene-oxide episode - recalls in Hong
+Kong and Singapore, FSSAI running nationwide checks - is a matter of public record.
+If you change those lines, keep them checkable.
+
+
 ## Still to fill in
 
 - **FSSAI licence number** — there is a marked comment in the footer of `index.html`.

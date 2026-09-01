@@ -17,34 +17,34 @@
      save it at that exact path and reload. Nothing else to edit.
      --------------------------------------------------------- */
   var PRODUCTS = [
-    { acc:"#e8a713", ink:"#94660a", mr:"हळद", en:"Turmeric", glyph:"हळ",
+    { acc:"#e8a713", ink:"#94660a", mr:"हळद", en:"Turmeric", cat:"single", glyph:"हळ",
       d:"The everyday base of every Maharashtrian kitchen — bhaji, varan, amti.",
       img:"assets/p-haldi.jpg", tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
-    { acc:"#c3341a", ink:"#a52a13", mr:"लाल तिखट", en:"Chilli Powder", glyph:"ति",
+    { acc:"#c3341a", ink:"#a52a13", mr:"लाल तिखट", en:"Chilli Powder", cat:"single", glyph:"ति",
       d:"Colour and heat, ground from whole dried chillies.",
       img:"assets/p-mirchi.jpg", tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
-    { acc:"#93a04b", ink:"#5f6a26", mr:"धणे पूड", en:"Coriander Powder", glyph:"धणे",
+    { acc:"#93a04b", ink:"#5f6a26", mr:"धणे पूड", en:"Coriander Powder", cat:"single", glyph:"धणे",
       d:"Warm and nutty — the quiet base under a good rassa.",
       img:"assets/p-dhane.jpg", tint:"linear-gradient(150deg,#bcae63,#948537)" },
-    { acc:"#a8462a", ink:"#8a3720", mr:"कांदा लसूण मसाला", en:"Kanda Lasun Masala", glyph:"कां",
+    { acc:"#a8462a", ink:"#8a3720", mr:"कांदा लसूण मसाला", en:"Kanda Lasun Masala", cat:"blend", glyph:"कां",
       d:"Onion, garlic and chilli — what a misal or usal cannot do without.",
       img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#c9603f,#9e3d22)" },
-    { acc:"#7d5630", ink:"#634324", mr:"गरम मसाला", en:"Garam Masala", glyph:"गरम",
+    { acc:"#7d5630", ink:"#634324", mr:"गरम मसाला", en:"Garam Masala", cat:"blend", glyph:"गरम",
       d:"The finishing spoon — stirred in at the end, not boiled away.",
       img:"assets/p-garam.jpg", tint:"linear-gradient(150deg,#a38055,#74562f)" },
-    { acc:"#8f2e28", ink:"#7a2620", mr:"मीट मसाला", en:"Meat Masala", glyph:"मीट",
+    { acc:"#8f2e28", ink:"#7a2620", mr:"मीट मसाला", en:"Meat Masala", cat:"blend", glyph:"मीट",
       d:"Built for slow-cooked mutton and chicken rassa.",
       img:"assets/p-meat.jpg", tint:"linear-gradient(150deg,#a7473f,#7c2721)" },
-    { acc:"#e2912b", ink:"#94590c", mr:"बिर्याणी मसाला", en:"Biryani Masala", glyph:"बि",
+    { acc:"#e2912b", ink:"#94590c", mr:"बिर्याणी मसाला", en:"Biryani Masala", cat:"blend", glyph:"बि",
       d:"For layered rice — whole spices ground for aroma, not just heat.",
       img:"assets/p-biryani.jpg", tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
-    { acc:"#d1521f", ink:"#a53d13", mr:"पाव भाजी मसाला", en:"Pav Bhaji Masala", glyph:"पाव",
+    { acc:"#d1521f", ink:"#a53d13", mr:"पाव भाजी मसाला", en:"Pav Bhaji Masala", cat:"blend", glyph:"पाव",
       d:"The tawa blend. Butter, bhaji, pav, done.",
       img:"assets/p-pavbhaji.jpg", tint:"linear-gradient(150deg,#dd6c3a,#b3410f)" },
-    { acc:"#7f6a4e", ink:"#5f5039", mr:"चाट मसाला", en:"Chaat Masala", glyph:"चाट",
+    { acc:"#7f6a4e", ink:"#5f5039", mr:"चाट मसाला", en:"Chaat Masala", cat:"blend", glyph:"चाट",
       d:"The tangy finish for bhel, sev puri, fruit and a glass of buttermilk.",
       img:"assets/p-chaat.jpg", tint:"linear-gradient(150deg,#9b8768,#6d5a41)" },
-    { acc:"#b8453c", ink:"#96332b", mr:"चटपट मसाला", en:"Chatpat Masala", glyph:"चट",
+    { acc:"#b8453c", ink:"#96332b", mr:"चटपट मसाला", en:"Chatpat Masala", cat:"blend", glyph:"चट",
       d:"Sharp and tangy — for chivda, kairi, and anything that needs a lift.",
       img:"assets/p-chatpat.jpg", tint:"linear-gradient(150deg,#c9605a,#a3352c)" }
   ];
@@ -61,6 +61,29 @@
     }).join("");
   });
 
+  // category tabs, counted off the list itself so they stay correct as it grows
+  var tabsEl = document.getElementById("tabs");
+  if (tabsEl) {
+    var n = function (c) { return PRODUCTS.filter(function (p) { return c === "all" || p.cat === c; }).length; };
+    [["all","Everything"],["single","Single spices"],["blend","Blends"]].forEach(function (t, i) {
+      var b = document.createElement("button");
+      b.className = "tab";
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+      b.dataset.cat = t[0];
+      b.innerHTML = t[1] + '<span class="n">' + n(t[0]) + "</span>";
+      b.addEventListener("click", function () {
+        [].forEach.call(tabsEl.children, function (o) { o.setAttribute("aria-selected", "false"); });
+        b.setAttribute("aria-selected", "true");
+        [].forEach.call(document.querySelectorAll(".pcard"), function (card) {
+          card.classList.toggle("hide", t[0] !== "all" && card.dataset.cat !== t[0]);
+        });
+      });
+      tabsEl.appendChild(b);
+    });
+  }
+
   var grid = document.getElementById("grid");
   if (grid) {
     PRODUCTS.forEach(function (p, i) {
@@ -69,6 +92,7 @@
       card.style.setProperty("--r", "20px");
       card.style.setProperty("--acc", p.acc);
       card.style.setProperty("--acc-ink", p.ink);
+      card.dataset.cat = p.cat;
       card.innerHTML =
         '<div class="pthumb tile" style="--tint:' + p.tint + '">' +
           '<span class="glyph">' + p.glyph + '</span>' + MORTAR + VEG +

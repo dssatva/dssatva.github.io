@@ -373,10 +373,10 @@ section{position:relative;}
 
 /* ===================== story ===================== */
 .story{padding:clamp(58px,8vw,112px) 0;background:var(--cream);}
-.storygrid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(30px,5vw,72px);align-items:center;}
+.storygrid{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(30px,5vw,72px);align-items:start;}
 .story h2{color:var(--ink);}
 .story p{color:var(--sage);}
-.storyart{position:relative;display:grid;place-items:center;padding:clamp(24px,4vw,44px);
+.storyart{position:sticky;top:112px;display:grid;place-items:center;padding:clamp(24px,4vw,44px);
   border-radius:26px;--r:26px;background:linear-gradient(150deg,var(--sand),var(--oat));
   box-shadow:var(--sh-sm);}
 .storyart img{width:min(300px,78%);}
@@ -485,3 +485,106 @@ footer .btm .mr{color:var(--gold-pale);}
   .floatcard{opacity:1;}
   .reveal{opacity:1;transform:none;}
 }
+
+/* ===========================================================
+   Added after studying how the strongest brands in this
+   category build trust: Burlap & Barrel and Diaspora Co lead
+   with sourcing proof and named pillars; Suhana leads with
+   heritage and dish-first navigation. Ours leads with the one
+   proof we can actually give — a grind date on every pouch.
+   =========================================================== */
+
+/* ---- marquee of the dishes these masalas are actually for ---- */
+.marquee{
+  background:var(--band);color:var(--gold-pale);overflow:hidden;padding:14px 0;
+  border-block:1px solid rgba(241,221,171,.22);
+}
+.mtrack{display:flex;width:max-content;animation:slide-l 42s linear infinite;}
+.marquee:hover .mtrack{animation-play-state:paused;}
+.mtrack span{
+  font-family:"Tiro Devanagari Marathi",serif;font-size:1.06rem;padding:0 clamp(16px,2.4vw,34px);
+  white-space:nowrap;opacity:.92;
+}
+.mtrack span::after{content:"·";margin-left:clamp(16px,2.4vw,34px);color:var(--gold);opacity:.7;}
+@keyframes slide-l{from{transform:translate3d(0,0,0);}to{transform:translate3d(-50%,0,0);}}
+
+/* ---- category tabs on the range ---- */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 clamp(20px,3vw,30px);}
+.tab{
+  border:1px solid var(--clay);background:#fff;color:var(--sage);border-radius:999px;
+  padding:9px 20px;font-size:.83rem;letter-spacing:.06em;font-weight:500;cursor:pointer;
+  transition:background .3s,color .3s,border-color .3s,transform .3s var(--ease);
+}
+.tab:hover{transform:translateY(-2px);border-color:var(--gold-lt);}
+.tab[aria-selected="true"]{background:var(--band);border-color:var(--band);color:var(--gold-pale);}
+.tab .n{opacity:.6;margin-left:6px;font-size:.78em;}
+.pcard.hide{display:none;}
+
+/* ---- the grind-date proof section ---- */
+.trace{background:var(--ivory);padding:clamp(58px,8vw,110px) 0;overflow:hidden;}
+.tracegrid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(32px,5vw,76px);align-items:center;}
+.trace h2{color:var(--ink);}
+.trace p{color:var(--sage);}
+.tracelist{list-style:none;margin:26px 0 0;padding:0;display:grid;gap:14px;}
+.tracelist li{display:flex;gap:14px;align-items:flex-start;font-size:.95rem;color:var(--sage);}
+.tracelist .tick{
+  flex:none;width:24px;height:24px;border-radius:50%;background:var(--band);color:var(--gold-pale);
+  display:grid;place-items:center;margin-top:2px;
+}
+.tracelist .tick svg{width:13px;height:13px;}
+.tracelist b{color:var(--ink);font-weight:600;}
+
+/* a facsimile of the sticker on the back of the pouch */
+.label{
+  background:linear-gradient(150deg,#fefcf7,var(--sand));border-radius:20px;--r:20px;
+  padding:clamp(26px,3.4vw,38px);box-shadow:var(--sh-md);position:relative;
+  transform:rotate(-1.4deg);
+}
+.label .lhead{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding-bottom:14px;margin-bottom:18px;border-bottom:1px dashed var(--clay);
+}
+.label .lhead img{height:34px;width:auto;}
+.label .vegmark{width:20px;height:20px;border:2px solid #1f7a34;display:grid;place-items:center;border-radius:2px;}
+.label .vegmark i{width:9px;height:9px;border-radius:50%;background:#1f7a34;}
+.label dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:11px 18px;align-items:baseline;}
+.label dt{font-size:.63rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-dk);font-weight:600;}
+.label dd{margin:0;font-family:"Jost",monospace;font-size:1.02rem;color:var(--ink);
+  letter-spacing:.05em;font-weight:500;}
+.label .lfoot{margin-top:20px;padding-top:14px;border-top:1px dashed var(--clay);
+  font-size:.78rem;color:var(--sage-soft);}
+
+/* ---- story: drop cap + pull quote ---- */
+.story .first::first-letter{
+  float:left;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:3.55em;line-height:.82;padding:.06em .12em 0 0;color:var(--gold-dk);font-weight:600;
+}
+.pull{
+  margin:30px 0;padding:4px 0 4px 26px;border-left:3px solid var(--gold);
+  font-family:"Fraunces",serif;font-variation-settings:"SOFT" 55,"WONK" 1;font-weight:500;
+  font-size:clamp(1.2rem,1.9vw,1.62rem);line-height:1.34;color:var(--ink);
+}
+.story .sign{margin-top:26px;font-size:.9rem;color:var(--sage-soft);}
+.story .sign b{display:block;font-size:1.02rem;color:var(--band);font-weight:600;}
+
+/* ---- what testers said ---- */
+.voices{background:linear-gradient(155deg,var(--tint-cardamom) 0%,#dfe9d1 100%);
+  padding:clamp(56px,7.5vw,104px) 0;}
+.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(16px,2vw,24px);
+  margin-top:clamp(26px,3.4vw,44px);}
+.vcard{background:#fff;border:1px solid var(--clay);border-radius:20px;--r:20px;padding:26px 24px 24px;
+  box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:14px;}
+.vcard .q{font-family:"Fraunces",serif;font-variation-settings:"SOFT" 50,"WONK" 1;font-weight:500;
+  font-size:1.06rem;line-height:1.42;color:var(--ink);margin:0;}
+.vcard .who{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);
+  font-weight:600;margin-top:auto;}
+.vcard.empty{background:rgba(255,255,255,.55);border-style:dashed;align-items:flex-start;}
+.vcard.empty .q{color:var(--sage);font-style:italic;}
+.vnote{margin-top:22px;font-size:.9rem;color:var(--sage);}
+
+@media (max-width:1080px){
+  .tracegrid{grid-template-columns:1fr;}
+  .label{transform:none;}
+  .storyart{position:static;}
+}
+@media (prefers-reduced-motion:reduce){ .mtrack{animation:none;} }
