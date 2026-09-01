@@ -27,24 +27,60 @@ Measured from the brand sticker (`Label_31.08.26`), not invented:
 Fonts: **Fraunces** (headings, with the SOFT + WONK axes turned up), **Jost** (text),
 **Tiro Devanagari Marathi** (the Marathi names).
 
-## Adding the 4 missing product photos
+## Product photos
 
-Four products currently show a designed colour tile with a "Photo coming" pill, because
-there is no real photo of them yet. To swap in a real photo, save a **square** image
-(680×680 or larger) at exactly this path — nothing else to edit, the page picks it up:
+The range is listed in `PRODUCTS` at the top of `js/satva.js`. A card shows a real
+photo if the file at its `img` path exists, and a designed colour tile with a
+"Photo coming" pill if it does not — so adding a photo is a file drop, no code edit.
+Save a **square** image, 680x680 or larger.
+
+Already photographed (real crops of the spice photo on the label):
+
+| Product | File | Note |
+|---|---|---|
+| Turmeric | `assets/p-haldi.jpg` | the actual spice |
+| Chilli Powder | `assets/p-mirchi.jpg` | the actual spice |
+| Coriander Powder | `assets/p-dhane.jpg` | the actual spice |
+| Garam Masala | `assets/p-garam.jpg` | a ground brown masala - representative, not a shot of our own pack |
+| Biryani Masala | `assets/p-biryani.jpg` | whole cardamom and cinnamon - the ingredients, not the ground blend |
+
+Replace those last two first when you have real pack shots.
+
+Still needed:
 
 | Product | Save the photo as |
 |---|---|
 | Kanda Lasun Masala | `assets/p-kandalasun.jpg` |
-| Groundnut Chutney | `assets/p-shengdana.jpg` |
-| Javas Chutney | `assets/p-javas.jpg` |
-| Karala Chutney | `assets/p-karala.jpg` |
+| Meat Masala | `assets/p-meat.jpg` |
+| Pav Bhaji Masala | `assets/p-pavbhaji.jpg` |
+| Chaat Masala | `assets/p-chaat.jpg` |
+| Chatpat Masala | `assets/p-chatpat.jpg` |
 
-Until then the browser console logs a harmless 404 for each missing file. Visitors never
-see it.
+Until then the browser console logs a harmless 404 for each missing file. Visitors
+never see it.
 
-The other four (`p-haldi`, `p-mirchi`, `p-dhane`, `p-kala`) are real crops of the spice
-photograph on the sticker.
+## Adding another masala
+
+The range is not fixed at any number. Everything on the page that lists products —
+the cards, and the spice-colour rule above the pillars and above the footer — is
+generated from the single `PRODUCTS` array at the top of `js/satva.js`. Add an entry
+and both update:
+
+```js
+{ acc:"var(--turmeric)", ink:"#9a6b06", mr:"<Marathi name>", en:"<English name>",
+  glyph:"<first Devanagari letter or two>",
+  d:"<one line about how it is used>",
+  img:"assets/p-<id>.jpg",
+  tint:"linear-gradient(150deg,#<light>,#<darker>)" }
+```
+
+- `acc` is the bright spice colour (the card's colour bar, the rule segment, the
+  hover border). Reuse one of the tokens in `satva.css` or add a new one.
+- `ink` is a darkened version of the same hue, used for the Marathi name so it stays
+  legible on white. Keep it at 4.5:1 or better against `#fff`.
+- `tint` is only used until a real photo exists at `img`.
+
+No copy anywhere says how many masalas there are, so nothing goes stale.
 
 ## Still to fill in
 

@@ -17,35 +17,49 @@
      save it at that exact path and reload. Nothing else to edit.
      --------------------------------------------------------- */
   var PRODUCTS = [
-    { mr:"हळद", en:"Haldi", glyph:"हळ",
+    { acc:"#e8a713", ink:"#94660a", mr:"हळद", en:"Turmeric", glyph:"हळ",
       d:"The everyday base of every Maharashtrian kitchen — bhaji, varan, amti.",
       img:"assets/p-haldi.jpg", tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
-    { mr:"लाल तिखट", en:"Mirchi Powder", glyph:"ति",
+    { acc:"#c3341a", ink:"#a52a13", mr:"लाल तिखट", en:"Chilli Powder", glyph:"ति",
       d:"Colour and heat, ground from whole dried chillies.",
       img:"assets/p-mirchi.jpg", tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
-    { mr:"धणे पूड", en:"Coriander Powder", glyph:"धणे",
+    { acc:"#93a04b", ink:"#5f6a26", mr:"धणे पूड", en:"Coriander Powder", glyph:"धणे",
       d:"Warm and nutty — the quiet base under a good rassa.",
       img:"assets/p-dhane.jpg", tint:"linear-gradient(150deg,#bcae63,#948537)" },
-    { mr:"काळा मसाला", en:"Premium Kala Masala", glyph:"काळा",
-      d:"The dark roasted Marathwada blend that makes a rassa taste like home.",
-      img:"assets/p-kala.jpg", tint:"linear-gradient(150deg,#8d7a55,#635232)" },
-    { mr:"कांदा लसूण मसाला", en:"Kanda Lasun Masala", glyph:"कां",
+    { acc:"#a8462a", ink:"#8a3720", mr:"कांदा लसूण मसाला", en:"Kanda Lasun Masala", glyph:"कां",
       d:"Onion, garlic and chilli — what a misal or usal cannot do without.",
-      img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#d1674a,#b03f24)" },
-    { mr:"शेंगदाणा चटणी", en:"Groundnut Chutney", glyph:"शें",
-      d:"Dry groundnut chutney for bhakri, thalipeeth and a bowl of dahi.",
-      img:"assets/p-shengdana.jpg", tint:"linear-gradient(150deg,#dd9a4e,#bf7420)" },
-    { mr:"जवस चटणी", en:"Javas Chutney", glyph:"ज",
-      d:"Roasted flaxseed chutney — earthy, nutty, and gone before you expect.",
-      img:"assets/p-javas.jpg", tint:"linear-gradient(150deg,#b3a05c,#8d7a32)" },
-    { mr:"कारळे चटणी", en:"Karala Chutney", glyph:"का",
-      d:"Niger-seed chutney, the Marathwada favourite alongside bhakri.",
-      img:"assets/p-karala.jpg", tint:"linear-gradient(150deg,#9aa07a,#727950)" }
+      img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#c9603f,#9e3d22)" },
+    { acc:"#7d5630", ink:"#634324", mr:"गरम मसाला", en:"Garam Masala", glyph:"गरम",
+      d:"The finishing spoon — stirred in at the end, not boiled away.",
+      img:"assets/p-garam.jpg", tint:"linear-gradient(150deg,#a38055,#74562f)" },
+    { acc:"#8f2e28", ink:"#7a2620", mr:"मीट मसाला", en:"Meat Masala", glyph:"मीट",
+      d:"Built for slow-cooked mutton and chicken rassa.",
+      img:"assets/p-meat.jpg", tint:"linear-gradient(150deg,#a7473f,#7c2721)" },
+    { acc:"#e2912b", ink:"#94590c", mr:"बिर्याणी मसाला", en:"Biryani Masala", glyph:"बि",
+      d:"For layered rice — whole spices ground for aroma, not just heat.",
+      img:"assets/p-biryani.jpg", tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
+    { acc:"#d1521f", ink:"#a53d13", mr:"पाव भाजी मसाला", en:"Pav Bhaji Masala", glyph:"पाव",
+      d:"The tawa blend. Butter, bhaji, pav, done.",
+      img:"assets/p-pavbhaji.jpg", tint:"linear-gradient(150deg,#dd6c3a,#b3410f)" },
+    { acc:"#7f6a4e", ink:"#5f5039", mr:"चाट मसाला", en:"Chaat Masala", glyph:"चाट",
+      d:"The tangy finish for bhel, sev puri, fruit and a glass of buttermilk.",
+      img:"assets/p-chaat.jpg", tint:"linear-gradient(150deg,#9b8768,#6d5a41)" },
+    { acc:"#b8453c", ink:"#96332b", mr:"चटपट मसाला", en:"Chatpat Masala", glyph:"चट",
+      d:"Sharp and tangy — for chivda, kairi, and anything that needs a lift.",
+      img:"assets/p-chatpat.jpg", tint:"linear-gradient(150deg,#c9605a,#a3352c)" }
   ];
 
   var MORTAR = '<svg class="mortar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/></svg>';
   var CHAT = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>';
   var VEG = '<span class="veg" title="Vegetarian"><i></i></span>';
+
+  // the spice-spectrum rules are drawn from the product list, so the range can
+  // grow to any length and the rule (and the grid) simply follow
+  document.querySelectorAll(".spectrum").forEach(function (bar) {
+    bar.innerHTML = PRODUCTS.map(function (p) {
+      return '<i style="background:' + p.acc + '" title="' + p.en + '"></i>';
+    }).join("");
+  });
 
   var grid = document.getElementById("grid");
   if (grid) {
@@ -53,6 +67,8 @@
       var card = document.createElement("article");
       card.className = "pcard frame reveal d" + (i % 4);
       card.style.setProperty("--r", "20px");
+      card.style.setProperty("--acc", p.acc);
+      card.style.setProperty("--acc-ink", p.ink);
       card.innerHTML =
         '<div class="pthumb tile" style="--tint:' + p.tint + '">' +
           '<span class="glyph">' + p.glyph + '</span>' + MORTAR + VEG +
