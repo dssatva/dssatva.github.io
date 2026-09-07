@@ -2,13 +2,18 @@
    DS SATVA — Dil Se Pure
    Light palette, taken from the brand sticker (Label_31.08.26):
    the label is cream-led with gold and green as accents, and so is this.
-   cream #faf7f2 · gold #bf8a17 · sage #55714e · band green #3c5128
+   cream #fcedde (oddbox) · gold #bf8a17 · sage #55714e · band green #3c5128
    =========================================================== */
 
 :root{
-  /* warm neutrals, lightest to deepest */
-  --ivory:#fdfcf8;
-  --cream:#faf7f2;
+  /* warm neutrals, lightest to deepest.
+     --cream is oddbox.co.uk's cream, read off their live page 5 Sep 2026
+     (their --color-bg-secondary-minimal, the ground under .boxes and
+     .curated-posts-section). They alternate it with plain white; we alternate
+     it with --ivory, which is the same hue taken lighter so the pale band does
+     not read cold beside it. */
+  --ivory:#fef7f0;
+  --cream:#fcedde;
   --sand:#f5eee0;
   --oat:#ede2cc;
   --clay:#e0d2b3;
@@ -20,7 +25,7 @@
   --green:#2c4220;
   --band:#3c5128;
   --sage:#55714e;
-  --sage-soft:#6f8168;
+  --sage-soft:#64775d;   /* 4.84:1 on white. On a --sage-mist ground use --sage. */
 
   /* gold */
   --gold:#bf8a17;
@@ -31,6 +36,7 @@
 
   /* spice accents — one per masala, taken off the powders in the label photo */
   --turmeric:#e8a713;
+  --himalayan:#d98a8a;   /* unrefined pink salt */
   --chilli:#c3341a;
   --coriander:#93a04b;
   --kala:#6f5433;
@@ -40,8 +46,25 @@
   --karala:#7d8b56;
   --leafgreen:#6f9440;
 
+  /* ---- alternating section grounds, after sweetgreen.com --------------------
+     Sampled from the live page 4 Sep 2026: their cream is #f4f3e7 and their sage
+     ground is #d8e5d6, with #00473c as ink. What makes it cohere is that the cream
+     is not warm — it carries the same green-yellow cast as the sage, so the two
+     read as one family rather than as two decisions.
+     Adapted rather than copied: --cream-sg used to be a barely greener cream sitting
+     next to the sticker's own #faf7f2. Superseded 5 Sep 2026 — the owner asked for
+     oddbox.co.uk's warmer cream, so --cream and --cream-sg are now both #fcedde and
+     the green-cast argument above no longer applies to the cream half of the page.
+     The sage grounds are still lightened from the brand's own --sage (#55714e)
+     rather than from sweetgreen's cooler green, so gold still belongs on them.
+     --sage-mist is deliberately no darker than it is: measured at 4.54:1 against
+     --sage body text, so existing copy stays legible without being restyled. */
+  --cream-sg:#fcedde;   /* was #f7f6ed, a greener cream; now oddbox's */
+  --sage-mist:#e6ede0;
+  --sage-mist-2:#dce6d2;
+
   /* pale spice grounds — bright, but still light */
-  --tint-cream:#fbf6ea;
+  --tint-cream:#fdf3e6;
   --tint-turmeric:#fdf4dc;
   --tint-turmeric-2:#f9e7bf;
   --tint-chilli:#fdefe7;
@@ -58,12 +81,22 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;}
+/* The [hidden] attribute is a UA display:none, so ANY author display: rule beats
+   it and the "hidden" element keeps rendering. This has now caught three
+   elements here (.etrack, .recgrid, .rangepick), so it is settled once, globally,
+   rather than patched per selector each time something new is toggled. */
+[hidden]{display:none!important;}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{
   margin:0;background:var(--cream);color:var(--green);
   font-family:"Jost",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
   font-size:clamp(15.5px,.55vw + 14px,17.5px);line-height:1.7;font-weight:400;
-  overflow-x:hidden;
+  /* clip, NOT hidden. overflow-x:hidden forces the other axis to compute as
+     `auto`, which turns body into its own scroll container - and that broke
+     scroll snapping outright, because the sections then snapped to body while
+     the page actually scrolls html. `clip` stops sideways scroll without
+     creating a scroll container. */
+  overflow-x:clip;
 }
 img{max-width:100%;display:block;}
 a{color:inherit;text-decoration:none;}
@@ -77,12 +110,12 @@ button{font:inherit;}
   font-weight:600;line-height:1.03;letter-spacing:-.021em;
   font-optical-sizing:auto;color:var(--ink);
 }
-.mr{font-family:"Tiro Devanagari Marathi",serif;font-weight:400;letter-spacing:normal;}
+.dv{font-family:"Tiro Devanagari Hindi",serif;font-weight:400;letter-spacing:normal;}
 .kick{
   font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;font-weight:600;
   color:var(--gold-dk);margin:0 0 14px;
 }
-.kick.mr{letter-spacing:.06em;font-weight:400;font-size:.85rem;text-transform:none;color:var(--sage);}
+.kick.dv{letter-spacing:.06em;font-weight:400;font-size:.85rem;text-transform:none;color:var(--sage);}
 .goldtext{
   background:var(--gold-grad);-webkit-background-clip:text;background-clip:text;
   -webkit-text-fill-color:transparent;color:var(--gold-dk);
@@ -126,15 +159,23 @@ section{position:relative;}
 }
 .topline .wrap{display:flex;gap:18px;align-items:center;justify-content:space-between;
   min-height:38px;padding-block:6px;}
+/* the rotating announcement: messages stack in one grid cell so the bar never
+   changes height as they swap, and only the active one is readable */
+.topline .left{display:grid;align-items:center;min-width:0;}
+.topline .tmsg{
+  grid-area:1 / 1;opacity:0;visibility:hidden;transform:translateY(4px);
+  transition:opacity .5s var(--ease),transform .5s var(--ease),visibility .5s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.topline .tmsg.is-on{opacity:1;visibility:visible;transform:none;}
 .topline .sep{color:var(--gold);opacity:.75;margin-inline:9px;}
 .topline a{white-space:nowrap;color:var(--gold-dk);font-weight:500;}
 .topline a:hover{color:var(--ink);}
-.topline .left{display:flex;align-items:center;flex-wrap:wrap;}
 @media (max-width:620px){ .topline .left .sep{display:none;} .topline{font-size:.72rem;} }
 
 /* ===================== nav ===================== */
 .nav{
-  position:sticky;top:0;z-index:60;background:rgba(253,252,248,.88);
+  position:sticky;top:0;z-index:60;background:rgba(254,247,240,.88);
   backdrop-filter:blur(16px) saturate(150%);-webkit-backdrop-filter:blur(16px) saturate(150%);
   border-bottom:1px solid var(--line);
 }
@@ -144,6 +185,7 @@ section{position:relative;}
 .nav ul a{
   color:var(--green);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
   font-weight:500;padding:8px 0;position:relative;
+  white-space:nowrap;   /* "OUR RANGE" must never break across two lines */
 }
 .nav ul a::after{
   content:"";position:absolute;left:0;right:100%;bottom:2px;height:1.5px;background:var(--gold);
@@ -151,6 +193,45 @@ section{position:relative;}
 }
 .nav ul a:hover{color:var(--gold-dk);}
 .nav ul a:hover::after{right:0;}
+/* ---- Our Range dropdown (after curiospice.com) ----
+   Opens on hover and, for keyboard users, on :focus-within - so it needs no JS
+   to open, and the parent anchor still works on its own. */
+.nav .hasmenu{position:relative;}
+.nav .hasmenu > a{display:inline-flex;align-items:center;gap:5px;}
+.nav .caret{width:13px;height:13px;transition:transform .3s var(--ease);}
+.nav .hasmenu:hover .caret,.nav .hasmenu:focus-within .caret{transform:rotate(180deg);}
+
+.nav .submenu{
+  display:block;margin-left:0;position:absolute;top:calc(100% + 14px);left:50%;transform:translate(-50%,-6px);
+  min-width:212px;list-style:none;margin:0;padding:8px;
+  background:rgba(254,247,240,.98);backdrop-filter:blur(14px);
+  border:1px solid var(--line);border-radius:14px;box-shadow:var(--sh-md);
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity .28s var(--ease),transform .28s var(--ease),visibility .28s;
+}
+/* a small bridge so the pointer can cross the gap without the menu closing.
+   It spans the item, not 150% of it - at 150% and centred it hung 85px past each
+   edge and pushed the whole page 67px wide once the nav stacked on mobile. */
+.nav .hasmenu::after{
+  content:"";position:absolute;top:100%;left:0;right:0;height:16px;
+}
+.nav .hasmenu:hover .submenu,.nav .hasmenu:focus-within .submenu{
+  opacity:1;visibility:visible;pointer-events:auto;transform:translate(-50%,0);
+}
+.nav .submenu li{margin:0;}
+.nav .submenu a{
+  display:flex;align-items:center;justify-content:space-between;gap:14px;
+  padding:9px 12px;border-radius:9px;font-size:.78rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--green);transition:background .2s,color .2s;
+}
+.nav .submenu a:hover{background:var(--sand);color:var(--gold-dk);}
+.nav .submenu a::after{display:none;}          /* the nav's underline effect, not wanted here */
+.nav .submenu .mn{
+  font-size:.7rem;letter-spacing:.04em;color:var(--gold-dk);opacity:.75;
+  font-variant-numeric:tabular-nums;
+}
+.nav .submenu .all a{border-bottom:1px solid var(--line);border-radius:9px 9px 0 0;margin-bottom:4px;}
+
 .btn-gold{
   display:inline-flex;align-items:center;gap:9px;background:var(--gold-grad);color:#2a1f08;
   font-weight:600;font-size:.86rem;letter-spacing:.05em;padding:12px 22px;border-radius:999px;
@@ -188,15 +269,16 @@ section{position:relative;}
 .hero::before{inset:16px;border:1px solid rgba(191,138,23,.45);}
 .hero::after{inset:23px;border:1px solid rgba(191,138,23,.24);}
 
-.field{position:absolute;inset:0;background:var(--sf,linear-gradient(155deg,#fdfcf8,#f0e7d3));}
+.field{position:absolute;inset:0;background:var(--sf,linear-gradient(155deg,#fef7f0,#f0e7d3));}
 .field .leaf{inset:-8% -12% auto auto;width:min(58vw,700px);height:min(58vw,700px);
   background:rgba(191,138,23,.14);transform:rotate(8deg);}
 /* soft cream scrim so copy stays readable where the spices rise behind it */
 .vig{position:absolute;inset:0;background:
-  radial-gradient(118% 128% at 0% 50%,rgba(253,252,248,.97) 0%,rgba(253,252,248,0) 100%),
-  /* every slide dissolves into the same ivory at its foot, so the hero meets
+  radial-gradient(118% 128% at 0% 50%,rgba(254,247,240,.97) 0%,rgba(254,247,240,0) 100%),
+  /* every slide dissolves into the same ivory at its foot (rgb of --ivory,
+     kept literal because these need alpha ramps; update both if --ivory moves), so the hero meets
      the next section with no tonal step whichever colour field is showing */
-  linear-gradient(to bottom,rgba(253,252,248,0) 82%,rgba(253,252,248,1) 100%);}
+  linear-gradient(to bottom,rgba(254,247,240,0) 82%,rgba(254,247,240,1) 100%);}
 
 /* the spice band, floating in the cream rather than cut off against it */
 .band{position:absolute;left:0;right:0;bottom:0;height:clamp(210px,42%,350px);overflow:hidden;
@@ -231,8 +313,8 @@ section{position:relative;}
 .slide.is-active .floatcard{animation:pop 1s var(--ease) .5s forwards;}
 @keyframes pop{from{opacity:0;transform:translateY(-32%) scale(.94);}to{opacity:1;transform:translateY(-42%) scale(1);}}
 .floatcard img{border-radius:12px;aspect-ratio:1;object-fit:cover;}
-.floatcard .fc-mr{font-size:1.02rem;color:var(--band);margin:11px 0 1px;line-height:1.3;}
-.floatcard .fc-en{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);font-weight:600;}
+.floatcard .fc-en{font-size:1.02rem;color:var(--band);margin:11px 0 1px;line-height:1.3;font-weight:600;}
+.floatcard .fc-dv{font-size:.86rem;color:var(--sage-soft);line-height:1.3;}
 
 /* controls */
 /* controls sit together at the foot of the hero. Edge-centred arrows collided
@@ -282,27 +364,396 @@ section{position:relative;}
 .spectrum i:hover{flex:2.2;}
 
 /* ===================== pillars ===================== */
-.pillars{background:var(--ivory);padding:clamp(50px,6.5vw,86px) 0;border-bottom:1px solid var(--line);}
-.pillars .inner{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(14px,2.4vw,34px);
-  align-items:start;max-width:1080px;margin-inline:auto;}
-.pillar{text-align:center;position:relative;}
-.pillar+.pillar::before{content:"";position:absolute;left:calc(-1 * clamp(7px,1.2vw,17px));top:6px;bottom:6px;
-  width:1px;background:linear-gradient(to bottom,transparent,var(--line) 22%,var(--line) 78%,transparent);}
-.pillar{--pc:var(--leafgreen);}
-.pillar:nth-child(2){--pc:var(--turmeric);}
-.pillar:nth-child(3){--pc:var(--garlic);}
-.pillar:nth-child(4){--pc:var(--chilli);}
-.pillar .ic{width:72px;height:72px;margin:0 auto 12px;border-radius:50%;display:grid;place-items:center;
-  border:1.4px solid color-mix(in srgb,var(--pc) 42%,transparent);color:var(--pc);background:#fff;
-  transition:transform .5s var(--ease),background .4s,color .4s,border-color .4s;}
-.pillar:hover .ic{transform:translateY(-4px);background:var(--pc);color:#fff;border-color:var(--pc);
-  box-shadow:0 12px 24px -12px color-mix(in srgb,var(--pc) 70%,transparent);}
-.pillar .ic svg{width:33px;height:33px;}
-.pillar h3{font-size:1.08rem;margin:0 0 4px;color:var(--ink);font-weight:600;letter-spacing:.02em;}
-.pillar p{margin:0;font-size:.88rem;color:var(--sage-soft);max-width:24ch;margin-inline:auto;}
+/* ===================== why choose ===================== */
+/* Three columns, big monoline illustrations, one CTA underneath. The old
+   four-icon .pillars strip lived here and did the same job at a tenth the
+   size; this is that idea given room. */
+.reasons{background:var(--ivory);padding:clamp(38px,5vw,66px) 0;border-bottom:1px solid var(--line);}
+.reasons .rhead{text-align:center;margin:0 auto clamp(34px,4.6vw,58px);}
+.reasons .rhead h2{margin:0 0 16px;color:var(--ink);}
+.reasons .rhead .rule{margin-inline:auto;}
+
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,54px);
+  max-width:1040px;margin-inline:auto;}
+
+/* one spice colour per column, the same idea as the product accents */
+.reason{text-align:center;--rc:var(--sage);}
+.reason:nth-child(2){--rc:var(--turmeric);}
+.reason:nth-child(3){--rc:#7d5630;}
+
+.reason .art{
+  width:clamp(158px,17.5vw,212px);height:clamp(158px,17.5vw,212px);
+  margin:0 auto clamp(18px,2vw,26px);color:var(--rc);
+  transition:transform .55s var(--ease);
+}
+.reason .art svg{width:100%;height:100%;display:block;overflow:visible;}
+.reason:hover .art{transform:translateY(-6px);}
+
+.reason h3{
+  margin:0 0 10px;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.1rem,1.4vw,1.32rem);font-weight:600;line-height:1.25;color:var(--ink);
+}
+.reason p{margin:0 auto;font-size:.93rem;line-height:1.6;color:var(--sage);max-width:30ch;}
+
+.rcta{text-align:center;margin-top:clamp(34px,4.4vw,56px);}
+
+@media (max-width:820px){
+  .rgrid{grid-template-columns:1fr;gap:clamp(30px,5vw,44px);}
+  .reason p{max-width:34ch;}
+}
+@media (prefers-reduced-motion:reduce){ .reason:hover .art{transform:none;} }
+
+/* ===================== the shelf slider ===================== */
+/* After jainfarmfresh.com/products/spices, which the owner sent on 6 Sep 2026.
+   Four things are taken from it and nothing else: a flat pale ground rather than
+   a photograph behind the words, a two-line serif headline in the deep brand
+   green, one paragraph at reading width, and an outlined pill whose arrow sits
+   in a filled circle at its right end.
+   The ground is per-slide (--sg) and pulled toward that shelf's own colour, the
+   way the hero slides already carry data-tint - so the turmeric slide warms and
+   the seed slide cools, and the five do not read as one repeated template. */
+
+.shelves{position:relative;overflow:hidden;border-block:1px solid var(--line);}
+
+/* every slide occupies the same grid cell, so the stage is exactly as tall as
+   the tallest slide and nothing has to be measured in JS */
+.shstage{display:grid;}
+.shelf{
+  grid-area:1/1;position:relative;isolation:isolate;
+  /* vh as well as vw: 52vw alone meant a short, wide window still got a 610px
+     slide and the hero could not fit the screen */
+  min-height:clamp(320px,min(52vw,62vh),610px);display:flex;align-items:center;
+  opacity:0;visibility:hidden;
+  transition:opacity .62s var(--ease),visibility .62s step-end;
+}
+.shelf.is-on{opacity:1;visibility:visible;transition:opacity .62s var(--ease),visibility 0s;}
+.shelf::before{content:"";position:absolute;inset:0;z-index:0;background:var(--sg);}
+
+/* the photograph bleeds off the right edge and is feathered back into the
+   ground on its left, so it sits on the cream rather than being pasted onto it */
+/* Made smaller 6 Sep 2026 (was inset:0 and min(50%,840px), full height).
+   Narrowing ALONE made the subject look bigger, not smaller: object-fit:cover
+   crops harder the taller and narrower its box gets, so a 42%-wide full-height
+   frame zoomed into the cinnamon instead of showing the flat-lay. The height
+   had to come down with the width - a shorter box crops less, so more of the
+   photograph fits and everything in it reads smaller. */
+/* LENGTHENED 6 Sep 2026 at the owner's request - "a little more longer, and then
+   taper it down near the writings". Was min(44%,620px) inset 58px, which put the
+   frame's left edge at x=820 on a 1440 viewport and, with the taper below only
+   reaching full strength at 78%, left barely 140px of the photograph at its real
+   colour. The picture read short and washed. Now it reaches x=605 and the taper
+   does its dying in the gap between the copy and the subject, which is what was
+   actually being asked for: more photograph, and the fade nearer the words. */
+.sh-shot{
+  position:absolute;
+  inset:clamp(20px,3.2vw,42px) 0 clamp(20px,3.2vw,42px) auto;
+  width:min(58%,900px);z-index:1;
+  /* the frame is inset now, so its top and bottom edges are on-canvas and would
+     read as two hard cuts; the left taper is on the img inside */
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 11%,#000 89%,transparent 100%);
+}
+
+/* Every photo in the hero is shot on a pale ground (the stone under the
+   panoramas, the beige under the seed bowls, the marble under the salt), which
+   is what lets the picture dissolve into the cream at all rather than sitting
+   on it as a rectangle - and what makes the block look like the page the owner
+   sent. A photo shot on a dark ground would need its own handling.
+
+   --shot-pos picks WHICH part of the photograph survives the crop, per slide,
+   since the two panoramas are 1700px wide and only ~800px of that is ever seen.
+   --vib lifts a flat photo. Kept between 1.00 and 1.20 on purpose: this is a
+   brand whose whole argument is that colour comes from the spice and not from a
+   dye drum, so the already-vivid shots are barely touched (ground spices sit at
+   1.03) and only the soft ones - the oil bottle, the seed bowls - are pushed. */
+.sh-shot img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  object-position:var(--shot-pos,center);
+  filter:saturate(var(--vib,1)) contrast(var(--vcon,1.02));
+  /* ONE mask layer here: the left taper. The vertical feather for the inset top
+     and bottom edges lives on the parent .sh-shot instead. Two single-layer
+     masks on two elements, rather than two layers composited on one - mixing
+     -webkit-mask-composite:source-in with mask-composite:intersect left a hard
+     vertical edge down the whole photograph, because the two syntaxes disagree
+     about which layer wins. Nothing here needs compositing.
+
+     Five stops, not two: a straight two-stop ramp bands visibly over this
+     distance, so the slope has to ease rather than step.
+
+     WHERE THE STOPS SIT is the whole trick, and it is measured against the copy
+     rather than chosen for its own sake. The frame starts at x=605 on a 1440
+     viewport and the longest line of type ends near x=680, so the mask is still
+     under 5% there - the photograph is invisible behind the words. It then
+     climbs through the empty gap and is at full strength by 58% (x=1089),
+     giving ~350px of the picture at its real colour instead of 140px. Raise
+     that 58% and the fade crowds the type; lower it and the taper turns back
+     into an edge. */
+  -webkit-mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.05) 10%,rgba(0,0,0,.24) 24%,rgba(0,0,0,.58) 40%,rgba(0,0,0,.88) 50%,#000 58%);
+          mask-image:linear-gradient(to right,transparent 0,rgba(0,0,0,.05) 10%,rgba(0,0,0,.24) 24%,rgba(0,0,0,.58) 40%,rgba(0,0,0,.88) 50%,#000 58%);
+  transform:scale(1.06);transition:transform 1.4s var(--ease);
+}
+/* `.sh-shot.deep`, a longer dissolve for a photo carrying a dark ground of its
+   own, is gone as of 6 Sep 2026. It dated from when the whole and ground slides
+   used the slate and dark-board crops. The default taper above now reaches full
+   strength at 58% where the old default reached it at 24%, so `.deep` at 56%
+   had become the same rule under a name that claimed otherwise - worse than no
+   escape hatch. A dark shelf-<id>.jpg needs no special case now. */
+.shelf.is-on .sh-shot img{transform:scale(1);}
+
+.shelf .wrap{position:relative;z-index:2;width:100%;}
+/* The column is wide enough, and the display size small enough, that every one
+   of the five headlines holds its intended two lines. At the first sizing the
+   name and the phrase under it broke into three, which lost the reference's
+   whole rhythm - two lines, the second one carrying the gold. */
+.sh-copy{max-width:min(620px,53%);padding-block:clamp(46px,7vw,86px);}
+.sh-copy .kick{color:var(--sage);}
+.sh-copy h2{
+  font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.04;margin:10px 0 20px;color:var(--ink);
+}
+.sh-copy h2 em{font-style:normal;display:block;}
+.sh-copy > p{color:var(--sage);font-size:clamp(1rem,.5vw + .9rem,1.14rem);line-height:1.68;
+  max-width:46ch;margin:0 0 30px;}
+
+/* the copy rises in on the way in, the same beat as the hero's */
+.sh-copy > *{opacity:0;transform:translateY(20px);}
+.shelf.is-on .sh-copy > *{animation:rise .85s var(--ease) forwards;}
+.shelf.is-on .sh-copy > *:nth-child(1){animation-delay:.10s;}
+.shelf.is-on .sh-copy > *:nth-child(2){animation-delay:.19s;}
+.shelf.is-on .sh-copy > *:nth-child(3){animation-delay:.28s;}
+.shelf.is-on .sh-copy > *:nth-child(4){animation-delay:.37s;}
+.shelf.is-on .sh-copy > *:nth-child(5){animation-delay:.46s;}
+
+/* the reference's pill: outline, wide letter-spaced label, filled circle arrow.
+   Theirs is black on cream; ours is --ink, which is the same move in the brand's
+   own green, and the circle turns gold on hover rather than simply inverting. */
+.pill{
+  display:inline-flex;align-items:center;gap:clamp(14px,2vw,26px);
+  padding:7px 7px 7px clamp(20px,2.4vw,30px);
+  border:1.5px solid var(--ink);border-radius:999px;color:var(--ink);
+  font-family:"Jost",system-ui,sans-serif;font-weight:500;
+  font-size:clamp(.82rem,.9vw,.95rem);letter-spacing:.09em;text-transform:uppercase;
+  transition:background .32s var(--ease),color .32s var(--ease),transform .32s var(--ease),box-shadow .32s var(--ease);
+}
+.pill .parrow{
+  width:clamp(38px,3.6vw,46px);aspect-ratio:1;border-radius:50%;flex:none;
+  background:var(--ink);color:var(--ivory);display:grid;place-items:center;
+  transition:background .32s var(--ease),color .32s var(--ease),transform .32s var(--ease);
+}
+.pill .parrow svg{width:44%;height:44%;}
+.pill:hover{background:var(--ink);color:var(--ivory);transform:translateY(-2px);box-shadow:var(--sh-md);}
+.pill:hover .parrow{background:var(--gold);color:var(--ink);transform:translateX(3px);}
+.pill:focus-visible{outline:2px solid var(--gold-dk);outline-offset:3px;}
+
+/* counted off PRODUCTS in js/satva.js, so it cannot go stale the way a typed
+   number would - the same rule the category cards and the tabs already follow */
+/* set well clear of the pill and pitched quieter than it: sitting tight
+   underneath at gold, it read as a label belonging to the button rather than as
+   a note about the shelf */
+.sh-count{margin:26px 0 0;font-size:.74rem;letter-spacing:.17em;text-transform:uppercase;
+  color:var(--sage-soft);}
+.sh-count:empty{display:none;}
+
+/* ---- the strip underneath: named tabs first, arrows second ---- */
+.shbar{position:relative;z-index:3;background:var(--ivory);border-top:1px solid var(--line);}
+.shbar .wrap{display:flex;align-items:center;gap:clamp(16px,3vw,40px);
+  justify-content:space-between;min-height:70px;padding-block:12px;}
+.shtabs{flex:1 1 auto;min-width:0;}
+.shnav{display:flex;gap:9px;flex:none;}
+/* .arrow is absolutely positioned for the hero; here it sits in the flow */
+.shnav .arrow{position:static;bottom:auto;left:auto;right:auto;width:42px;height:42px;
+  background:#fff;}
+
+/* 1024-1080 is the last width that still runs two columns, and it is tight:
+   the panel has to give ground so the taper can finish before the type does. */
+@media (max-width:1080px){
+  .sh-copy{max-width:min(540px,58%);}
+  .sh-shot{width:min(46%,540px);}
+}
+
+/* Below 1024px there is no room for a column of words beside a picture, so the
+   two stack: photograph on top at full strength, copy under it on the ground.
+
+   This replaced a full-bleed photo behind a near-opaque cream scrim. That
+   version was legible, but it spent the picture to do it - a wash at .965 over
+   the turmeric and chilli left almost none of the colour that is the whole
+   reason these shots are here. Stacking costs some height and gives the colour
+   back at 100%, with the type on clean cream where it belongs. The photo
+   already precedes .wrap in the markup, so the order needs no reshuffling.
+
+   THE BREAKPOINT WAS 900px AND HAD TO MOVE UP. Once the panel was lengthened
+   the two-column layout stopped fitting between 900 and 1080: the viewport is
+   too narrow there for a 58%-wide copy column and a long photograph to share,
+   so the taper was still at 18-43% where the body text ended, i.e. a visible
+   photograph directly behind the words. Measured across all five slides at
+   1060 / 1000 / 940. Stacking from 1024 down, plus the narrower panel in the
+   1080 block above, puts the worst case back under 5% at every width. If the
+   copy column or the panel width is ever widened again, re-measure this. */
+@media (max-width:1024px){
+  .shelf{min-height:0;display:flex;flex-direction:column;align-items:stretch;}
+  /* Taller here too, for the same reason as the desktop panel: the owner asked
+     for a longer picture. 210-320px was a strip; this is a band. */
+  .sh-shot{
+    position:relative;inset:auto;width:100%;flex:none;
+    height:clamp(250px,54vw,380px);
+  }
+  /* The container's inset feather is off - there is no inset to hide here, and
+     it would fade the top of the band against the nav. */
+  .sh-shot{-webkit-mask-image:none;mask-image:none;}
+  /* But the bottom of the band DOES taper, into the cream the copy sits on.
+     This is the stacked layout's version of "taper it down near the writings":
+     where the desktop panel dies out horizontally as it nears the column of
+     type, this one dies out vertically as it nears the type below it. Without
+     it the photograph stops at a ruled horizontal line directly above the
+     kicker, which is the one edge the desktop layout no longer has. */
+  .sh-shot img{
+    -webkit-mask-image:linear-gradient(to bottom,#000 0,#000 58%,rgba(0,0,0,.72) 78%,rgba(0,0,0,.24) 92%,transparent 100%);
+            mask-image:linear-gradient(to bottom,#000 0,#000 58%,rgba(0,0,0,.72) 78%,rgba(0,0,0,.24) 92%,transparent 100%);
+  }
+  /* the band is wide and short where the desktop panel is narrow and tall, so a
+     slide can name a second crop for it. Only the oil bottle needs one so far:
+     the framing that centres it in a tall panel cuts its neck off in a band. */
+  .sh-shot img{object-position:var(--shot-pos-m,var(--shot-pos,center));}
+  .sh-copy{max-width:none;padding-block:clamp(34px,7vw,52px);}
+  .sh-copy > p{max-width:44ch;}
+  /* the tabs need both rows to themselves once they wrap, so the arrows drop
+     below them rather than being pulled up alongside - tucked up on the right
+     they landed on top of the second row of tab labels */
+  .shbar .wrap{flex-direction:column;align-items:stretch;gap:14px;}
+  .shnav{justify-content:flex-end;}
+}
+
+/* Below 620px the hero's arrows are already dropped in favour of swipe (see the
+   620px block further down) and that rule catches these too, since they share
+   the .arrow styling. Left alone, .shnav stayed in the column as an empty row
+   and the bar carried its gap for nothing - so the whole holder goes with them.
+   Nothing is lost: the tab strip names every shelf, and the stage still swipes. */
+@media (max-width:620px){
+  .shnav{display:none;}
+}
+
+@media (max-width:560px){
+  .pill{gap:12px;}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .shelf,.shelf.is-on{transition:none;}
+  .sh-shot img,.shelf.is-on .sh-shot img{transform:none;transition:none;}
+  .sh-copy > *,.shelf.is-on .sh-copy > *{opacity:1;transform:none;animation:none;}
+  .pill:hover{transform:none;}
+}
+
+/* ===================== shop by category ===================== */
+/* Arch-topped cards - the one shape borrowed wholesale from vahdam.com, because
+   it is the detail that makes their block read as a shelf rather than a table. */
+/* ---- SHOP BY CATEGORY: the way into the range ----------------------------
+   Rebuilt 5 Sep 2026 from two references the owner sent.
+   From uk.huel.com: the label sits ON the photograph rather than under it, and
+   the row is given far more air than a product grid gets - their four cards
+   carry a whole viewport between them. From jainfarmfresh.com/products/spices:
+   one honest photograph per category, no icon standing in for a product.
+   Three across, not six. Six categories at six-across made each photograph a
+   stamp; at three-across on two rows every picture is large enough to be worth
+   photographing, which is the point of the block. */
+/* cream, not sage: Everyday Essentials used to sit between this block and the
+   range and carried the cream, so with it gone the two sage sections met and
+   the alternation broke. Cream is also what jainfarmfresh puts behind its own
+   category cards, so the reference and the ground rule agree here. */
+.cats{padding:clamp(40px,5vw,68px) 0 clamp(34px,4.4vw,60px);background:var(--cream-sg);}
+.chead{text-align:center;margin:0 auto clamp(34px,4.4vw,58px);max-width:60ch;}
+.chead h2{margin:0;color:var(--ink);}
+.chead .lede{margin:14px auto 0;color:var(--sage);line-height:1.65;}
+
+.catgrid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,2.4vw,34px);
+  max-width:1280px;margin-inline:auto;
+}
+.catcard{
+  appearance:none;border:0;background:none;padding:0;cursor:pointer;font:inherit;
+  text-align:left;display:flex;flex-direction:column;
+}
+.catcard .cshot{
+  /* 3:2, not the 4:5 this started as. Portrait cards made one row fill the
+     viewport, so the second row of three always sat below the fold and the six
+     shelves never read as one block. Landscape at the same width is ~165px
+     shorter per card, which is what brings both rows into a single screen. */
+  position:relative;display:block;width:100%;aspect-ratio:3/2;overflow:hidden;
+  background:var(--tint);border-radius:20px;color:#fff;
+  display:grid;place-items:center;
+  box-shadow:0 18px 38px -24px rgba(60,81,40,.6);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.catcard .cshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  /* the owner asked for the spice colour of jainfarmfresh, which runs its
+     photography far more saturated than this site had. Lifted here, on the
+     hero slides (--vib) and in the footer collage, so the whole page agrees. */
+  filter:saturate(1.18) contrast(1.03);
+  transition:transform .8s var(--ease);}
+.catcard .cshot > svg{width:32%;height:32%;opacity:.92;}
+/* the scrim only exists under the words, so the photograph keeps its own light
+   in the top two-thirds of the frame */
+.catcard .cscrim{
+  position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;
+  /* shorter and darker at its foot rather than tall and mid-grey: over a light
+     photograph (pink salt, oil) a tall scrim reads as a smudge across the
+     picture, while a short one reads as a shadow the label sits in */
+  background:linear-gradient(to top,rgba(20,28,15,.92) 0%,rgba(20,28,15,.58) 45%,rgba(20,28,15,0) 100%);
+}
+.catcard .cname{
+  position:absolute;left:clamp(16px,1.6vw,22px);right:clamp(58px,5vw,70px);
+  bottom:clamp(15px,1.5vw,20px);
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.12rem,1.5vw,1.42rem);font-weight:600;color:#fff;line-height:1.15;
+  text-shadow:0 1px 12px rgba(12,18,8,.55);
+}
+.catcard .carrow{
+  position:absolute;right:clamp(14px,1.4vw,18px);bottom:clamp(14px,1.4vw,18px);
+  width:clamp(34px,3.2vw,40px);height:clamp(34px,3.2vw,40px);border-radius:50%;
+  display:grid;place-items:center;background:rgba(255,255,255,.94);color:var(--band);
+  transition:transform .45s var(--ease),background .45s var(--ease);
+}
+.catcard .carrow svg{width:52%;height:52%;}
+.catcard:hover .cshot,.catcard:focus-visible .cshot{
+  transform:translateY(-7px);box-shadow:0 30px 52px -26px rgba(60,81,40,.66);
+}
+.catcard:hover .cshot img{transform:scale(1.055);}
+.catcard:hover .carrow{transform:translateX(3px);background:#fff;}
+/* flex:1 + margin-top:auto keeps every ITEMS line on one baseline across a
+   row, whether its blurb wrapped to one line or two */
+.catcard{height:100%;}
+.catcard .cmeta{display:flex;flex-direction:column;gap:6px;padding:13px 2px 0;flex:1;}
+.catcard .cblurb{font-size:.9rem;line-height:1.55;color:var(--sage);max-width:32ch;}
+.catcard .ccount{
+  margin-top:auto;padding-top:7px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--gold-dk);font-weight:600;
+}
+
+@media (max-width:900px){ .catgrid{grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,30px);} }
+@media (max-width:560px){ .catgrid{grid-template-columns:1fr;} .catcard .cshot{aspect-ratio:3/2;} }
+@media (prefers-reduced-motion:reduce){
+  .catcard:hover .cshot{transform:none;} .catcard:hover .cshot img{transform:none;}
+}
+
+/* ===================== section tabs ===================== */
+/* These were the Everyday Essentials tabs; that section was removed on
+   5 Sep 2026 as a duplicate of the range, and the tab styling stayed because
+   the recipes block now uses it. Nothing else in that block survives. */
+.etabs{display:flex;gap:clamp(14px,2vw,26px);flex-wrap:wrap;}
+.etab{
+  appearance:none;background:none;border:0;padding:3px 0;cursor:pointer;
+  font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  /* --sage-soft is 4.22:1 on the cream ground (it was already only 4.46:1 on the
+     old one) - inactive tabs use --sage, 4.74:1, and stay clearly secondary
+     because the selected tab is --ink with a gold rule under it */
+  font-size:clamp(.98rem,1.1vw,1.1rem);font-weight:500;color:var(--sage);
+  border-bottom:1.6px solid transparent;transition:color .3s,border-color .3s;
+}
+.etab:hover{color:var(--gold-dk);}
+.etab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold);}
+.etab .ecount{font-size:.72em;color:var(--gold-dk);margin-left:5px;vertical-align:.25em;}
 
 /* ===================== range ===================== */
-.range{padding:clamp(58px,8vw,110px) 0;background:linear-gradient(180deg,var(--cream) 0%,var(--tint-cream) 100%);}
+.range{padding:clamp(38px,5vw,70px) 0;background:linear-gradient(180deg,var(--sage-mist) 0%,var(--sage-mist-2) 100%);}
 .sechead{display:flex;gap:clamp(24px,4vw,56px);align-items:flex-end;justify-content:space-between;
   flex-wrap:wrap;margin-bottom:clamp(28px,4vw,52px);}
 .sechead>div{flex:1 1 380px;} .sechead>.lede{flex:0 1 400px;padding-bottom:4px;}
@@ -322,16 +773,19 @@ section{position:relative;}
 .pthumb img{width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease);}
 .pcard:hover .pthumb img{transform:scale(1.07);}
 .pthumb.tile{display:grid;place-items:center;background:var(--tint,linear-gradient(150deg,#f0e7d3,#e0d2b3));}
-.pthumb.tile .glyph{font-family:"Tiro Devanagari Marathi",serif;font-size:clamp(3.6rem,13vw,5.2rem);
+.pthumb.tile .glyph{font-family:"Tiro Devanagari Hindi",serif;font-size:clamp(3.6rem,13vw,5.2rem);
   color:rgba(255,255,255,.42);line-height:1;user-select:none;}
 .pthumb.tile .mortar{position:absolute;bottom:16px;right:16px;width:34px;height:34px;color:rgba(255,255,255,.6);}
 .pthumb .veg{position:absolute;top:12px;left:12px;width:18px;height:18px;border:2px solid #1f7a34;
   background:#fff;display:grid;place-items:center;border-radius:2px;}
 .pthumb .veg i{width:8px;height:8px;border-radius:50%;background:#1f7a34;display:block;}
 .pbody{padding:16px 18px 20px;display:flex;flex-direction:column;flex:1;}
-.pbody .mr{font-size:1.15rem;color:var(--acc-ink);line-height:1.35;margin:0 0 2px;}
-.pbody h3{font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;color:var(--sage-soft);
-  margin:0 0 9px;font-weight:600;}
+.pbody h3{font-size:1.12rem;line-height:1.3;color:var(--acc-ink);margin:0 0 2px;font-weight:600;
+  letter-spacing:normal;text-transform:none;}
+.pbody .dv{font-size:.95rem;color:var(--sage-soft);line-height:1.35;margin:0 0 8px;}
+.pform{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;
+  font-weight:600;color:var(--sage-soft);border:1px solid var(--line);border-radius:999px;
+  padding:2px 9px;margin:0 0 10px;}
 .pbody p{margin:0 0 15px;font-size:.9rem;color:var(--sage-soft);flex:1;}
 .pbody .ask{font-size:.8rem;letter-spacing:.04em;color:var(--band);font-weight:600;display:inline-flex;
   align-items:center;gap:7px;}
@@ -341,10 +795,11 @@ section{position:relative;}
   background:rgba(255,255,255,.94);color:var(--band);padding:4px 9px;border-radius:999px;font-weight:600;}
 
 /* ===================== why ===================== */
-.why{background:linear-gradient(180deg,var(--tint-turmeric) 0%,var(--tint-turmeric-2) 100%);
-  padding:clamp(58px,8vw,112px) 0;overflow:hidden;}
+.why{background:linear-gradient(180deg,var(--sage-mist) 0%,var(--sage-mist-2) 100%);
+  /* 112px missed fitting the viewport by 2px; 66px clears it with room */
+  padding:clamp(38px,5vw,66px) 0;overflow:hidden;}
 .why .leaf{inset:auto -16% -26% auto;width:min(66vw,700px);height:min(66vw,700px);
-  background:rgba(176,108,20,.17);}
+  background:rgba(85,113,78,.15);}
 .why h2{color:var(--ink);}
 .whygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(236px,1fr));gap:clamp(14px,2vw,22px);
   margin-top:clamp(30px,4vw,52px);position:relative;z-index:2;}
@@ -357,13 +812,16 @@ section{position:relative;}
 .wcard:nth-child(2){--wc:var(--chilli);}
 .wcard:nth-child(3){--wc:var(--garlic);}
 .wcard:nth-child(4){--wc:var(--coriander);}
+/* --wc at full strength was 1.97:1 against this section's ground - decorative, but
+   these numerals carry the card order, so they are darkened toward the band green.
+   55% is the measured floor: turmeric, the lightest accent, lands at 3.21:1. */
 .wcard .n{font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;font-size:1.7rem;
-  color:var(--wc);display:block;margin-bottom:10px;}
+  color:color-mix(in srgb,var(--wc) 55%,var(--band));display:block;margin-bottom:10px;}
 .wcard h3{font-size:1.06rem;margin:0 0 8px;color:var(--band);font-weight:600;}
-.wcard p{margin:0;font-size:.9rem;color:var(--sage-soft);}
+.wcard p{margin:0;font-size:.9rem;color:var(--sage);}
 
 /* ===================== promise ===================== */
-.promise{background:var(--tint-chilli);padding:clamp(52px,7vw,96px) 0;text-align:center;}
+.promise{background:var(--cream-sg);padding:clamp(34px,4.4vw,62px) 0;text-align:center;}
 .promise .box{max-width:840px;margin:0 auto;padding:clamp(30px,5vw,58px) clamp(22px,4vw,54px);
   border-radius:24px;--r:24px;position:relative;background:#fff;box-shadow:var(--sh-md);}
 .promise .badge{width:104px;margin:0 auto 20px;}
@@ -372,7 +830,7 @@ section{position:relative;}
 .promise .sig{margin-top:24px;font-size:1.2rem;color:var(--gold-dk);}
 
 /* ===================== story ===================== */
-.story{padding:clamp(58px,8vw,112px) 0;background:var(--cream);}
+.story{padding:clamp(58px,8vw,112px) 0;background:var(--sage-mist);}
 .storygrid{display:grid;grid-template-columns:1.32fr .68fr;gap:clamp(30px,5vw,72px);align-items:start;}
 .story h2{color:var(--ink);}
 .story p{color:var(--sage);}
@@ -382,7 +840,7 @@ section{position:relative;}
 .storyart img{width:min(300px,78%);}
 
 /* ===================== feedback ===================== */
-.fb{background:linear-gradient(155deg,var(--tint-cardamom) 0%,#dfe9d1 100%);padding:clamp(52px,7vw,96px) 0;overflow:hidden;}
+.fb{background:linear-gradient(155deg,var(--tint-cardamom) 0%,#dfe9d1 100%);padding:clamp(34px,4.4vw,62px) 0;overflow:hidden;}
 .fbgrid{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(28px,4vw,60px);align-items:center;}
 .fb h2{color:var(--ink);}
 .fb p{color:var(--sage);}
@@ -394,7 +852,7 @@ section{position:relative;}
   color:var(--sage-soft);margin-top:8px;}
 
 /* ===================== contact ===================== */
-.contact{padding:clamp(58px,8vw,110px) 0;background:var(--tint-cream);}
+.contact{padding:clamp(38px,5vw,70px) 0;background:var(--sage-mist);}
 .contact h2{color:var(--ink);}
 .cgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:clamp(18px,2.4vw,30px);
   margin-top:clamp(26px,3vw,44px);}
@@ -415,14 +873,82 @@ section{position:relative;}
 
 /* ===================== footer ===================== */
 /* the one deep-green block on the page — the label has the same green band at its foot */
-footer{background:var(--band);color:rgba(250,247,242,.72);padding:clamp(38px,5vw,62px) 0 26px;font-size:.86rem;}
-footer .top{display:flex;gap:30px;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;
-  padding-bottom:26px;border-bottom:1px solid rgba(241,221,171,.28);}
-footer .logo{height:56px;width:auto;}
-footer nav{display:flex;gap:22px;flex-wrap:wrap;}
-footer nav a:hover{color:var(--gold-pale);}
-footer .btm{display:flex;gap:16px;justify-content:space-between;flex-wrap:wrap;padding-top:20px;font-size:.78rem;}
-footer .btm .mr{color:var(--gold-pale);}
+/* the bottom padding is not decoration: .wafab is fixed at the bottom-right
+   and would otherwise sit on top of the last line of the footer */
+/* The footer stands on a pinned photograph, after the band at the foot of
+   dip-a-chip.com. Measured off their page: one section carrying
+   background-attachment:fixed with background-size:cover, so the image holds
+   still in the viewport and the section scrolls over it like a window.
+
+   The picture is ours: assets/footer-collage.jpg is a contact sheet built from
+   twelve photographs already on this site - the six category shots and six of
+   the recipe shots - laid out 4x3 with band-green gutters and desaturated to
+   0.86 so the spice colour does not fight the gold in the type.
+
+   TWO LAYERS, TWO ATTACHMENTS. The scrim scrolls with the footer so it always
+   covers exactly the footer; only the photograph is pinned. A scrim this heavy
+   (.90 to .94 of --ink) is not decoration - it is what keeps the existing
+   footer type legible over twelve different photographs. */
+footer{
+  background-color:var(--band);
+  background-image:
+    linear-gradient(rgba(30,44,22,.90),rgba(30,44,22,.94)),
+    url("../assets/footer-collage.jpg");
+  background-repeat:no-repeat,no-repeat;
+  background-position:center,center;
+  background-size:cover,cover;
+  background-attachment:scroll,fixed;
+  color:rgba(250,247,242,.72);
+  padding:clamp(44px,5.5vw,72px) 0 clamp(76px,7vw,88px);font-size:.86rem;}
+
+/* background-attachment:fixed is a known jank source on touch devices, and iOS
+   Safari ignores it outright - it renders as scroll, which still looks right,
+   just without the parallax. Made explicit rather than left to the browser. */
+@media (max-width:900px){
+  footer{background-attachment:scroll,scroll;}
+}
+@media (prefers-reduced-motion:reduce){
+  footer{background-attachment:scroll,scroll;}
+}
+
+.fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.15fr;gap:clamp(24px,3.4vw,52px);
+  padding-bottom:clamp(26px,3.4vw,40px);border-bottom:1px solid rgba(241,221,171,.28);}
+
+.fbrand .logo{height:52px;width:auto;margin-bottom:16px;}
+.fbrand p{margin:0 0 18px;max-width:38ch;line-height:1.6;}
+/* was .5 - 3.89:1 on the collage, and 3.13:1 on the flat band before it, so
+   this was already below AA and the photograph only made it visible */
+.fbrand .fnote{margin:12px 0 0;font-size:.78rem;color:rgba(250,247,242,.68);}
+.fwa{
+  display:inline-flex;align-items:center;gap:9px;background:var(--gold-grad);color:#2a1f08;
+  font-weight:600;font-size:.83rem;letter-spacing:.03em;padding:11px 20px;border-radius:999px;
+  transition:transform .3s var(--ease),filter .3s;
+}
+.fwa:hover{transform:translateY(-2px);filter:brightness(1.06);}
+
+.fcol h3{
+  margin:0 0 14px;font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--gold-pale);font-weight:600;
+}
+.fcol ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
+.fcol a{color:rgba(250,247,242,.74);transition:color .3s;}
+.fcol a:hover{color:var(--gold-pale);}
+.fcol span{color:rgba(250,247,242,.6);line-height:1.5;}
+
+footer .btm{display:flex;gap:12px 26px;justify-content:space-between;flex-wrap:wrap;
+  padding-top:20px;font-size:.78rem;color:rgba(250,247,242,.55);}
+footer .btm .dv{color:var(--gold-pale);}
+.fveg{display:inline-flex;align-items:center;gap:7px;}
+.fveg i{width:12px;height:12px;border:1.3px solid #7fbf6a;border-radius:2px;position:relative;flex:none;}
+.fveg i::after{content:"";position:absolute;inset:2.4px;background:#7fbf6a;border-radius:50%;}
+
+@media (max-width:900px){
+  .fgrid{grid-template-columns:1fr 1fr;gap:32px 24px;}
+  .fbrand{grid-column:1 / -1;}
+}
+@media (max-width:520px){
+  .fgrid{grid-template-columns:1fr;}
+}
 
 /* ---------- scroll reveal ---------- */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .9s var(--ease),transform .9s var(--ease);}
@@ -440,21 +966,36 @@ footer .btm .mr{color:var(--gold-pale);}
 
 /* ===================== responsive ===================== */
 @media (max-width:1080px){
-  .pillars .inner{grid-template-columns:repeat(2,1fr);gap:34px 20px;}
-  .pillar:nth-child(3)::before{display:none;}
   .storygrid,.fbgrid{grid-template-columns:1fr;}
   .storyart{order:-1;}
+}
+/* 901-1200px: full nav, but no room for the CTA beside it */
+@media (max-width:1200px) and (min-width:901px){
+  .navcta{display:none;}
+  .nav ul{gap:clamp(12px,1.6vw,22px);}
+  .nav ul a{font-size:.78rem;letter-spacing:.10em;}
 }
 @media (max-width:900px){
   .nav ul,.navcta{display:none;}
   .burger{display:block;}
   .nav.open ul{
     display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;gap:0;
-    background:var(--ivory);border-bottom:1px solid var(--line);padding:8px var(--pad) 18px;
+    background:var(--ivory);border-bottom:1px solid var(--line);
+    /* the top strip is reserved for .navcta, which is anchored to the same edge */
+    padding:66px var(--pad) 18px;
     box-shadow:var(--sh-md);
   }
   .nav.open ul a{display:block;padding:13px 0;border-bottom:1px solid var(--line-soft);}
-  .nav.open .navcta{display:inline-flex;position:absolute;right:var(--pad);top:calc(100% + 12px);}
+  /* no hover on a touch screen, so the submenu is simply always open, indented */
+  .nav.open .submenu{
+    display:block;position:static;transform:none;opacity:1;visibility:visible;pointer-events:auto;
+    background:none;border:0;box-shadow:none;backdrop-filter:none;
+    min-width:0;padding:0 0 6px 14px;
+  }
+  .nav.open .submenu a{display:flex;padding:10px 0;border-bottom:1px dashed var(--line-soft);justify-content:flex-start;gap:10px;}
+  .nav.open .hasmenu .caret{display:none;}
+  .nav.open .hasmenu::after{display:none;}
+  .nav.open .navcta{display:inline-flex;position:absolute;right:var(--pad);top:calc(100% + 14px);z-index:1;}
   .copy{max-width:100%;}
   .floatcard{display:none;}
   .hero{height:clamp(540px,80vh,700px);}
@@ -468,13 +1009,6 @@ footer .btm .mr{color:var(--gold-pale);}
   .band{height:clamp(170px,36%,250px);}
   .dots{bottom:104px;left:calc(var(--pad) + 4px);}
   .orn{height:34px;}
-  .pillars .inner{grid-template-columns:1fr;gap:22px;}
-  .pillar+.pillar::before{display:none;}
-  .pillar{display:grid;grid-template-columns:auto 1fr;column-gap:16px;align-items:center;text-align:left;}
-  .pillar .ic{grid-row:1 / span 2;margin:0;width:54px;height:54px;}
-  .pillar .ic svg{width:26px;height:26px;}
-  .pillar h3{align-self:end;margin:0;}
-  .pillar p{align-self:start;margin:0;max-width:none;margin-inline:0;}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -502,7 +1036,8 @@ footer .btm .mr{color:var(--gold-pale);}
 .mtrack{display:flex;width:max-content;animation:slide-l 42s linear infinite;}
 .marquee:hover .mtrack{animation-play-state:paused;}
 .mtrack span{
-  font-family:"Tiro Devanagari Marathi",serif;font-size:1.06rem;padding:0 clamp(16px,2.4vw,34px);
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:1.06rem;padding:0 clamp(16px,2.4vw,34px);
   white-space:nowrap;opacity:.92;
 }
 .mtrack span::after{content:"·";margin-left:clamp(16px,2.4vw,34px);color:var(--gold);opacity:.7;}
@@ -520,8 +1055,22 @@ footer .btm .mr{color:var(--gold-pale);}
 .tab .n{opacity:.6;margin-left:6px;font-size:.78em;}
 .pcard.hide{display:none;}
 
+/* the range starts as a menu: this holds the grid's space until a shelf is
+   chosen, and is removed for good on the first choice */
+.rangepick{
+  display:flex;align-items:center;gap:12px;
+  margin:clamp(18px,2.4vw,28px) 0 0;padding:clamp(20px,2.6vw,30px) clamp(20px,2.6vw,32px);
+  border:1px dashed var(--line);border-radius:18px;background:rgba(255,255,255,.5);
+  color:var(--sage);font-size:.98rem;line-height:1.6;
+}
+.rangepick .rp-hand{
+  flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;
+  background:var(--gold-pale);color:var(--gold-dk);
+}
+.rangepick .rp-hand svg{width:18px;height:18px;}
+
 /* ---- the grind-date proof section ---- */
-.trace{background:var(--ivory);padding:clamp(58px,8vw,110px) 0;overflow:hidden;}
+.trace{background:var(--ivory);padding:clamp(38px,5vw,70px) 0;overflow:hidden;}
 .tracegrid{display:grid;grid-template-columns:1fr .9fr;gap:clamp(32px,5vw,76px);align-items:center;}
 .trace h2{color:var(--ink);}
 .trace p{color:var(--sage);}
@@ -554,6 +1103,36 @@ footer .btm .mr{color:var(--gold-pale);}
 .label .lfoot{margin-top:20px;padding-top:14px;border-top:1px dashed var(--clay);
   font-size:.78rem;color:var(--sage-soft);}
 
+/* ---- range: the four product families ---- */
+.families{
+  list-style:none;margin:clamp(26px,3.4vw,40px) 0 0;padding:0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+  gap:clamp(14px,1.6vw,20px);
+}
+.families li{
+  background:#fff;border-radius:16px;padding:22px 22px 24px;
+  box-shadow:var(--sh-sm,0 8px 20px -14px rgba(60,81,40,.5));position:relative;
+}
+.families .fdot{
+  display:block;width:26px;height:6px;border-radius:999px;
+  background:var(--fc);margin-bottom:14px;
+}
+.families h3{
+  margin:0 0 7px;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:1.02rem;color:var(--ink);font-weight:600;line-height:1.25;
+}
+.families p{margin:0;font-size:.88rem;line-height:1.5;color:var(--sage);}
+
+.rangesub{
+  margin:clamp(38px,4.6vw,58px) 0 0;font-family:"Fraunces",serif;
+  font-variation-settings:"SOFT" 50,"WONK" 1;font-weight:600;
+  font-size:clamp(1.02rem,1.2vw,1.22rem);color:var(--band);
+}
+.rangenote{
+  margin:clamp(26px,3vw,36px) 0 0;font-size:.92rem;color:var(--sage);
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+}
+
 /* ---- story: drop cap + pull quote ---- */
 .story .first::first-letter{
   float:left;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
@@ -564,11 +1143,31 @@ footer .btm .mr{color:var(--gold-pale);}
   font-family:"Fraunces",serif;font-variation-settings:"SOFT" 55,"WONK" 1;font-weight:500;
   font-size:clamp(1.2rem,1.9vw,1.62rem);line-height:1.34;color:var(--ink);
 }
-.story .sign{margin-top:26px;font-size:.9rem;color:var(--sage-soft);}
+.story .sign{margin-top:26px;font-size:.9rem;color:var(--sage);}
 .story .sign b{display:block;font-size:1.02rem;color:var(--band);font-weight:600;}
+.story .sign .tag{display:block;font-size:.86rem;color:var(--gold-dk);font-weight:500;
+  letter-spacing:.04em;margin-bottom:3px;}
+.story .sign .heart{font-size:.8em;vertical-align:1px;}
+
+/* sub-headings inside the story: "Our promise", "Our vision" */
+.storysub{
+  margin:40px 0 0;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 50,"WONK" 1;
+  font-size:clamp(1.06rem,1.2vw,1.26rem);line-height:1.2;color:var(--band);font-weight:600;
+}
+.storysub+.tracelist{margin-top:16px;}
+
+/* the source line under a pull quote — a claim on the page should say where it
+   came from, per "keep them checkable" above */
+.pull cite{
+  display:block;margin-top:13px;font-family:"Jost",system-ui,sans-serif;font-style:normal;
+  font-variation-settings:normal;font-weight:500;font-size:.74rem;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--gold-dk);
+}
+.pull.vision{margin-top:16px;border-left-color:var(--sage);}
+
 
 /* ---- what testers said ---- */
-.voices{background:linear-gradient(155deg,var(--tint-cardamom) 0%,#dfe9d1 100%);
+.voices{background:linear-gradient(155deg,var(--cream-sg) 0%,var(--tint-cream) 100%);
   padding:clamp(56px,7.5vw,104px) 0;}
 .vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(16px,2vw,24px);
   margin-top:clamp(26px,3.4vw,44px);}
@@ -580,7 +1179,16 @@ footer .btm .mr{color:var(--gold-pale);}
   font-weight:600;margin-top:auto;}
 .vcard.empty{background:rgba(255,255,255,.55);border-style:dashed;align-items:flex-start;}
 .vcard.empty .q{color:var(--sage);font-style:italic;}
-.vnote{margin-top:22px;font-size:.9rem;color:var(--sage);}
+
+/* the odd one out in the paradox: dark where its neighbours are white, because it
+   is the purchase we do not study and the only one we cannot take back */
+.vcard.odd{background:var(--band);border-color:var(--band);}
+.vcard.odd .q{color:#fff;}
+.vcard.odd .who{color:var(--gold-lt);}
+.voices .lede+.lede{margin-top:14px;}
+.vnote{margin-top:clamp(22px,2.6vw,30px);font-size:.9rem;color:var(--sage);
+  display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
+.vnote span{max-width:62ch;}
 
 @media (max-width:1080px){
   .tracegrid{grid-template-columns:1fr;}
@@ -588,3 +1196,422 @@ footer .btm .mr{color:var(--gold-pale);}
   .storyart{position:static;}
 }
 @media (prefers-reduced-motion:reduce){ .mtrack{animation:none;} }
+
+/* ===========================================================
+   Added 4 Sep 2026 from the reference walkthrough with the
+   owner (Plaud recording "09-04 Meeting"). Four blocks:
+   origin (onyxcoffeelab.com), recipes (dandelionchocolate.com),
+   Satwa Saheli (rumispice.com) and the scroll colour-shift the
+   owner liked on a reference "Our Mission".
+   Every one of them is light, warm and low-contrast on purpose:
+   the owner rejected both bright and dark palettes repeatedly.
+   =========================================================== */
+
+/* ---------------- origin / where it comes from ----------------
+   Onyx runs three place cards, each a full-bleed looping video
+   behind a name, one paragraph of terroir and a link. The owner
+   said plainly "we'll not have a video as of now", so the field
+   is a tinted ground with line art - the same honest placeholder
+   the category cards already use - and each card keeps a <video>
+   slot that switches on the moment a file exists. */
+.origin{padding:clamp(38px,4.6vw,66px) 0;background:var(--cream-sg);}
+.ohead{text-align:center;max-width:64ch;margin:0 auto clamp(30px,4vw,48px);}
+.ohead .lede{margin-top:12px;color:var(--sage);font-size:1.02rem;line-height:1.6;}
+.ogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,26px);}
+.ocard{
+  position:relative;overflow:hidden;border-radius:20px;isolation:isolate;
+  min-height:clamp(340px,38vw,430px);display:flex;flex-direction:column;
+  justify-content:flex-end;padding:clamp(20px,2.4vw,30px);
+  border:1px solid var(--line);box-shadow:var(--sh-sm);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+}
+.ocard:hover{transform:translateY(-5px);box-shadow:var(--sh-md);}
+/* the tinted ground, and the media that replaces it */
+.ocard .ofield{position:absolute;inset:0;z-index:-2;background:var(--tint);}
+.ocard .ofield svg{
+  position:absolute;top:26%;left:50%;transform:translate(-50%,-50%);
+  width:34%;height:auto;color:#fff;opacity:.5;
+}
+.ocard .omedia{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;}
+/* a scrim so the copy stays legible over either ground */
+.ocard::after{
+  content:"";position:absolute;inset:0;z-index:-1;
+  background:linear-gradient(to top,rgba(30,44,22,.82) 0%,rgba(30,44,22,.42) 42%,rgba(30,44,22,0) 74%);
+}
+.ocard .oplace{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.3rem,2vw,1.6rem);font-weight:600;color:#fff;line-height:1.15;margin:0;
+}
+.ocard .ohi{display:block;font-size:.82em;color:var(--gold-lt);margin-top:4px;}
+.ocard .oblurb{margin:10px 0 0;color:rgba(255,255,255,.9);font-size:.9rem;line-height:1.58;}
+.ocard .olink{
+  margin-top:14px;align-self:flex-start;font-size:.74rem;letter-spacing:.14em;
+  text-transform:uppercase;font-weight:600;color:var(--gold-lt);
+  border-bottom:1px solid rgba(223,180,89,.45);padding-bottom:3px;
+}
+.ocard .olink:hover{color:#fff;border-color:#fff;}
+/* a region the owner has not named yet. Visibly unfinished by design -
+   see "Copy on this page is the owner's, or it does not ship" in the README. */
+.ocard.todo{border-style:dashed;border-color:var(--clay);box-shadow:none;}
+.ocard.todo::after{background:linear-gradient(to top,rgba(30,44,22,.72) 0%,rgba(30,44,22,.3) 50%,rgba(30,44,22,0) 78%);}
+.ocard.todo:hover{transform:none;box-shadow:none;}
+.ocard .otag{
+  position:absolute;top:14px;left:14px;z-index:1;
+  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
+  background:rgba(255,255,255,.9);color:var(--gold-dk);
+  padding:5px 9px;border-radius:999px;
+}
+.onote{
+  margin-top:clamp(22px,2.6vw,30px);font-size:.88rem;color:var(--sage);
+  text-align:center;max-width:66ch;margin-inline:auto;line-height:1.6;
+}
+/* three cards need about 300px each to hold a place name and a paragraph; below
+   that they stack rather than squeeze. 3 cards make an orphan at 2 columns. */
+@media (max-width:1000px){ .ogrid{grid-template-columns:1fr;} .ocard{min-height:300px;} }
+
+/* ---------------- recipes ----------------
+   After dandelionchocolate.com, whose recipe card carries the
+   cook time next to the name ("Just Chocolate Cake · 2½ Hours").
+   That badge is the whole reason the block works - it turns a
+   pretty photo into something you can decide about - so it is
+   the one thing taken. Their block is a two-card teaser with a
+   MORE RECIPES link; there is nowhere to link to yet, so ours
+   shows the full set and links to WhatsApp instead. */
+/* sage, not cream: the section moved directly under the hero on 6 Sep 2026,
+   and the hero is cream - two creams meeting is the one thing the ground
+   order forbids. Moving it out from between the range and origin left those
+   two both sage, so origin took the cream this one gave up. */
+.recipes{padding:clamp(38px,4.6vw,66px) 0;background:var(--sage-mist);overflow-x:clip;}
+.rechead{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,3.4vw,40px);
+}
+.rechead .lede{margin-top:10px;color:var(--sage);max-width:52ch;line-height:1.6;}
+/* A moving strip, after the "See what else we're cooking up" marquee on
+   graza.co. Their measurements, taken off the live page: fixed card width,
+   VARYING heights, top-aligned, 20px corners, and the set duplicated twice
+   inside a track that runs to -50% on a linear loop - which is what makes it
+   seamless with no JS per frame. The card itself is still the flamingoestate
+   one logged above; only its arrangement changed.
+   It bleeds past the wrap on both edges, so the strip reads as continuing off
+   the page rather than starting and stopping inside a column. */
+.rtabs{margin:-8px 0 clamp(22px,2.6vw,30px);}
+.recmq{
+  overflow:hidden;
+  /* a true edge-to-edge bleed, as on the reference, where the leftmost card is
+     cut by the viewport rather than starting inside the column. 100vw counts
+     the scrollbar, which is 7px of page overflow on its own - so the section
+     clips instead of the page scrolling. */
+  width:100vw;margin-left:50%;transform:translateX(-50%);
+}
+.recmq-inner{
+  display:flex;align-items:flex-start;gap:clamp(14px,1.6vw,22px);
+  width:max-content;
+  animation:recmq 40s linear infinite;
+  will-change:transform;
+}
+/* NOT -50%: with a flex gap, half the track is (9w + 8.5g) while the set
+   actually repeats every (9w + 9g), so a -50% loop stutters half a gap on every
+   pass. --shift is the measured pitch from card 0 to its own duplicate, set in
+   js/satva.js and re-measured on resize because the card width is clamped to vw. */
+@keyframes recmq{ from{transform:translateX(0);} to{transform:translateX(calc(-1 * var(--shift,50%)));} }
+/* ours pauses, unlike the reference: these cards carry text to read */
+.recmq:hover .recmq-inner,
+.recmq:focus-within .recmq-inner{animation-play-state:paused;}
+
+.recmq .reccard{
+  flex:0 0 clamp(228px,20vw,278px);
+  /* the gap between two copies of the set must equal the gap inside a set, or
+     the loop visibly stutters at the seam */
+}
+.recmq .reccard .rfield{aspect-ratio:var(--rar,4/5);}
+
+@media (prefers-reduced-motion:reduce){
+  /* no movement at all - hand back a scrollbar and drop the duplicate set,
+     which is only there to make a loop nobody is now watching */
+  .recmq{overflow-x:auto;}
+  .recmq-inner{animation:none;}
+  .recmq .reccard.is-clone{display:none;}
+}
+.reccard{
+  background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
+  display:flex;flex-direction:column;box-shadow:var(--sh-sm);
+  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+}
+.reccard:hover{transform:translateY(-5px);box-shadow:var(--sh-md);border-color:var(--acc,var(--gold));}
+.reccard .rfield{
+  position:relative;aspect-ratio:4/5;background:var(--tint);display:grid;place-items:center;
+}
+.reccard .rfield svg{width:26%;height:auto;color:#fff;opacity:.62;}
+.reccard .rfield img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:saturate(1.16) contrast(1.03);}
+.reccard .rtime{
+  position:absolute;bottom:10px;right:10px;
+  background:rgba(255,255,255,.93);color:var(--ink);
+  font-size:.7rem;letter-spacing:.06em;font-weight:600;
+  padding:5px 10px;border-radius:999px;box-shadow:var(--sh-sm);
+}
+.reccard .rbody{padding:clamp(15px,1.7vw,20px);display:flex;flex-direction:column;flex:1;}
+.reccard h3{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:1.06rem;font-weight:600;color:var(--ink);margin:0;line-height:1.25;
+}
+.reccard .rhi{display:block;font-size:.84em;color:var(--sage-soft);margin-top:3px;}
+.reccard .rdesc{margin:9px 0 0;font-size:.87rem;line-height:1.55;color:var(--sage);}
+.reccard .ruses{
+  margin-top:auto;padding-top:13px;font-size:.72rem;letter-spacing:.1em;
+  text-transform:uppercase;font-weight:600;color:var(--gold-dk);
+  display:flex;align-items:center;gap:7px;
+}
+.reccard .ruses i{width:9px;height:9px;border-radius:50%;background:var(--acc,var(--gold));flex:none;}
+/* the strip needs no breakpoints: the card width clamps and the row scrolls */
+
+/* ---------------- Satwa Saheli ----------------
+   Rumi Spice runs "Empowers Afghan Women" as one of three
+   why-choose columns. The owner wants it as a section of its
+   own under the name Satwa Saheli, so it gets the room. Two
+   portrait slots and a stat strip; the sage ground separates it
+   from the cream sections either side without going dark. */
+.saheli{padding:clamp(38px,4.6vw,66px) 0;background:var(--band);color:#fff;position:relative;overflow:hidden;}
+.saheli::before{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
+  background:url("../assets/leaf-mask.png") center/contain no-repeat;
+}
+.sahgrid{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,58px);align-items:stretch;
+  position:relative;
+}
+.saheli .kick{color:var(--gold-lt);}
+.saheli h2{color:#fff;}
+.saheli h2 .goldtext{color:var(--gold-lt);-webkit-text-fill-color:currentColor;background:none;}
+.sahname{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;line-height:1.1;margin:0 0 6px;
+}
+.sahname .dv{display:block;font-size:.62em;color:var(--gold-lt);margin-bottom:6px;}
+.saheli .lede{color:rgba(255,255,255,.88);font-size:1.03rem;line-height:1.68;margin-top:14px;}
+.saheli .lede b{color:#fff;}
+.sahstats{display:flex;gap:clamp(20px,3vw,40px);flex-wrap:wrap;margin-top:clamp(22px,2.6vw,30px);}
+.sahstat{display:flex;flex-direction:column;gap:3px;}
+.sahstat b{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--gold-lt);line-height:1;font-weight:600;
+}
+.sahstat span{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.7);}
+.sahstat.todo b{font-size:1.05rem;color:rgba(255,255,255,.5);font-style:italic;letter-spacing:0;}
+.sahcta{margin-top:clamp(24px,3vw,34px);display:flex;gap:12px;flex-wrap:wrap;}
+/* the shared ghost button assumes a light ground (--green on translucent white),
+   which lands at 1.26:1 over the band green. Inverted here: 5.24:1. */
+.saheli .btn-ghost{
+  border-color:rgba(241,221,171,.5);color:var(--gold-pale);background:rgba(255,255,255,.08);
+}
+.saheli .btn-ghost:hover{border-color:var(--gold-lt);color:#fff;background:rgba(255,255,255,.16);}
+.sahart{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,18px);}
+.sahshot{
+  position:relative;overflow:hidden;border-radius:16px;background:var(--tint);
+  border:1px solid rgba(241,221,171,.24);min-height:clamp(240px,30vw,340px);
+}
+.sahshot:nth-child(1){margin-top:clamp(18px,3vw,34px);}
+.sahshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+.sahshot svg{
+  position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  width:40%;height:auto;color:#fff;opacity:.5;
+}
+.sahshot.todo{border-style:dashed;border-color:rgba(241,221,171,.45);}
+.sahshot .stag{
+  position:absolute;bottom:0;left:0;right:0;padding:9px 11px;
+  background:linear-gradient(to top,rgba(30,44,22,.85),rgba(30,44,22,0));
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-pale);
+}
+.sahnote{
+  margin-top:clamp(24px,3vw,34px);font-size:.86rem;line-height:1.6;
+  color:rgba(255,255,255,.62);max-width:70ch;position:relative;
+  border-left:2px solid var(--gold);padding-left:14px;
+}
+@media (max-width:900px){ .sahgrid{grid-template-columns:1fr;} .sahshot:nth-child(1){margin-top:0;} }
+
+/* ---------------- the mission colour-shift ----------------
+   The owner noticed a reference site whose ground changes colour
+   only for its "Our Mission" section: "when we come here to our
+   mission, the site color is changing. It's like that only for
+   our mission." That is the effect, on our own palette - cream
+   warming to gold as the section crosses the viewport. The domain
+   was never named in the recording, so the mechanism is ours.
+   --mx is driven from js/satva.js (0 at entry, 1 at centre). */
+.mission{
+  --mx:0;
+  padding:clamp(64px,8vw,116px) 0;position:relative;overflow:hidden;
+  /* At rest this is the cream of the section before it; fully shifted it is the
+     sage of the section after it. So the mission does not just change colour, it
+     is the hinge between the cream half of the page and the sage half. */
+  background:
+    linear-gradient(160deg,
+      color-mix(in oklab,var(--cream-sg),var(--sage-mist) calc(var(--mx) * 100%)) 0%,
+      color-mix(in oklab,var(--sand),var(--sage-mist-2) calc(var(--mx) * 100%)) 100%);
+  transition:background .5s linear;
+}
+/* no color-mix (older Safari/Firefox): cross-fade a second layer instead */
+@supports not (background:color-mix(in oklab,red,blue 50%)){
+  .mission{background:linear-gradient(160deg,var(--cream-sg),var(--sand));}
+  .mission::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(160deg,var(--sage-mist),var(--sage-mist-2));
+    opacity:var(--mx);transition:opacity .5s linear;
+  }
+}
+.mission .wrap{position:relative;}
+.misgrid{max-width:74ch;margin:0 auto;text-align:center;}
+.mission .kick{color:var(--gold-dk);}
+.misline{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.5rem,3.3vw,2.5rem);font-weight:600;color:var(--ink);
+  line-height:1.22;margin:14px 0 0;
+}
+.misline em{font-style:normal;display:block;color:var(--sage);}
+.mission .lede{margin-top:clamp(16px,2vw,22px);color:var(--green);font-size:1.04rem;line-height:1.7;}
+.mission .rule{margin-inline:auto;margin-top:clamp(20px,2.4vw,28px);}
+/* the shift is decorative; anyone who asked for less motion gets the plain ground */
+@media (prefers-reduced-motion:reduce){
+  .mission{transition:none;background:linear-gradient(160deg,var(--sage-mist),var(--sage-mist-2));}
+  .mission::before{display:none;}
+}
+
+/* ---- one block per screen -------------------------------------------------
+   The owner asked for each segment to fit the screen when scrolled. Two parts:
+   the section padding above was cut roughly a third, which is where the height
+   actually goes, and scrolling now settles on section boundaries.
+
+   PROXIMITY, not mandatory. Eight of the fifteen sections are taller than the
+   viewport and three of those are far taller (story 1401px, cats 1213px,
+   recipes 1117px) - content, not padding. Mandatory snapping on a section
+   nobody can see the bottom of traps the reader: the browser drags them back to
+   the top of a block they were trying to read down. Proximity snaps when they
+   land near a boundary and leaves them alone otherwise.
+
+   scroll-padding-top keeps a snapped section clear of the sticky header, which
+   would otherwise cover its first 81px. */
+/* Set on html, which is the page's only scroll container now that body uses
+   overflow-x:clip rather than hidden (see the body rule). While body was a
+   scroll container these rules did nothing at all - the sections snapped to
+   body, which had no snap type, and nothing ever snapped. */
+html{
+  scroll-snap-type:y proximity;
+  scroll-padding-top:88px;
+}
+main > section,
+body > section,
+footer{scroll-snap-align:start;}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-snap-type:none;}
+}
+
+/* ---- making the recipes block fit a screen --------------------------------
+   At a 660px-tall window the usable height is 579px and this section was
+   1055px: rechead 217 + tabs 34 + strip 624 + 118 padding. The strip is the
+   bulk of it, and a strip's height is set by its CARD WIDTH through the image
+   aspect - so the card width is now driven by viewport HEIGHT (vh), not width.
+   A short window gets narrower cards and therefore shorter images, which is the
+   only way a fixed-aspect card can respond to the height available. */
+.recipes{padding:clamp(24px,3.2vh,52px) 0;}
+.recipes .rechead{margin-bottom:clamp(10px,1.6vh,22px);}
+.recipes .rechead h2{font-size:clamp(1.6rem,3.6vh,2.9rem);}
+.recipes .rechead .lede{
+  font-size:clamp(.84rem,1.55vh,1rem);line-height:1.5;max-width:58ch;margin-top:6px;
+}
+.recmq .reccard{flex:0 0 clamp(168px,25vh,268px);}
+.recmq .reccard .rbody{padding:clamp(9px,1.35vh,18px);}
+.recmq .reccard h3{font-size:clamp(.94rem,1.85vh,1.06rem);}
+.recmq .reccard .rhi{font-size:.8em;}
+.recmq .reccard .rdesc{
+  margin-top:6px;font-size:clamp(.76rem,1.45vh,.87rem);line-height:1.45;
+  /* three lines, then stop: the copy is written to be read on the card, but a
+     five-line block is what pushed the strip past the screen */
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.recmq .reccard .ruses{padding-top:9px;font-size:.66rem;letter-spacing:.08em;}
+
+/* ---- short windows --------------------------------------------------------
+   Every size on this page was tied to viewport WIDTH, so a wide-but-short
+   window (a laptop with browser chrome and a bookmarks bar - about 660px of
+   page) got full-height headings and cards and nothing fitted. This pass makes
+   the shared parts answer to HEIGHT. */
+/* 1000px, not 780: every value inside is a vh-based clamp, so it scales up
+   with the window rather than snapping. Cutting it off at 780 meant a 900px
+   laptop window got none of it and nothing fitted there either. */
+@media (max-height:1000px){
+  .shelves,.recipes,.reasons,.cats,.range,.origin,.trace,
+  .mission,.why,.promise,.story,.saheli,.voices,.contact{
+    padding-top:clamp(16px,2.4vh,34px);
+    padding-bottom:clamp(16px,2.4vh,34px);
+  }
+  .dsp.big{font-size:clamp(1.5rem,3.4vh,2.3rem);}
+  .lede{font-size:clamp(.8rem,1.55vh,.96rem);line-height:1.46;}
+  .chead{margin-bottom:clamp(14px,2vh,26px);}
+
+  /* the recipe strip: narrower cards mean shorter images, and two lines of copy
+     rather than three */
+  .recmq .reccard{flex:0 0 clamp(148px,22vh,220px);}
+  .recmq .reccard .rdesc{-webkit-line-clamp:2;}
+  .recipes .rechead .lede{
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  }
+
+  /* the category cards, same idea: the photo aspect is fixed, so the only way
+     down is a narrower card */
+  .catgrid{gap:clamp(14px,1.8vh,26px);max-width:1080px;}
+  .catcard .cmeta{padding-top:9px;gap:4px;}
+  .catcard .cblurb{font-size:.82rem;line-height:1.4;}
+
+  /* the hero slide: its min-height now answers to vh, but the copy's own
+     padding was still 86px top and bottom and that is what kept it 719px */
+  .sh-copy{padding-block:clamp(16px,3vh,46px);}
+  .sh-copy h2{font-size:clamp(1.45rem,3.8vh,2.5rem);margin:8px 0 14px;}
+  .sh-copy > p{font-size:clamp(.82rem,1.6vh,1rem);line-height:1.5;}
+  .sh-cta{margin-top:clamp(12px,2vh,22px);}
+
+  /* the range opens as a menu, so its height is the families list plus the
+     pills - the list goes to two columns rather than five stacked rows */
+  /* NOT two columns - the default is auto-fit/minmax(210px), which already
+     puts all five on ONE row at desktop widths. Forcing two columns made three
+     rows and pushed this section from 686px to 829px. Only the spacing and the
+     type come down. */
+  .families{margin-top:clamp(12px,2vh,24px);gap:10px 14px;}
+  .families h3{font-size:.92rem;}
+  .families p{font-size:.78rem;line-height:1.38;}
+  .rangepick{padding:clamp(12px,2vh,22px) clamp(16px,2vw,26px);font-size:.9rem;}
+  .rangenote{font-size:.8rem;}
+
+  /* the why-choose illustrations are 212px of line drawing each - the single
+     biggest item in that section, and the one thing there that can lose height
+     without losing meaning */
+  .reasons .rgrid,.reasons .wgrid{gap:clamp(12px,1.8vh,22px);}
+  .reasons .rgrid svg{width:clamp(74px,13vh,120px);height:auto;}
+  .reasons .rhead{margin-bottom:clamp(10px,1.6vh,20px);}
+  .reasons .rcta{margin-top:clamp(10px,1.6vh,20px);}
+
+  /* the last few pixels on the ones that were only just over */
+  .recmq .reccard{flex-basis:clamp(140px,21vh,210px);}
+  .rtabs{margin-bottom:clamp(10px,1.6vh,20px);}
+  .rangesub{margin-bottom:clamp(8px,1.4vh,16px);}
+  .rangenote{margin-top:clamp(8px,1.3vh,16px);font-size:.78rem;}
+  .range .sechead{margin-bottom:clamp(10px,1.6vh,20px);}
+
+  /* Shop by category: 351px-wide cards give a 234px photo, and two rows of that
+     plus the heading is 813px. Capping the grid narrows the card, and the photo
+     follows it down because the aspect is fixed. */
+  .catgrid{max-width:min(1080px,86vh);}
+  .chead .lede{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+
+  /* Origin: the photo field is 428px of the card's 430 - it is the section */
+  /* the card is otag 26 + photo + place 87 + blurb 54 + link 24; the photo is
+     the only part that can lose real height without losing information */
+  .origin .ofield{height:clamp(108px,20vh,240px);}
+  .origin .oplace{font-size:clamp(.95rem,2vh,1.2rem);line-height:1.2;}
+  .origin .ohi{font-size:.78em;}
+  .origin .olink{font-size:.76rem;}
+  .origin .ohead{margin-bottom:clamp(10px,1.6vh,20px);}
+  .origin .ohead .lede{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+  .origin .oblurb{font-size:.8rem;line-height:1.4;}
+  .origin .onote{margin-top:clamp(8px,1.4vh,16px);font-size:.76rem;line-height:1.4;
+    display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
+}

@@ -3,31 +3,38 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DS SATVA — Dil Se Pure | Pure Masalas from Marathwada</title>
-<meta name="description" content="DS SATVA — natural, pure, homemade masalas ground in small batches in Chhatrapati Sambhajinagar. Turmeric, chilli, coriander, kanda lasun, garam, meat, biryani, pav bhaji, chaat and chatpat masala.">
+<!-- Staging only: this page lives at /site/ while the design is being finished.
+     Remove this robots line on the day it is promoted to the site root. -->
+<meta name="robots" content="noindex,nofollow">
+<title>DS Satva Foods — Dil Se Pure | Pure Daily Kitchen Essentials</title>
+<meta name="description" content="DS Satva Foods — naturally stone-ground spices, unpolished pulses, nutrient-dense seeds and unrefined Pink Himalayan salt. Clean, authentic and untouched by harmful chemicals. Packed in Chhatrapati Sambhajinagar, Maharashtra.">
 <meta name="theme-color" content="#1a2911">
 <link rel="icon" type="image/png" href="assets/mark-dark.png">
-<meta property="og:title" content="DS SATVA — Dil Se Pure">
-<meta property="og:description" content="Pure, homemade masalas ground in small batches in Marathwada.">
+<meta property="og:title" content="DS Satva Foods — Dil Se Pure">
+<meta property="og:description" content="Pure, farm-fresh and nutrient-rich daily foods — clean, authentic and untouched by harmful chemicals.">
 <meta property="og:image" content="assets/hero-1.jpg">
 <meta property="og:type" content="website">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Marathi&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/satva.css">
+<link rel="stylesheet" href="css/grind.css">
 </head>
 <body>
 
 <!-- ============ top line ============ -->
 <div class="topline">
   <div class="wrap">
-    <div class="left">
-      <span class="mr">दिल से शुद्ध</span>
-      <span class="sep">·</span>
-      <span class="hide-s">Ground in small batches</span>
-      <span class="sep hide-s">·</span>
-      <span class="hide-s">Chhatrapati Sambhajinagar, Maharashtra</span>
+    <!-- Rotates like the announcement bar on curiospice.com. Every line here is
+         copy that already appears elsewhere on this site - nothing new is claimed.
+         The item count is filled in by js/satva.js from PRODUCTS so it cannot go
+         stale. Rotation stops for prefers-reduced-motion and on hover. -->
+    <div class="left" id="tickline" aria-live="off">
+      <span class="tmsg is-on"><span class="dv">दिल से शुद्ध</span><span class="sep">·</span>Dil Se Pure</span>
+      <span class="tmsg">Packed in small batches</span>
+      <span class="tmsg">Prices quoted per gram, honestly, on WhatsApp</span>
+      <span class="tmsg" id="tickcount" hidden></span>
     </div>
     <a href="https://wa.me/917709932222">WhatsApp +91 77099 32222 &rsaquo;</a>
   </div>
@@ -41,11 +48,17 @@
     </a>
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     <ul>
-      <li><a href="#range">Our Range</a></li>
+      <!-- nested list, revealed on hover and on keyboard focus. The anchor still
+           jumps to #range on its own, so this works with no JS at all; the items
+           are filled in from GROUPS by js/satva.js. -->
+      <li class="hasmenu">
+        <a href="#range">Our Range<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="submenu" id="rangemenu" aria-label="Our range"></ul>
+      </li>
       <li><a href="#freshness">Freshness</a></li>
       <li><a href="#why">Why SATVA</a></li>
       <li><a href="#story">Our Story</a></li>
-      <li><a href="#feedback">Feedback</a></li>
+      <li><a href="#paradox">Paradox</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <a class="btn-gold navcta" href="https://wa.me/917709932222?text=Namaskar%21%20I%20would%20like%20to%20order%20SATVA%20masalas.">
@@ -55,131 +68,258 @@
   </div>
 </header>
 
-<!-- ============ hero slider ============ -->
-<section class="hero" id="top" aria-label="Featured" aria-roledescription="carousel">
-  <div class="slides" id="slides">
+<!-- ============ shelf slider ============ -->
+<!-- Added 6 Sep 2026. The owner sent jainfarmfresh.com/products/spices and asked
+     for "this kind of picture and incorporation" - one big editorial opening per
+     shelf rather than another grid. What is taken from that page: the flat cream
+     ground, the two-line serif headline in deep green, one honest paragraph, and
+     the outlined pill CTA with a filled circular arrow. Nothing is copied from
+     them - the wording below is this site's own, and every claim already appears
+     in "Why choose SATVA", the families list or the product line itself.
 
-    <article class="slide is-active" data-tint="linear-gradient(155deg,#fefcf5 0%,#f8e7c1 100%)"
-             data-title="Absolute purity" data-thumb="assets/p-garam.jpg">
-      <div class="field grain" style="--sf:linear-gradient(155deg,#fefcf5 0%,#f8e7c1 100%)">
-        <span class="leaf"></span>
-      </div>
-      <div class="band"><img src="assets/hero-1.jpg" alt="Turmeric, chilli and whole spices in wooden bowls"></div>
-      <div class="vig"></div>
+     Five slides, one per shelf, in the owner's order: spices (whole), seeds,
+     oils, ground spices, pantry. Blends are the sixth shelf and deliberately not
+     here - the owner asked for five.
+
+     NOT autoplaying. That was originally because the brand hero above it
+     autoplayed and two carousels fight each other; that hero is gone (this
+     block replaced it on 6 Sep 2026), but the reason still holds - the recipe
+     strip immediately below moves on its own, and this block doubles as a way
+     into the range rather than a thing to watch: the tab strip below names
+     every shelf, and the CTA drives the same range tabs the category cards do.
+     Say the word if it should advance by itself now that it opens the page.
+
+     PHOTOS: each slide borrows its category card's photograph. Dedicated wide
+     shots belong at assets/shelf-<id>.jpg - swap the src and the alt when they
+     exist. The left edge of every photo is feathered into the ground in CSS, so
+     a picture with its own background still sits on the cream. -->
+<!-- PROMOTED TO HERO 6 Sep 2026 at the owner's request: this replaced the
+     five-slide brand hero, which is saved in the scratchpad as
+     REMOVED-old-hero.html if any of its copy is wanted back. It carries
+     id="top" because the logo links there. -->
+<section class="shelves is-hero" id="top" aria-roledescription="carousel" aria-label="Our shelves">
+  <div class="shstage" id="shstage">
+
+    <article class="shelf is-on" data-shelf="whole" data-label="Whole Spices"
+             style="--sg:linear-gradient(150deg,#fdf7ea 0%,#f2e8cd 100%);--acc:#a98f46;--shot-pos:16% center;--vib:1.23">
+      <div class="sh-shot"><img src="assets/hero-3.jpg" alt="Green cardamom spilling from a sack, cinnamon bark, star anise and black peppercorns" fetchpriority="high"></div>
       <div class="wrap">
-        <div class="copy">
-          <p class="kick mr">शुद्ध घरगुती मसाले · Dil Se Pure</p>
-          <h1 class="dsp">Bringing absolute purity<em>to the heart of the <span class="goldtext">Indian kitchen</span>.</em></h1>
-          <p>Single spices and everyday blends, ground in small batches in Marathwada — for kitchens that have started reading the back of the packet.</p>
-          <div class="cta-row">
-            <a class="btn-gold" href="#range">See the range</a>
-            <a class="btn-ghost" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20send%20me%20SATVA%20prices.">Ask for prices</a>
-          </div>
+        <div class="sh-copy">
+          <p class="kick dv">साबुत मसाले · Whole spices</p>
+          <h2 class="dsp">Whole Spices<em>Ground <span class="goldtext">When You Cook</span></em></h2>
+          <p>Cumin, mustard and fenugreek left exactly as they were dried &mdash; the oils still shut inside the seed until the moment it meets hot oil. Grind them the day you need them, or let them crackle whole.</p>
+          <a class="pill" href="#range" data-go="whole">
+            <span>See all whole spices</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <p class="sh-count" data-count="whole"></p>
         </div>
-      </div>
-      <div class="floatcard frame" style="--r:20px">
-        <img src="assets/p-garam.jpg" alt="Garam Masala">
-        <p class="fc-mr mr">गरम मसाला</p>
-        <span class="fc-en">Garam Masala</span>
       </div>
     </article>
 
-    <article class="slide" data-tint="linear-gradient(155deg,#fef8f4 0%,#f8d9c7 100%)"
-             data-title="Small batch, never hurried" data-thumb="assets/p-mirchi.jpg">
-      <div class="field grain" style="--sf:linear-gradient(155deg,#fef8f4 0%,#f8d9c7 100%)">
-        <span class="leaf"></span>
-      </div>
-      <div class="band"><img src="assets/hero-2.jpg" alt="Red chilli powder and whole dried chillies"></div>
-      <div class="vig"></div>
+    <article class="shelf" data-shelf="seeds" data-label="Seeds"
+             style="--sg:linear-gradient(150deg,#fbfcf3 0%,#e7eed3 100%);--acc:#93a04b;--shot-pos:center;--vib:1.34">
+      <div class="sh-shot"><img src="assets/cat-seeds.jpg" alt="Sunflower seed, walnuts, mung and buckwheat in open bowls" loading="lazy"></div>
       <div class="wrap">
-        <div class="copy">
-          <p class="kick mr">लहान बॅच · Small batch</p>
-          <h1 class="dsp">Ground in small batches.<em><span class="goldtext">Never</span> in a hurry.</em></h1>
-          <p>Colour you can see in the pan and heat you can taste — from whole dried chillies, not from a dye drum.</p>
-          <div class="cta-row">
-            <a class="btn-gold" href="#why">Why that matters</a>
-            <a class="btn-ghost" href="#range">Browse masalas</a>
-          </div>
+        <div class="sh-copy">
+          <p class="kick dv">बीज · Nutrient-dense seeds</p>
+          <h2 class="dsp">Nutrient-Dense Seeds<em>Nothing <span class="goldtext">Polished Off</span></em></h2>
+          <p>Flax, chia and quinoa packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. Roast and grind the javas for chutney, or cook the quinoa like rice.</p>
+          <a class="pill" href="#range" data-go="seeds">
+            <span>See all seeds</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <p class="sh-count" data-count="seeds"></p>
         </div>
-      </div>
-      <div class="floatcard frame" style="--r:20px">
-        <img src="assets/p-mirchi.jpg" alt="Chilli powder">
-        <p class="fc-mr mr">लाल तिखट</p>
-        <span class="fc-en">Chilli Powder</span>
       </div>
     </article>
 
-    <article class="slide" data-tint="linear-gradient(155deg,#fbfdf5 0%,#e5efcb 100%)"
-             data-title="Every masala, one promise" data-thumb="assets/p-biryani.jpg">
-      <div class="field grain" style="--sf:linear-gradient(155deg,#fbfdf5 0%,#e5efcb 100%)">
-        <span class="leaf"></span>
-      </div>
-      <div class="band"><img src="assets/hero-3.jpg" alt="Cardamom, cinnamon and star anise"></div>
-      <div class="vig"></div>
+    <article class="shelf" data-shelf="oils" data-label="Oils"
+             style="--sg:linear-gradient(150deg,#fefbf0 0%,#f7ecc9 100%);--acc:#cfa72a;--shot-pos:52% center;--shot-pos-m:52% 34%;--vib:1.38">
+      <div class="sh-shot"><img src="assets/cat-oils.jpg" alt="Cold-pressed oil in a glass bottle on a kitchen counter" loading="lazy"></div>
       <div class="wrap">
-        <div class="copy">
-          <p class="kick mr">आमची श्रेणी · The range</p>
-          <h1 class="dsp">Every masala.<em>One <span class="goldtext">promise</span>.</em></h1>
-          <p>Natural. Pure. Homemade. Authentic. Four words on our label — and the only four we would like to be judged on.</p>
-          <div class="cta-row">
-            <a class="btn-gold" href="#range">Meet the range</a>
-            <a class="btn-ghost" href="#feedback">Tried a sample?</a>
-          </div>
+        <div class="sh-copy">
+          <p class="kick dv">तेल · Cold-pressed oils</p>
+          <h2 class="dsp">Cold-Pressed Oils<em>Pressed, <span class="goldtext">Not Refined</span></em></h2>
+          <p>Groundnut, sesame, mustard and coconut &mdash; pressed rather than refined, so the oil still tastes and smells of the seed it came from. Sharp where it should be sharp, mild where it should be mild.</p>
+          <a class="pill" href="#range" data-go="oils">
+            <span>See all oils</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <p class="sh-count" data-count="oils"></p>
         </div>
       </div>
-      <div class="floatcard frame" style="--r:20px">
-        <img src="assets/p-cardamom.jpg" alt="Green cardamom and cinnamon">
-        <p class="fc-mr mr">अखंड मसाले</p>
-        <span class="fc-en">Whole spices</span>
+    </article>
+
+    <article class="shelf" data-shelf="ground" data-label="Ground Spices"
+             style="--sg:linear-gradient(150deg,#fefaef 0%,#f9e6bd 100%);--acc:#e8a713;--shot-pos:26% center;--vib:1.21">
+      <div class="sh-shot"><img src="assets/hero-2.jpg" alt="Turmeric, red chilli and coriander powder heaped in wooden bowls" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick dv">पिसे मसाले · Ground spices</p>
+          <h2 class="dsp">Ground Spices<em>In Their <span class="goldtext">Own Colour</span></em></h2>
+          <p>Turmeric, chilli and coriander, naturally ground so the essential oils and the aroma are not driven off by the heat of the mill. Colour you can see in the pan &mdash; from whole dried spice, not from a dye drum.</p>
+          <a class="pill" href="#range" data-go="ground">
+            <span>See all ground spices</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <p class="sh-count" data-count="ground"></p>
+        </div>
       </div>
     </article>
+
+    <article class="shelf" data-shelf="pantry" data-label="Pantry"
+             style="--sg:linear-gradient(150deg,#fefaf8 0%,#f6e2dd 100%);--acc:#d98a8a;--shot-pos:68% center;--vib:1.30">
+      <div class="sh-shot"><img src="assets/cat-pantry.jpg" alt="Fine and coarse pink Himalayan salt in two white bowls" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick dv">रसोई का सामान · Pantry</p>
+          <h2 class="dsp">The Pantry Shelf<em>Unrefined, <span class="goldtext">Unbleached</span></em></h2>
+          <p>Himalayan pink salt with none of the chemical polish of table salt, and khandsari with the molasses still left in. The two things every single dish passes through, taken as they come.</p>
+          <a class="pill" href="#range" data-go="pantry">
+            <span>See the pantry shelf</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+          <p class="sh-count" data-count="pantry"></p>
+        </div>
+      </div>
+    </article>
+
   </div>
 
-  <button class="arrow prev" id="prev" aria-label="Previous slide">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19 8 12l7-7"/></svg>
-  </button>
-  <button class="arrow next" id="next" aria-label="Next slide">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
-  </button>
-
-  <div class="dots" id="dots" role="tablist" aria-label="Choose slide"></div>
-
-  <button class="nextup" id="nextup" aria-label="Go to next slide">
-    <img id="nextupImg" src="assets/p-mirchi.jpg" alt="">
-    <span class="nx"><small>Next</small><b id="nextupTitle">Small batch, never hurried</b></span>
-  </button>
-
-  <div class="progress"><i id="bar"></i></div>
+  <!-- The strip is the whole navigation: named tabs, so nobody has to click
+       through five slides to find the one shelf they came for. Arrows are for
+       browsing; the tabs are for arriving. Filled in by js/satva.js from the
+       slides above, so a sixth slide would need no edit here. -->
+  <div class="shbar">
+    <div class="wrap">
+      <div class="etabs shtabs" id="shtabs" role="tablist" aria-label="Choose a shelf"></div>
+      <div class="shnav">
+        <button class="arrow" id="shprev" type="button" aria-label="Previous shelf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19 8 12l7-7"/></svg></button>
+        <button class="arrow" id="shnext" type="button" aria-label="Next shelf"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+  </div>
 </section>
 
-<div class="spectrum" aria-hidden="true"></div>
+<!-- ============ recipes ============ -->
+<!-- After the recipe row on dandelionchocolate.com. The one thing taken from it is
+     the cook time sitting on the card - "Just Chocolate Cake / 2 1/2 Hours" - which
+     is what turns a photograph into something a cook can decide about.
+     Not taken: their MORE RECIPES link. There is no recipe library to link to yet,
+     so each card names the SATVA product it uses instead.
+     Cards are generated from RECIPES in js/satva.js. -->
+<section class="recipes" id="recipes">
+  <div class="wrap">
+    <div class="rechead">
+      <div class="reveal">
+        <p class="kick">From our kitchen</p>
+        <h2 class="dsp big">Cook something for someone</h2>
+        <p class="lede">Everyday food, each dish built on one thing from the range &mdash; a masala, a seed, a grain. Times are honest: the biryani really does want an afternoon, and the chia wants a night in the fridge.</p>
+      </div>
+      <a class="btn-ghost reveal d1" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20send%20me%20a%20recipe%20for%20SATVA%20masala.">Ask for a recipe</a>
+    </div>
+    <div class="etabs rtabs reveal" id="rtabs" role="tablist" aria-label="Choose a group of recipes"></div>
+    <div id="recipes-stage"></div>
+  </div>
+</section>
 
-<!-- ============ pillars ============ -->
-<section class="pillars">
-  <div class="wrap"><div class="orn reveal"></div></div>
-  <div class="wrap inner">
-    <div class="pillar reveal">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></div>
-      <h3>Natural</h3><p>Nothing in the pouch that was not a spice first.</p>
+<!-- ============ why choose ============ -->
+<!-- Replaces the old four-icon pillars strip. Same job, done at full size.
+     All three claims are the owner's own promise wording; the fourth
+     ("uncompromising standards") stays in the Our Story list.
+     The illustrations are hand-drawn monoline SVG - no library, no image
+     files, so they stay crisp at any size and recolour with currentColor. -->
+<section class="reasons">
+  <div class="wrap">
+    <div class="rhead reveal">
+      <p class="kick">Why choose SATVA</p>
+      <h2 class="dsp big">What we will not do<br>to your food</h2>
+      <div class="rule" style="margin-inline:auto"></div>
     </div>
-    <div class="pillar reveal d1">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c2 0 3-1 5-1s3 2 5 2 3-1 5-1 3 1 5 1"/><path d="M12 11c0-3 2-5 5-5-1 3-2 5-5 5Z"/><path d="M12 11c0-3-2-5-5-5 1 3 2 5 5 5Z"/></svg></div>
-      <h3>Pure</h3><p>No colour, no filler, no bulking with bran or salt.</p>
+
+    <div class="rgrid">
+
+      <div class="reason reveal">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M100 176V78"/>
+            <path d="M100 150c24-2 43-18 47-42-24 3-42 18-47 42Z"/>
+            <path d="M100 132c-24-2-43-18-47-42 24 3 42 18 47 42Z"/>
+            <path d="M100 108c20-2 35-15 38-35-20 3-34 15-38 35Z"/>
+            <path d="M100 92c-18-2-32-14-35-32 18 3 31 14 35 32Z"/>
+            <path d="M100 78c-7-8-7-20 0-28 7 8 7 20 0 28Z"/>
+            <path d="M62 180c12-6 64-6 76 0"/>
+          </svg>
+        </div>
+        <h3>100% authentic &amp; natural</h3>
+        <p>No synthetic colours, no artificial aromas, no chemical preservatives. Nothing in the pouch that was not a spice first.</p>
+      </div>
+
+      <div class="reason reveal d1">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M74 60c-7-9 7-16 0-25"/>
+            <path d="M100 51c-7-9 7-16 0-25"/>
+            <path d="M126 60c-7-9 7-16 0-25"/>
+            <path d="M150 66 108 128" stroke-width="11"/>
+            <ellipse cx="100" cy="116" rx="46" ry="12"/>
+            <path d="M54 116c0 34 20 60 46 60s46-26 46-60"/>
+            <path d="M78 180h44"/>
+          </svg>
+        </div>
+        <h3>Nutrient-preserved grinding</h3>
+        <p>Cold, naturally ground spices that keep the essential oils and the aroma they were grown with &mdash; not driven off by heat.</p>
+      </div>
+
+      <div class="reason reveal d2">
+        <div class="art" aria-hidden="true">
+          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+               stroke-linecap="round" stroke-linejoin="round">
+            <path d="M60 116c8-23 23-36 40-36s32 13 40 36"/>
+            <ellipse cx="80" cy="100" rx="9" ry="6" transform="rotate(-22 80 100)"/>
+            <ellipse cx="100" cy="90" rx="9" ry="6" transform="rotate(6 100 90)"/>
+            <ellipse cx="120" cy="100" rx="9" ry="6" transform="rotate(24 120 100)"/>
+            <ellipse cx="87" cy="112" rx="9" ry="6" transform="rotate(-8 87 112)"/>
+            <ellipse cx="113" cy="112" rx="9" ry="6" transform="rotate(16 113 112)"/>
+            <path d="M44 116c0 33 25 60 56 60s56-27 56-60"/>
+            <path d="M44 116c0 13 25 24 56 24s56-11 56-24"/>
+            <ellipse cx="27" cy="168" rx="9" ry="6" transform="rotate(-24 27 168)"/>
+            <ellipse cx="174" cy="160" rx="9" ry="6" transform="rotate(18 174 160)"/>
+          </svg>
+        </div>
+        <h3>Unpolished goodness</h3>
+        <p>Pulses and seeds packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine.</p>
+      </div>
+
     </div>
-    <div class="pillar reveal d2">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/></svg></div>
-      <h3>Homemade</h3><p>Small batches, made the way a kitchen makes them.</p>
-    </div>
-    <div class="pillar reveal d3">
-      <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 2.6 1.9 3.2-.3 1 3 2.7 1.8-1.2 3 1.2 3-2.7 1.8-1 3-3.2-.3L12 22l-2.6-1.9-3.2.3-1-3L2.5 15.6l1.2-3-1.2-3 2.7-1.8 1-3 3.2.3Z"/><path d="m9 12 2 2 4-4"/></svg></div>
-      <h3>Authentic</h3><p>Marathwada recipes, not a national average of them.</p>
+
+    <div class="rcta reveal">
+      <a class="btn-gold" href="#range">See what we pack</a>
     </div>
   </div>
 </section>
 
 <div class="marquee" aria-hidden="true">
-  <div class="mtrack"><span>मिसळ</span><span>उसळ</span><span>पिठलं</span><span>भाकरी</span><span>रस्सा</span><span>वरण</span><span>आमटी</span><span>पाव भाजी</span><span>बिर्याणी</span><span>चाट</span><span>भेळ</span><span>कालवण</span><span>झुणका</span><span>मटण रस्सा</span><span>चिकन रस्सा</span><span>थालीपीठ</span><span>मिसळ</span><span>उसळ</span><span>पिठलं</span><span>भाकरी</span><span>रस्सा</span><span>वरण</span><span>आमटी</span><span>पाव भाजी</span><span>बिर्याणी</span><span>चाट</span><span>भेळ</span><span>कालवण</span><span>झुणका</span><span>मटण रस्सा</span><span>चिकन रस्सा</span><span>थालीपीठ</span></div>
+  <div class="mtrack"><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span></div>
 </div>
+
+<!-- ============ shop by category ============ -->
+<!-- Cards are generated in js/satva.js from GROUPS + PRODUCTS, so counts and
+     labels cannot drift from the grid below. Clicking one drives the existing
+     range tabs rather than filtering separately. -->
+<section class="cats" id="categories">
+  <div class="wrap">
+    <div class="chead reveal">
+      <p class="kick">Something for every shelf</p>
+      <h2 class="dsp big">Six shelves, one standard</h2>
+      <p class="lede">Pick a shelf and the range below filters to it. Ground spices and blends, whole spices to grind yourself, seeds, the pantry staples, and oils that are pressed rather than refined.</p>
+    </div>
+    <div class="catgrid" id="cats"></div>
+  </div>
+</section>
 
 <!-- ============ range ============ -->
 <section class="range" id="range">
@@ -187,14 +327,84 @@
     <div class="sechead reveal">
       <div>
         <p class="kick">The range</p>
-        <h2 class="dsp big">Our everyday masalas</h2>
+        <h2 class="dsp big">Our daily kitchen essentials</h2>
         <div class="rule"></div>
       </div>
-      <p class="lede">Single spices and the blends a Maharashtrian kitchen actually reaches for. The range keeps growing — pack sizes and prices on WhatsApp, quoted honestly, per gram.</p>
+      <p class="lede">Five families of everyday staple, packed clean and untouched by harmful chemicals. The range keeps growing — pack sizes and prices on WhatsApp, quoted honestly, per gram.</p>
     </div>
 
-    <div class="tabs" id="tabs" role="tablist" aria-label="Filter the range"></div>
+    <!-- The families are the owner's own description of what DS Satva Foods
+         packs. Individual products are only listed below once there is a name for
+         them. Spices, blends, seeds, salt, unrefined sugar and cold-pressed oils
+         are now named in PRODUCTS (js/satva.js).
+         STILL TO ADD: pulses. The owner describes the family but has not yet named
+         the individual dals or their pack sizes. Do not invent them. -->
+    <ul class="families reveal">
+      <li class="frame" style="--r:16px;--fc:var(--turmeric)">
+        <span class="fdot"></span>
+        <h3>Stone-ground spices</h3>
+        <p>Naturally ground, so they keep their essential oils and aroma.</p>
+      </li>
+      <li class="frame" style="--r:16px;--fc:var(--sage)">
+        <span class="fdot"></span>
+        <h3>Unpolished pulses</h3>
+        <p>Packed in their raw, natural form — no dangerous polish, no moisture treatment.</p>
+      </li>
+      <li class="frame" style="--r:16px;--fc:#93a04b">
+        <span class="fdot"></span>
+        <h3>Nutrient-dense seeds</h3>
+        <p>Whole and unrefined, for the nutrition they were grown with.</p>
+      </li>
+      <li class="frame" style="--r:16px;--fc:var(--himalayan)">
+        <span class="fdot"></span>
+        <h3>Pink Himalayan salt</h3>
+        <p>Unrefined, with none of the chemical polish of table salt.</p>
+      </li>
+      <li class="frame" style="--r:16px;--fc:var(--groundnut)">
+        <span class="fdot"></span>
+        <h3>Cold-pressed oils</h3>
+        <p>Pressed, not refined — so the oil still tastes of the seed it came from.</p>
+      </li>
+    </ul>
+
+    <h3 class="rangesub reveal">The range, listed individually</h3>
+    <div class="tabs" id="tabs" role="tablist" aria-label="Choose a shelf to list"></div>
+    <!-- The grid starts empty on purpose: the tabs above are a menu, and the
+         products are listed only once a shelf is chosen. #rangepick is what
+         stands in the space until then, and is removed on the first choice. -->
+    <p class="rangepick reveal" id="rangepick">
+      <span class="rp-hand" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v13"/><path d="m6 12 6 6 6-6"/></svg>
+      </span>
+      Pick a shelf above &mdash; or a card further up &mdash; and everything on it is listed here.
+    </p>
     <div class="grid-p" id="grid"></div>
+
+    <p class="rangenote reveal">Looking for a dal or a pulse? Those are packed but not yet listed here — message us and we will tell you what is in stock right now, and the price per gram.
+      <a class="btn-ghost" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20tell%20me%20what%20DS%20Satva%20Foods%20has%20packed%20right%20now.">Ask what is in stock</a>
+    </p>
+  </div>
+</section>
+
+<!-- ============ origin ============ -->
+<!-- Modelled on the three place cards on onyxcoffeelab.com (PERU / ECUADOR /
+     COLOMBIA): a place name, one paragraph of terroir, one link, over full-bleed
+     media. Onyx runs a looping video behind each; the owner said "we'll not have a
+     video as of now", so each card renders a tinted ground with line art and probes
+     for assets/origin-<id>.jpg - drop a file in and the card switches over.
+     TWO OF THE THREE CARDS ARE DELIBERATELY MARKED UNFINISHED. The sourcing regions
+     have not been confirmed by the owner, and a sourcing story is exactly the kind
+     of claim this page does not invent. Cards come from ORIGINS in js/satva.js. -->
+<section class="origin" id="origin">
+  <div class="wrap">
+    <div class="ohead reveal">
+      <p class="kick">Where it comes from</p>
+      <h2 class="dsp big">Named places,<br>not &ldquo;selected farms&rdquo;</h2>
+      <p class="lede">Anyone can print <i>farm fresh</i>. This is where we will name the actual places instead &mdash; one paragraph each, and a photograph we own.</p>
+      <div class="rule" style="margin-inline:auto"></div>
+    </div>
+    <div class="ogrid" id="origins"></div>
+    <p class="onote reveal">The two unnamed cards are not a design placeholder for its own sake &mdash; they stay blank until the growers&rsquo; own account and photographs are in hand. <a href="#freshness">The grind date on the pouch</a> is the part of this we can already prove.</p>
   </div>
 </section>
 
@@ -203,13 +413,13 @@
   <div class="wrap tracegrid">
     <div class="reveal">
       <p class="kick">Freshness you can check</p>
-      <h2 class="dsp big">Every pouch tells you<br>the day it was ground</h2>
-      <p>Packed masala is judged on one thing before it is even opened: whether it smells of anything at all. That suspicion is why most of India still buys loose. So rather than ask you to trust us, we put the answer on the pouch.</p>
+      <h2 class="dsp big">Every pouch tells you<br>the day it was made</h2>
+      <p>Anything packed is judged on one thing before it is even opened: whether it smells of anything at all. That suspicion is why most of India still buys loose. So rather than ask you to trust us, we put the answer on the pouch.</p>
       <ul class="tracelist">
         <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
-          <span><b>A grind date, not just a best-before.</b> The actual day that batch went through the grinder.</span></li>
+          <span><b>A date, not just a best-before.</b> Ground masalas carry the day they went through the grinder; oils the day they were pressed; seeds, salt and sugar the day they were packed.</span></li>
         <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
-          <span><b>A batch code you can ask about.</b> Send us the code on WhatsApp and we will tell you what went into that grind.</span></li>
+          <span><b>A batch code you can ask about.</b> Send us the code on WhatsApp and we will tell you what went into that batch.</span></li>
         <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
           <span><b>Batches small enough to matter.</b> One bad lot of raw material should never reach thirty kitchens.</span></li>
       </ul>
@@ -221,13 +431,34 @@
           <span class="vegmark" title="Vegetarian"><i></i></span>
         </div>
         <dl>
-          <dt>Masala</dt><dd>Kanda Lasun</dd>
+          <dt>Product</dt><dd>Kanda Lasun</dd>
           <dt>Batch</dt><dd>KL&#8209;2609&#8209;03</dd>
           <dt>Ground on</dt><dd>12 September 2026</dd>
           <dt>Net</dt><dd>100 g</dd>
         </dl>
-        <p class="lfoot">Example of the sticker on the back of every pouch. Message us the batch code and we will tell you where that grind came from.</p>
+        <p class="lfoot">Example of the sticker on the back of every pouch — a ground masala here, so it reads <i>Ground on</i>. Oils read <i>Pressed on</i>, and seeds, salt and sugar read <i>Packed on</i>. Message us the batch code and we will tell you where it came from.</p>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ our mission ============ -->
+<!-- The owner noticed a reference site whose ground changes colour only for its
+     mission section: "when we come here to our mission, the site color is changing.
+     It's like that only for our mission." The domain was never named in the
+     recording, so only the idea is borrowed - here cream warms toward gold as the
+     section crosses the viewport, driven by --mx from js/satva.js.
+
+     The words are the owner's own vision statement. It previously sat as a
+     blockquote two thirds of the way down Our Story, where nobody read it; this
+     gives it the section the owner asked for. Nothing here is new copy. -->
+<section class="mission" id="mission">
+  <div class="wrap">
+    <div class="misgrid">
+      <p class="kick reveal">Our mission</p>
+      <h2 class="misline reveal d1">To become India&rsquo;s most trusted household name<em>in pure, farm-fresh and nutrient-rich daily foods.</em></h2>
+      <div class="rule reveal d2"></div>
+      <p class="lede reveal d2">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>. When your daily ingredients are honest, your body thrives.</p>
     </div>
   </div>
 </section>
@@ -258,77 +489,153 @@
       <div class="orn sm"></div>
       <h2 class="dsp">Dil Se Pure</h2>
       <p>Our name is the promise: made from the heart, and nothing hidden in it. If a pouch ever falls short of that, tell us and we will replace it — and fix the batch it came from.</p>
-      <p class="sig mr">दिल से शुद्ध</p>
+      <p class="sig dv">दिल से शुद्ध</p>
     </div>
   </div>
 </section>
 
 <!-- ============ story ============ -->
-<!-- TO FILL: the one thing only you can write is a personal memory - a specific
-     kitchen, a specific person, a specific March afternoon. Drop it in as a new
-     <p> after the first one and this section becomes unanswerable. Everything
-     written here is true of the venture as it stands; nothing is invented. -->
+<!-- The founder's 18 years in the food supply chain now anchors this section, so it
+     is no longer anonymous. What would still lift it is one specific scene - a
+     particular kitchen, a particular person, a particular afternoon. Drop it in as
+     a <p> after the first one.
+     The 56.4% figure is ICMR-NIN's Dietary Guidelines for Indians (May 2024) and is
+     the TOTAL disease burden, not the chronic-disease burden. Keep it that way; it
+     is the checkable version. -->
 <section class="story" id="story">
   <div class="wrap storygrid">
     <div class="reveal">
-      <p class="kick">Why we began</p>
-      <h2 class="dsp big">The masala at home never<br>tasted like the masala<br>on the shelf</h2>
+      <p class="kick">Our story</p>
+      <h2 class="dsp big">Rooted in experience.<br>Driven by <span class="goldtext">purity</span>.</h2>
 
-      <p class="first">There is a moment most Indian kitchens know. You open a new packet, put in the same two spoons you always do, and the rassa comes out flat. Not bad. Just not <em>it</em>. You add a little more. Still not it. And somewhere at the back of your mind is the masala that used to be made at home in March, dried on a sheet in the sun, and you know exactly what is missing.</p>
+      <p class="first">At DS Satva Foods, our story begins with a simple, unsettling realisation. Having spent over 18 years observing the modern food supply chain, our founder saw first-hand how the basic food on our plates has drifted away from true nutrition. Everyday kitchen staples &mdash; the very spices, pulses and grains meant to nourish our families &mdash; are increasingly loaded with synthetic aromas, anti-caking agents, chemical polishes and artificial preservatives.</p>
 
-      <p>Nothing had been taken out of that packet. Things had been put into it.</p>
+      <p>The result? Declining immunity, rising lifestyle disorders, and everyday meals that lack true nourishment.</p>
 
-      <blockquote class="pull">Six rupees in every ten spent on spices in India are still spent loose &mdash; at the chakki, watching it being ground. Seeing it is the only proof anyone has ever been offered.</blockquote>
+      <blockquote class="pull">56.4% of India&rsquo;s total disease burden is attributable to unhealthy diets.<cite>ICMR&ndash;NIN, Dietary Guidelines for Indians, May 2024</cite></blockquote>
 
-      <p>So when the recalls came in 2024 and Indian masala was pulled off shelves in Hong Kong and Singapore, those families were not surprised. They had been voting with their feet for years.</p>
+      <p>We created DS Satva Foods to change that story.</p>
 
-      <p>SATVA began there. Not with a factory &mdash; with a few kilos, a small grind, and one question: <b>if we made it the way it is made at home, would anyone be able to tell?</b></p>
+      <p>The word <b>Satva</b> <span class="dv">(&#2360;&#2340;&#2381;&#2340;&#2381;&#2357;)</span> is the absolute essence of life &mdash; purity, truth and balance. We exist to bring that exact purity back to your daily kitchen essentials. From naturally stone-ground spices that keep their essential oils, to unpolished pulses, nutrient-dense seeds and unrefined Pink Himalayan salt, every product we pack is clean, authentic and untouched by harmful chemicals.</p>
 
-      <p>We did the only honest thing we could think of. We are giving it away, free, by the kilo &mdash; to homemakers, and to the women running tiffin kitchens out of their own homes, the palates that are hardest to fool. And we do not ask them whether they liked it. We ask them what is <em>wrong</em> with it. Too spicy. Not enough salt. Colour is off. Smell is weak.</p>
+      <p>We believe health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>. When your daily ingredients are honest, your body thrives.</p>
 
-      <p>Every one of those answers changes the next batch.</p>
+      <h3 class="storysub">Our promise</h3>
+      <ul class="tracelist">
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>100% authentic &amp; natural.</b> No synthetic colours, artificial aromas or chemical preservatives.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>Nutrient-preserved processing.</b> Cold, naturally ground spices that keep their essential oils and aroma.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>Unpolished goodness.</b> Pulses and seeds packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment.</span></li>
+        <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5L19 7"/></svg></span>
+          <span><b>Uncompromising standards.</b> Sourced directly from trusted farms, tested for safety, packed with hygiene at the core.</span></li>
+      </ul>
 
-      <p><b>Dil Se Pure</b> is not a line we bought from an agency. It is the whole method &mdash; made from the heart, with nothing hidden in it. One person, a small batch at a time, and a growing list of women who tell us the truth. That is all it is. So far, it is enough.</p>
+      <!-- "Our vision" moved to the #mission section on 4 Sep 2026 so the owner's
+           vision statement gets its own colour-shifting moment rather than sitting
+           buried here. Same words, no rewrite. -->
 
-      <p class="sign"><b>SATVA</b>Chhatrapati Sambhajinagar, Marathwada</p>
+      <p class="sign"><b>DS SATVA FOODS</b><span class="tag">Dil Se Pure <span class="heart" aria-hidden="true">&#10084;&#65039;</span></span>Chhatrapati Sambhajinagar, Marathwada</p>
     </div>
     <div class="storyart frame reveal d1" style="--r:26px">
-      <img src="assets/logo-stack-dark.png" alt="DS SATVA — Dil Se Pure">
+      <img src="assets/logo-stack-dark.png" alt="DS SATVA &mdash; Dil Se Pure">
     </div>
   </div>
 </section>
 
-<!-- ============ what the testers say ============ -->
-<!-- TO FILL: as real feedback lands in the Responses sheet, replace the three
-     .vcard.empty blocks below with actual quotes. Keep them unflattering - the
-     critical ones are the reason anyone will believe the good ones. -->
-<section class="voices" id="feedback">
+<!-- ============ satwa saheli ============ -->
+<!-- The owner asked for this by name on 4 Sep 2026, after the "Empowers Afghan
+     Women" column on rumispice.com: "I want to have this one... it's like Satwa
+     Saheli." Rumi runs it as one of three why-choose columns; the owner wanted it
+     as a section of its own, so it gets the room.
+
+     THE OWNER HAS CONFIRMED THIS PROGRAMME IS REAL, but has not yet supplied the
+     numbers, the location or the women's own words. Every such slot below is
+     marked `todo` and renders visibly unfinished. DO NOT fill these with plausible
+     figures - see "Copy on this page is the owner's, or it does not ship" in the
+     README. Search this file for TO FILL: SAHELI to find every one of them. -->
+<section class="saheli" id="saheli">
+  <div class="wrap sahgrid">
+    <div class="reveal">
+      <p class="kick">Giving back</p>
+      <h2 class="sahname"><span class="dv">सत्व सहेली</span>Satwa Saheli</h2>
+      <p class="lede">A <i>saheli</i> is the friend a woman actually turns to. The women who clean, sort, grind and pack these staples are the reason a pouch is worth trusting &mdash; so the work, and the wage, stay with them.</p>
+
+      <!-- TO FILL: SAHELI — the owner's own account of the programme goes here as
+           one further <p>. What it needs to answer: who these women are, what work
+           they do for DS Satva Foods, and what changed for them. One specific
+           person beats any number. -->
+
+      <div class="sahstats">
+        <div class="sahstat todo">
+          <b>TO FILL</b>
+          <span>Women working with us</span>
+        </div>
+        <div class="sahstat todo">
+          <b>TO FILL</b>
+          <span>Village or ward</span>
+        </div>
+        <div class="sahstat">
+          <b>100%</b>
+          <span>Of this work stays local</span>
+        </div>
+      </div>
+
+      <div class="sahcta">
+        <a class="btn-gold" href="https://wa.me/917709932222?text=Namaskar%21%20I%20would%20like%20to%20know%20about%20Satwa%20Saheli.">Ask about Satwa Saheli</a>
+        <a class="btn-ghost" href="#range">See what they pack</a>
+      </div>
+
+      <p class="sahnote">Placeholder, and deliberately obvious about it. The owner has confirmed the programme is real; the figures and the women&rsquo;s own words are still to come, and this section says nothing specific until they do.</p>
+    </div>
+
+    <!-- TO FILL: SAHELI — drop portraits in as assets/saheli-1.jpg and
+         assets/saheli-2.jpg (portrait, 3:4, 680px wide or larger) and they replace
+         the tiles automatically. Photograph the actual women, with their consent,
+         and name them in the caption. A stock photograph of an anonymous woman
+         would undo the entire point of this section. -->
+    <div class="sahart reveal d1">
+      <div class="sahshot todo" style="--tint:linear-gradient(150deg,#6f8168,#3c5128)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"/><path d="M5 21c0-4 3.1-6.6 7-6.6s7 2.6 7 6.6"/></svg>
+        <span class="stag">Portrait to come</span>
+      </div>
+      <div class="sahshot todo" style="--tint:linear-gradient(150deg,#b08b3a,#7d5630)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/></svg>
+        <span class="stag">At work &mdash; photo to come</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ the paradox ============ -->
+<!-- The owner's copy. The comparison is the argument: two reversible purchases we
+     study carefully, against the one irreversible one we do not. The third card is
+     deliberately the odd one out - dark, where the other two are white. -->
+<section class="voices" id="paradox">
   <div class="wrap">
     <div class="reveal">
-      <p class="kick">Tested, not assumed</p>
-      <h2 class="dsp big">The three questions<br>we actually ask</h2>
-      <p class="lede">Most brands ask whether you liked it. That question has never improved a masala. These are the three on our feedback form, and every answer goes straight to the person who does the grinding.</p>
+      <p class="kick">The paradox</p>
+      <h2 class="dsp big">We study a phone for days.<br>We buy our food out of <span class="goldtext">habit</span>.</h2>
+      <p class="lede">Buying a smartphone, clothes, or even a simple piece of furniture, most people spend days evaluating specifications, comparing features and reading reviews end to end, all to make an informed choice. Yet when it comes to the very food that enters our bodies every single day, that basic study is missing.</p>
+      <p class="lede">In most Indian households daily groceries are bought out of routine &mdash; a familiar brand, a familiar price, simple convenience &mdash; and almost nobody stops to check how those staples were processed, or how far they have been processed down.</p>
     </div>
     <div class="vgrid">
       <div class="vcard reveal" style="--r:20px">
-        <p class="q">&ldquo;Compared to the masala you usually buy &mdash; better, the same, or worse?&rdquo;</p>
-        <span class="who">Question one</span>
+        <p class="q">Specifications compared. Features weighed. Reviews read to the last one.</p>
+        <span class="who">A phone &middot; bought once in three years</span>
       </div>
       <div class="vcard reveal d1" style="--r:20px">
-        <p class="q">&ldquo;What should we change? Too spicy. Not enough salt. Colour off. Smell weak.&rdquo;</p>
-        <span class="who">Question two</span>
+        <p class="q">Fabric felt between the fingers. Finish inspected. Three shops before deciding.</p>
+        <span class="who">Clothes, furniture &middot; bought once a season</span>
       </div>
-      <div class="vcard reveal d2" style="--r:20px">
-        <p class="q">&ldquo;Would you buy it with your own money?&rdquo;</p>
-        <span class="who">Question three</span>
-      </div>
-      <div class="vcard empty reveal d3" style="--r:20px">
-        <p class="q">Real answers will appear here as the forms come back &mdash; the unflattering ones included.</p>
-        <span class="who">Coming soon</span>
+      <div class="vcard odd reveal d2" style="--r:20px">
+        <p class="q">Reached for out of routine. Same packet, same shelf, into the bag.</p>
+        <span class="who">Today&rsquo;s haldi and tikhat &middot; eaten every single day</span>
       </div>
     </div>
-    <p class="vnote">Have a SATVA sample in your kitchen? Please be blunt with us &mdash; it takes two minutes.
-      <a class="btn-gold" style="margin-left:10px" href="https://dssatva.github.io/feedback/">Give sample feedback</a>
+    <p class="vnote"><span>A phone can be returned. A meal cannot. That gap is the whole reason DS Satva Foods exists &mdash; so we put the answer on the pouch, and the study takes ten seconds.</span>
+      <a class="btn-gold" href="#freshness">What is on our pouch</a>
     </p>
   </div>
 </section>
@@ -369,22 +676,68 @@
 <div class="spectrum" aria-hidden="true"></div>
 
 <!-- ============ footer ============ -->
+<!-- Four columns in the manner of a shop footer, but adapted: where a retailer
+     puts a newsletter signup, this puts WhatsApp, because that is the channel
+     this business actually runs on. No social links are listed - there are no
+     accounts to link to yet. TO FILL: Instagram / Google Business, and the
+     FSSAI licence number, both marked below. -->
 <footer>
   <div class="wrap">
-    <div class="top">
-      <img class="logo" src="assets/logo-h-cream.png" alt="DS SATVA">
-      <nav>
-        <a href="#range">Our Range</a>
-        <a href="#freshness">Freshness</a>
-        <a href="#why">Why SATVA</a>
-        <a href="#story">Our Story</a>
-        <a href="#feedback">Feedback</a>
-        <a href="#contact">Contact</a>
-      </nav>
+
+    <div class="fgrid">
+      <div class="fbrand">
+        <img class="logo" src="assets/logo-h-cream.png" alt="DS SATVA">
+        <p>Naturally ground spices, unpolished pulses and seeds, and unrefined pantry staples &mdash; clean, authentic and untouched by harmful chemicals.</p>
+        <a class="fwa" href="https://wa.me/917709932222?text=Namaste%21%20I%20would%20like%20to%20order%20from%20DS%20Satva%20Foods.">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>
+          Order on WhatsApp
+        </a>
+        <p class="fnote">Prices are quoted per gram, honestly, on WhatsApp.</p>
+      </div>
+
+      <div class="fcol">
+        <h3>The range</h3>
+        <ul>
+          <li><a href="#categories">Spices</a></li>
+          <li><a href="#categories">Blends</a></li>
+          <li><a href="#categories">Seeds</a></li>
+          <li><a href="#categories">Pantry</a></li>
+          <li><a href="#categories">Oils</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol">
+        <h3>Explore</h3>
+        <ul>
+          <li><a href="#range">Our Range</a></li>
+          <li><a href="#recipes">Recipes</a></li>
+          <li><a href="#origin">Where it comes from</a></li>
+          <li><a href="#freshness">Freshness</a></li>
+          <li><a href="#mission">Our Mission</a></li>
+          <li><a href="#why">Why SATVA</a></li>
+          <li><a href="#story">Our Story</a></li>
+          <li><a href="#saheli">Satwa Saheli</a></li>
+          <li><a href="#paradox">Paradox</a></li>
+        </ul>
+      </div>
+
+      <div class="fcol">
+        <h3>Reach us</h3>
+        <ul>
+          <li><a href="https://wa.me/917709932222">+91 77099 32222</a></li>
+          <li><a href="mailto:dssatva@gmail.com">dssatva@gmail.com</a></li>
+          <li><a href="https://dssatva.github.io/feedback/">Sample feedback form</a></li>
+          <li><span>Chhatrapati Sambhajinagar,<br>Maharashtra</span></li>
+        </ul>
+        <!-- TO FILL: Instagram and Google Business links, once those exist.
+             Do not add placeholder icons that go nowhere. -->
+      </div>
     </div>
+
     <div class="btm">
-      <span>&copy; <span id="yr">2026</span> DS SATVA · <span class="mr">दिल से शुद्ध</span></span>
-      <!-- TO FILL: FSSAI licence number goes here once issued, e.g. "FSSAI Lic. No. 12345678901234" -->
+      <span>&copy; <span id="yr">2026</span> DS Satva Foods &middot; <span class="dv">दिल से शुद्ध</span></span>
+      <!-- TO FILL: FSSAI licence number, e.g. "FSSAI Lic. No. 12345678901234" -->
+      <span class="fveg"><i></i> All products vegetarian</span>
       <span>Made in Chhatrapati Sambhajinagar, Maharashtra</span>
     </div>
   </div>
@@ -395,5 +748,6 @@
 </a>
 
 <script src="js/satva.js"></script>
+<script src="js/grind.js"></script>
 </body>
 </html>

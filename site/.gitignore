@@ -1,0 +1,10 @@
+# editor / OS noise
+.DS_Store
+*.swp
+
+# python bytecode from serve.py
+__pycache__/
+*.pyc
+
+# local browser-automation output
+.playwright-mcp/
