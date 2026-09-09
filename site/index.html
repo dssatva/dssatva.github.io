@@ -105,7 +105,7 @@
       <div class="sh-shot"><img src="assets/hero-3.jpg" alt="Green cardamom spilling from a sack, cinnamon bark, star anise and black peppercorns" fetchpriority="high"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick dv">साबुत मसाले · Whole spices</p>
+          <p class="kick">Whole spices</p>
           <h2 class="dsp">Whole Spices<em>Ground <span class="goldtext">When You Cook</span></em></h2>
           <p>Cumin, mustard and fenugreek left exactly as they were dried &mdash; the oils still shut inside the seed until the moment it meets hot oil. Grind them the day you need them, or let them crackle whole.</p>
           <a class="pill" href="#range" data-go="whole">
@@ -122,7 +122,7 @@
       <div class="sh-shot"><img src="assets/cat-seeds.jpg" alt="Sunflower seed, walnuts, mung and buckwheat in open bowls" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick dv">बीज · Nutrient-dense seeds</p>
+          <p class="kick">Nutrient-dense seeds</p>
           <h2 class="dsp">Nutrient-Dense Seeds<em>Nothing <span class="goldtext">Polished Off</span></em></h2>
           <p>Flax, chia and quinoa packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. Roast and grind the javas for chutney, or cook the quinoa like rice.</p>
           <a class="pill" href="#range" data-go="seeds">
@@ -139,7 +139,7 @@
       <div class="sh-shot"><img src="assets/cat-oils.jpg" alt="Cold-pressed oil in a glass bottle on a kitchen counter" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick dv">तेल · Cold-pressed oils</p>
+          <p class="kick">Cold-pressed oils</p>
           <h2 class="dsp">Cold-Pressed Oils<em>Pressed, <span class="goldtext">Not Refined</span></em></h2>
           <p>Groundnut, sesame, mustard and coconut &mdash; pressed rather than refined, so the oil still tastes and smells of the seed it came from. Sharp where it should be sharp, mild where it should be mild.</p>
           <a class="pill" href="#range" data-go="oils">
@@ -156,7 +156,7 @@
       <div class="sh-shot"><img src="assets/hero-2.jpg" alt="Turmeric, red chilli and coriander powder heaped in wooden bowls" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick dv">पिसे मसाले · Ground spices</p>
+          <p class="kick">Ground spices</p>
           <h2 class="dsp">Ground Spices<em>In Their <span class="goldtext">Own Colour</span></em></h2>
           <p>Turmeric, chilli and coriander, naturally ground so the essential oils and the aroma are not driven off by the heat of the mill. Colour you can see in the pan &mdash; from whole dried spice, not from a dye drum.</p>
           <a class="pill" href="#range" data-go="ground">
@@ -173,7 +173,7 @@
       <div class="sh-shot"><img src="assets/cat-pantry.jpg" alt="Fine and coarse pink Himalayan salt in two white bowls" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick dv">रसोई का सामान · Pantry</p>
+          <p class="kick">Pantry</p>
           <h2 class="dsp">The Pantry Shelf<em>Unrefined, <span class="goldtext">Unbleached</span></em></h2>
           <p>Himalayan pink salt with none of the chemical polish of table salt, and khandsari with the molasses still left in. The two things every single dish passes through, taken as they come.</p>
           <a class="pill" href="#range" data-go="pantry">
@@ -202,25 +202,20 @@
   </div>
 </section>
 
-<!-- ============ recipes ============ -->
-<!-- After the recipe row on dandelionchocolate.com. The one thing taken from it is
-     the cook time sitting on the card - "Just Chocolate Cake / 2 1/2 Hours" - which
-     is what turns a photograph into something a cook can decide about.
-     Not taken: their MORE RECIPES link. There is no recipe library to link to yet,
-     so each card names the SATVA product it uses instead.
-     Cards are generated from RECIPES in js/satva.js. -->
-<section class="recipes" id="recipes">
+<!-- ============ shop by category ============ -->
+<!-- Cards are generated in js/satva.js from GROUPS + PRODUCTS, so counts and
+     labels cannot drift from the grid below. Clicking one drives the existing
+     range tabs rather than filtering separately. -->
+<section class="cats" id="categories">
   <div class="wrap">
-    <div class="rechead">
-      <div class="reveal">
-        <p class="kick">From our kitchen</p>
-        <h2 class="dsp big">Cook something for someone</h2>
-        <p class="lede">Everyday food, each dish built on one thing from the range &mdash; a masala, a seed, a grain. Times are honest: the biryani really does want an afternoon, and the chia wants a night in the fridge.</p>
-      </div>
-      <a class="btn-ghost reveal d1" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20send%20me%20a%20recipe%20for%20SATVA%20masala.">Ask for a recipe</a>
+    <!-- One line only (9 Sep 2026, owner): "Six shelves, one standard" and the
+         lede are gone. The line that stays keeps its .kick styling so it looks
+         exactly as it did, but it is an <h2> now - it is this section's heading,
+         and the outline should not have a section without one. -->
+    <div class="chead reveal">
+      <h2 class="kick">Something for every shelf</h2>
     </div>
-    <div class="etabs rtabs reveal" id="rtabs" role="tablist" aria-label="Choose a group of recipes"></div>
-    <div id="recipes-stage"></div>
+    <div class="catgrid" id="cats"></div>
   </div>
 </section>
 
@@ -306,18 +301,81 @@
   <div class="mtrack"><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span></div>
 </div>
 
-<!-- ============ shop by category ============ -->
-<!-- Cards are generated in js/satva.js from GROUPS + PRODUCTS, so counts and
-     labels cannot drift from the grid below. Clicking one drives the existing
-     range tabs rather than filtering separately. -->
-<section class="cats" id="categories">
+<!-- ============ how it is made ============ -->
+<!-- Rebuilt 9 Sep 2026 after the "Meet Our Canneries" carousel on eatfishwife.com.
+     Measured off their live page: a coverflow carousel of FLIP cards - the centre
+     slide larger and in front, its neighbours scaled down and behind on negative
+     z-index, each card a 2px border and 20px radius, and the back face rotated
+     180deg. The owner asked for exactly that behaviour: "each spice how it's made,
+     and when we turn, the image of the spice there."
+     FRONT = a video of the process. BACK = the spice itself, and one line about it.
+     Media is generic process footage, not our mill - see MEDIA HONESTY in
+     site/README.md before this goes public. Cards come from MAKING in js/satva.js. -->
+<section class="made" id="made">
   <div class="wrap">
-    <div class="chead reveal">
-      <p class="kick">Something for every shelf</p>
-      <h2 class="dsp big">Six shelves, one standard</h2>
-      <p class="lede">Pick a shelf and the range below filters to it. Ground spices and blends, whole spices to grind yourself, seeds, the pantry staples, and oils that are pressed rather than refined.</p>
+    <!-- One line, at the owner's request (9 Sep 2026): the kick, the two-line
+         headline and the lede all came out. The cards carry the explanation
+         now - each one says how that spice is made, and turns to show it. -->
+    <div class="mhead reveal">
+      <h2 class="dsp big">How we make</h2>
     </div>
-    <div class="catgrid" id="cats"></div>
+  </div>
+
+  <div class="mstage" id="mstage" aria-roledescription="carousel" aria-label="How each thing is made">
+    <div class="mkrow" id="mkrow"></div>
+  </div>
+
+  <div class="wrap">
+    <div class="mbar">
+      <div class="etabs mtabs" id="mtabs" role="tablist" aria-label="Choose a spice"></div>
+      <div class="mnav">
+        <button class="arrow" id="mprev" type="button" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 19 8 12l7-7"/></svg></button>
+        <button class="arrow" id="mnext" type="button" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+      </div>
+    </div>
+    <p class="mnote reveal">The footage shows the process, not our own mill &mdash; the owner&rsquo;s own films replace it the moment they exist.</p>
+  </div>
+</section>
+
+<!-- ============ our mission ============ -->
+<!-- The owner noticed a reference site whose ground changes colour only for its
+     mission section: "when we come here to our mission, the site color is changing.
+     It's like that only for our mission." The domain was never named in the
+     recording, so only the idea is borrowed - here cream warms toward gold as the
+     section crosses the viewport, driven by --mx from js/satva.js.
+
+     The words are the owner's own vision statement. It previously sat as a
+     blockquote two thirds of the way down Our Story, where nobody read it; this
+     gives it the section the owner asked for. Nothing here is new copy. -->
+<section class="mission" id="mission">
+  <div class="wrap">
+    <div class="misgrid">
+      <p class="kick reveal">Our mission</p>
+      <h2 class="misline reveal d1">To become India&rsquo;s most trusted household name<em>in pure, farm-fresh and nutrient-rich daily foods.</em></h2>
+      <div class="rule reveal d2"></div>
+      <p class="lede reveal d2">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>. When your daily ingredients are honest, your body thrives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ recipes ============ -->
+<!-- Rebuilt 9 Sep 2026 after the "Odd for every occasion" row on oddbox.co.uk:
+     four dishes, plain photographs, the name underneath, and nothing else on the
+     card - no border, no badge, no scrim. The moving strip, the two tabs and the
+     cook-time pill all came out with it; a clean row of four was the ask.
+     FOUR, not fifteen. The rest of RECIPES stays in js/satva.js and is still
+     correct - FEATURED picks which ones show. Every dish here is built on one
+     product from our own range, which is the point of the block. -->
+<section class="recipes" id="recipes">
+  <div class="wrap">
+    <div class="rechead reveal">
+      <h2 class="dsp big">Cook something for someone</h2>
+      <p class="lede">Four everyday dishes, each built on one thing we pack.</p>
+    </div>
+    <div class="recgrid" id="recipes-grid"></div>
+    <div class="recfoot reveal">
+      <a class="btn-ghost" href="https://wa.me/917709932222?text=Namaskar%21%20Please%20send%20me%20a%20recipe%20for%20SATVA%20masala.">Ask for a recipe</a>
+    </div>
   </div>
 </section>
 
@@ -386,28 +444,6 @@
   </div>
 </section>
 
-<!-- ============ origin ============ -->
-<!-- Modelled on the three place cards on onyxcoffeelab.com (PERU / ECUADOR /
-     COLOMBIA): a place name, one paragraph of terroir, one link, over full-bleed
-     media. Onyx runs a looping video behind each; the owner said "we'll not have a
-     video as of now", so each card renders a tinted ground with line art and probes
-     for assets/origin-<id>.jpg - drop a file in and the card switches over.
-     TWO OF THE THREE CARDS ARE DELIBERATELY MARKED UNFINISHED. The sourcing regions
-     have not been confirmed by the owner, and a sourcing story is exactly the kind
-     of claim this page does not invent. Cards come from ORIGINS in js/satva.js. -->
-<section class="origin" id="origin">
-  <div class="wrap">
-    <div class="ohead reveal">
-      <p class="kick">Where it comes from</p>
-      <h2 class="dsp big">Named places,<br>not &ldquo;selected farms&rdquo;</h2>
-      <p class="lede">Anyone can print <i>farm fresh</i>. This is where we will name the actual places instead &mdash; one paragraph each, and a photograph we own.</p>
-      <div class="rule" style="margin-inline:auto"></div>
-    </div>
-    <div class="ogrid" id="origins"></div>
-    <p class="onote reveal">The two unnamed cards are not a design placeholder for its own sake &mdash; they stay blank until the growers&rsquo; own account and photographs are in hand. <a href="#freshness">The grind date on the pouch</a> is the part of this we can already prove.</p>
-  </div>
-</section>
-
 <!-- ============ traceability ============ -->
 <section class="trace" id="freshness">
   <div class="wrap tracegrid">
@@ -438,27 +474,6 @@
         </dl>
         <p class="lfoot">Example of the sticker on the back of every pouch — a ground masala here, so it reads <i>Ground on</i>. Oils read <i>Pressed on</i>, and seeds, salt and sugar read <i>Packed on</i>. Message us the batch code and we will tell you where it came from.</p>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ our mission ============ -->
-<!-- The owner noticed a reference site whose ground changes colour only for its
-     mission section: "when we come here to our mission, the site color is changing.
-     It's like that only for our mission." The domain was never named in the
-     recording, so only the idea is borrowed - here cream warms toward gold as the
-     section crosses the viewport, driven by --mx from js/satva.js.
-
-     The words are the owner's own vision statement. It previously sat as a
-     blockquote two thirds of the way down Our Story, where nobody read it; this
-     gives it the section the owner asked for. Nothing here is new copy. -->
-<section class="mission" id="mission">
-  <div class="wrap">
-    <div class="misgrid">
-      <p class="kick reveal">Our mission</p>
-      <h2 class="misline reveal d1">To become India&rsquo;s most trusted household name<em>in pure, farm-fresh and nutrient-rich daily foods.</em></h2>
-      <div class="rule reveal d2"></div>
-      <p class="lede reveal d2">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>. When your daily ingredients are honest, your body thrives.</p>
     </div>
   </div>
 </section>

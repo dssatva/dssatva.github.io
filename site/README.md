@@ -1578,3 +1578,365 @@ copy.
 which made it *taller* — 686px to 829px. Its default is
 `auto-fit/minmax(210px,1fr)`, which already puts all five on one row at desktop widths.
 Two columns meant three rows. Reverted; only its spacing and type came down.
+
+## The hero slider autoplays and fills the screen — 9 Sep 2026
+
+The owner asked for a hero that advances on its own and fits the screen, after
+consciousfood.com, and asked explicitly that nothing else change. Two edits, both
+inside the hero.
+
+**It fills the screen.** `.shelves.is-hero` is `calc(100svh - 81px)` — the viewport less
+the sticky header — as a flex column: the bar of tabs and arrows sits at its foot and
+the stage takes the rest. `svh`, not `vh`, so a phone's collapsing address bar does not
+leave a gap. The slide's old `min-height` stays as the floor for anywhere this block is
+*not* the hero. Measured: 579px in a 660px window, exactly viewport-minus-header.
+
+**It advances every 6 seconds**, and four things keep that from being annoying:
+
+| | |
+|---|---|
+| pointer over it, or focus inside it | pauses — nobody loses a line they are reading |
+| tab hidden | pauses — no invisible carousel burning a phone battery |
+| visitor picks a shelf, arrow or swipe | **stops for good** — once someone has chosen, moving it under them is the site arguing with its reader |
+| `prefers-reduced-motion` | never starts |
+
+The active tab carries a gold progress line while it runs, so the movement is announced
+before it happens; a carousel that jumps with no warning reads as a fault. The line
+disappears the moment autoplay pauses or stops.
+
+**Verified:** advances at 6s intervals; held under the pointer for 9s it did not move;
+on leaving, the progress line returned; after clicking Pantry it stayed on Pantry for
+9s with no line. **Nothing else moved** — every other section measures exactly what it
+did before (`shelves 514→579` is the only change), 13 of 15 still fit at 660px, zero
+horizontal overflow.
+
+### Hero type: bigger, and spread across the breadth
+
+The owner: the letters looked small against the photograph, and the middle of the hero
+read as a hole. Both were true, and the cause of the first was **my own height-aware
+pass** — `min(4.2vw,5.6vh)` with a `1.45rem` floor resolved to a **37px headline and
+13px body copy** on a 660px-tall window, next to half a metre of photograph.
+
+| | before | after |
+|---|---|---|
+| headline, 1600×900 | 53px | **62px** |
+| headline, 1280×660 | 37px | **49px** |
+| body, 1280×660 | 13px | **17px** |
+| copy column | `min(620px,53%)` | `min(780px,62%)` |
+| paragraph measure | 46ch | 56ch |
+
+The column can run to 62% because the photograph's left half is a whisper under its
+taper — it only becomes solid at 78% of its own width. Checked: at 1600px the copy ends
+at x=934 and the photo is solid from x=1387, so nothing readable sits on anything busy.
+
+**One regression this caused, found by measuring.** Running the paragraph further right
+puts it over the faint end of the photograph, where `--sage` measured **4.28:1 at its
+darkest pixel** — under AA, though its average (4.89:1) passed. It is now `--green`:
+**8.89:1 on the same ground**, and still clearly secondary to the `--ink` headline.
+(Averages hide this sort of thing; the darkest pixel under the text is the test.)
+
+Verified across all five slides at 1280×660: every headline still holds its intended
+**two lines**, the copy clears the stage with 17px to spare, nothing overflows, the hero
+still fills the screen exactly, and horizontal overflow is zero.
+
+### Shop by category moved to second, and spread across the breadth
+
+Two asks: bring the fourth block up to second, and stop the six cards sitting in a
+narrow middle column.
+
+**Order now:** hero → **Shop by category** → Cook something for someone → Why choose →
+the range → Origin → … Ground alternation re-checked after the move: **zero adjacent
+sections sharing a family** (`shelves grad · cats cream · recipes sage · reasons ivory ·
+range sage · origin cream · …`).
+
+**Why it was stuck in the middle, and it was not the grid.** `.catgrid` had a
+`max-width` — but a child cannot outgrow its parent, and `.wrap` is 1280px. On a 1920px
+screen that left **365px empty on each side** whatever the grid asked for. `.cats .wrap`
+is now `min(1720px,94vw)`; the grid fills it.
+
+There was also a `max-width:min(1080px,86vh)` in the height-aware pass — capping a
+block's **width by the viewport's height**, which is what squeezed it into a column on a
+short wide screen. Removed: one row of six is shorter than two rows of three anyway, so
+the height problem it was solving solves itself.
+
+**Six columns, explicitly — not `auto-fit`.** `auto-fit` does not know there are six
+cards: at 1280px it produced **five tracks and stranded the sixth card alone** on a
+second row. The counts are now 6 / 3 / 2 / 1, every one a divisor of six, so no row is
+ever left with an orphan.
+
+| Window | Columns | Rows | Grid width | Section height |
+|---|---|---|---|---|
+| 1920×1015 | **6** | 1 | 84% of screen | 702px — **fits the screen** |
+| 1280×660 | 3 | 2 | 86% of screen | 801px — over that window's 579px |
+
+Worth being straight about the second row of that table: at 1280 the block is balanced
+(3+3) but no longer fits a short window. Six across at that width would fit, but the
+cards fall to ~170px and the photographs stop being worth showing. Balance won; say so
+if the fit matters more.
+
+## "Where it comes from" — moved to third, and rebuilt
+
+The owner did not like the block and asked for it third. Fair: it rendered all three
+`ORIGINS` entries as equal full-height cards, so **two thirds of the section was a
+placeholder** — two tall panels of empty gradient saying *Region to be named*.
+
+The honesty was right. Those regions are not confirmed and this page does not invent a
+sourcing story. But **giving an unknown the same visual weight as a known fact is a
+design error, not an honest one** — the one thing the section can actually state was
+outnumbered two to one by things it cannot.
+
+**Now:** the named place leads — a wide, low, horizontal card, photo panel on the left,
+copy on an ivory panel on the right. The two unconfirmed regions sit beside it under
+*Still to be named*, as small dashed notes. Still visible, still plainly unfinished,
+sized like what they are. **When a region is confirmed, drop its `todo` flag in
+`ORIGINS` and it renders as a lead card of its own** — no CSS to touch.
+
+The card's copy now sits on ivory rather than over a photograph, so it takes the page's
+own ink and needs no scrim; only the photo panel keeps the tint-and-line-art fallback
+while `assets/origin-grind.jpg` does not exist.
+
+**Two things caught by checking rather than by eye:**
+
+1. **The move broke the ground order — for the third time.** Third position put `cats`
+   (cream) next to `origin` (cream). Origin is now `--ivory`, which sits correctly
+   between cream above and sage below. Re-verified: zero adjacent sections sharing a
+   family. *Reordering sections always moves two seams; run the adjacency check every
+   time.*
+2. **The new gold chip failed AA.** `--gold-dk` on `--gold-pale` measured **4.09:1**.
+   The chip stays gold; its text is now `--ink` — **10.98:1**. Every other string in
+   the rebuilt block passes: place 13.86, blurb 10.37, Devanagari 5.16, link 5.16,
+   pending notes 5.13.
+
+## "How it is made" — the third block, rebuilt as a flip carousel — 9 Sep 2026
+
+The owner replaced *Where it comes from* with this, after the **Meet Our Canneries**
+carousel on eatfishwife.com: *"each spice how it's made, and when we turn, the image of
+the spice there."*
+
+**What the reference actually is,** measured off their live page rather than guessed:
+a Swiper coverflow of **flip cards** — centre slide larger and in front, neighbours
+scaled down on negative z-index, `2px` border, `20px` radius, and the back face rotated
+`180deg`. Ours is the same behaviour with no Swiper: position comes from one custom
+property per card, `--d` (signed distance from centre), so the layout is CSS and the JS
+only sets a number.
+
+**Front:** the process, on video. **Back:** the spice itself and one line about it.
+Six cards — chilli, turmeric, coriander, seeds, oils, salt.
+
+### The video
+
+Six clips, **1.4 MB for the lot**, from Pexels (free commercially, no attribution):
+chillies falling into a bowl, turmeric root on a stone grinder, stone grinding in an
+Indian kitchen, sesame in a mortar, oil poured from a glass bottle, rock salt under a
+pestle.
+
+The sources are 11–320 MB each, and Pexels ignores size parameters on its download
+endpoint, so they were cut locally: **6 seconds, square, 720px, silent, H.264 CRF 31**.
+There is no system ffmpeg here — `pip install --target ./pylibs imageio-ffmpeg` ships a
+static binary, which is what did the work. A poster frame is extracted from each so a
+card paints before its video loads.
+
+**Only the centre video plays.** Six decoding at once is a fan-spinner for no benefit;
+the rest are paused, `preload="none"`, muted, looping, `playsinline`.
+
+> **MEDIA HONESTY.** This is generic process footage — **not our mill, not our hands**.
+> It depicts the process, which is true, but a visitor may reasonably read it as our
+> facility. The section carries a line saying so, and the owner's own films should
+> replace it. Same rule as the product photographs: a shot of loose ingredients is an
+> honest depiction; anything implying it is *ours* is not.
+
+### Three bugs, all found by measuring
+
+1. **A stray `}` broke the whole file.** Cutting the old renderer left one closing brace
+   too many, and the parser reported it 150 lines later at `var POT` — every block after
+   it stopped running. `node --check js/satva.js` is the one-second version of this
+   check and is worth running after any surgical replacement.
+2. **`.mtrack` was already taken.** The Marathi dish marquee owns it
+   (`display:flex; width:max-content` + a scroll animation). Reusing the name gave the
+   carousel `width:max-content`, which with `inset:0` computes to **zero width** — so
+   all six cards piled up at x=0 and threw **2849px of page overflow**. Renamed
+   `.mkrow`, and every rule in the block is now scoped under `.made`.
+3. **Both arrows stacked on one spot.** `.arrow` is absolutely positioned by default —
+   it belongs to the hero — so only one was visible. Same override the shelf bar makes.
+
+### Contrast over moving video, and two sampling traps
+
+A card-wide gradient cannot be trusted over video the way it can over a still: the frame
+changes, and the turmeric clip goes very bright. Measured against the brightest frame
+with only the card scrim: body copy **3.20:1**, Devanagari **1.76:1** — both under AA.
+The copy now carries **its own backdrop**, and where the glyphs actually sit the worst
+pixel gives title **10.19:1**, body **9.08:1**, Devanagari **5.25:1**.
+
+Getting there meant discarding two false alarms, both worth remembering:
+
+- the first "worst pixel" was the **rounded corner**, where the page background sits
+  *outside* the card but inside a rectangular sample;
+- the second was a **single 1px row** at the top edge of the backdrop gradient, where no
+  glyph ever renders.
+
+Sample the box the glyphs occupy — inset from the corners and clear of the gradient's
+own boundary — or the number is about the sampling, not the design.
+
+### Bigger cards, fewer words, and a cycle that turns itself — 9 Sep 2026
+
+Four changes to *How it is made*, all in that block.
+
+**The cycle the owner asked for: four seconds on the front, the card turns itself, three
+seconds on the back, then the next card** — which arrives on *its* front, so the rhythm
+repeats rather than drifting. Verified by recording the live carousel: **3961ms →
+turn → 2999ms → next**, over and over.
+
+Two timers, not one interval, because the two halves are different lengths and an
+interval cannot say that. Both are cleared on every state change, so a visitor who
+clicks never gets a stale timer turning a card under them.
+
+**It pauses on hover, on keyboard focus, and while the tab is hidden — then RESUMES.**
+Unlike the hero (which stops for good once a visitor takes over), here the turning *is*
+the content: stopping it permanently would leave the block sitting on one card. Verified:
+held under the pointer for 9s it did not move, and it carried on when the pointer left.
+
+**Cards are bigger** — `clamp(270px,34vh,400px)` at 4:5, up from `clamp(230px,30vh,330px)`
+square: 297×371 at 1600×900, against 270×270 before. The centre card now carries a gold
+edge and a deeper lift; the others sit back behind a quiet green hairline.
+
+**The copy is cut to one line each**, front and back. This is the change that mattered
+most: a card that turns after four seconds cannot carry a paragraph, because nobody
+finishes it before the card moves. The long version of any of it belongs in the range or
+the story.
+
+**A trade-off worth stating.** Bigger cards took the section to 932px against 819px of
+usable screen, so it stopped fitting — the thing this page was tuned for two days ago.
+The stage came down from 58vh to 46vh, which keeps most of the size gain and puts the
+block back inside one screen: **811px, fits, and the page is back to 14 of 15 sections
+fitting** (`story` remains the only one that cannot, as before).
+
+### The selected card is bigger and a different shape — 9 Sep 2026
+
+The owner asked for the highlighted masala alone to be larger and rectangular, with
+everything else unchanged.
+
+`.mcard` carries the side size (`clamp(240px,31vh,360px)` at 4:5) and `.mcard.is-on`
+overrides it (`clamp(280px,37vh,430px)` at **3:4**). At 1600×900 that is **333×444
+against 234×293** — bigger in both dimensions and a visibly taller rectangle, so the
+chosen card reads as chosen by shape as well as by position. `width` is in the card's
+transition, so growing into the centre is part of the same movement as sliding there.
+
+**Not taller than 3:4.** At 2:3 the selected card needs about 500px, which overflows the
+stage, and the stage cannot grow without the section leaving the screen.
+
+**Timing is now 4s on the front, 2s on the back** (was 3s), then the next card.
+Verified live: `3999ms → turn → 2000ms → next`, repeating.
+
+**The taller card cost 37px of screen fit**, so `.made` padding moved from
+width-based `clamp(38px,4.6vw,66px)` to height-based `clamp(22px,3vh,48px)`. Section is
+**778px against 819px usable — fits**, and horizontal overflow is zero.
+
+**Widened twice more, ending landscape.** The selected card went 3:4 → 6:7 → **5:4**,
+i.e. `333×444 (0.75)` → `387×452 (0.86)` → `468×374 (1.25)`, against side cards that
+stay `234×293 (0.80)`. It is now a **wide rectangle among tall ones**, which is the
+clearest that distinction can be drawn without touching the neighbours.
+
+Worth knowing for next time: **going wider past square buys height back.** A 5:4 card is
+shorter than the 6:7 one it replaced, so the stage shrank with it and the section came
+down to **715px** — shorter than the 778px it was before the card got bigger. Widening
+was free; it was the *taller* shapes that cost screen fit.
+
+## "Cook something for someone", rebuilt clean — 9 Sep 2026
+
+After the *Odd for every occasion* row on oddbox.co.uk: **four plain photographs, the
+dish name underneath, and nothing else**. No card, no border, no badge, no scrim over
+the picture — the whole point of that row is the air around it.
+
+Out with it went the graza-style moving strip, its two tabs, the cook-time pill and the
+three-line description on every card. Section height **480px**, against 819px of usable
+screen.
+
+**Four, not fifteen.** The other eleven recipes stay in `RECIPES` and are still correct;
+a new `FEATURED` array picks which four show, so changing the row is one line. The four
+are chosen to be genuinely everyday and genuinely good for you, and each is built on a
+**different** product we pack, so the row reads as four reasons to buy four things:
+
+| Dish | Made with |
+|---|---|
+| Fodnicha Poha | Mustard Seeds |
+| Methi Dal Tadka | Fenugreek Seeds |
+| Bharli Vangi | Coriander Powder |
+| Quinoa Bowl | Quinoa |
+
+A card whose photograph is missing now renders **nothing at all** rather than a coloured
+tile — a placeholder tile was fine in a busy strip and would be conspicuous in a row this
+clean.
+
+### The accent line failed AA on this ground
+
+`MADE WITH …` takes each product's own accent, and those accents were chosen to sit on
+**white** cards. On the sage ground of this section two of the four fell under AA —
+mustard **4.44:1**, quinoa **4.38:1**. Each accent is now mixed 62% toward `--ink`,
+which keeps its hue and its identity while clearing the threshold:
+
+| | before | after |
+|---|---|---|
+| Fodnicha Poha | 4.44 | **6.64** |
+| Methi Dal Tadka | 4.88 | **7.04** |
+| Bharli Vangi | 4.91 | **7.01** |
+| Quinoa Bowl | 4.38 | **6.53** |
+
+**A measuring trap worth recording:** `color-mix()` computes to `color(srgb 0.38 0.31
+0.07)` — 0-to-1 components, not 0-to-255. A contrast script that assumes `rgb()` reads
+those as almost black and reports a confident **17.52:1 for every card**. If a checker
+returns the same suspiciously high number for several different colours, it is parsing,
+not measuring.
+
+## Three colours from uk.huel.com, in "What we will not do to your food"
+
+The owner liked the 1st, 3rd and 4th tiles of Huel's *Food to fuel your goals* row and
+asked for those colours only — not the layout. Each column of the why-choose block is
+now a panel in one of them.
+
+**Sampled, not guessed.** Those tiles have no CSS colour: the colour lives in the
+photographs, each of which is a lit gradient sweep. Taking the most common pixel gives
+the *shadow* side (`#9f6333` for the caramel tile, which is far darker than it looks).
+The values below are the median of each sweep's **lit half**, which is the colour the
+eye actually reads:
+
+| | Huel tile | ours |
+|---|---|---|
+| blush | More protein | `#ce9f8b` |
+| pistachio | Manage weight | `#d2d9b8` |
+| caramel | Save time | `#ddaf7b` |
+
+**Two things had to change to sit on them.** The body copy was `--sage`, chosen for an
+ivory ground and much too light here — it is now `--ink` at 82%. The line art took each
+panel's own colour darkened, so it reads on the panel instead of floating over it.
+Measured on all three panels: headings **6.28 / 10.06 / 7.35**, body **4.51 / 6.34 /
+5.07**, artwork **4.59 / 6.00 / 4.42**. All pass.
+
+**And a gap that only appeared once there was a panel.** The illustrations occupy just
+the middle of their `0 0 200 200` viewBox, so the box is always larger than the ink in
+it. On a flat ground nobody could see that; inside a coloured panel it read as a hole
+between the icon and the heading — **110px of it**. The box is smaller now and the
+columns centre their content: the gap is **15px**, and the section is 513px.
+
+### "Why choose SATVA" moved to third — 9 Sep 2026
+
+Order is now: **hero → Shop by category → Why choose SATVA → How we make → Cook
+something for someone → the range → …**
+
+**It broke the ground rule in two places, which is what a move always does.** Landing
+`reasons` (ivory) at third put it against `made` (ivory), and pushing `made` down put
+`recipes` (sage) against `range` (sage). Both fixed by reassignment rather than new
+colours: `made` took cream, and `range` swapped its sage ramp for a cream one
+(`--cream-sg → --sand`). The white product cards read at least as well on it, and its
+note line measures **4.74:1** there.
+
+Re-verified: **zero adjacent sections sharing a family**, zero horizontal overflow.
+
+```
+shelves grad · cats cream · reasons ivory · made cream · recipes sage · range cream
+trace ivory · mission hinge · why sage · promise cream · story sage · saheli DARK
+voices cream · contact sage · footer DARK
+```
+
+That is now **four moves in a row that each broke this rule** (Essentials deleted,
+recipes up, origin to third, why-choose to third). Reordering moves two seams every
+time — run the adjacency check, always.

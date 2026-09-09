@@ -302,6 +302,7 @@
         });
       }
       shCur = to;
+      if (typeof shPaint === "function") shPaint();
       setTimeout(function () { shBusy = false; }, reduce ? 20 : 620);
     }
 
@@ -314,7 +315,7 @@
         b.setAttribute("aria-selected", i === 0 ? "true" : "false");
         b.tabIndex = i === 0 ? 0 : -1;
         b.textContent = s.dataset.label || ("Shelf " + (i + 1));
-        b.addEventListener("click", function () { shGo(i); });
+        b.addEventListener("click", function () { shStop(); shGo(i); });
         // left/right walk the strip, the usual tablist behaviour
         b.addEventListener("keydown", function (e) {
           var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
@@ -328,10 +329,64 @@
       });
     }
 
+    /* ---- autoplay, after the hero slideshow on consciousfood.com -----------
+       Their hero advances on its own; ours never did, because when this block
+       was written the brand hero above it autoplayed and two carousels fight.
+       That hero is gone, so this one takes the job.
+
+       Four things make it polite rather than annoying:
+       - it pauses while the pointer is over it, and while anything inside has
+         keyboard focus, so nobody loses a line they are reading
+       - it pauses when the tab is hidden - no invisible carousel burning a
+         phone battery in a background tab
+       - it stops for good the moment the visitor drives it themselves, by tab,
+         arrow or swipe. Once someone has chosen a shelf, moving it under them
+         is the site arguing with its own reader
+       - prefers-reduced-motion never starts it at all
+       The tab strip carries a progress line while it runs, so the movement is
+       explained before it happens rather than being a surprise. */
+    var SH_DELAY = 6000;
+    var shTimer = null, shStopped = false;
+
+    function shPaint() {
+      if (!shTabs) return;
+      [].forEach.call(shTabs.children, function (b, i) {
+        b.classList.toggle("is-timing", !shStopped && shTimer !== null && i === shCur);
+      });
+    }
+    function shStop() {                     // for good - a visitor took over
+      shStopped = true;
+      clearTimeout(shTimer); shTimer = null;
+      if (shTabs) [].forEach.call(shTabs.children, function (b) { b.classList.remove("is-timing"); });
+    }
+    function shPause() { clearTimeout(shTimer); shTimer = null; shPaint(); }
+    function shPlay() {
+      if (shStopped || reduce || shelves.length < 2) return;
+      clearTimeout(shTimer);
+      shTimer = setTimeout(function () { shGo(shCur + 1); shPlay(); }, SH_DELAY);
+      shPaint();
+    }
+
+    if (!reduce && shelves.length > 1) {
+      shStage.addEventListener("pointerenter", shPause);
+      shStage.addEventListener("pointerleave", function () { shPlay(); });
+      var shSection = shStage.closest(".shelves");
+      if (shSection) {
+        shSection.addEventListener("focusin", shPause);
+        shSection.addEventListener("focusout", function () { shPlay(); });
+        shSection.addEventListener("pointerenter", shPause);
+        shSection.addEventListener("pointerleave", function () { shPlay(); });
+      }
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) shPause(); else shPlay();
+      });
+      shPlay();
+    }
+
     var shPrev = document.getElementById("shprev");
     var shNext = document.getElementById("shnext");
-    if (shPrev) shPrev.addEventListener("click", function () { shGo(shCur - 1); });
-    if (shNext) shNext.addEventListener("click", function () { shGo(shCur + 1); });
+    if (shPrev) shPrev.addEventListener("click", function () { shStop(); shGo(shCur - 1); });
+    if (shNext) shNext.addEventListener("click", function () { shStop(); shGo(shCur + 1); });
 
     // swipe, same threshold as the hero
     var sx0 = null;
@@ -339,7 +394,7 @@
     shStage.addEventListener("pointerup", function (e) {
       if (sx0 === null) return;
       var dx = e.clientX - sx0; sx0 = null;
-      if (Math.abs(dx) > 55) shGo(shCur + (dx < 0 ? 1 : -1));
+      if (Math.abs(dx) > 55) { shStop(); shGo(shCur + (dx < 0 ? 1 : -1)); }
     });
     shStage.addEventListener("pointercancel", function () { sx0 = null; });
 
@@ -665,38 +720,201 @@
       blurb:"The second sourcing region, on the same terms. A named place, one honest paragraph, and a photograph we actually own." }
   ];
 
-  var oWrap = document.getElementById("origins");
-  if (oWrap) {
-    ORIGINS.forEach(function (o, i) {
+  /* ---------------------------------------------------------
+     2b. HOW IT IS MADE
+     A coverflow carousel of flip cards, after "Meet Our Canneries"
+     on eatfishwife.com. Front: the process, on video. Back: the
+     spice itself. Turning a card is the point of the block, so the
+     centre card flips on click and the side cards step to centre.
+
+     The videos are muted, looping, playsinline and - the part that
+     matters - ONLY the centre one plays. Six videos decoding at once
+     on a laptop is a fan-spinner for no benefit, and autoplay with
+     sound would be refused by every browser anyway.
+     --------------------------------------------------------- */
+  /* Copy kept SHORT on purpose (cut hard 9 Sep 2026). A card that turns itself
+     after four seconds cannot carry a paragraph - nobody finishes it before the
+     card moves. One line on the front, one on the back, both readable at a
+     glance. The long version of any of this belongs in the range or the story. */
+  var MAKING = [
+    { id:"chilli",   en:"Chilli Powder",     hi:"लाल तिखट",
+      step:"Whole dried chillies, ground with the seed still in.",
+      back:"assets/p-mirchi.jpg",
+      note:"Colour from the skin. Heat from the seed." },
+    { id:"turmeric", en:"Turmeric",          hi:"हळद",
+      step:"Boiled, dried, stone-ground — slowly, so the oil stays in.",
+      back:"assets/p-haldi.jpg",
+      note:"Hingoli turmeric, 180km from where we pack." },
+    { id:"dhaniya",  en:"Coriander Powder",  hi:"धणे पूड",
+      step:"Dry-roasted just enough, then ground coarse.",
+      back:"assets/p-dhane.jpg",
+      note:"Coarse on purpose. Fine powder goes flat." },
+    { id:"seeds",    en:"Seeds",             hi:"बिया",
+      step:"Cleaned, and left whole. Never ground.",
+      back:"assets/cat-seeds.jpg",
+      note:"Roast them the day you use them." },
+    { id:"oil",      en:"Cold-Pressed Oils", hi:"तेल",
+      step:"Pressed cold. Never refined.",
+      back:"assets/cat-oils.jpg",
+      note:"Groundnut, sesame, mustard, coconut." },
+    { id:"salt",     en:"Pink Salt",         hi:"गुलाबी मीठ",
+      step:"Rock salt, crushed and graded. Nothing added.",
+      back:"assets/cat-pantry.jpg",
+      note:"The pink is iron. It belongs there." }
+  ];
+
+
+  var mTrack = document.getElementById("mkrow");
+  var mTabs  = document.getElementById("mtabs");
+  if (mTrack) {
+    var mCards = [], mCur = 0;
+
+    MAKING.forEach(function (m, i) {
       var card = document.createElement("article");
-      card.className = "ocard reveal d" + (i % 4) + (o.todo ? " todo" : "");
+      card.className = "mcard";
+      card.dataset.i = i;
       card.innerHTML =
-        (o.tag ? '<span class="otag">' + o.tag + "</span>" : "") +
-        '<span class="ofield" style="--tint:' + o.tint + '">' +
-          '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" ' +
-            'stroke-linecap="round" stroke-linejoin="round">' + o.icon + "</svg>" +
-        "</span>" +
-        '<h3 class="oplace">' + o.place +
-          (o.hi ? '<span class="ohi dv">' + o.hi + "</span>" : "") +
-        "</h3>" +
-        '<p class="oblurb">' + o.blurb + "</p>" +
-        (o.link ? '<a class="olink" href="' + o.link.href + '">' + o.link.label + "</a>" : "");
+        '<div class="mflip">' +
+          '<div class="mface mfront">' +
+            '<video class="mvid" muted loop playsinline preload="none" ' +
+                   'poster="assets/proc-' + m.id + '.jpg" aria-hidden="true">' +
+              '<source src="assets/proc-' + m.id + '.mp4" type="video/mp4">' +
+            "</video>" +
+            '<span class="mtag">How it is made</span>' +
+            '<div class="mcopy">' +
+              "<h3>" + m.en + '<span class="dv">' + m.hi + "</span></h3>" +
+              "<p>" + m.step + "</p>" +
+            "</div>" +
+            '<span class="mturn">Turn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></span>' +
+          "</div>" +
+          '<div class="mface mback">' +
+            '<img src="' + m.back + '" alt="' + m.en + '" loading="lazy">' +
+            '<div class="mcopy">' +
+              "<h3>" + m.en + "</h3>" +
+              "<p>" + m.note + "</p>" +
+            "</div>" +
+            '<span class="mturn">Back <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>' +
+          "</div>" +
+        "</div>";
 
-      /* swap the tinted ground for real media the moment a file exists.
-         Same probe-then-swap idea as buildCard, so adding a photo is a
-         file drop. A video is preferred only if the owner supplies one. */
-      var probe = new Image();
-      probe.onload = function () {
-        var f = card.querySelector(".ofield");
-        if (!f) return;
-        probe.alt = "";
-        probe.className = "omedia";
-        f.replaceWith(probe);
-      };
-      probe.src = "assets/origin-" + o.id + ".jpg";
-
-      oWrap.appendChild(card);
+      card.addEventListener("click", function () {
+        if (i === mCur) {
+          card.classList.toggle("is-flipped");   // centre card turns by hand
+          mClear();                              // and the timers stand down
+          if (!mHold && !reduce) {
+            mT2 = setTimeout(function () { mGo(mCur + 1); }, M_BACK);
+          }
+        } else {
+          mGo(i);                                // a side card steps in
+        }
+      });
+      mTrack.appendChild(card);
+      mCards.push(card);
     });
+
+    function mPaint() {
+      var n = mCards.length;
+      mCards.forEach(function (c, i) {
+        // shortest way round, so the row wraps instead of unspooling
+        var d = i - mCur;
+        if (d >  n / 2) d -= n;
+        if (d < -n / 2) d += n;
+        var abs = Math.abs(d);
+        c.style.setProperty("--d", d);
+        c.style.setProperty("--abs", abs);
+        c.style.zIndex = String(20 - abs);
+        c.classList.toggle("is-on", d === 0);
+        c.setAttribute("aria-hidden", d === 0 ? "false" : "true");
+        if (d !== 0) c.classList.remove("is-flipped");         // a card that leaves turns back
+        var v = c.querySelector(".mvid");
+        if (!v) return;
+        if (d === 0 && !reduce) { v.play().catch(function () {}); }
+        else { v.pause(); }
+      });
+      if (mTabs) [].forEach.call(mTabs.children, function (b, i) {
+        b.setAttribute("aria-selected", i === mCur ? "true" : "false");
+      });
+    }
+
+    function mGo(to) {
+      var n = mCards.length;
+      mCur = ((to % n) + n) % n;
+      mPaint();
+      mCycle();                       // a new card starts its four seconds
+    }
+
+    if (mTabs) {
+      MAKING.forEach(function (m, i) {
+        var b = document.createElement("button");
+        b.className = "etab"; b.type = "button";
+        b.setAttribute("role", "tab");
+        b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+        b.textContent = m.en;
+        b.addEventListener("click", function () { mGo(i); });
+        mTabs.appendChild(b);
+      });
+    }
+    /* ---- the cycle the owner asked for -----------------------------------
+       Four seconds on the front, the card turns itself, three seconds on the
+       back, then the next card - which arrives on ITS front, so the rhythm
+       repeats rather than drifting.
+
+       Two timers rather than one interval, because the two halves are different
+       lengths and an interval cannot express that. Both are cleared on every
+       state change, so a visitor who clicks never ends up with a stale timer
+       turning a card under them.
+
+       It pauses on hover and on keyboard focus, and while the tab is hidden.
+       Unlike the hero it RESUMES afterwards instead of stopping for good: here
+       the turning is the content, not decoration, so stopping it permanently
+       would empty the block out. Manual navigation just restarts the cycle.
+       prefers-reduced-motion never starts it. */
+    var M_FRONT = 4000, M_BACK = 2000;   // 4s on the front, 2s on the back
+    var mT1 = null, mT2 = null, mHold = false;
+
+    function mClear() { clearTimeout(mT1); clearTimeout(mT2); mT1 = mT2 = null; }
+
+    function mCycle() {
+      mClear();
+      if (mHold || reduce || mCards.length < 2) return;
+      mT1 = setTimeout(function () {
+        var c = mCards[mCur];
+        if (c) c.classList.add("is-flipped");        // turn it over
+        mT2 = setTimeout(function () { mGo(mCur + 1); }, M_BACK);
+      }, M_FRONT);
+    }
+
+    function mPause() { mHold = true;  mClear(); }
+    function mResume() { mHold = false; mCycle(); }
+
+    if (!reduce) {
+      var mSec = mTrack.closest(".made");
+      if (mSec) {
+        mSec.addEventListener("pointerenter", mPause);
+        mSec.addEventListener("pointerleave", mResume);
+        mSec.addEventListener("focusin", mPause);
+        mSec.addEventListener("focusout", mResume);
+      }
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) mPause(); else mResume();
+      });
+    }
+
+    var mp = document.getElementById("mprev"), mn = document.getElementById("mnext");
+    if (mp) mp.addEventListener("click", function () { mGo(mCur - 1); });
+    if (mn) mn.addEventListener("click", function () { mGo(mCur + 1); });
+
+    // swipe, same threshold as the hero
+    var mx0 = null;
+    mTrack.addEventListener("pointerdown", function (e) { mx0 = e.clientX; });
+    mTrack.addEventListener("pointerup", function (e) {
+      if (mx0 === null) return;
+      var dx = e.clientX - mx0; mx0 = null;
+      if (Math.abs(dx) > 55) mGo(mCur + (dx < 0 ? 1 : -1));
+    });
+
+    mPaint();
+    mCycle();
   }
 
   /* ---------------------------------------------------------
@@ -856,84 +1074,46 @@
   /* 2/3 was the tallest of these and it alone decided the strip height, since
      every card is top-aligned in one row. Capped at 3/4 so the stagger stays
      but the tallest card is ~11% shorter. */
-  var RH = ["4/5", "1/1", "3/4", "5/6", "4/5", "1/1", "5/6", "3/4"];
+  /* FOUR dishes, not fifteen, and a plain grid rather than the moving strip -
+     after "Odd for every occasion" on oddbox.co.uk: photograph, name underneath,
+     nothing else on the card.
 
-  var recStage = document.getElementById("recipes-stage");
-  var recTabs  = document.getElementById("rtabs");
-  if (recStage) {
-    var rTracks = [];
+     The four are chosen to be genuinely everyday and genuinely good for you -
+     a poha breakfast, a dal, a stuffed vegetable and a grain bowl - and each one
+     is built on a DIFFERENT product we actually pack, so the row reads as four
+     reasons to buy four different things. The other eleven recipes stay in
+     RECIPES; change FEATURED to change what shows. */
+  var FEATURED = ["fodni-poha", "methi-dal", "bharli-vangi", "quinoa"];
 
-    RGROUPS.forEach(function (g, gi) {
-      var list = RECIPES.filter(function (r) { return r.group === g.id; });
-      if (!list.length) return;                       // never an empty tab
+  var recGrid = document.getElementById("recipes-grid");
+  if (recGrid) {
+    FEATURED.forEach(function (id, i) {
+      var r = RECIPES.filter(function (o) { return o.id === id; })[0];
+      if (!r) return;                                   // a bad id shows nothing, not a broken card
+      var prod = PRODUCTS.filter(function (p) { return p.en === r.uses; })[0];
 
-      var mq = document.createElement("div");
-      mq.className = "recmq";
-      mq.id = "rtrack-" + g.id;
-      mq.setAttribute("role", "tabpanel");
-      mq.setAttribute("aria-label", g.label);
-      if (gi) mq.hidden = true;
+      var card = document.createElement("article");
+      card.className = "reccard reveal d" + (i % 4);
+      if (prod) card.style.setProperty("--acc", prod.ink || prod.acc);
+      card.innerHTML =
+        '<div class="rshot"></div>' +
+        "<h3>" + r.name + "</h3>" +
+        '<p class="ruses">Made with ' + r.uses + "</p>";
 
-      var inner = document.createElement("div");
-      inner.className = "recmq-inner";
+      // the photograph, or nothing at all - a card with no picture simply does
+      // not appear, rather than showing a coloured tile in a row this clean
+      var probe = new Image();
+      probe.onload = function () {
+        var shot = card.querySelector(".rshot");
+        if (!shot) return;
+        probe.alt = r.name;
+        probe.loading = "lazy";
+        shot.appendChild(probe);
+        shot.classList.add("has-photo");
+      };
+      probe.src = "assets/recipe-" + r.id + ".jpg";
 
-      // set one, then the same set again: the loop is a -50% translate, so the
-      // second copy is what is on screen as the first scrolls away
-      for (var pass = 0; pass < 2; pass++) {
-        list.forEach(function (r, i) {
-          var card = buildRecipeCard(r, i);
-          card.style.setProperty("--rar", RH[i % RH.length]);
-          if (pass === 1) {
-            card.setAttribute("aria-hidden", "true");   // a duplicate, not a second recipe
-            card.classList.add("is-clone");
-          }
-          inner.appendChild(card);
-        });
-      }
-
-      mq.appendChild(inner);
-      recStage.appendChild(mq);
-      rTracks.push(mq);
-
-      // The loop shift is the pitch from a card to its own duplicate - measured,
-      // not computed from scrollWidth, which is half a gap short. Speed is held
-      // at ~62px a second whatever the group's length.
-      (function (box, setLen) {
-        function measure() {
-          var kids = box.children;
-          if (kids.length <= setLen) return;
-          var pitch = kids[setLen].offsetLeft - kids[0].offsetLeft;
-          if (pitch <= 0) return;
-          box.style.setProperty("--shift", pitch + "px");
-          box.style.animationDuration = Math.round(pitch / 62) + "s";
-        }
-        requestAnimationFrame(measure);
-        window.addEventListener("resize", function () {
-          clearTimeout(box._mqT);
-          box._mqT = setTimeout(measure, 180);
-        });
-        box._mqMeasure = measure;
-      })(inner, list.length);
-
-      if (!recTabs) return;
-      var tab = document.createElement("button");
-      tab.type = "button";
-      tab.className = "etab";
-      tab.setAttribute("role", "tab");
-      tab.setAttribute("aria-selected", gi === 0 ? "true" : "false");
-      tab.setAttribute("aria-controls", mq.id);
-      tab.innerHTML = g.label + ' <span class="ecount">' + list.length + "</span>";
-      tab.addEventListener("click", function () {
-        [].forEach.call(recTabs.children, function (o) { o.setAttribute("aria-selected", "false"); });
-        tab.setAttribute("aria-selected", "true");
-        rTracks.forEach(function (tr) { tr.hidden = tr !== mq; });
-        // a track that was hidden never met the reveal observer, and its width
-        // could not be measured either - do both now that it is on screen
-        mq.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("in"); });
-        var box = mq.querySelector(".recmq-inner");
-        if (box && box._mqMeasure) box._mqMeasure();
-      });
-      recTabs.appendChild(tab);
+      recGrid.appendChild(card);
     });
   }
 

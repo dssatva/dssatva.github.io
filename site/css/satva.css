@@ -373,17 +373,52 @@ section{position:relative;}
 .reasons .rhead h2{margin:0 0 16px;color:var(--ink);}
 .reasons .rhead .rule{margin-inline:auto;}
 
-.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4vw,54px);
-  max-width:1040px;margin-inline:auto;}
+.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4.5vw,72px);
+  max-width:1120px;margin-inline:auto;}
 
-/* one spice colour per column, the same idea as the product accents */
-.reason{text-align:center;--rc:var(--sage);}
-.reason:nth-child(2){--rc:var(--turmeric);}
-.reason:nth-child(3){--rc:#7d5630;}
+/* Three colours the owner picked off uk.huel.com - the 1st, 3rd and 4th tiles
+   in their "Food to fuel your goals" row. Sampled from the tile images
+   themselves rather than guessed: the sweep behind each product is a gradient,
+   so these are the median of its LIT half, which is the colour the eye reads.
+     blush     #ce9f8b   (their "More protein" tile)
+     pistachio #d2d9b8   (their "Manage weight" tile)
+     caramel   #ddaf7b   (their "Save time" tile)
+   Each column is now a panel in one of them, as Huel does it. The line art
+   takes a darkened version of its own panel colour so it reads ON the panel
+   rather than floating over it. */
+.reason{
+  text-align:center;--rc:var(--sage);
+  background:var(--panel,var(--cream));
+  /* ROUND. The panel holds an icon, a heading and three lines, so the circle has
+     to be big enough that all of it sits inside the INSCRIBED square - a circle
+     is only ~70% as wide as its box where the text sits. 14% padding all round
+     is that inset, which is why the copy never touches the curve. */
+  aspect-ratio:1/1;border-radius:50%;
+  /* capped and centred in its column, so the gap between circles is real space
+     rather than the circles simply touching. Smaller circle = smaller inscribed
+     square, so the type inside comes down with it (see below). */
+  width:100%;max-width:clamp(230px,29vw,320px);margin-inline:auto;
+  padding:13%;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.reason:hover{transform:translateY(-4px);box-shadow:0 24px 44px -28px rgba(60,45,20,.5);}
+/* Lightened 9 Sep 2026 at the owner's request - each is its Huel colour mixed
+   45% with white, so the hue is unchanged and only the strength drops:
+     #ce9f8b -> #e4cabf     #d2d9b8 -> #e6ead8     #ddaf7b -> #ecd3b6
+   The line art keeps the DARK version of each colour, which is what stops the
+   softer panels going flat. */
+.reason:nth-child(1){--panel:#e4cabf;--rc:#5c3323;}
+.reason:nth-child(2){--panel:#e6ead8;--rc:#41501f;}
+.reason:nth-child(3){--panel:#ecd3b6;--rc:#69411a;}
 
 .reason .art{
-  width:clamp(158px,17.5vw,212px);height:clamp(158px,17.5vw,212px);
-  margin:0 auto clamp(18px,2vw,26px);color:var(--rc);
+  /* The drawing occupies only the middle of its 200x200 viewBox, so the box is
+     always bigger than the ink in it. On the old flat ground that was invisible;
+     inside a panel it read as a hole between the icon and the heading. The box
+     is smaller now and the slack is cropped rather than padded. */
+  width:clamp(48px,5.2vw,70px);height:clamp(48px,5.2vw,70px);
+  margin:0 auto clamp(5px,.7vw,10px);color:var(--rc);
   transition:transform .55s var(--ease);
 }
 .reason .art svg{width:100%;height:100%;display:block;overflow:visible;}
@@ -391,9 +426,12 @@ section{position:relative;}
 
 .reason h3{
   margin:0 0 10px;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(1.1rem,1.4vw,1.32rem);font-weight:600;line-height:1.25;color:var(--ink);
+  font-size:clamp(.9rem,1.02vw,1.06rem);font-weight:600;line-height:1.18;color:var(--ink);
 }
-.reason p{margin:0 auto;font-size:.93rem;line-height:1.6;color:var(--sage);max-width:30ch;}
+/* --ink at 82%, not --sage: sage was chosen for an ivory ground and is far
+   too light on these panels. Measured after the change. */
+.reason p{margin:5px auto 0;font-size:clamp(.72rem,.78vw,.82rem);line-height:1.45;
+  color:rgba(30,44,22,.82);max-width:24ch;}
 
 .rcta{text-align:center;margin-top:clamp(34px,4.4vw,56px);}
 
@@ -413,15 +451,25 @@ section{position:relative;}
    way the hero slides already carry data-tint - so the turmeric slide warms and
    the seed slide cools, and the five do not read as one repeated template. */
 
+/* As the hero (see index.html), this fills the screen: the section is the
+   viewport less the sticky header, the bar of tabs and arrows sits at its foot,
+   and the stage takes whatever is left. svh, not vh, so a phone's collapsing
+   address bar does not leave a gap. */
 .shelves{position:relative;overflow:hidden;border-block:1px solid var(--line);}
+.shelves.is-hero{
+  min-height:calc(100svh - 81px);
+  display:flex;flex-direction:column;
+}
+.shelves.is-hero .shstage{flex:1 1 auto;min-height:0;}
+.shelves.is-hero .shbar{flex:none;}
 
 /* every slide occupies the same grid cell, so the stage is exactly as tall as
    the tallest slide and nothing has to be measured in JS */
 .shstage{display:grid;}
 .shelf{
   grid-area:1/1;position:relative;isolation:isolate;
-  /* vh as well as vw: 52vw alone meant a short, wide window still got a 610px
-     slide and the hero could not fit the screen */
+  /* the hero stage now sets the height (.shelves.is-hero above); this floor is
+     what the block falls back to anywhere it is NOT the hero */
   min-height:clamp(320px,min(52vw,62vh),610px);display:flex;align-items:center;
   opacity:0;visibility:hidden;
   transition:opacity .62s var(--ease),visibility .62s step-end;
@@ -504,15 +552,28 @@ section{position:relative;}
 /* The column is wide enough, and the display size small enough, that every one
    of the five headlines holds its intended two lines. At the first sizing the
    name and the phrase under it broke into three, which lost the reference's
-   whole rhythm - two lines, the second one carrying the gold. */
-.sh-copy{max-width:min(620px,53%);padding-block:clamp(46px,7vw,86px);}
+   whole rhythm - two lines, the second one carrying the gold.
+
+   The ceiling is set by one line: "Ground When You Cook", which measures 11px
+   of width for every 1px of type. In a 620px column that means 56.4px fills it
+   exactly and takes a third line one pixel later, so 3.35rem (53.6px) is the
+   most that can be asked for - it fills 95% of the column and leaves the
+   two-line rhythm intact on all five slides. */
+/* 62%, up from 53%: the photograph occupies the right 44% but its left half is
+   a whisper under the taper, so the copy can run well past the old 53% before
+   it meets anything solid - and the middle of the hero was reading as a hole. */
+.sh-copy{max-width:min(780px,62%);padding-block:clamp(46px,7vw,86px);}
 .sh-copy .kick{color:var(--sage);}
 .sh-copy h2{
-  font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.04;margin:10px 0 20px;color:var(--ink);
+  font-size:clamp(2.15rem,4.9vw,3.9rem);line-height:1.03;margin:10px 0 20px;color:var(--ink);
 }
 .sh-copy h2 em{font-style:normal;display:block;}
-.sh-copy > p{color:var(--sage);font-size:clamp(1rem,.5vw + .9rem,1.14rem);line-height:1.68;
-  max-width:46ch;margin:0 0 30px;}
+/* --green, not --sage. Widening the column to 62% runs the paragraph over the
+   faint left end of the photograph, where --sage measured 4.28:1 at its
+   darkest pixel - under AA. --green is 8.1:1 on the same ground and still
+   reads as secondary next to the --ink headline. */
+.sh-copy > p{color:var(--green);font-size:clamp(1.05rem,.62vw + .92rem,1.26rem);line-height:1.62;
+  max-width:56ch;margin:0 0 30px;}
 
 /* the copy rises in on the way in, the same beat as the hero's */
 .sh-copy > *{opacity:0;transform:translateY(20px);}
@@ -566,7 +627,7 @@ section{position:relative;}
 /* 1024-1080 is the last width that still runs two columns, and it is tight:
    the panel has to give ground so the taper can finish before the type does. */
 @media (max-width:1080px){
-  .sh-copy{max-width:min(540px,58%);}
+  .sh-copy{max-width:min(620px,64%);}
   .sh-shot{width:min(46%,540px);}
 }
 
@@ -661,22 +722,36 @@ section{position:relative;}
 .cats{padding:clamp(40px,5vw,68px) 0 clamp(34px,4.4vw,60px);background:var(--cream-sg);}
 .chead{text-align:center;margin:0 auto clamp(34px,4.4vw,58px);max-width:60ch;}
 .chead h2{margin:0;color:var(--ink);}
+/* the one remaining line is an <h2> for the outline but is still the KICK to
+   look at - .chead h2 would otherwise repaint it ink and lose its gold */
+.chead h2.kick{color:var(--gold-dk);margin:0;}
 .chead .lede{margin:14px auto 0;color:var(--sage);line-height:1.65;}
 
+/* This section's wrap is wider than the page's standard 1280px. Without it the
+   grid cannot fill the breadth however wide its own max-width is - a child
+   cannot outgrow its parent, and .wrap was leaving 365px empty on each side of
+   a 1920px screen. */
+.cats .wrap{max-width:min(1720px,94vw);}
+
+/* Six across on a wide screen, filling the breadth; then 3, 2, 1. The counts are
+   explicit rather than auto-fit because there are SIX cards and auto-fit does
+   not care about that: at 1280px it produced five tracks and left the sixth card
+   stranded alone on a second row. Every count here divides six, so a row is
+   never left with an orphan. The old fixed three columns capped at 1280px left
+   a third of the page empty on either side. */
 .catgrid{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(20px,2.4vw,34px);
-  max-width:1280px;margin-inline:auto;
+  display:grid;grid-template-columns:repeat(6,1fr);
+  gap:clamp(14px,1.4vw,24px);
+  width:100%;max-width:1720px;margin-inline:auto;
 }
 .catcard{
   appearance:none;border:0;background:none;padding:0;cursor:pointer;font:inherit;
-  text-align:left;display:flex;flex-direction:column;
+  text-align:left;display:flex;flex-direction:column;height:100%;
 }
 .catcard .cshot{
-  /* 3:2, not the 4:5 this started as. Portrait cards made one row fill the
-     viewport, so the second row of three always sat below the fold and the six
-     shelves never read as one block. Landscape at the same width is ~165px
-     shorter per card, which is what brings both rows into a single screen. */
+  /* 3:2. Portrait cards made one row fill the viewport, so the second row of
+     three always sat below the fold and the six shelves never read as one
+     block. Landscape at the same width is ~165px shorter per card. */
   position:relative;display:block;width:100%;aspect-ratio:3/2;overflow:hidden;
   background:var(--tint);border-radius:20px;color:#fff;
   display:grid;place-items:center;
@@ -685,8 +760,7 @@ section{position:relative;}
 }
 .catcard .cshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   /* the owner asked for the spice colour of jainfarmfresh, which runs its
-     photography far more saturated than this site had. Lifted here, on the
-     hero slides (--vib) and in the footer collage, so the whole page agrees. */
+     photography far more saturated than this site had. */
   filter:saturate(1.18) contrast(1.03);
   transition:transform .8s var(--ease);}
 .catcard .cshot > svg{width:32%;height:32%;opacity:.92;}
@@ -694,9 +768,6 @@ section{position:relative;}
    in the top two-thirds of the frame */
 .catcard .cscrim{
   position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;
-  /* shorter and darker at its foot rather than tall and mid-grey: over a light
-     photograph (pink salt, oil) a tall scrim reads as a smudge across the
-     picture, while a short one reads as a shadow the label sits in */
   background:linear-gradient(to top,rgba(20,28,15,.92) 0%,rgba(20,28,15,.58) 45%,rgba(20,28,15,0) 100%);
 }
 .catcard .cname{
@@ -718,18 +789,18 @@ section{position:relative;}
 }
 .catcard:hover .cshot img{transform:scale(1.055);}
 .catcard:hover .carrow{transform:translateX(3px);background:#fff;}
-/* flex:1 + margin-top:auto keeps every ITEMS line on one baseline across a
-   row, whether its blurb wrapped to one line or two */
-.catcard{height:100%;}
+/* flex:1 + margin-top:auto keeps every ITEMS line on one baseline across a row,
+   whether its blurb wrapped to one line or two */
 .catcard .cmeta{display:flex;flex-direction:column;gap:6px;padding:13px 2px 0;flex:1;}
 .catcard .cblurb{font-size:.9rem;line-height:1.55;color:var(--sage);max-width:32ch;}
 .catcard .ccount{
-  margin-top:auto;padding-top:7px;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--gold-dk);font-weight:600;
+  margin-top:auto;padding-top:7px;font-size:.68rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--gold-dk);font-weight:600;
 }
 
-@media (max-width:900px){ .catgrid{grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,30px);} }
-@media (max-width:560px){ .catgrid{grid-template-columns:1fr;} .catcard .cshot{aspect-ratio:3/2;} }
+@media (max-width:1400px){ .catgrid{grid-template-columns:repeat(3,1fr);} }
+@media (max-width:860px){  .catgrid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .catgrid{grid-template-columns:1fr;} .catcard .cshot{aspect-ratio:16/10;} }
 @media (prefers-reduced-motion:reduce){
   .catcard:hover .cshot{transform:none;} .catcard:hover .cshot img{transform:none;}
 }
@@ -750,10 +821,27 @@ section{position:relative;}
 }
 .etab:hover{color:var(--gold-dk);}
 .etab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--gold);}
+
+/* Autoplay's progress line. It rides the active shelf tab so the movement is
+   announced before it happens - a carousel that jumps with no warning reads as
+   a fault. Added and removed by js/satva.js, and it never appears when autoplay
+   is stopped, paused or was never started (reduced motion). */
+.shtabs .etab{position:relative;}
+.shtabs .etab.is-timing::after{
+  content:"";position:absolute;left:0;bottom:-1.6px;height:1.6px;width:100%;
+  background:var(--gold);transform-origin:left center;
+  animation:shtick 6s linear forwards;
+}
+@keyframes shtick{ from{transform:scaleX(0);} to{transform:scaleX(1);} }
+@media (prefers-reduced-motion:reduce){
+  .shtabs .etab.is-timing::after{display:none;}
+}
 .etab .ecount{font-size:.72em;color:var(--gold-dk);margin-left:5px;vertical-align:.25em;}
 
 /* ===================== range ===================== */
-.range{padding:clamp(38px,5vw,70px) 0;background:linear-gradient(180deg,var(--sage-mist) 0%,var(--sage-mist-2) 100%);}
+/* cream, not the sage ramp: the recipes row above it is sage now, so sage met
+   sage. The white product cards read at least as well on cream. */
+.range{padding:clamp(38px,5vw,70px) 0;background:linear-gradient(180deg,var(--cream-sg) 0%,var(--sand) 100%);}
 .sechead{display:flex;gap:clamp(24px,4vw,56px);align-items:flex-end;justify-content:space-between;
   flex-wrap:wrap;margin-bottom:clamp(28px,4vw,52px);}
 .sechead>div{flex:1 1 380px;} .sechead>.lede{flex:0 1 400px;padding-bottom:4px;}
@@ -1214,52 +1302,168 @@ footer .btm .dv{color:var(--gold-pale);}
    is a tinted ground with line art - the same honest placeholder
    the category cards already use - and each card keeps a <video>
    slot that switches on the moment a file exists. */
-.origin{padding:clamp(38px,4.6vw,66px) 0;background:var(--cream-sg);}
+/* ivory: moved to third on 9 Sep, between cats (cream) and recipes (sage), so
+   cream would have met cream. Third time a section move has broken this rule -
+   always re-run the adjacency check after reordering. */
+.origin{padding:clamp(38px,4.6vw,66px) 0;background:var(--ivory);}
 .ohead{text-align:center;max-width:64ch;margin:0 auto clamp(30px,4vw,48px);}
 .ohead .lede{margin-top:12px;color:var(--sage);font-size:1.02rem;line-height:1.6;}
-.ogrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,2.2vw,26px);}
-.ocard{
-  position:relative;overflow:hidden;border-radius:20px;isolation:isolate;
-  min-height:clamp(340px,38vw,430px);display:flex;flex-direction:column;
-  justify-content:flex-end;padding:clamp(20px,2.4vw,30px);
-  border:1px solid var(--line);box-shadow:var(--sh-sm);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease);
+/* ---- How it is made -------------------------------------------------------
+   A coverflow carousel of flip cards, after "Meet Our Canneries" on
+   eatfishwife.com. Their measurements, read off the live page: the centre slide
+   larger and in front, its neighbours scaled down on negative z-index, a 2px
+   border, a 20px radius, and the back face rotated 180deg.
+   Position comes from one custom property per card - --d, how many steps that
+   card is from centre - so the whole layout is CSS and JS only sets a number. */
+/* padding by HEIGHT, not width: the selected card is 444px tall now, and with
+   width-based padding the section ran 856px against 819px of usable screen. */
+/* cream: "why choose" moved to third on 9 Sep and is ivory, so ivory met ivory. */
+.made{padding:clamp(22px,3vh,48px) 0;background:var(--cream-sg);overflow:hidden;}
+.made .mhead{text-align:center;max-width:62ch;margin:0 auto clamp(12px,1.8vh,24px);}
+.made .mhead .lede{margin-top:12px;color:var(--sage);line-height:1.6;}
+
+/* 50vh, not 58: at 58 the bigger cards pushed this section to 932px against
+   819px of usable screen, and the block stopped fitting. */
+.made .mstage{
+  position:relative;height:clamp(340px,48vh,540px);
+  perspective:1600px;                      /* the flip needs real depth */
+  margin-bottom:clamp(10px,1.6vh,20px);
 }
-.ocard:hover{transform:translateY(-5px);box-shadow:var(--sh-md);}
-/* the tinted ground, and the media that replaces it */
-.ocard .ofield{position:absolute;inset:0;z-index:-2;background:var(--tint);}
-.ocard .ofield svg{
-  position:absolute;top:26%;left:50%;transform:translate(-50%,-50%);
-  width:34%;height:auto;color:#fff;opacity:.5;
+/* .mkrow, NOT .mtrack: .mtrack already belongs to the Marathi dish marquee
+   above (display:flex; width:max-content; a scrolling animation). Reusing the
+   name gave this track width:max-content, which with inset:0 computes to ZERO
+   width - so every card piled up at x=0 and threw 2849px of page overflow. */
+.made .mkrow{position:absolute;inset:0;}
+.made .mcard{
+  position:absolute;top:50%;left:50%;
+  /* The side cards. The SELECTED one is bigger and a taller rectangle - see
+     .mcard.is-on below - so these sit a step down from it in both dimensions. */
+  width:clamp(240px,31vh,360px);aspect-ratio:4/5;
+  margin:0;cursor:pointer;
+  /* --d is the signed distance from centre; everything else follows from it */
+  transform:
+    translate(-50%,-50%)
+    translateX(calc(var(--d,0) * clamp(240px,33vh,390px)))
+    scale(calc(1 - (var(--abs,0) * .16)));
+  opacity:calc(1 - (var(--abs,0) * .3));
+  transition:transform .62s var(--ease),opacity .62s var(--ease),
+             width .62s var(--ease);
 }
-.ocard .omedia{position:absolute;inset:0;z-index:-2;width:100%;height:100%;object-fit:cover;}
-/* a scrim so the copy stays legible over either ground */
-.ocard::after{
-  content:"";position:absolute;inset:0;z-index:-1;
-  background:linear-gradient(to top,rgba(30,44,22,.82) 0%,rgba(30,44,22,.42) 42%,rgba(30,44,22,0) 74%);
+.made .mcard[style*="--abs: 3"],.mcard[style*="--abs:3"]{opacity:0;pointer-events:none;}
+
+.made .mflip{
+  position:relative;width:100%;height:100%;
+  transform-style:preserve-3d;
+  transition:transform .7s var(--ease);
 }
-.ocard .oplace{
+.made .mcard.is-flipped .mflip{transform:rotateY(180deg);}
+.made .mface{
+  position:absolute;inset:0;overflow:hidden;
+  border:2px solid rgba(191,138,23,.55);border-radius:26px;
+  backface-visibility:hidden;-webkit-backface-visibility:hidden;
+  background:var(--band);
+  box-shadow:0 18px 40px -22px rgba(30,44,22,.55);
+}
+.made .mback{transform:rotateY(180deg);}
+.made .mface video,.mface img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+}
+/* the scrim only under the words, so the film keeps its own light */
+.made .mface::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:80%;
+  /* Heavier than the category cards' scrim, and deliberately. Those sit over a
+     STILL photograph that can be checked once; these sit over VIDEO, where a
+     bright frame can arrive at any moment. Measured with the old .92/.55 ramp:
+     the lightest pixel under the copy hit rgb(230,224,218) - white text at
+     1.31:1. The scrim now carries the copy on its own, whatever the frame. */
+  background:linear-gradient(to top,rgba(20,28,15,.62) 0%,rgba(20,28,15,.4) 45%,rgba(20,28,15,0) 100%);
+}
+/* The copy carries its OWN backdrop, rather than trusting the card-wide scrim.
+   Over a still photograph a gradient can be checked once and trusted; over video
+   the frame changes constantly, and the turmeric footage in particular goes very
+   bright. Measured against the brightest frame with only the card scrim: body
+   copy 3.20:1 and the Devanagari 1.76:1 - both under AA. A local backdrop is the
+   only thing that holds whatever the frame does. */
+.made .mcopy{
+  position:absolute;left:0;right:0;bottom:0;z-index:2;padding:clamp(18px,2.3vh,28px);
+  /* Lightened at the owner's request - the old .96/.9/.74 panel was legible but
+     it hid the bottom third of every film. Now it fades out towards its top so
+     the picture reads through, and the type carries a shadow so it does not
+     depend on the panel alone. Measured after the change, not before: see the
+     numbers in the README. */
+  /* The fade happens ABOVE the type, not through it. A straight ramp lightened
+     the panel everywhere, including where the Devanagari sits, and that line -
+     --gold-lt on a bright frame - fell to 2.76:1. Holding ~.85 under the text
+     and dropping fast in the last third gives the picture back its top edge
+     without taking the copy down with it. */
+  background:linear-gradient(to top,
+    rgba(16,23,12,.93) 0%,
+    rgba(16,23,12,.86) 58%,
+    rgba(16,23,12,.5) 84%,
+    rgba(16,23,12,.16) 100%);
+}
+.made .mcopy h3,.made .mcopy p{text-shadow:0 1px 10px rgba(10,16,6,.85),0 0 24px rgba(10,16,6,.5);}
+.made .mcopy h3{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(1.3rem,2vw,1.6rem);font-weight:600;color:#fff;line-height:1.15;margin:0;
+  font-size:clamp(1.22rem,2.7vh,1.62rem);font-weight:600;color:#fff;margin:0;line-height:1.12;
+  text-shadow:0 1px 10px rgba(12,18,8,.5);
 }
-.ocard .ohi{display:block;font-size:.82em;color:var(--gold-lt);margin-top:4px;}
-.ocard .oblurb{margin:10px 0 0;color:rgba(255,255,255,.9);font-size:.9rem;line-height:1.58;}
-.ocard .olink{
-  margin-top:14px;align-self:flex-start;font-size:.74rem;letter-spacing:.14em;
-  text-transform:uppercase;font-weight:600;color:var(--gold-lt);
-  border-bottom:1px solid rgba(223,180,89,.45);padding-bottom:3px;
+.made .mcopy h3 .dv{display:block;font-size:.78em;color:var(--gold-lt);margin-top:3px;}
+.made .mcopy p{
+  margin:8px 0 0;color:rgba(255,255,255,.94);font-size:clamp(.86rem,1.7vh,1rem);
+  line-height:1.5;max-width:34ch;
 }
-.ocard .olink:hover{color:#fff;border-color:#fff;}
-/* a region the owner has not named yet. Visibly unfinished by design -
-   see "Copy on this page is the owner's, or it does not ship" in the README. */
-.ocard.todo{border-style:dashed;border-color:var(--clay);box-shadow:none;}
-.ocard.todo::after{background:linear-gradient(to top,rgba(30,44,22,.72) 0%,rgba(30,44,22,.3) 50%,rgba(30,44,22,0) 78%);}
-.ocard.todo:hover{transform:none;box-shadow:none;}
-.ocard .otag{
-  position:absolute;top:14px;left:14px;z-index:1;
-  font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;font-weight:700;
-  background:rgba(255,255,255,.9);color:var(--gold-dk);
-  padding:5px 9px;border-radius:999px;
+.made .mtag,.mturn{
+  position:absolute;z-index:2;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;
+  font-weight:700;padding:5px 10px;border-radius:999px;
+}
+.made .mtag{top:12px;left:12px;background:var(--gold-pale);color:var(--ink);}
+.made .mturn{
+  top:12px;right:12px;background:rgba(255,255,255,.92);color:var(--ink);
+  display:inline-flex;align-items:center;gap:5px;
+}
+.made .mturn svg{width:12px;height:12px;}
+/* only the centre card invites a turn */
+.made .mcard:not(.is-on) .mturn{opacity:0;}
+/* The selected masala: bigger in BOTH dimensions than its neighbours, and a
+   taller rectangle - 3:4 against their 4:5. At 1600x900 that is 333x444 beside
+   279x349, so it reads as the chosen one by shape as well as by position.
+   Not taller than 3:4: at 2:3 the card needs ~500px and stops fitting the
+   stage, and the stage cannot grow without the section leaving the screen. */
+.made .mcard.is-on{
+  /* Widened again, and past square this time: 5:4 LANDSCAPE, where the side
+     cards stay 4:5 portrait. The selected masala is now a wide rectangle among
+     tall ones, which is the clearest the difference can be made without
+     touching the neighbours at all.
+     Going wide also buys height back - a 5:4 card is shorter than the 6:7 one it
+     replaces - so the stage came down with it and the section got shorter, not
+     taller, despite the card being much bigger in area. */
+  width:clamp(390px,57vh,680px);aspect-ratio:5/4;
+}
+
+/* the centre card is lifted and gold-edged; the others sit back, quiet */
+.made .mcard.is-on .mface{
+  border-color:var(--gold);
+  box-shadow:0 34px 70px -26px rgba(30,44,22,.62), 0 0 0 1px rgba(191,138,23,.35);
+}
+.made .mcard:not(.is-on) .mface{border-color:rgba(60,81,40,.35);}
+
+.made .mbar{display:flex;align-items:center;gap:clamp(14px,3vw,36px);flex-wrap:wrap;}
+.made .mtabs{flex:1 1 auto;min-width:0;}
+.made .mnav{display:flex;gap:9px;flex:none;}
+/* .arrow is absolutely positioned by default (it belongs to the hero), so both
+   buttons stacked on the same spot and only one was visible. Same override the
+   shelf bar already makes. */
+.made .mnav .arrow{position:static;bottom:auto;left:auto;right:auto;
+  width:42px;height:42px;background:#fff;}
+.made .mnote{margin:clamp(10px,1.6vh,18px) 0 0;font-size:.78rem;color:var(--sage);}
+
+@media (max-width:700px){
+  .mcard{width:clamp(200px,64vw,260px);}
+  .mstage{height:clamp(290px,52vh,360px);}
+}
+@media (prefers-reduced-motion:reduce){
+  .mcard,.mflip{transition:none;}
 }
 .onote{
   margin-top:clamp(22px,2.6vw,30px);font-size:.88rem;color:var(--sage);
@@ -1287,84 +1491,55 @@ footer .btm .dv{color:var(--gold-pale);}
   gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,3.4vw,40px);
 }
 .rechead .lede{margin-top:10px;color:var(--sage);max-width:52ch;line-height:1.6;}
-/* A moving strip, after the "See what else we're cooking up" marquee on
-   graza.co. Their measurements, taken off the live page: fixed card width,
-   VARYING heights, top-aligned, 20px corners, and the set duplicated twice
-   inside a track that runs to -50% on a linear loop - which is what makes it
-   seamless with no JS per frame. The card itself is still the flamingoestate
-   one logged above; only its arrangement changed.
-   It bleeds past the wrap on both edges, so the strip reads as continuing off
-   the page rather than starting and stopping inside a column. */
-.rtabs{margin:-8px 0 clamp(22px,2.6vw,30px);}
-.recmq{
-  overflow:hidden;
-  /* a true edge-to-edge bleed, as on the reference, where the leftmost card is
-     cut by the viewport rather than starting inside the column. 100vw counts
-     the scrollbar, which is 7px of page overflow on its own - so the section
-     clips instead of the page scrolling. */
-  width:100vw;margin-left:50%;transform:translateX(-50%);
-}
-.recmq-inner{
-  display:flex;align-items:flex-start;gap:clamp(14px,1.6vw,22px);
-  width:max-content;
-  animation:recmq 40s linear infinite;
-  will-change:transform;
-}
-/* NOT -50%: with a flex gap, half the track is (9w + 8.5g) while the set
-   actually repeats every (9w + 9g), so a -50% loop stutters half a gap on every
-   pass. --shift is the measured pitch from card 0 to its own duplicate, set in
-   js/satva.js and re-measured on resize because the card width is clamped to vw. */
-@keyframes recmq{ from{transform:translateX(0);} to{transform:translateX(calc(-1 * var(--shift,50%)));} }
-/* ours pauses, unlike the reference: these cards carry text to read */
-.recmq:hover .recmq-inner,
-.recmq:focus-within .recmq-inner{animation-play-state:paused;}
+/* ---- Cook something for someone ------------------------------------------
+   Rebuilt after the "Odd for every occasion" row on oddbox.co.uk: four plain
+   photographs, the dish name underneath, and nothing else. No card, no border,
+   no badge, no scrim over the picture - the whole point of that row is the air
+   around it. The moving strip and its two tabs came out with the redesign. */
+.recipes{padding:clamp(30px,4vh,64px) 0;background:var(--sage-mist);overflow-x:clip;}
+.rechead{text-align:center;max-width:52ch;margin:0 auto clamp(20px,2.8vh,38px);}
+.rechead h2{margin:0;color:var(--ink);}
+.rechead .lede{margin:10px 0 0;color:var(--sage);line-height:1.55;}
 
-.recmq .reccard{
-  flex:0 0 clamp(228px,20vw,278px);
-  /* the gap between two copies of the set must equal the gap inside a set, or
-     the loop visibly stutters at the seam */
+.recgrid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(18px,2.2vw,34px);
+  max-width:1280px;margin-inline:auto;
 }
-.recmq .reccard .rfield{aspect-ratio:var(--rar,4/5);}
-
-@media (prefers-reduced-motion:reduce){
-  /* no movement at all - hand back a scrollbar and drop the duplicate set,
-     which is only there to make a loop nobody is now watching */
-  .recmq{overflow-x:auto;}
-  .recmq-inner{animation:none;}
-  .recmq .reccard.is-clone{display:none;}
+.recgrid .reccard{
+  background:none;border:0;box-shadow:none;padding:0;margin:0;
+  display:flex;flex-direction:column;
 }
-.reccard{
-  background:#fff;border:1px solid var(--line);border-radius:18px;overflow:hidden;
-  display:flex;flex-direction:column;box-shadow:var(--sh-sm);
-  transition:transform .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+/* the photograph carries the card, so it gets the whole width and a shape that
+   suits a plate: 4:3, not the old portrait crop */
+.recgrid .rshot{
+  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:14px;
+  background:var(--sage-mist-2);
 }
-.reccard:hover{transform:translateY(-5px);box-shadow:var(--sh-md);border-color:var(--acc,var(--gold));}
-.reccard .rfield{
-  position:relative;aspect-ratio:4/5;background:var(--tint);display:grid;place-items:center;
+.recgrid .rshot img{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(1.12) contrast(1.02);
+  transition:transform .7s var(--ease);
 }
-.reccard .rfield svg{width:26%;height:auto;color:#fff;opacity:.62;}
-.reccard .rfield img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
-  filter:saturate(1.16) contrast(1.03);}
-.reccard .rtime{
-  position:absolute;bottom:10px;right:10px;
-  background:rgba(255,255,255,.93);color:var(--ink);
-  font-size:.7rem;letter-spacing:.06em;font-weight:600;
-  padding:5px 10px;border-radius:999px;box-shadow:var(--sh-sm);
-}
-.reccard .rbody{padding:clamp(15px,1.7vw,20px);display:flex;flex-direction:column;flex:1;}
-.reccard h3{
+.recgrid .reccard:hover .rshot img{transform:scale(1.04);}
+.recgrid .reccard h3{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:1.06rem;font-weight:600;color:var(--ink);margin:0;line-height:1.25;
+  font-size:clamp(1.02rem,1.5vw,1.24rem);font-weight:600;color:var(--ink);
+  line-height:1.22;margin:14px 0 0;
 }
-.reccard .rhi{display:block;font-size:.84em;color:var(--sage-soft);margin-top:3px;}
-.reccard .rdesc{margin:9px 0 0;font-size:.87rem;line-height:1.55;color:var(--sage);}
-.reccard .ruses{
-  margin-top:auto;padding-top:13px;font-size:.72rem;letter-spacing:.1em;
-  text-transform:uppercase;font-weight:600;color:var(--gold-dk);
-  display:flex;align-items:center;gap:7px;
+.recgrid .ruses{
+  margin:6px 0 0;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;
+  /* The product accents were picked to sit on WHITE cards; on this sage ground
+     two of the four fell under AA (mustard 4.44:1, quinoa 4.38:1). Mixing each
+     accent toward the ink keeps its hue and its identity while clearing the
+     threshold - the same fix already used for the 01-04 numerals in Why SATVA. */
+  color:color-mix(in srgb, var(--acc, var(--gold-dk)) 62%, var(--ink));
 }
-.reccard .ruses i{width:9px;height:9px;border-radius:50%;background:var(--acc,var(--gold));flex:none;}
-/* the strip needs no breakpoints: the card width clamps and the row scrolls */
+.recfoot{display:flex;justify-content:center;margin-top:clamp(20px,2.6vh,36px);}
+
+@media (max-width:900px){ .recgrid{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:520px){ .recgrid{grid-template-columns:1fr;} }
 
 /* ---------------- Satwa Saheli ----------------
    Rumi Spice runs "Empowers Afghan Women" as one of three
@@ -1558,15 +1733,19 @@ footer{scroll-snap-align:start;}
 
   /* the category cards, same idea: the photo aspect is fixed, so the only way
      down is a narrower card */
-  .catgrid{gap:clamp(14px,1.8vh,26px);max-width:1080px;}
+  .catgrid{gap:clamp(12px,1.5vh,22px);}
   .catcard .cmeta{padding-top:9px;gap:4px;}
   .catcard .cblurb{font-size:.82rem;line-height:1.4;}
 
   /* the hero slide: its min-height now answers to vh, but the copy's own
      padding was still 86px top and bottom and that is what kept it 719px */
   .sh-copy{padding-block:clamp(16px,3vh,46px);}
-  .sh-copy h2{font-size:clamp(1.45rem,3.8vh,2.5rem);margin:8px 0 14px;}
-  .sh-copy > p{font-size:clamp(.82rem,1.6vh,1rem);line-height:1.5;}
+  /* was min(4.2vw,5.6vh) with a 1.45rem floor - on a 660px-tall window that
+     resolved to a 37px headline against a half-metre of photograph, which is
+     what made the type look small. The height cap is now 7.4vh and the floor
+     1.95rem, so the headline holds its scale on a short screen. */
+  .sh-copy h2{font-size:clamp(1.95rem,min(4.9vw,7.4vh),3.9rem);margin:8px 0 14px;}
+  .sh-copy > p{font-size:clamp(.98rem,min(1.35vw,2.6vh),1.26rem);line-height:1.55;max-width:56ch;}
   .sh-cta{margin-top:clamp(12px,2vh,22px);}
 
   /* the range opens as a menu, so its height is the families list plus the
@@ -1599,7 +1778,10 @@ footer{scroll-snap-align:start;}
   /* Shop by category: 351px-wide cards give a 234px photo, and two rows of that
      plus the heading is 813px. Capping the grid narrows the card, and the photo
      follows it down because the aspect is fixed. */
-  .catgrid{max-width:min(1080px,86vh);}
+  /* no max-width here any more: capping this by viewport HEIGHT is what put
+     the six cards in a narrow middle column on a wide screen. One row of six
+     is shorter than two rows of three anyway, so the height problem this was
+     solving solves itself. */
   .chead .lede{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 
   /* Origin: the photo field is 428px of the card's 430 - it is the section */
