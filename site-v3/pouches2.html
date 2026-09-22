@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     DS SATVA - TWENTY SIMPLE POUCHES.               22 Sep 2026
+     The owner dropped the colour-field and Devanagari-first
+     variants: "no clarity in that ... keep it simple and clean".
+     So every one of these twenty is quiet by construction - one
+     ground, one ink, one accent used once, and a product name big
+     enough to read across a shop.
+
+     EVERY PALETTE WAS MEASURED BEFORE IT WAS USED. Three accents
+     came back under AA on their own ground and were darkened:
+       cream  #8a6a1e -> #71560f   4.10 -> 5.61
+       white  #6f8a69 -> #526a4b   3.68 -> 5.76
+       forest #c1a257 -> #d0b273   4.50 -> 5.40
+     Nothing here sits under 4.5:1.
+
+     THE LOGO IS ON ITS THIRD SETTING. The original (#507040 /
+     #b08010) was "TOO BRIGHT". The soft recolour fixed that and
+     overshot - its wheat measured 1.51-2.03:1 on the pale grounds,
+     under the 3:1 a graphic needs, which is the "no clarity" the
+     owner saw. This pair is muted but legible:
+       leaf  #647d5a   3.27-4.39:1 on every light ground
+       wheat #8a7542   3.22-4.31:1
+     Kraft gets a ONE-INK mark (#23331a, 6.63:1) because brass on
+     brown measured 1.21:1 - effectively invisible.
+     ============================================================ -->
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DS Satva &mdash; twenty simple pouches</title>
+<link rel="icon" href="assets/mark-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#23261e;font-family:"Jost",system-ui,sans-serif;color:#f4f3e7}
+.top{max-width:1500px;margin:0 auto;padding:28px 22px 4px}
+.top h1{margin:0 0 6px;font:400 1.6rem/1.2 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;color:#f1ddab}
+.top p{margin:0 0 5px;font-size:.88rem;line-height:1.6;color:rgba(244,243,231,.78);max-width:94ch}
+.top b{color:#fff}
+.variant{max-width:1500px;margin:0 auto;padding:22px;border-top:1px solid rgba(244,243,231,.1)}
+.variant h2{margin:0 0 3px;font:500 1rem/1.2 "Jost",sans-serif}
+.variant h2 b{color:#d3bb86;margin-right:8px}
+.variant h2 em{font-style:normal;font-size:.76rem;color:rgba(244,243,231,.45);margin-left:6px}
+.why{margin:0 0 14px;font-size:.84rem;color:rgba(244,243,231,.64);max-width:78ch}
+.pair{display:flex;gap:16px;flex-wrap:wrap}
+
+/* The pouch is 100x150mm. ONE font-size drives every dimension: 1.24mm on
+   screen, 2mm in print. Everything else is in em, so the whole artwork
+   scales from that single number.
+
+   The front is a FLEX COLUMN, deliberately. An earlier pass positioned each
+   block with `top:52em` and the like - but a length in em resolves against
+   the element's OWN font-size, so the claim (font-size:1.6em) landed at
+   52 x 1.6 = 83em down a 75em pouch and fell off the bottom on 18 of the 20.
+   Flex has no such trap: the boxes simply sit in order. */
+.pouch{font-size:1.24mm;width:50em;height:75em;position:relative;overflow:hidden;
+  box-shadow:0 12px 30px -16px rgba(0,0,0,.75)}
+.front{background:var(--bg);color:var(--ink);display:flex;flex-direction:column;
+  align-items:center;text-align:center;justify-content:space-between;
+  padding:11em 4.5em 10em}          /* bottom pad clears the sealed strip */
+.veg{position:absolute;top:3em;left:3em;z-index:4;width:2.4em;height:2.4em;border:.24em solid #1f7a34;
+  background:#fff;display:grid;place-items:center;border-radius:.2em}
+.veg i{width:1.1em;height:1.1em;border-radius:50%;background:#1f7a34;display:block}
+.mark{width:17em;flex:none}
+.mid{flex:none}
+.mid h3{margin:0;font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-weight:600;font-size:4.4em;line-height:1.05;letter-spacing:-.02em;color:var(--ink)}
+.mid .dv{display:block;margin-top:.55em;font-family:"Tiro Devanagari Hindi",serif;
+  font-size:2em;color:var(--sub)}
+.claim{margin:2.6em 0 0;font:italic 400 1.6em/1.5 "Fraunces",Georgia,serif;color:var(--sub)}
+.form{flex:none;padding:.45em 1.6em;border:.14em solid var(--acc);border-radius:99em;
+  font:600 1.25em/1 "Jost",sans-serif;letter-spacing:.18em;text-transform:uppercase;color:var(--acc)}
+.strip{position:absolute;left:0;right:0;bottom:0;z-index:4;background:var(--ink);color:var(--bg);
+  padding:1.5em;text-align:center;font:500 1.3em/1 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase}
+
+/* ---------- the seven layouts, all quiet ---------- */
+.L-centre .mid h3{padding:.34em 0;border-top:.05em solid var(--acc);border-bottom:.05em solid var(--acc)}
+.L-left{align-items:flex-start;text-align:left;padding-right:9em}
+.L-toprule .mid{order:1;align-self:stretch}
+.L-toprule .form{order:2}
+.L-toprule .mark{order:3;width:12em}
+.L-toprule .mid h3{border-top:.05em solid var(--acc);padding-top:.5em}
+.L-frame::after{content:"";position:absolute;inset:3em;border:.16em solid var(--acc);z-index:1;pointer-events:none}
+.L-frame .veg{top:4.6em;left:4.6em}
+.L-caps .mid h3{font-family:"Jost",sans-serif;font-weight:500;font-size:3.1em;
+  letter-spacing:.2em;text-transform:uppercase;line-height:1.2}
+.L-caps .claim{font-family:"Jost",sans-serif;font-style:normal;font-size:1.4em}
+.L-half::before{content:"";position:absolute;left:0;right:0;top:0;height:30em;
+  background:var(--acc);opacity:.15;z-index:0}
+/* Scoped to the three flow children ONLY. A blanket `.L-half>*` also hits
+   the veg mark and the sealed strip, which are position:absolute - it reset
+   them to relative and they dropped into the middle of the flex column. */
+.L-half>.mark,.L-half>.mid,.L-half>.form{position:relative;z-index:2}
+.L-corner{justify-content:flex-start;padding-top:22em}
+.L-corner .mark{position:absolute;top:3.5em;left:3.5em;width:11em}
+.L-corner .veg{left:auto;right:3em}
+.L-corner .mid{margin-top:auto}
+.L-corner .form{margin-top:5em}
+.L-tall .mid h3{font-size:5.2em;line-height:.98}
+
+/* ---------- back: identical on all twenty ---------- */
+.back{background:#f5f2ea;color:#1e2c16}
+.back .panel{position:absolute;inset:0;padding:2.6em;display:flex;flex-direction:column;gap:.9em}
+.back h4{margin:0 0 .3em;font:600 1.2em/1 "Jost",sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#7f5a0f}
+.back .row{display:flex;gap:1.4em}
+.back .fssai{flex:none;text-align:center}
+.back .m2{font:italic 600 2.4em/1 "Fraunces",Georgia,serif;border-bottom:.08em solid #1e2c16}
+.back .no{display:block;margin-top:.4em;font-size:1.1em;color:#b3261e;font-weight:600}
+.back .by{flex:1;font-size:1.3em;line-height:1.4}
+.back .by b{display:block;font-size:1.25em;color:#2c4220;font-family:"Fraunces",Georgia,serif}
+.back .fields{display:grid;grid-template-columns:auto 1fr;gap:.55em 1em;font-size:1.35em;align-items:end}
+.back .fields i{display:block;border-bottom:.08em dotted rgba(30,44,22,.55);height:1.5em}
+.back .ing{font-size:1.2em;line-height:1.45}
+.back .ing b{color:#2c4220}
+.back .nut{width:100%;border-collapse:collapse;font-size:1.1em}
+.back .nut th,.back .nut td{border:.06em solid rgba(30,44,22,.32);padding:.32em .55em;text-align:left}
+.back .nut th{background:#e9e0cb;font-weight:600}
+.back .addr{font-size:1.25em;line-height:1.5}
+.back .promise{margin:0;font:italic 400 1.3em/1.4 "Fraunces",Georgia,serif;color:#2c4220;
+  border-left:.24em solid #c1a257;padding-left:.9em}
+.back .icons{display:flex;gap:1.4em;align-items:center;margin-top:auto;padding-top:.6em}
+.back .icons svg{height:3.6em;color:#1e2c16}
+.back .sb{font-size:1em}
+.back .epr{margin:0 -2.6em -2.6em;background:#8cc47a;color:#12200d;padding:.9em 2.6em;font-size:1em;line-height:1.35}
+.todo{color:#b3261e;font-weight:600}
+
+@media print{
+  body{background:#fff}.top,.why{display:none}
+  .variant{border:0;padding:0;max-width:none}.variant h2{display:none}
+  .pouch{font-size:2mm;box-shadow:none}
+  .pair{page-break-after:always;gap:6mm}
+  @page{size:A4 landscape;margin:8mm}
+}
+</style>
+</head>
+<body>
+<div class="top">
+  <h1>Twenty simple pouches &mdash; front and back</h1>
+  <p>Quiet by construction: one ground, one ink, one accent used once, and a name big enough to read across a shop. All twenty carry <b>Garam Masala</b> so you are comparing design, not product.</p>
+  <p>Shown at 62%. <b>Ctrl+P</b> prints at true 100 &times; 150&nbsp;mm. The logo is a <b>third</b> setting &mdash; muted like your tote, but dark enough to actually read (the soft one measured 1.5:1 on cream, which is why it looked washed out). Anything <b style="color:#ff9d94">red</b> is a real gap I still need from you.</p>
+</div>
+<section class="variant"><h2><b>01</b> Centred, hairline <em>cream</em></h2>
+      <p class="why">A serif name between two hairlines. The plainest thing in the set.</p>
+      <div class="pair">
+      <div class="pouch front L-centre" style="--bg:#efe7d5;--ink:#1e2c16;--sub:#3c5128;--acc:#71560f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>02</b> Centred, on bone <em>bone</em></h2>
+      <p class="why">The same, a shade brighter. Cheapest to match on any stock.</p>
+      <div class="pair">
+      <div class="pouch front L-centre" style="--bg:#f7f4ec;--ink:#1e2c16;--sub:#3c5128;--acc:#8a6a1e">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>03</b> Flush left <em>cream</em></h2>
+      <p class="why">Everything on one left margin. Reads fastest at arm&#x27;s length.</p>
+      <div class="pair">
+      <div class="pouch front L-left" style="--bg:#efe7d5;--ink:#1e2c16;--sub:#3c5128;--acc:#71560f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>04</b> Flush left, sage <em>sage</em></h2>
+      <p class="why">A green-grey ground, so the pouch is not another cream bag.</p>
+      <div class="pair">
+      <div class="pouch front L-left" style="--bg:#dde3d6;--ink:#1b2a14;--sub:#33461f;--acc:#6a5312">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>05</b> Top rule <em>oat</em></h2>
+      <p class="why">One rule across the top, name under it, mark down at the foot.</p>
+      <div class="pair">
+      <div class="pouch front L-toprule" style="--bg:#e9e0cb;--ink:#1e2c16;--sub:#3c5128;--acc:#7f5a0f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>06</b> Top rule, greige <em>greige</em></h2>
+      <p class="why">The same structure in a warm neutral.</p>
+      <div class="pair">
+      <div class="pouch front L-toprule" style="--bg:#e4e1d8;--ink:#1e2c16;--sub:#3c5128;--acc:#7f5a0f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>07</b> Framed <em>bone</em></h2>
+      <p class="why">A thin inset border. Looks considered, costs one extra line.</p>
+      <div class="pair">
+      <div class="pouch front L-frame" style="--bg:#f7f4ec;--ink:#1e2c16;--sub:#3c5128;--acc:#8a6a1e">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>08</b> Framed, clay <em>clay</em></h2>
+      <p class="why">Warmer paper, same frame.</p>
+      <div class="pair">
+      <div class="pouch front L-frame" style="--bg:#e6d9c8;--ink:#2a2113;--sub:#4a3a1c;--acc:#7a5a14">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>09</b> Caps, wide <em>white</em></h2>
+      <p class="why">Sans caps, wide tracking, no serif anywhere. The most modern.</p>
+      <div class="pair">
+      <div class="pouch front L-caps" style="--bg:#fcfbf7;--ink:#1e2c16;--sub:#46543a;--acc:#526a4b">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>10</b> Caps, wide, sage <em>sage</em></h2>
+      <p class="why">The same in green-grey.</p>
+      <div class="pair">
+      <div class="pouch front L-caps" style="--bg:#dde3d6;--ink:#1b2a14;--sub:#33461f;--acc:#6a5312">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>11</b> Half band <em>cream</em></h2>
+      <p class="why">Top third tinted, name below the join.</p>
+      <div class="pair">
+      <div class="pouch front L-half" style="--bg:#efe7d5;--ink:#1e2c16;--sub:#3c5128;--acc:#71560f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>12</b> Half band, kraft <em>kraft</em></h2>
+      <p class="why">On brown stock — one ink, lowest cost of the twenty.</p>
+      <div class="pair">
+      <div class="pouch front L-half" style="--bg:#cdb28d;--ink:#23331a;--sub:#33461f;--acc:#23331a">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-ink.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>13</b> Kraft, plain <em>kraft</em></h2>
+      <p class="why">Brown stock, nothing but type. Hardest to get wrong.</p>
+      <div class="pair">
+      <div class="pouch front L-centre" style="--bg:#cdb28d;--ink:#23331a;--sub:#33461f;--acc:#23331a">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-ink.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>14</b> Corner mark <em>bone</em></h2>
+      <p class="why">Logo in the top corner, name low. Lots of air in the middle.</p>
+      <div class="pair">
+      <div class="pouch front L-corner" style="--bg:#f7f4ec;--ink:#1e2c16;--sub:#3c5128;--acc:#8a6a1e">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>15</b> Corner mark, oat <em>oat</em></h2>
+      <p class="why">The same with a little more warmth.</p>
+      <div class="pair">
+      <div class="pouch front L-corner" style="--bg:#e9e0cb;--ink:#1e2c16;--sub:#3c5128;--acc:#7f5a0f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>16</b> Stacked, tall <em>greige</em></h2>
+      <p class="why">Name set larger over two lines. Best for long names like Chatpat.</p>
+      <div class="pair">
+      <div class="pouch front L-tall" style="--bg:#e4e1d8;--ink:#1e2c16;--sub:#3c5128;--acc:#7f5a0f">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-mid.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>17</b> Deep green <em>forest</em></h2>
+      <p class="why">The dark option, kept simple. Brass used once.</p>
+      <div class="pair">
+      <div class="pouch front L-centre" style="--bg:#2c4220;--ink:#f2efe2;--sub:#dcd6c2;--acc:#d0b273">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-soft-cream.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>18</b> Deep green, left <em>forest</em></h2>
+      <p class="why">Dark and flush left.</p>
+      <div class="pair">
+      <div class="pouch front L-left" style="--bg:#2c4220;--ink:#f2efe2;--sub:#dcd6c2;--acc:#d0b273">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-soft-cream.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>19</b> Near black <em>ink</em></h2>
+      <p class="why">Almost black with caps. The quietest of the dark ones.</p>
+      <div class="pair">
+      <div class="pouch front L-caps" style="--bg:#1b2013;--ink:#f2efe2;--sub:#cdc6b2;--acc:#c1a257">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-soft-cream.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section><section class="variant"><h2><b>20</b> Near black, framed <em>ink</em></h2>
+      <p class="why">Dark with a brass hairline frame.</p>
+      <div class="pair">
+      <div class="pouch front L-frame" style="--bg:#1b2013;--ink:#f2efe2;--sub:#cdc6b2;--acc:#c1a257">
+        <span class="veg"><i></i></span>
+        <img class="mark" src="assets/logo-stack-soft-cream.png" alt="DS SATVA">
+        <div class="mid">
+          <h3>Garam Masala</h3>
+          <span class="dv">गरम मसाला</span>
+          <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+        </div>
+        <span class="form">Ground &middot; 100 g</span>
+        <div class="strip">Keep in a cool, dry place</div>
+      </div>
+      <div class="pouch back">
+        <div class="panel">
+          <div class="row">
+            <div class="fssai"><div class="m2">fssai</div><span class="no">TO FILL</span></div>
+            <div class="by"><h4>Manufactured &amp; marketed by</h4><b>DS Satva Foods</b>
+              <span class="todo">TO FILL &mdash; street, area, PIN</span><br>Chhatrapati Sambhajinagar, Maharashtra</div>
+          </div>
+          <div class="fields">
+            <span>Net Weight</span><i></i><span>Batch / Lot No.</span><i></i>
+            <span>Packed On</span><i></i><span>Best Before</span><i></i>
+            <span>MRP &#8377; <small>(incl. taxes)</small></span><i></i>
+          </div>
+          <div class="ing"><b>Ingredients:</b> <span class="todo">TO FILL &mdash; by weight, highest first</span><br>
+            <b>Allergen:</b> <span class="todo">TO FILL</span></div>
+          <table class="nut"><tr><th colspan="2">Nutrition (per 100 g)</th></tr>
+            <tr><td>Energy</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Protein / Carbs / Sugars</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Fat / Saturated / Trans</td><td class="todo">TO FILL</td></tr>
+            <tr><td>Sodium</td><td class="todo">TO FILL</td></tr></table>
+          <div class="addr"><b>Customer care:</b> +91 77099 32222 &middot; dssatva@gmail.com<br>Country of origin: India</div>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler, no polish.</p>
+          <div class="icons"><span class="veg"><i></i></span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/></svg>
+            <span class="sb">Swachh Bharat</span></div>
+          <div class="epr"><b>EPR:</b> <span class="todo">TO FILL</span> &middot; Bag mfg. <span class="todo">TO FILL</span> &middot;
+            Consent <span class="todo">TO FILL</span> &middot; Above 50 microns &middot; 100% recyclable</div>
+        </div>
+      </div></div></section>
+</body></html>
