@@ -34,7 +34,7 @@ photo if the file at its `img` path exists, and a designed colour tile if it doe
 not — so adding a photo is a file drop, no code edit. Save a **square** image,
 680x680 or larger.
 
-The "Photo coming" pill was removed from the cards: with 16 of 21 products still
+The "Photo coming" pill was removed from the cards: with most of the range still
 un-photographed it read as an unfinished site to a buyer. **This list is now the
 only record of what is missing** — keep it current.
 
@@ -60,24 +60,43 @@ Replace those last two first when you have real pack shots.
 
 Still needed:
 
-14 of the 21 products, after two were sourced on 3 Sep 2026 (see below).
+16 of the 23 products. The Shelf column is the shelf as of 16 Sep 2026 — Spices,
+Pulses, Seeds, Healthy Essentials — with the old six-way shelf in brackets, since
+that finer split still lives in each product's `cat` field.
 
-| Product | Save the photo as | Group |
+| Product | Save the photo as | Shelf |
 |---|---|---|
-| Kanda Lasun Masala | `assets/p-kandalasun.jpg` | blend |
-| Meat Masala | `assets/p-meat.jpg` | blend |
-| Chaat Masala | `assets/p-chaat.jpg` | blend |
-| Chatpat Masala | `assets/p-chatpat.jpg` | blend |
-| Cumin Seeds | `assets/p-jeera.jpg` | whole spice |
-| Mustard Seeds | `assets/p-rai.jpg` | whole spice |
-| Fenugreek Seeds | `assets/p-methi.jpg` | whole spice |
-| Chia Seeds | `assets/p-chia.jpg` | seeds |
-| Himalayan Pink Salt | `assets/p-pinksalt.jpg` | pantry |
-| Unprocessed Sugar | `assets/p-khandsari.jpg` | pantry |
-| Groundnut Oil | `assets/p-groundnutoil.jpg` | oils |
-| Sesame Oil | `assets/p-sesameoil.jpg` | oils |
-| Mustard Oil | `assets/p-mustardoil.jpg` | oils |
-| Coconut Oil | `assets/p-coconutoil.jpg` | oils |
+| Kanda Lasun Masala | `assets/p-kandalasun.jpg` | Spices (blend) |
+| Meat Masala | `assets/p-meat.jpg` | Spices (blend) |
+| Chaat Masala | `assets/p-chaat.jpg` | Spices (blend) |
+| Chatpat Masala | `assets/p-chatpat.jpg` | Spices (blend) |
+| Cumin Seeds | `assets/p-jeera.jpg` | Spices (whole) |
+| Mustard Seeds | `assets/p-rai.jpg` | Spices (whole) |
+| Fenugreek Seeds | `assets/p-methi.jpg` | Spices (whole) |
+| Toor Dal | `assets/p-toor.jpg` | Pulses |
+| Chana Dal | `assets/p-chana.jpg` | Pulses |
+| Chia Seeds | `assets/p-chia.jpg` | Seeds |
+| Himalayan Pink Salt | `assets/p-pinksalt.jpg` | Healthy Essentials (pantry) |
+| Unprocessed Sugar | `assets/p-khandsari.jpg` | Healthy Essentials (pantry) |
+| Groundnut Oil | `assets/p-groundnutoil.jpg` | Healthy Essentials (oils) |
+| Sesame Oil | `assets/p-sesameoil.jpg` | Healthy Essentials (oils) |
+| Mustard Oil | `assets/p-mustardoil.jpg` | Healthy Essentials (oils) |
+| Coconut Oil | `assets/p-coconutoil.jpg` | Healthy Essentials (oils) |
+
+**Shelf photographs** (the picture on a category card and on that shelf's hero
+slide) are probed at `assets/cat-<shelf id>.jpg`. Three of the four are stand-ins
+copied from the old shelves and should be replaced with a shot that is actually
+of that shelf:
+
+| File | What it is now | Replace with |
+|---|---|---|
+| `cat-spices.jpg` | copy of `cat-ground.jpg` — turmeric in bowls | fine in the meantime; it is genuinely our category |
+| `cat-pulses.jpg` | copy of `mission-daily.jpg` — mung, buckwheat and rice | **replace first** — it shows neither toor nor chana |
+| `cat-essentials.jpg` | copy of `cat-oils.jpg` — one oil bottle | a shot with the salt and khandsari in it too |
+
+`cat-ground.jpg`, `cat-whole.jpg`, `cat-blend.jpg`, `cat-pantry.jpg` and
+`cat-oils.jpg` are all still on disk and still used — the "How it is made" flip
+cards read three of them directly.
 
 Pav Bhaji Masala was removed from the range on 3 Sep 2026, so `p-pavbhaji.jpg` is
 no longer wanted.
@@ -1940,3 +1959,986 @@ voices cream · contact sage · footer DARK
 That is now **four moves in a row that each broke this rule** (Essentials deleted,
 recipes up, origin to third, why-choose to third). Reordering moves two seams every
 time — run the adjacency check, always.
+
+### 10 Sep 2026 — the sweetgreen plate shape on "Cook something for someone"
+
+The owner pointed at sweetgreen.com's menu row and asked for "this shape …
+the shapes of the plate inside". Measured what sweetgreen actually does before
+copying it: their `.menu-item__image` is a plain 366×366 square with
+`border-radius: 20px` and no clip-path or mask anywhere on the page. The shape
+they liked is not the tile — it is the **bowl in the photograph**, a soft square
+whose corners are so full it reads as round.
+
+That outline is a superellipse (|x|⁴+|y|⁴=1, the "squircle"). CSS has no keyword
+for it, and `border-radius` cannot make one: a radius rounds only the corner arc
+and leaves the sides flat, while a squircle curves continuously the whole way
+round — and it is that continuous curve that reads as a bowl instead of a
+rounded box. So `.recgrid .rshot` now carries a 32-point `clip-path: polygon()`
+tracing the superellipse in **percentages**, which keeps the shape true at every
+card width (261px on desktop, 339px at 390px wide). 32 points puts the worst
+chord error under 0.7px at the desktop size.
+
+The photos went from 4:3 to 1:1 to suit it (`object-fit: cover` already handled
+the recrop). Section height 511 → 487px, still inside a 625px viewport.
+
+**Alignment.** The heading was `text-align:center; max-width:52ch; margin:0 auto`
+sitting over a full-bleed four-column grid. Both were centred on 613, so nothing
+was mathematically off — but a narrow centred block over a wide grid *reads* as
+unaligned, which is what the owner saw. sweetgreen sets its type to the grid
+edge, so ours does too: heading, lede, cards and the "Ask for a recipe" button
+now all start at x=50 (x=18 on mobile).
+
+One trap on the way: `.rechead` is defined twice, and the earlier definition is
+a wrapping flex row left over from when a heading and a link shared one line.
+Overriding only `text-align`/`margin` left it a flex container, so the h2 and
+the lede were two wrapped flex items carrying the row's 24px `gap` — a 56px hole
+between them. The later rule now sets `display:block` explicitly.
+
+Verified at 1240×625 and 390×780: zero horizontal overflow, titles and the
+"made with" lines each on one baseline, contrast untouched.
+
+### 10 Sep 2026 — the paradox block deleted
+
+"We study a phone for days. We buy our food out of habit." — `section.voices
+#paradox`, the three-card comparison with the dark odd-one-out — removed at the
+owner's request. Backed up to `REMOVED-paradox-block.html` (markup) and
+`REMOVED-paradox-css.txt` (the `.voices/.vgrid/.vcard/.vnote` rules) in the
+scratchpad before cutting, as with the earlier deletions.
+
+What had to go with it:
+
+- **Both "Paradox" nav links** (header and footer). The header now reads
+  Our Range · Our Story · Contact. Checked every in-page `href="#…"` against the
+  document afterwards: zero dead anchors.
+- **The CSS**, ~25 lines. Also removed `.voices` from the selector list in the
+  `max-height:1000px` short-window rule, which is where the previous deletions
+  left `.why` and `.promise` behind — both are now gone from that list too.
+- The block's own `How we make it` button pointed at `#made`, which still
+  exists, so nothing was orphaned in the other direction.
+
+**Ground order.** The block was a cream gradient between the saheli (dark green
+`#3c5128`) and contact (sage `#e6ede0`). Removing it puts dark next to sage —
+different families, so the alternation rule still holds and no seam opened.
+Verified on the rendered page rather than by reading the CSS: sections now run
+hero → cream → ivory → cream → mission gradient → cream → sage → dark → sage.
+
+Page 6511 → 5889px. Zero console errors, zero horizontal overflow.
+
+Note for future full-page screenshots: sections that have never been scrolled
+into view shoot **blank**, because the reveal observer has not fired on them.
+Add the reveal classes by hand before capturing, or the seam you are checking
+will look like a hole.
+
+### 10 Sep 2026 — the icon was painting over the heading in the circles
+
+The owner reported the drawing overlapping the letters inside each circle. It
+was real, and the cause was not in the circle CSS at all:
+
+```
+@media (max-height:1000px){
+  .reasons .rgrid svg{width:clamp(74px,13vh,120px);height:auto;}   /* the bug */
+}
+```
+
+That rule was written when these were 212px line drawings on a flat ground, and
+it survived the move into the circles. `.reason .art` sized the wrapper to 55px
+and `.reason .art svg` asked for `width:100%`, but this rule has the same
+specificity (0,2,1) and comes later in the file, so it won: 13vh of a 625px
+window is **81.25px** — the exact figure measured on the svg — and with
+`overflow:visible` the extra 26px painted straight down onto the h3. It only
+ever appeared on windows under 1000px tall, which is why it went unnoticed.
+
+Diagnosing it took a detour worth recording: `getComputedStyle(svg).width`
+reported 81.25px while the parent reported 54.55px, and an inline `width` of the
+same `clamp()` fixed it — which looks exactly like a percentage failing to
+resolve, and I wrote that down as the cause before checking. It was not. The way
+to actually find it is to walk every rule in `document.styleSheets`, including
+inside `@media`, and test `el.matches(rule.selectorText)` — that lists what is
+really in the cascade, media queries and all, instead of what you expect to be.
+
+Three changes:
+
+- **`--icon` on `.reason .art`**, used by the wrapper *and* the svg, so the two
+  can no longer be sized by different rules. The short-window rule now moves
+  that one property (`clamp(40px,8.6vh,58px)` — smaller on a short window, which
+  was its intent all along) instead of setting the svg's width behind its back.
+- **`overflow:hidden` on the svg.** All four drawings sit inside their 0-200
+  viewBox (the widest spans 16.3-184.4), so this clips nothing today; it is a
+  guard so a future icon drawn past the edge cannot land on the type again.
+- **`min-height:7em` on `.reason p`** (five lines at line-height 1.4). The four
+  circles are the same size and their content is centred, so the standards card
+  with three lines of copy centred its whole block 15px below its neighbours.
+  Reserving the tallest body's height puts every icon and every title on one
+  line across the row.
+
+**Mobile, found while verifying.** At 390px the circles were not circles: capped
+at the 230px floor meant for four-across, the content was taller than the box,
+and `aspect-ratio` gives way in that case — they were rendering as 230x287
+ovals, each a different height. One per row there, so the circle gets the column:
+`max-width:330px`, and they are round again with the copy 28px clear of the curve.
+
+Measured after, at 1240x625, 1440x1100 and 390x780: circles square to within a
+pixel, no icon/heading overlap, every title and body inside the curve, all four
+icons and titles on one baseline, zero horizontal overflow.
+
+### 10 Sep 2026 — Our Mission rebuilt as a two-slide slider, in the Rumi layout
+
+The owner pointed at rumispice.com/pages/about: "let this our mission block be
+designed this WAY with one slider having mission and the other one story."
+
+**The layout was measured, not eyeballed.** At 1240 wide their row is:
+
+| | Rumi | ours |
+|---|---|---|
+| photograph | 368 x 556 (2:3), flush left | 360 x 540 at 1440x1100 |
+| gap to the copy | 71px | 71px |
+| copy | top-aligned with the picture | same |
+| body type | 16px / 28.8px (line-height 1.8) | 1.04rem / 1.8 |
+
+Top alignment is most of the look — it is what leaves the deep well of space
+under the paragraph. Their tile has square corners; ours keeps the site's 20px
+radius, because square corners here would be the only ones on the page.
+
+**The picture is sized by viewport HEIGHT** (`height:clamp(280px,56vh,540px)`
+with `aspect-ratio:2/3`, the column `auto`), not by width. A 2:3 portrait at
+Rumi's 33% of the wrap is 556px tall, which is most of a laptop window on its
+own, and this section has to fit a screen. Driving the height and letting the
+ratio give the width is the only way a fixed-ratio picture can answer to the
+space it has — the same trick the recipe strip already uses.
+
+**Two slides, stacked in one grid cell** rather than laid out in a track. A
+track has to have its width measured and shifted, which is the trap the recipe
+marquee hit (half the track is not the pitch once a gap exists). One cell needs
+no arithmetic, cross-fades for free, and takes the height of the taller slide,
+so the ground does not jump when they swap.
+
+Autoplay follows the shelf slider's manners exactly — pauses under the pointer
+and on focus, pauses on a hidden tab, **stops for good** once a visitor drives
+it, never starts under `prefers-reduced-motion` — at 9s rather than 6s, because
+a slide here is a paragraph to read. The off slide is `inert` and `aria-hidden`,
+not just faded: it is still in the grid cell, so it has to leave the reading
+order too. Verified live: it advanced on its own at 9s, and after one click on
+the arrow it had not moved 11 seconds later.
+
+**Copy.** Slide 1 is the mission, word for word as it was. Slide 2 is a precis
+of Our Story that introduces no new claim — every line is condensed from the
+owner's own copy in the `#story` section — and it links to that section rather
+than replacing it. The long story stays where it is.
+
+**Two photographs, both Pexels, free commercially, no attribution required:**
+
+- `mission-daily.jpg` — mung beans, rice, sunflower seeds and peppercorns in
+  small bowls on warm stone (7421306, Vie Studio)
+- `story-stone.jpg` — a stone mortar and pestle with dried chillies and whole
+  spices (33428717, shootsaga)
+
+Centre-cropped to 2:3 and resized to 900x1350, ~145KB each. **Neither shows a
+person, a pack or a facility** — deliberately. Rumi puts a founder portrait
+here, and a stock portrait beside the words "Our story" would read as our
+founder, which is exactly the line the media-honesty rule draws. A stone mortar
+carries the same meaning and claims nothing. The owner's own photograph should
+replace it when one exists.
+
+The colour-shifting ground stays untouched: it is the thing the owner asked for
+when this section was built, and the new layout sits on top of it.
+
+Checked at 1240x625, 1440x1100 and 390x780 (one column, picture 4:3 above the
+copy): fits the viewport at every size, zero horizontal overflow, no console
+errors, and next/prev/dots all drive it with `aria-selected` tracking.
+
+### 10 Sep 2026 — the mission slide after brightland.co, and the story folded in
+
+Two changes to the slider built earlier today.
+
+#### 1. The mission slide, in Brightland's layout
+
+The owner pointed at brightland.co. Their mission block **reverses** the Rumi
+one: copy on the LEFT, picture on the RIGHT, the mission set as a **quotation**
+rather than a headline, and signed underneath. Measured at 1240 wide:
+
+| | Brightland | ours |
+|---|---|---|
+| copy column | 677 | 666 |
+| quote | 40px, breaking at 26 characters | clamp to 2.35rem, capped 26ch (624px vs their 621) |
+| picture | 449 x 520, 18px radius | 440 x 313 at 625px tall, 439 x 540 at 1100 |
+| column gap | 18px | 20px |
+| caption | 12px, letter-spacing .6px, capitalised | .72rem, .1em, uppercase |
+
+The tight 18px gap is the deliberate part — it makes the picture read as a panel
+butting against the words rather than a separate column — and it is the thing
+that went wrong twice while building it:
+
+- `.mscopy` still carried the Rumi slide's `max-width:64ch`, so the copy box
+  ended at 722 while the picture began at 875. Brightland's 18px gap had become
+  **153px**. The measure now lives on the quote (26ch) and the paragraph (46ch),
+  where it belongs, and the column is free to meet the picture.
+- Sizing the picture by viewport height (right for the Rumi slide) left the
+  quote ending **201px** short of it on a laptop window. On Brightland the
+  picture fills a *share* of the width — 39% against the copy's 59% — and is
+  cropped to fit. Doing the same restored the gap to 20px.
+
+**The signature.** Brightland signs this with a scan of the founder's
+handwriting and her name. There is no signature and no founder name anywhere in
+this project, and inventing either would be a lie on the owner's own page — so
+it is signed with the brand mark and the words already used to sign off Our
+Story. Swap in a scan and a name when they exist.
+
+`mission-daily.jpg` was **re-exported square** (1100x1100). The slot's ratio
+runs from 1.4:1 on a short window to 0.81 on a tall one, and the old 2:3
+portrait master crushed to a hard centre crop at the wide end — partial bowls at
+both edges. A square master crops honestly at both extremes; both were rendered
+and looked at before the change was kept.
+
+#### 2. Our Story now lives inside the story slide
+
+"Take the whole story from this block and keep it here in this block itself, so
+that when the Read the whole story is clicked, the person is able to read the
+whole story." The standalone `section.story` is gone; its markup moved verbatim
+into the story slide behind a disclosure.
+
+- **`id="story"` moved onto the slide**, so every existing `#story` link — the
+  nav, the footer, the dropdown — still lands in the right place. `satva.js`
+  listens for the hash on load and on `hashchange`, turns the slider to that
+  slide and opens the story, because otherwise the link would land on a slide
+  that is faded out and a story that is shut.
+- **Opening stops autoplay for good.** Sliding an article out from under someone
+  mid-paragraph is the worst thing this carousel could do.
+- The summary is swapped **out** when the full text opens rather than sitting
+  above it, so the same ground is not covered twice on one screen.
+- The collapse is `grid-template-rows: 0fr -> 1fr`, the animatable way to reach
+  `height:auto`. That needs **one** inner wrapper: `0fr` sizes only the first
+  row, and the story has nine children, so the other eight would have stayed at
+  their natural height. `.msfullin` is that wrapper.
+- The story's own styling (`.first` drop cap, the ICMR pull-quote and cite, the
+  four promise ticks, the sign-off) was rewritten to hang off `.msfull`, since
+  `.story` no longer exists.
+
+Ground order after the deletion: `recipes` cream meets `saheli` dark. Different
+families, so the alternation rule holds.
+
+#### A trap worth recording
+
+`@media` adds **no specificity**. The one-column phone rule was written as
+`.msslide{grid-template-columns:1fr}` (0,1,0) while the Brightland slide sets
+`.msslide.brt{...59fr 39fr}` (0,2,0) — so on a 390px phone the Brightland slide
+stayed two columns, with the copy crushed into a 128px strip 637px tall. Inside
+a media query the overriding rule has to name the same classes.
+
+Verified at 1240x625, 390x780 and by following `#story` cold: no console errors,
+no horizontal overflow, the disclosure opens to 917px of story (drop cap, pull
+quote, four promise lines, sign-off) and closes again, and the picture leads the
+copy on a phone on both slides.
+
+### 10 Sep 2026 — Satwa Saheli up, Cook something for someone down
+
+Straight swap of the two blocks. The order is now:
+
+    hero → shop by category → why choose → how we make → mission/story slider
+         → Satwa Saheli → cook something for someone → contact
+
+**Ground order re-checked, because a swap disturbs two seams, not one.** The
+families now run: cream, ivory, cream, gradient(cream→sage), DARK, cream, sage —
+no two adjacent sections share a family. Verified by reading the *rendered*
+background of every section and comparing neighbours, not by reading the CSS.
+
+Two comments in the stylesheet were describing neighbours this move invalidated,
+and both were corrected rather than left to rot:
+
+- `.mission` said its cream→sage shift ended on "the sage of the section after
+  it". The section after it is now the dark green Saheli band, so the shift no
+  longer lands on its neighbour's colour — it carries the page from cream into
+  the dark.
+- `.recipes` said its cream was what stopped "sage meeting sage" after the Dil
+  Se Pure block was deleted. It now sits between the dark Saheli band and the
+  sage of Contact, where cream is still the only one of the four grounds that
+  works.
+
+No dead anchors (`#saheli` and `#recipes` both still resolve), no horizontal
+overflow, no console errors. Page 4783px.
+
+**Pre-existing, not caused by this move:** `shop by category` is 691px against a
+625px window, so it is the one section that does not fit a short screen. It was
+that height before the swap too. Flagged, not silently changed.
+
+### 10 Sep 2026 — bigger story picture, a Vahdam circle for the mission, and a first-click bug
+
+**The story picture, bigger.** 56vh matched Rumi's 556px exactly, but on the
+laptop window this is actually read on (625px of page) that came to 233x350 and
+left 137px of screen unused under the block. Now 74vh: **308x463** here, 413x620
+on a tall window. The mission picture went with it, because the two slides share
+one grid cell and the view is as tall as the taller of them — leaving one at
+50vh would have left it small in a box sized by its neighbour.
+
+**The mission picture is now a circle, after vahdam.com.** Their block is
+copy-left / portrait-right like Brightland's, but the portrait is ROUND with the
+signature and name beside it. Measured at 1440 wide: row 1208, copy 625, and the
+right-hand group 584x369 — one flat PNG with the circle (about 252px), the
+script signature and three caption lines baked in. Ours is built from parts so
+the picture stays an image and the words stay text: a round `.msshot`
+(170–260px, `aspect-ratio:1/1`, `border-radius:50%`) with the brand mark and
+caption beside it in a flex row, stacking under it on a phone. The right column
+is `auto`, not a share of the width — a circle has a size of its own and should
+not be stretched by its column.
+
+**A first-click bug in the story disclosure, found and fixed.** The panel was
+animated `grid-template-rows: 0fr -> 1fr`. Measured, that did not interpolate:
+the row sat at 15.4px for the whole half second and then snapped to 923. `1fr`
+resolves against the container's height, and a collapsed container gives it
+nothing to resolve against. Replaced with a pixel height measured off the
+content and set from `satva.js`, which animates because both ends are real
+lengths, then handed back to `auto` so the panel still reflows.
+
+That first fix had a worse bug in it, caught only by testing the click twice
+from a cold load: the hand-back to `auto` hung off `transitionend` alone, and
+where transitions do not tick, **the first click left the panel at zero while
+the picture shrank — the section got SHORTER than when it was closed, and the
+story never appeared.** A reader would have had to press it twice. There is now
+a 600ms timer beside the `transitionend`, whichever fires first cancels the
+other, so the end state never depends on the animation running at all.
+Verified from a cold load: open → 917px panel, section 1244; close → 0, section
+555; open again → identical. `worksOnFirstClick: true`.
+
+**Measurement note.** rAF does not tick in this headless browser, so animation
+smoothness cannot be measured here — only the end states can. Two earlier
+readings in this session were artefacts of that and were wrong before they were
+right; the end-state test above is the one to trust.
+
+### 10 Sep 2026 — sweetgreen's palette, and what it cost
+
+"This colours are very nice, incorporate these colours in my site." Read off
+their live page: **sand #e8dcc6, mint #d8e5d6, off-white #f4f3e7**, ink #0e150e.
+
+This **reverses the 5 Sep decision** to use oddbox.co.uk's warmer cream
+(#fcedde). The two are not compatible — one is a warm peach, the other a
+green-cast khaki — and the newer instruction wins. #fcedde comes back on request.
+
+The part that was not a find-and-replace: **sweetgreen's grounds are darker than
+the ones they replaced**, and sweetgreen can afford that because their body ink
+is near-black. Ours is a mid-green. Measured before changing anything:
+
+| | on old cream | on new sand | on new mint |
+|---|---|---|---|
+| `--sage` #55714e | 4.74 | **4.01** | **4.17** |
+| `--gold-dk` #8a6210 | 4.77 | **4.04** | **4.20** |
+
+Four failures below AA. Both inks were darkened by the smallest amount that
+clears 4.5:1 on the darker of the two new grounds, holding hue and saturation:
+`--sage` → **#4e6848** (4.56 on sand, 4.74 on mint) and `--gold-dk` → **#7f5a0f**
+(4.59 / 4.77). Nothing else in the palette had to move.
+
+Audited afterwards on the rendered page — every text node's own colour against
+the real ground behind it, not against what the CSS says: **110 checked, zero
+failures.** The single flag was a false positive worth recording: a ghost button
+whose own background is `rgba(255,255,255,.08)` was read as an opaque white
+ground. An alpha of 0.08 is not a ground; the dark band behind it is.
+
+Section grounds now run: sand, off-white, sand, gradient, DARK, sand, mint.
+
+### 10 Sep 2026 — Satwa Saheli takes brightland.co's lilac
+
+The owner asked for the pale lilac of the press-logo bar on brightland.co.
+Sampled off their live page rather than the screenshot: `.logo__bar_section`,
+**#e2d9e3**.
+
+This was not a one-line swap. Satwa Saheli was the **dark brand green** with
+white type, pale-gold headings and an inverted ghost button — every piece of it
+was designed light-on-dark and had to be turned round. Measured on the new
+ground before touching anything:
+
+| | on #e2d9e3 | |
+|---|---|---|
+| `--ink` #1e2c16 | 10.70 | headings |
+| `--green` #2c4220 | 8.01 | body copy, the note |
+| `--band` #3c5128 | 6.36 | stat labels, the unfilled slots |
+| `--gold-dk` #7f5a0f | 4.53 | kick, the Devanagari, the 100% |
+| `--sage` #4e6848 | **4.49** | a hundredth under AA — not used here |
+| `--gold-lt` #dfb459 | **1.41** | dropped |
+| white | **1.38** | dropped |
+
+Body copy takes `--green` rather than `--sage` precisely because of that 4.49:
+body text is the last place to spend a marginal ratio. The `.saheli .btn-ghost`
+override was **deleted** rather than re-tuned — it existed only to invert the
+shared button for a dark ground, and the shared light-ground version is now
+correct again. The two placeholder tiles keep their own dark inline gradients,
+so the white icons and the dark-to-transparent caption strip on them are
+unchanged; only their borders went from pale gold to a dark translucent green.
+
+Audited after: 11 text nodes in the section, zero failures; 108 across the page,
+zero failures. Section grounds now run sand, off-white, sand, gradient, **lilac**,
+sand, mint — no two neighbours alike.
+
+**Flagged, not decided:** this was the only dark band in the body of the page.
+The footer is now the only one, so the page carries less weight low down than it
+did. If it reads too light, the green comes back on request.
+
+### 10 Sep 2026 — the two Satwa Saheli tiles take the lilac too
+
+The owner asked for "the small two rectangles" — the two placeholder tiles — in
+the same shade. Their inline `--tint` gradients went from the old dark green
+(#6f8168 → #3c5128) and brown (#b08b3a → #7d5630) to one lilac for both:
+**#dbcfdc → #cbbdcd**.
+
+A step **deeper** than the section ground (#e2d9e3), not the same colour: a
+panel painted its own background's colour is not a panel. That leaves only
+1.3:1 between tile and ground, which is fine here because the dashed border
+carries the boundary — but it is the reason the fill is not lighter still.
+
+Two things on the tiles were built for a dark fill and had to come with it:
+
+- **the icons** were `#fff` at 50% — invisible on a pale tile. Now `--band` at
+  40%.
+- **the caption scrim**, a dark-to-transparent gradient that existed to lift
+  pale gold off a dark photo tile. On the lilac it would be a dark smear across
+  the bottom of an otherwise pale panel, so it is gone and the caption takes
+  `--band` directly: 4.88:1 on the tile's darker stop, 5.82 on its lighter one.
+  `--gold-dk` was the other candidate and only reaches 3.45 there, so it is not
+  used.
+
+**For whoever drops the real photographs in:** `.stag` now has no scrim, because
+it is currently a label on a flat pale tile. The moment a real photo goes behind
+it, that scrim has to come back or the caption will sit on whatever the picture
+happens to be. The `.sahshot img` rule is still there and still correct.
+
+### 10 Sep 2026 — Get in touch deleted, its mint given to the footer
+
+"All the information in Get in touch is already there in footer." Checked before
+cutting, and it is — all four cards have a twin in the footer's Reach us column:
+the WhatsApp number, dssatva@gmail.com, the feedback form and the
+Chhatrapati Sambhajinagar address. Nothing was lost. Markup backed up to
+`REMOVED-contact-section.html`.
+
+**`id="contact"` moved onto `<footer>`**, so the nav's CONTACT link still lands
+where the contact details actually are. Zero dead anchors after.
+
+**The footer took the deleted section's mint (#d8e5d6), and that turned it
+inside out.** It was dark green with cream type, so everything had to reverse:
+
+- the **logo** was `logo-h-cream.png` — a cream logo on a mint ground is
+  invisible. Now `logo-h-dark.png`.
+- links `rgba(cream,.74)` → `--green`; column headings `--gold-pale` →
+  `--gold-dk`; muted text and the bottom bar → `--sage`; the rule between the
+  columns from pale gold to a dark translucent green.
+- the **veg mark** was `#7fbf6a`, a pale green chosen for a dark ground. The
+  real mark is a dark green square and dot on a light ground, so it is `#2f7d32`.
+- the **collage stays** — it is our own contact sheet and it was carrying the
+  footer visually. Its overlay is now a 94–97% mint wash instead of a 90–94%
+  green one. At that strength it is more a texture than a picture; if it should
+  read more strongly, the wash is the number to change.
+
+**A contrast bug fixed by accident.** `.fbrand .fnote` ("Prices are quoted per
+gram…") was `rgba(cream,.68)` on the old footer and measured **3.89:1** — below
+AA, and only the photograph behind it made it legible at all. There is a comment
+in the CSS from an earlier pass admitting exactly that. On the mint it takes
+`--sage` and measures 4.74:1.
+
+Audited after: 22 text nodes in the footer, zero failures; **122 across the
+page, zero failures**. Bands now run sand, off-white, sand, gradient, lilac,
+sand, mint — no two neighbours alike. Page 4849 → 4511px. No console errors.
+
+**Worth saying plainly:** the page now has no dark band anywhere. The Saheli
+green went this morning and the footer green has gone tonight, so every band is
+pale. It may read as light and airy or it may read as unanchored — that is a
+judgement for the owner's eye, and both greens are one line each to restore.
+
+### 16 Sep 2026 — four categories: Spices | Pulses | Seeds | Healthy Essentials
+
+The owner: *"Keep everything in the site in this order Spices | Pulses | Seeds |
+Healthy Essentials ... any thing else can be added later. SO only these four
+categories. Alter the whole site accordingly."*
+
+**`GROUPS` in `js/satva.js` is now that order, and it is the only place the order
+is written down.** The shop-by-category cards, the header's Our Range dropdown
+and the shelf counts all read it; the hero slides and the footer's range list are
+written to match it. A fifth shelf goes into `GROUPS` first, never into the
+markup first.
+
+The six shelves were not thrown away, they were **folded in**:
+
+| Was | Is now | Items |
+|---|---|---|
+| Ground spices, Whole spices, Blends | **Spices** | 12 |
+| — (new) | **Pulses** | 2 |
+| Seeds | **Seeds** | 3 |
+| Pantry, Oils | **Healthy Essentials** | 6 |
+
+Each product's `cat` still holds the *fine* shelf (`ground`, `whole`, `blend`,
+`seeds`, `pantry`, `oils` became `spices` / `pulses` / `seeds` / `essentials`),
+so the split can be un-folded later without retyping the range.
+
+**Pulses had no products at all**, while the meta description, the Why-choose
+list and Our Story have all promised "unpolished pulses" since the site was
+written. Rather than ship a category the site talks about and cannot show, it
+opens with the two dals the venture's own master list
+(`~/fmcg/Household-Items-List.md`) marks ✅ *already in your plan* — **Toor Dal**
+and **Chana Dal**. Moong, masoor, urad and rajma are on that list as later
+additions and are deliberately not here. Neither dal has a photograph, so both
+fall back to a designed tile, which is what every un-photographed product already
+does. **Check the two Hindi names and the two descriptions before this goes
+public** — they are the only product copy on the site not written from an
+existing document.
+
+Everything derived from `PRODUCTS` followed on its own: the announcement line now
+reads 23 daily kitchen staples, and the spice spectrum rule under the hero is 23
+segments.
+
+Two things that needed a decision rather than a rename:
+
+- **`Everything` is no longer a group.** It was `{id:"all"}` inside `GROUPS`,
+  which would have made the array five entries when the owner asked for four. It
+  is now a separate `ALL` constant that the dropdown prepends, so `GROUPS` is
+  exactly the four shelves and the dropdown still offers a way to see the lot.
+- **The category grid was `repeat(6,1fr)`.** With four cards that left Healthy
+  Essentials stranded alone on a second row. It is `repeat(4,1fr)` now, 2x2 under
+  1400px and a single column under 560px, so no width ends in an orphan.
+
+The Spices headline was first written *Ground, Whole & Blended* to name all three
+folded shelves. It ran to a third line where every other slide takes two, which
+made the opening slide taller than the rest, so the headline is the old Ground
+Spices line — *In Their Own Colour* — and the paragraph names the three shelves.
+
+New accents, both measured rather than picked by eye: Toor `#cf8f34` with ink
+`#8a5c14` (5.80:1 on white, 5.43:1 on cream), Chana `#cbab3c` with ink `#7f6a14`
+(5.28:1 / 4.94:1). Both clear AA on both grounds, as every other `ink` does.
+
+The four card tints are deliberately far apart — spice orange, dal sand, seed
+green, salt rose — because three of the four shelves are otherwise yellow and the
+cards read as one block.
+
+Verified in the browser at 1600 / 1440 / 1280 / 1024 / 390px: tabs, cards,
+dropdown, footer and counts all read Spices 12, Pulses 2, Seeds 3, Healthy
+Essentials 6 in that order; 12+2+3+6 = 23 = `PRODUCTS.length`; every headline two
+lines; no dead anchors; no horizontal overflow; zero console errors.
+
+**Not touched, on purpose:** the "How it is made" flip cards still have their own
+six process cards (chilli, turmeric, coriander, seeds, oils, salt). They are
+processes, not categories — they are not a second navigation and do not claim to
+be the range.
+
+### 16 Sep 2026 — one card, one frame
+
+The owner, with a screenshot of the category block: *"Fix this content to the
+page and design it so that these things are in one frame and one block."*
+
+**What was wrong.** Only the photograph was framed. `.cshot` carried the radius
+and the shadow; the blurb and the ITEMS line sat *below* it on the section's bare
+sand, outside any border. With six small cards that passed, but at four cards on
+a 1280–1400px laptop the grid dropped to two columns, each card came out ~830px
+wide and ~550px tall, and the two lines of text were stranded a long way under
+their own picture. The four shelves then needed two screens.
+
+**The frame.** `.catcard` is now the frame — white ground, one `--line` border,
+one 20px radius, `overflow:hidden`, one shadow — and the picture and the words
+live inside it. `.cshot` gave up its own radius and shadow, because doubling them
+drew a visible seam across the middle of the card. The whole card lifts and takes
+a gold border on hover, instead of the photograph sliding out from under its own
+caption.
+
+Side effect worth having: the blurb and count moved from sand onto white, so
+their contrast went **4.7:1 → 6.18:1** and **4.9:1 → 6.23:1**.
+
+**The block.** Four across now holds down to **1080px** instead of 1400px. At
+1290px that is four 268px cards on one row, the section 346px tall — the whole
+range readable without scrolling. Below 1080 it is 2x2, below 560 a single
+column.
+
+### 16 Sep 2026 — a horizontal scrollbar that was there all along
+
+Found while measuring the above at 1081px: **the whole page scrolled sideways by
+54px between about 1081px and 1224px wide.** Not the category cards — hiding that
+grid entirely changed nothing. It was the "Why choose SATVA" circles.
+
+A `.reason` circle's min-content width is its longest word (*Nutrient-preserved*)
+plus 15% padding each side, about 254px, and a `1fr` track cannot shrink below
+its min-content. At 1081px that made four tracks 258px each — 1131px of track and
+gap inside a 980px container, so the fourth circle hung 54px off the right edge
+and took the document's scroll width with it.
+
+The 4→2 breakpoint moved from 1080px to **1240px**, which is where four of those
+tracks plus three 3vw gaps actually stop fitting. Four circles still show at
+1240px and above; a 1100px window now gets 2x2 rather than a sideways scroll.
+
+This one was **not** caused by the category work and is **not** part of what was
+asked for — it is a pre-existing bug, fixed because it was found. If four circles
+are wanted back down at 1100px, put the breakpoint back and shorten the headings
+instead; the words are what set the floor.
+
+Checked after both: 1600 / 1440 / 1290 / 1200 / 1100 / 1081 / 1024 / 900 / 768 /
+560 / 390px — zero horizontal overflow at every one, cards 4 / 2x2 / 1, no
+console errors.
+
+### 16 Sep 2026 — long rectangles, and the shelves take a whole screen
+
+The owner: *"Make these pictures rectangular so that the screen has only that
+block and what we dont do goes for the next scrolling"* — then, on the shape:
+*"long rectangle"*.
+
+**The picture is sized in `svh`, not by an aspect ratio.** An aspect ratio ties
+the picture's height to the card's own width, and the card's width is set by how
+many columns fit — which has nothing to do with whether the block fills a screen.
+Since the whole point was to fill the screen, the height answers to the window:
+`clamp(280px, 56svh, 520px)`. At 1290x860 that is a **266x482 picture — a 3:5
+rectangle**. The 280px floor keeps it sane on a short laptop window; the 520px
+ceiling stops it stretching into a sliver on a tall monitor.
+
+`svh` rather than `vh` so a phone's collapsing toolbars cannot make the block
+taller than the screen it is meant to fit; a plain `vh` line sits above it for
+anything that does not know `svh`.
+
+**`.cats` is `min-height:100svh`,** a centred flex column, so the shelves hold
+one screen on their own and "What we will not do to your food" starts below the
+fold. Measured at 1290x860: section exactly 860px, the next section's top at
+exactly 860 — **0px of it visible**. `min-height`, not `height`, because at two
+columns or stacked on a phone four cards are legitimately taller than a screen
+and the section has to be allowed to grow.
+
+Portrait was rejected once before, and the old comment saying so is still worth
+reading: with SIX cards in two rows, a tall first row pushed the second row off
+the screen. Four cards on one row is what makes tall pictures possible now.
+
+Two things this broke, both found by measuring rather than by eye:
+
+- **The heading slid under the sticky nav.** With the content centred in exactly
+  one screen, a short window (1366x660) left the "SOMETHING FOR EVERY SHELF" line
+  at y=83 against a nav 81px deep — a 2px escape, and a shorter window would have
+  swallowed it. `.cats` now takes `padding-top:max(96px, ...)`, in the base rule
+  and again inside the `max-height:1000px` block which was overriding it. The
+  clearance is 82px at 1290x860 and 68px at 1366x660.
+- **The cards got narrower on a phone.** `.wrap` carries `margin:0 auto`, and an
+  auto margin on the cross axis switches OFF a flex item's stretch - so the
+  moment `.cats` became a flex column the wrap fell back to fit-content and the
+  single mobile card came out **282px wide inside a 367px wrap**. `.cats .wrap`
+  now has `width:100%`; the card is 331px again.
+
+Two columns and one column get shorter pictures — `38svh` and `34svh`, capped at
+380px and 330px — because four rows of a 56svh picture would be a very long
+scroll for the same four shelves.
+
+Checked at 1600x900, 1440x900, 1366x660, 1290x860, 1200x800, 1100, 1081, 1024,
+900x800, 390x844: no horizontal overflow anywhere, the heading clears the nav at
+every one, and where four cards sit on a single row the next section is exactly
+off-screen. No console errors.
+
+### 16 Sep 2026 — the four circles become four arches
+
+The owner, on the "What we will not do to your food" circles: *"try this in some
+other shape so that i see a uniqueness when compare to the other wesite flow and
+fit in to the screen as one block."*
+
+**The shape is an arch** — a dome over straight sides on a flat foot:
+
+```css
+--r:22px;                                                  /* the flat foot */
+border-radius:50% 50% var(--r) var(--r) / 44% 44% var(--r) var(--r);
+```
+
+Four of them side by side read as a colonnade — a shopfront, or the niches in a
+temple wall. A row of pastel circles and a row of rounded cards are both things
+every other food site has; this is not, and it belongs to this brand rather than
+to a template.
+
+**It is also what makes the block fit a screen.** A circle can only hold type
+inside its inscribed square, roughly 70% of its width, which is why it needed
+15% padding on all four sides — and that padding is what pushed its minimum width
+to ~254px and made four circles overflow the page between 1081px and 1224px
+(logged this morning; the fix then was to give up and switch to two columns at
+1240px). An arch is straight-sided exactly where the words are, so the padding is
+~26px instead of a seventh of the width, and the same copy now sits in a **216px
+arch at 1001px wide**. So four across is back, down to 1000px, verified by
+measurement at 1001px and 1024px rather than by eye — that is how the original
+bug got in.
+
+`.reasons` is `min-height:100svh`, a centred flex column, with the same
+`padding-top:max(96px, ...)` nav clearance and the same `width:100%` on its
+`.wrap` that the shelves block needed. At 1290x860 the section is exactly 860px
+and the next block shows **0px**.
+
+Two passes on the proportion, both worth recording because the first looked
+wrong for a reason that is easy to repeat:
+
+- **48svh (a 413px arch) with the content centred** left a third of each panel as
+  dead colour at the foot — the group of icon + title + copy is only ~194px.
+- **`justify-content:space-evenly`** was the obvious way to use that depth up,
+  and it was worse: it pushed the copy ~50px clear of the title it belongs to, so
+  each panel read as three floating things instead of one statement.
+- **What worked: a shallower arch, 40svh capped at 380px, content still
+  centred.** The section is `min-height:100svh` regardless, so the leftover
+  height goes into the ivory above and below the colonnade, where it reads as
+  air, instead of into the bottom of four coloured panels, where it read as a
+  mistake.
+
+Widths: four across above 1000px; 821–1000px is two across, and that band gets
+its own width cap (`clamp(240px,34vw,320px)`) because the four-across cap of 23vw
+left a 210px arch adrift in a 400px track. **That override is written as
+`.reasons .reason` and banded off `<=820px` on purpose** — the base `.reason`
+rule sits later in this file, a media query adds no specificity, and an
+equal-specificity override up at the grid rules simply loses. The one-per-row
+rule at the foot of the file still owns `<=820px`, where the arch is 330px wide.
+
+Nothing about the colours changed: the four panels keep the Huel/sleepyowl
+sampling and their darkened line art, so the contrast audit from 10 Sep stands.
+
+Measured at 1600x900, 1366x660, 1290x860, 1024x820, 1001x800, 900x800 and
+390x844: four/two/one across as intended, no copy overflowing any panel, all four
+titles on one baseline, the heading clear of the nav at every one (157px at
+1600x900 down to 55px at 1366x660), no horizontal overflow, no console errors.
+
+### 17 Sep 2026 — "How we make" is four cards, one per shelf
+
+The owner: *"Keep the design same, but here also only spices pulses seeds and
+healthy essentials should only be there"* — and, with a screenshot of this
+carousel, *"IN these cards sliding, have only those categories."*
+
+The design is untouched: same coverflow, same flip, same video front and
+photograph back, same tab strip. Only what the cards ARE has changed.
+
+Six cards named after products and processes — Chilli Powder, Turmeric,
+Coriander Powder, Seeds, Cold-Pressed Oils, Pink Salt — became the four shelves
+in `GROUPS` order, so the site names its range once instead of offering a second,
+competing list of it:
+
+| Card | Film | Back |
+|---|---|---|
+| Spices | `proc-turmeric.mp4` — turmeric on the grinding stone | `cat-spices.jpg` |
+| Pulses | **none yet** | `cat-pulses.jpg` |
+| Seeds | `proc-seeds.mp4` | `cat-seeds.jpg` |
+| Healthy Essentials | `proc-oil.mp4` — the press | `cat-essentials.jpg` |
+
+**`film` is now a separate field from `id`.** The id is the shelf; the film is
+named for what the footage actually shows. The Spices card plays turmeric being
+ground, and calling that file `proc-spices.mp4` would have invited the next
+person to believe a "spices" clip exists. `film:null` means no footage, and
+`still` is the photograph shown instead — the card then renders with **no
+`<source>` at all**, so nothing requests an mp4 that was never shot, and
+`mPaint()` already wrapped `play()` in a `.catch()`, so the card just sits on its
+still. Verified: zero console errors, zero failed requests.
+
+**Pulses is the weak card and should be fixed first.** It has one photograph and
+no film, so it shows the same still on both faces and only its words change on
+the turn. The page says so out loud - the note under the carousel now reads
+"...Pulses has no film yet at all."
+
+**A four-card coverflow needed one CSS rule.** Position comes from `--d`, the
+signed distance from centre, and with an EVEN number of cards the one opposite
+the centre has no mirror. At six it landed at `--abs: 3` and was already hidden;
+at four it lands at `--abs: 2` and hung on the right on its own with nothing at
+-2 to answer it. `js/satva.js` now writes the card count onto `.mkrow`, and the
+stylesheet hides `--abs: 2` at `[data-count="4"]` — left, centre, right, and the
+fourth rotates in. Measured with Spices centred: 354px / 638px / 921px against a
+stage midpoint of 638px, and the fourth card at opacity 0.
+
+`proc-chilli`, `proc-dhaniya` and `proc-salt` (and their posters) are now unused
+but kept: salt is the obvious second film for Healthy Essentials, and the chilli
+and coriander clips return if Spices is ever split again. `p-mirchi.jpg`,
+`p-haldi.jpg` and `p-dhane.jpg` left this block but are still each product's own
+photo in `PRODUCTS`, so nothing is orphaned.
+
+The tab strip's `aria-label` went from "Choose a spice" to "Choose a shelf".
+
+Checked at 1290x860 and 390x844: four tabs, four cards, the strip fits without
+wrapping, three cards visible and symmetrical, the flip shows the right back
+face, no horizontal overflow, no console errors.
+
+### 17 Sep 2026 — Satwa Saheli takes the pink salt wash
+
+Chosen off a comparison page built for the purpose, which previewed 26 grounds as
+the real full-width edge rather than as swatches. The owner picked **Pink salt
+wash `#f3dfdc`** — a pale step of `--himalayan #d98a8a`, the unrefined salt
+already in the range, and the only candidate that names a product we sell.
+
+**What was actually wrong with the lilac.** Not the colour — its position. This
+band's upper neighbour is the mission band's mint, and `#e2d9e3` sat only +0.042
+from it in lightness while being cool, like it. No warmth change, no step, so the
+boundary did not announce itself and the section read as a continuation of the
+one above. The salt wash is **+0.099 lighter and a 101° hue turn** from that
+mint: the edge now reads twice over.
+
+**Nothing else had to move, because every ink got better:**
+
+| | on the lilac | on the salt wash |
+|---|---|---|
+| `--ink` headline | 10.70:1 | **11.49:1** |
+| `--green` body | 8.01:1 | **8.60:1** |
+| `--band` labels | 6.36:1 | **6.83:1** |
+| `--gold-dk` kick, Marathi, numerals | 4.53:1 | **4.86:1** |
+
+`--sage` is the interesting one: it measured 4.49:1 on the lilac, a hundredth
+short of AA, which is why body copy was moved to `--green` in the first place. On
+this ground it reaches 4.83 and would now be legal — but `--green` measures 8.60,
+so it stays. White (1.38) and `--gold-lt` (1.41) remain unusable here.
+
+**Two values, in two files.** The ground is in `css/satva.css`; the placeholder
+panels' tint is inline in `index.html`, at the same 0.96x / 0.89x steps the lilac
+pair used: `#dbcfdc → #cbbdcd` became **`#e9d6d3 → #d8c6c4`**. They have to be
+changed together or they drift, and there is now a comment in the CSS saying so.
+`--band` on the tile's darker stop — the "PORTRAIT TO COME" caption — improved
+from 4.88:1 to **5.33:1**.
+
+**Correction to what was said while choosing this.** The comparison page was
+built on the belief that this band sits between two mints. It does not: the block
+below it is **`.recipes`, which computes to the sand `#e8dcc6`** — the footer's
+mint is three blocks further down, past the recipes and the spectrum rule. The
+upper edge, which is the one the owner screenshotted and asked about, is
+unaffected by the mistake. The lower edge is:
+
+- against the sand below, the salt wash is +0.046 in lightness but only a **31°
+  hue turn** — both warm, both pale. The lilac's lower edge was carried entirely
+  by hue (255°) and almost not at all by lightness (-0.011).
+
+So this change strengthens the edge that was asked about and softens the one
+below it. At +0.046 the lower boundary is still a visible step, and the recipes
+band opens with its own heading and photographs, so it does not read as one
+continuous field — but if it ever should, the fix is to push the salt wash a
+shade pinker and deeper, away from the sand's yellow, rather than to touch the
+recipes band.
+
+Verified live: ground `rgb(243,223,220)`, both tiles carrying the new tint, all
+seven pieces of type measured in the browser at the figures above, no console
+errors.
+
+### 18 Sep 2026 — the footer goes plum grey
+
+Chosen off a page of eighteen warm charcoals previewed against the sand band that
+arrives above the footer. The owner picked **plum grey `#372e35`** — a warm
+charcoal with a trace of violet, which also keeps that violet somewhere on the
+page now that Satwa Saheli has gone to the salt wash.
+
+**This answers a question the 10 Sep entry left open.** That pass ended: *"the
+page now has no dark band anywhere ... it may read as light and airy or it may
+read as unanchored — that is a judgement for the owner's eye."* The judgement is
+in. The page has weight low down again.
+
+**It is the 10 September inversion run backwards.** Every ink here was flipped
+for a light ground in September and had to flip again:
+
+| | was (on mint) | is (on plum) | measured |
+|---|---|---|---|
+| logo | `logo-h-dark.png` | `logo-h-cream.png` | — |
+| blurb + links | `--green` | `--cream` | 9.65:1 |
+| column headings, bottom Devanagari | `--gold-dk` | `--gold-pale` | 9.77:1 |
+| fnote, address, bottom bar | `--sage` | `--f-muted #c9bda4` | 7.04:1 |
+| veg mark | `#2f7d32` | `#7fbf6a` | 5.96:1 |
+| link hover | `--gold-dk` | `--gold-lt` | 6.74:1 |
+| column rule | `rgba(30,44,22,.16)` | `rgba(255,255,255,.18)` | — |
+
+None of the old values survive on this ground: `--green` 1.19:1, `--sage` 2.12,
+`--gold-dk` 2.10, the dark veg mark 2.56.
+
+**The muted text is a solid, and must stay one.** The original dark footer set
+`.fnote` to `rgba(cream,.68)`, which measured **3.89:1** and was only legible
+because of the photograph behind it; the mint fixed that by accident in
+September. It is now `--f-muted`, a solid `#c9bda4` at 7.04:1, declared once on
+`footer` so the fnote, the address line and the bottom bar cannot drift apart
+again. **Do not put the alpha back.**
+
+Collage wash is **92–95%**, between the 90–94% this footer used when it was dark
+green and the 94–97% the mint used. That pair is the dial — lower shows more
+photograph, higher more flat colour.
+
+Verified live: ground `rgb(55,46,53)`, cream logo loading, and all seven type
+roles measured in the browser at the figures above. No console errors.
+
+**Not applied, for the owner to decide:** a preview of the STACKED logo (the DS
+above the wordmark rather than beside it). The artwork already exists as
+`logo-stack-cream.png` / `logo-stack-dark.png` (760x722), so nothing needs
+drawing. The only real decision is size: the stacked file is ratio 1.05 against
+the horizontal lockup's 3.27, so at the footer's current 52px it shrinks to about
+a third of the width and reads as a stamp; it wants 88–112px, which makes the
+brand column taller than the three link columns beside it. In the sticky nav it
+costs more — a square mark drives the header deeper on every screen — so that is
+worth deciding separately from the footer.
+
+### 18 Sep 2026 — the footer takes the stacked logo
+
+`logo-h-cream.png` → **`logo-stack-cream.png`** in the footer: the DS monogram now
+sits ABOVE the wordmark rather than beside it, with "Dil Se Pure" and the wheat
+sprigs beneath. No artwork was made — that file already existed at 760x722.
+
+**The decision was the size, not the arrangement.** The horizontal lockup is
+ratio 3.27 and 52px suited it. The stacked file is all but square at 1.05, so at
+52px it came out roughly a third of the width and read as a stamp. It is now
+`clamp(84px, 9vw, 112px)`:
+
+- **112px** on a desktop, rendering 118x112. The brand column and the link
+  columns both measure 289px, so the grid stays level rather than the logo
+  dragging one column out of line.
+- **84px floor**, because below about that the strapline inside the artwork stops
+  being readable at all. On a 390px phone it lands at 88x84 with no overflow.
+
+**The nav still carries the horizontal lockup, on purpose.** A square mark in a
+sticky header drives that header deeper on every screen and pushes the block
+below it down - a different trade from the footer, where there is room. Samples
+06 and 07 on the preview page show what it would cost; that decision is still
+open.
+
+Verified at 1290x860 and 390x844: logo loading, columns level, no horizontal
+overflow, no console errors.
+
+### 18 Sep 2026 — the stacked logo, everywhere
+
+*"I want the logo to be changed in the whole site."* All three instances now
+carry the stacked lockup — DS above the wordmark, not beside it:
+
+| Where | File | Height | Rendered |
+|---|---|---|---|
+| sticky nav | `logo-stack-dark.png` | **76px** | 80x76 |
+| mission signature | `logo-stack-dark.png` | `clamp(46px,6vh,66px)` | 54x52 |
+| footer | `logo-stack-cream.png` | `clamp(84px,9vw,112px)` | 118x112 |
+
+**The nav height is 76px because it was measured, not chosen.** The bar's depth
+is set by its own padding and the WhatsApp button, not by the logo, so there was
+free headroom above the old 50px. Trialled in the browser: the bar stays exactly
+**81px deep at 62, 68, 72 and 76**, and only grows at 82 (83px) and 88 (89px).
+76 is therefore the largest this mark can be for nothing — a 23% bigger logo than
+the 62px I first set, with the header, the full-screen blocks' nav clearance and
+everything below it untouched.
+
+That clearance was the thing to watch: `.cats` and `.reasons` are `100svh` blocks
+whose headings are held off the sticky nav by `padding-top:max(96px,...)`. Had
+the bar grown, that number would have had to grow with it. It did not, and the
+measured clearances are unchanged at 108px and 148px.
+
+The mission signature's cap went from 42px to 66px for the same reason as the
+footer's: a square mark at the old height was 44px wide and read as a speck
+beside the caption. Its `width`/`height` attributes were corrected to 760x722 to
+match the new file, so the layout reserves the right box before it loads.
+
+Checked at 1290x860 and 390x844: all three loading, the bar still 81px, the logo
+clear of the burger by 216px on a phone, no horizontal overflow, no console
+errors.
+
+### 18 Sep 2026 — "Cook something for someone" takes the mission's mint
+
+*"Keep this same background for cook for someone also - green shade."* The
+recipes block was the sand `#e8dcc6`; it now carries the mission band's own
+ground — the same two mint stops on the same 160deg — so the two green blocks on
+the page are green in the same way rather than approximately.
+
+**The static pair, not the live one.** The mission mixes those stops against
+cream through a `--mx` property as you scroll; that is the colour-shifting ground
+the owner asked for in September. Copying the shift as well would have put two
+grounds changing under the reader at once, so this is where that gradient
+settles.
+
+**Two rules were fighting over this ground.** There were two `.recipes` blocks in
+this file at equal specificity, both setting a background — the later silently
+won while the earlier one sat there looking authoritative, carrying a comment
+about sage that had not been true for some time. The ground is declared once now;
+the earlier rule keeps only layout and says so.
+
+**A contrast bug the change exposed.** The block's lede was `--sage`, which was
+fine on the flat sand. On a GRADIENT a colour has to clear AA at *both* stops,
+and `--sage` only managed the lighter one — **4.74:1 on `#d8e5d6` but 4.24 on
+`#c9dbc5`**. It is `--band` now: 6.71 / 6.01. (`--sage-soft` would have been
+worse still, 3.71 / 3.32. The palette note at the top of this file already says
+to prefer `--sage` over `--sage-soft` on a sage-mist ground; on the deeper stop
+of the gradient even `--sage` is not enough, which is worth knowing the next time
+a block takes this ground.) Both copies of the `.rechead .lede` rule were changed
+together so they cannot drift.
+
+Everything else on the block was already safe at both stops: heading and card
+titles 11.28 / 10.11, the ghost button 8.44 / 7.56, and the four "MADE WITH"
+labels 14.40, since those already mix their product accent toward the ink — a fix
+put in when this block last sat on a sage ground.
+
+The run of bands now reads **mint · salt wash · mint · plum**, with no two
+neighbours alike. Verified at 1290x860: no horizontal overflow, no console errors.

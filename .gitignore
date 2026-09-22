@@ -1,0 +1,8 @@
+
+# Dev scaffolding, 22 Sep 2026 — not part of the site.
+# ports/ holds one folder per local preview port; each is an index.html plus
+# symlinks back into site-v3, so committing it would duplicate the whole site
+# as broken links. Recreate with the note in site-v3/README-v3.md.
+ports/
+# timestamped safety copies taken before editing a live stylesheet
+*.bak-*

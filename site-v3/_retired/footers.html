@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     FOOTER OPTIONS — scratch comparison page.
+     Rebuilt 22 Sep 2026 after being deleted too eagerly in the
+     tidy-up that followed the owner picking Option C.
+
+     Every option drops the pinned collage photograph and stands on
+     a FLAT ground. Content is identical to the live footer, word
+     for word, so the only variable is the framework.
+
+     OPTION C IS THE ONE THAT IS LIVE. It is shown here as it was
+     proposed; the built version in css/footer-rail.css differs in
+     two small ways found by measuring afterwards - the link rows
+     are 7px apart rather than 17, and the single-column breakpoint
+     is 360px rather than 460.
+
+     Not part of the site. Delete when it is no longer wanted.
+     ============================================================ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Footer options — DS Satva</title>
+<link rel="icon" href="assets/mark-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1e2c16; --green:#2c4220; --band:#3c5128;
+  --cream:#e8dcc6; --seed:#fff1e4;
+  --gold-lt:#dfb459; --gold-pale:#f1ddab;
+  --plum:#372e35; --muted:#c9bda4;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:#20231c;font-family:"Jost",system-ui,sans-serif;color:#f4f3e7;}
+.lab{max-width:1280px;margin:0 auto;padding:44px 24px 14px;}
+.lab h2{font:600 .78rem/1 "Jost",sans-serif;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-lt);margin:0 0 8px;}
+.lab .live{display:inline-block;margin-left:10px;padding:3px 9px;border-radius:999px;background:#7fbf6a;color:#12200d;font-size:.6rem;letter-spacing:.14em;}
+.lab p{margin:0;font-size:.92rem;line-height:1.55;color:rgba(244,243,231,.72);max-width:76ch;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(18px,3.4vw,44px);}
+.dv{font-family:"Tiro Devanagari Hindi",serif;}
+a{text-decoration:none;}
+.wa{display:inline-flex;align-items:center;gap:9px;padding:13px 24px;border-radius:999px;
+    background:linear-gradient(160deg,#f7dc96 0%,#e0a51a 42%,#a8760f 100%);color:#221806;
+    font-weight:600;font-size:.88rem;}
+.veg{display:inline-flex;align-items:center;gap:8px;}
+.veg i{width:13px;height:13px;border:2px solid #7fbf6a;display:grid;place-items:center;border-radius:2px;}
+.veg i::after{content:"";width:6px;height:6px;border-radius:50%;background:#7fbf6a;}
+
+/* ── A — EDITORIAL ── */
+.fA{background:var(--ink);padding:clamp(46px,5vw,76px) 0 24px;}
+.fA .top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:start;}
+.fA .say{font:400 clamp(1.5rem,3vw,2.5rem)/1.2 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;color:var(--gold-pale);margin:0 0 20px;}
+.fA .sub{margin:0 0 26px;font-size:.96rem;line-height:1.62;color:var(--cream);max-width:46ch;}
+.fA .cols{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(18px,2.4vw,34px);}
+.fA h3{font:600 .66rem/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin:0 0 14px;}
+.fA ul{list-style:none;margin:0;padding:0;} .fA li{margin:0 0 9px;}
+.fA a,.fA span.pl{color:var(--cream);font-size:.92rem;} .fA a:hover{color:var(--gold-lt);}
+.fA .rule{height:1px;background:rgba(232,220,198,.2);margin:clamp(30px,4vw,52px) 0 18px;}
+.fA .btm{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.78rem;color:var(--muted);}
+.fA .credit{margin:0 0 14px;font-size:.72rem;color:var(--muted);}
+.fA .credit a{color:inherit;text-decoration:underline;}
+
+/* ── B — SPLIT BAND ── */
+.fB .upper{background:var(--seed);padding:clamp(40px,4.6vw,68px) 0;text-align:center;}
+.fB .upper img{width:120px;display:block;margin:0 auto 18px;}
+.fB .upper h3{font:400 clamp(1.4rem,2.7vw,2.1rem)/1.22 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;color:var(--ink);margin:0 auto 12px;max-width:26ch;}
+.fB .upper p{margin:0 auto 24px;max-width:52ch;color:var(--band);font-size:.95rem;line-height:1.6;}
+.fB .lower{background:var(--green);padding:clamp(28px,3.2vw,46px) 0 20px;}
+.fB .row{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(16px,2.4vw,34px);}
+.fB h4{font:600 .66rem/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin:0 0 13px;}
+.fB ul{list-style:none;margin:0;padding:0;} .fB li{margin:0 0 8px;}
+.fB a,.fB span.pl{color:var(--cream);font-size:.9rem;} .fB a:hover{color:var(--gold-pale);}
+.fB .rule{height:1px;background:rgba(232,220,198,.18);margin:clamp(24px,3vw,38px) 0 16px;}
+.fB .btm{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:.76rem;color:rgba(232,220,198,.72);}
+.fB .credit{margin:0 0 14px;font-size:.72rem;color:var(--muted);} .fB .credit a{color:inherit;text-decoration:underline;}
+
+/* ── C — COMPACT RAIL (live) ── */
+.fC{background:var(--plum);padding:clamp(30px,3.4vw,48px) 0 18px;}
+.fC .bar{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,2.05fr) minmax(0,.95fr);gap:clamp(22px,3.6vw,58px);align-items:start;}
+.fC img.logo{width:104px;display:block;margin:0 0 14px;}
+.fC .tag{margin:0;font-size:.85rem;line-height:1.55;color:var(--muted);max-width:30ch;}
+.fC .links{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,30px);}
+.fC h3{font:600 .62rem/1 "Jost",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-pale);margin:0 0 11px;}
+.fC ul{list-style:none;margin:0;padding:0;display:grid;gap:7px;} .fC li{margin:0;}
+.fC a,.fC span.pl{color:var(--cream);font-size:.87rem;line-height:1.45;} .fC a:hover{color:var(--gold-lt);}
+.fC .rule{height:1px;background:rgba(232,220,198,.16);margin:clamp(20px,2.6vw,32px) 0 14px;}
+.fC .btm{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-size:.75rem;color:var(--muted);}
+.fC .fnote{margin:12px 0 0;font-size:.78rem;line-height:1.5;color:var(--muted);}
+.fC .credit{margin:8px 0 0;font-size:.72rem;line-height:1.5;color:#b3a891;}
+.fC .credit a{color:inherit;text-decoration:underline;text-underline-offset:2px;}
+
+@media (max-width:980px){ .fC .bar{grid-template-columns:minmax(0,1fr) minmax(0,1fr);} .fC .reach{grid-column:1/-1;} }
+@media (max-width:900px){ .fA .top{grid-template-columns:1fr;} .fB .row{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:700px){ .fC .bar{grid-template-columns:1fr;} .fC .links{grid-template-columns:repeat(2,1fr);} }
+@media (max-width:560px){ .fA .cols,.fB .row{grid-template-columns:1fr;} }
+@media (max-width:360px){ .fC .links{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<div class="lab">
+  <h2>Option A — Editorial</h2>
+  <p>Flat <b>--ink</b>. A single large line carries the brand instead of a logo block, with the three link columns tucked to the right so the left half stays quiet. Tallest of the three, and the most confident.</p>
+</div>
+<footer class="fA"><div class="wrap">
+  <div class="top">
+    <div>
+      <p class="say">Ground slowly. Packed small.<br>Sold honestly.</p>
+      <p class="sub">Naturally ground spices, unpolished pulses, nutrient-dense seeds and unrefined everyday essentials — clean, authentic and untouched by harmful chemicals.</p>
+      <a class="wa" href="#"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>Order on WhatsApp</a>
+    </div>
+    <div class="cols">
+      <div><h3>The range</h3><ul><li><a href="#">Spices</a></li><li><a href="#">Pulses</a></li><li><a href="#">Seeds</a></li><li><a href="#">Healthy Essentials</a></li></ul></div>
+      <div><h3>Explore</h3><ul><li><a href="#">Our Range</a></li><li><a href="#">Recipes</a></li><li><a href="#">How we make</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Our Story</a></li><li><a href="#">Satwa Saheli</a></li></ul></div>
+      <div><h3>Reach us</h3><ul><li><a href="#">+91 77099 32222</a></li><li><a href="#">dssatva@gmail.com</a></li><li><a href="#">Sample feedback form</a></li><li><span class="pl">Chhatrapati Sambhajinagar, Maharashtra</span></li></ul></div>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <p class="credit">Flax field photograph by Jim Linwood, <a href="#">CC BY 2.0</a>, via Wikimedia Commons.</p>
+  <div class="btm"><span>© 2026 DS Satva Foods · <span class="dv">दिल से शुद्ध</span></span><span class="veg"><i></i> All products vegetarian</span><span>Made in Chhatrapati Sambhajinagar, Maharashtra</span></div>
+</div></footer>
+
+<div class="lab">
+  <h2>Option B — Split band</h2>
+  <p>Two grounds. The cream upper band is the same <b>#fff1e4</b> as the recipes and the range, so the page closes in the colour it has been using — then a deep green foot carries the links and the legal line.</p>
+</div>
+<footer class="fB">
+  <div class="upper"><div class="wrap">
+    <img src="assets/logo-stack-dark.png" alt="DS SATVA">
+    <h3>Dil se pure — from our kitchen to yours</h3>
+    <p>Prices are quoted per gram, honestly, on WhatsApp. Ask for the list and we will send it the same day.</p>
+    <a class="wa" href="#"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>Order on WhatsApp</a>
+  </div></div>
+  <div class="lower"><div class="wrap">
+    <div class="row">
+      <div><h4>The range</h4><ul><li><a href="#">Spices</a></li><li><a href="#">Pulses</a></li><li><a href="#">Seeds</a></li><li><a href="#">Healthy Essentials</a></li></ul></div>
+      <div><h4>Explore</h4><ul><li><a href="#">Our Range</a></li><li><a href="#">Recipes</a></li><li><a href="#">How we make</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Our Story</a></li><li><a href="#">Satwa Saheli</a></li></ul></div>
+      <div><h4>Reach us</h4><ul><li><a href="#">+91 77099 32222</a></li><li><a href="#">dssatva@gmail.com</a></li><li><a href="#">Sample feedback form</a></li></ul></div>
+      <div><h4>Where</h4><ul><li><span class="pl">Chhatrapati Sambhajinagar,<br>Maharashtra</span></li></ul></div>
+    </div>
+    <div class="rule"></div>
+    <p class="credit">Flax field photograph by Jim Linwood, <a href="#">CC BY 2.0</a>, via Wikimedia Commons.</p>
+    <div class="btm"><span>© 2026 DS Satva Foods · <span class="dv">दिल से शुद्ध</span></span><span class="veg"><i></i> All products vegetarian</span><span>Made in Chhatrapati Sambhajinagar, Maharashtra</span></div>
+  </div></div>
+</footer>
+
+<div class="lab">
+  <h2>Option C — Compact rail<span class="live">LIVE</span></h2>
+  <p>The plum grey you chose on 18 Sep, kept, but flat — no collage behind it. Mark and tagline left, three link groups across the middle, WhatsApp and the credit right, then the legal line under a rule. <b>This is the one that is built.</b> The live version differs in two details found by measuring afterwards: link rows 7px apart rather than 17, and the single-column breakpoint at 360px rather than 460.</p>
+</div>
+<footer class="fC"><div class="wrap">
+  <div class="bar">
+    <div>
+      <img class="logo" src="assets/logo-stack-cream.png" alt="DS SATVA">
+      <p class="tag">Clean, authentic and untouched by harmful chemicals.</p>
+    </div>
+    <div class="links">
+      <div><h3>The range</h3><ul><li><a href="#">Spices</a></li><li><a href="#">Pulses</a></li><li><a href="#">Seeds</a></li><li><a href="#">Healthy Essentials</a></li></ul></div>
+      <div><h3>Explore</h3><ul><li><a href="#">Our Range</a></li><li><a href="#">Recipes</a></li><li><a href="#">How we make</a></li><li><a href="#">Our Mission</a></li><li><a href="#">Our Story</a></li><li><a href="#">Satwa Saheli</a></li></ul></div>
+      <div><h3>Reach us</h3><ul><li><a href="#">+91 77099 32222</a></li><li><a href="#">dssatva@gmail.com</a></li><li><a href="#">Sample feedback form</a></li><li><span class="pl">Chhatrapati Sambhajinagar, Maharashtra</span></li></ul></div>
+    </div>
+    <div class="reach">
+      <a class="wa" href="#"><svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>Order on WhatsApp</a>
+      <p class="fnote">Prices are quoted per gram, honestly, on WhatsApp.</p>
+      <p class="credit">Flax field photograph by Jim Linwood, <a href="#">CC BY 2.0</a>, via Wikimedia Commons.</p>
+    </div>
+  </div>
+  <div class="rule"></div>
+  <div class="btm"><span>© 2026 DS Satva Foods · <span class="dv">दिल से शुद्ध</span></span><span class="veg"><i></i> All products vegetarian</span><span>Made in Chhatrapati Sambhajinagar, Maharashtra</span></div>
+</div></footer>
+
+<div class="lab" style="padding-bottom:60px"><p>All three drop the pinned collage photograph. Content is identical to the live footer in every one — the only variable is the framework.</p></div>
+</body>
+</html>

@@ -12,9 +12,9 @@
      .curated-posts-section). They alternate it with plain white; we alternate
      it with --ivory, which is the same hue taken lighter so the pale band does
      not read cold beside it. */
-  --ivory:#fef7f0;
-  --cream:#fcedde;
-  --sand:#f5eee0;
+  --ivory:#f4f3e7;   /* sweetgreen's off-white, 10 Sep 2026 */
+  --cream:#e8dcc6;   /* sweetgreen's sand, 10 Sep 2026 (was oddbox #fcedde) */
+  --sand:#efe7d5;    /* a lighter step of the new sand */
   --oat:#ede2cc;
   --clay:#e0d2b3;
   --line:#e8ddc6;
@@ -24,14 +24,14 @@
   --ink:#1e2c16;
   --green:#2c4220;
   --band:#3c5128;
-  --sage:#55714e;
+  --sage:#4e6848;    /* darkened for the deeper grounds - see the note below */
   --sage-soft:#64775d;   /* 4.84:1 on white. On a --sage-mist ground use --sage. */
 
   /* gold */
   --gold:#bf8a17;
   --gold-lt:#dfb459;
   --gold-pale:#f1ddab;
-  --gold-dk:#8a6210;
+  --gold-dk:#7f5a0f;  /* darkened with --sage, same reason */
   --gold-grad:linear-gradient(160deg,#f7dc96 0%,#e0a51a 42%,#a8760f 100%);
 
   /* spice accents — one per masala, taken off the powders in the label photo */
@@ -51,17 +51,25 @@
      ground is #d8e5d6, with #00473c as ink. What makes it cohere is that the cream
      is not warm — it carries the same green-yellow cast as the sage, so the two
      read as one family rather than as two decisions.
-     Adapted rather than copied: --cream-sg used to be a barely greener cream sitting
-     next to the sticker's own #faf7f2. Superseded 5 Sep 2026 — the owner asked for
-     oddbox.co.uk's warmer cream, so --cream and --cream-sg are now both #fcedde and
-     the green-cast argument above no longer applies to the cream half of the page.
-     The sage grounds are still lightened from the brand's own --sage (#55714e)
-     rather than from sweetgreen's cooler green, so gold still belongs on them.
-     --sage-mist is deliberately no darker than it is: measured at 4.54:1 against
-     --sage body text, so existing copy stays legible without being restyled. */
-  --cream-sg:#fcedde;   /* was #f7f6ed, a greener cream; now oddbox's */
-  --sage-mist:#e6ede0;
-  --sage-mist-2:#dce6d2;
+     RESAMPLED 10 Sep 2026 and now used as-is, at the owner's asking ("this colours
+     are very nice, incorporate these colours in my site"): sand #e8dcc6, mint
+     #d8e5d6, off-white #f4f3e7, read off their live page. Note this REVERSES the
+     5 Sep decision to use oddbox.co.uk's warmer cream (#fcedde) - the two are not
+     compatible, one is a warm peach and the other a green-cast khaki, and the
+     newer instruction wins. Say the word and #fcedde comes back.
+
+     What made this more than a find-and-replace: sweetgreen's grounds are DARKER
+     than the ones they replaced, and sweetgreen can afford that because their body
+     ink is #0e150e, near-black. Ours is a mid-green. Measured before changing
+     anything, --sage (#55714e) fell to 4.01:1 on the new sand and 4.17:1 on the
+     new mint, and --gold-dk to 4.04 and 4.20 - all four below AA. Both were
+     darkened by the smallest amount that clears 4.5:1 on the DARKER of the two
+     new grounds, holding their hue and saturation: --sage #55714e -> #4e6848
+     (4.56:1 on sand) and --gold-dk #8a6210 -> #7f5a0f (4.59:1). Nothing else in
+     the palette had to move. */
+  --cream-sg:#e8dcc6;   /* sweetgreen's sand band */
+  --sage-mist:#d8e5d6;   /* sweetgreen's mint band */
+  --sage-mist-2:#c9dbc5; /* one step deeper than the mint */
 
   /* pale spice grounds — bright, but still light */
   --tint-cream:#fdf3e6;
@@ -180,7 +188,16 @@ section{position:relative;}
   border-bottom:1px solid var(--line);
 }
 .nav .wrap{display:flex;align-items:center;gap:26px;min-height:80px;}
-.nav .logo{height:50px;width:auto;flex:none;}
+/* The stacked lockup here too, 18 Sep 2026, at the owner's word ("I want the
+   logo to be changed in the whole site"). 50px was the horizontal file's height;
+   the stacked one is square, so at 50px it would be a 53px stamp.
+   76px, and the number is measured rather than chosen: the bar's height is set
+   by its own padding and the WhatsApp button, not by the logo, so there is free
+   headroom above 50. The bar stays exactly 81px deep at 62, 68, 72 AND 76, and
+   only starts growing at 82 (83px) and 88 (89px). 76 is therefore the largest
+   this mark can be for nothing - it buys a 23% bigger logo than 62px without
+   moving the header, the full-screen blocks' nav clearance or anything below. */
+.nav .logo{height:76px;width:auto;flex:none;}
 .nav ul{display:flex;gap:clamp(14px,1.9vw,30px);list-style:none;margin:0;padding:0;margin-left:auto;}
 .nav ul a{
   color:var(--green);font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;
@@ -197,8 +214,20 @@ section{position:relative;}
    Opens on hover and, for keyboard users, on :focus-within - so it needs no JS
    to open, and the parent anchor still works on its own. */
 .nav .hasmenu{position:relative;}
-.nav .hasmenu > a{display:inline-flex;align-items:center;gap:5px;}
-.nav .caret{width:13px;height:13px;transition:transform .3s var(--ease);}
+/* This link is formatted exactly like its neighbours - plain inline - so its
+   text sits on the SAME BASELINE as they do. It used to be inline-flex, which
+   centres the text inside a box as tall as the <li> rather than putting it on
+   the shared baseline: measured on the glyphs themselves, "Our Range" sat at
+   37.4-56.4 while every other item sat at 33.9-52.9, i.e. 3.5px low.
+   The caret is inline-block and vertical-align:middle, which positions it
+   against the text without changing the line box. */
+.nav .hasmenu > a{display:inline;}
+.nav .caret{
+  display:inline-block;vertical-align:middle;margin-left:5px;
+  position:relative;top:-1px;
+  transition:transform .3s var(--ease);
+}
+.nav .caret{width:13px;height:13px;}
 .nav .hasmenu:hover .caret,.nav .hasmenu:focus-within .caret{transform:rotate(180deg);}
 
 .nav .submenu{
@@ -368,13 +397,48 @@ section{position:relative;}
 /* Three columns, big monoline illustrations, one CTA underneath. The old
    four-icon .pillars strip lived here and did the same job at a tenth the
    size; this is that idea given room. */
-.reasons{background:var(--ivory);padding:clamp(38px,5vw,66px) 0;border-bottom:1px solid var(--line);}
+/* One block, one screen - the same treatment the shelves got, for the same
+   reason: the owner wants this to arrive as a whole thing, not to be met
+   half-scrolled. min-height so that at two columns or stacked on a phone it can
+   still grow past a screen. The padding-top floor holds the kick line clear of
+   the sticky nav once the content is centred (see the matching note on .cats). */
+.reasons{
+  background:var(--ivory);padding:clamp(38px,5vw,66px) 0;
+  padding-top:max(96px,clamp(38px,5vw,66px));
+  border-bottom:1px solid var(--line);
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;flex-direction:column;justify-content:center;
+}
+/* width:100% because .wrap carries margin:0 auto, and an auto cross-axis margin
+   switches off a flex item's stretch - the trap that narrowed the shelf cards. */
+.reasons .wrap{width:100%;}
 .reasons .rhead{text-align:center;margin:0 auto clamp(34px,4.6vw,58px);}
 .reasons .rhead h2{margin:0 0 16px;color:var(--ink);}
 .reasons .rhead .rule{margin-inline:auto;}
 
-.rgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(26px,4.5vw,72px);
-  max-width:1120px;margin-inline:auto;}
+/* four across now the standards circle has joined; 2 then 1 as it narrows */
+.rgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(20px,3vw,48px);
+  max-width:1280px;margin-inline:auto;}
+/* This was 1080, which overflowed the page by 54px between 1081px and ~1224px:
+   a CIRCLE's minimum width was its longest word ("Nutrient-preserved") plus 15%
+   padding each side, about 254px, and `1fr` cannot shrink a track below its
+   min-content. It was raised to 1240 to stop the sideways scroll; with the arch
+   shape that minimum fell to about 150px, so four across fits comfortably again
+   and the switch is back down at 1000px. Verified by measurement at 1081px and
+   1024px rather than by eye - that is how the original bug got in. */
+@media (max-width:1000px){ .rgrid{grid-template-columns:repeat(2,1fr);} }
+/* Two-across band only (821-1000px). The width cap is tuned for four-across, and
+   at two-across that same 23vw left a 210px arch adrift in a 400px track - sparse
+   rather than airy. Written as `.reasons .reason`, and banded off the one-column
+   rule below, because the base .reason rule comes LATER in this file: a media
+   query adds no specificity, so an equal-specificity override placed up here
+   would simply lose. Do not widen this band to cover <=820px - the one-per-row
+   rule at the foot of the file owns that. */
+@media (max-width:1000px) and (min-width:821px){
+  .reasons .reason{max-width:clamp(240px,34vw,320px);}
+}
+@media (max-width:560px){ .rgrid{grid-template-columns:1fr;} }
 
 /* Three colours the owner picked off uk.huel.com - the 1st, 3rd and 4th tiles
    in their "Food to fuel your goals" row. Sampled from the tile images
@@ -389,55 +453,120 @@ section{position:relative;}
 .reason{
   text-align:center;--rc:var(--sage);
   background:var(--panel,var(--cream));
-  /* ROUND. The panel holds an icon, a heading and three lines, so the circle has
-     to be big enough that all of it sits inside the INSCRIBED square - a circle
-     is only ~70% as wide as its box where the text sits. 14% padding all round
-     is that inset, which is why the copy never touches the curve. */
-  aspect-ratio:1/1;border-radius:50%;
-  /* capped and centred in its column, so the gap between circles is real space
-     rather than the circles simply touching. Smaller circle = smaller inscribed
-     square, so the type inside comes down with it (see below). */
-  width:100%;max-width:clamp(230px,29vw,320px);margin-inline:auto;
-  padding:13%;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  /* AN ARCH, not a circle (16 Sep 2026, the owner: "try this in some other shape
+     so that i see a uniqueness when compare to the other wesite flow").
+     Four arches side by side read as a colonnade - a shopfront, or the niches in
+     a temple wall - which is a shape a pastel-circle row or a rounded-card row
+     is not, and it belongs to this brand rather than to a template.
+     It is also the reason the block can fit a screen at all. A circle can only
+     hold type inside its INSCRIBED square, about 70% of its width, so it needed
+     15% padding on every side and its longest word ("Nutrient-preserved") pushed
+     its minimum width out to ~254px - which is what made four of them overflow
+     the page between 1081px and 1224px (see the .rgrid note). An arch is
+     straight-sided where the words are, so the padding is a couple of dozen
+     pixels rather than a seventh of the width, and the same copy sits in a
+     ~150px minimum. Narrower minimum, four across at far more widths, and no
+     wasted corners. */
+  --r:22px;                          /* the flat foot of the arch */
+  border-radius:50% 50% var(--r) var(--r) / 44% 44% var(--r) var(--r);
+  /* Height in svh, like the shelf pictures, because this block is also asked to
+     fill the screen - and the arch's proportion should answer to the window
+     rather than to how many columns happen to fit.
+     40svh, capped at 380: the group of icon + title + copy is about 194px, so a
+     430px arch left a third of its foot as dead colour. The section still fills
+     the screen - it is min-height:100svh with its content centred, so the slack
+     goes into the ivory above and below the colonnade, where it reads as air,
+     instead of into the bottom of four coloured panels, where it read as a
+     mistake. */
+  height:clamp(300px,40vh,380px);
+  height:clamp(300px,40svh,380px);
+  width:100%;max-width:clamp(210px,23vw,300px);margin-inline:auto;
+  /* px, not %: see above. Slightly deeper at the top so the centred group of
+     icon + title + copy sits in the body of the arch and not up in its dome. */
+  padding:clamp(30px,3.2vw,46px) clamp(16px,1.5vw,26px) clamp(20px,2vw,30px);
+  display:flex;flex-direction:column;align-items:center;
+  /* centred, and the group stays together. space-evenly was tried first, to use
+     up the depth of the taller arch, and it pushed the copy a clear 50px away
+     from the title it belongs to - three separate things floating in a panel
+     rather than one statement. The arch came down in height instead. */
+  justify-content:center;
   transition:transform .55s var(--ease),box-shadow .55s var(--ease);
 }
 .reason:hover{transform:translateY(-4px);box-shadow:0 24px 44px -28px rgba(60,45,20,.5);}
-/* Lightened 9 Sep 2026 at the owner's request - each is its Huel colour mixed
-   45% with white, so the hue is unchanged and only the strength drops:
-     #ce9f8b -> #e4cabf     #d2d9b8 -> #e6ead8     #ddaf7b -> #ecd3b6
-   The line art keeps the DARK version of each colour, which is what stops the
-   softer panels going flat. */
-.reason:nth-child(1){--panel:#e4cabf;--rc:#5c3323;}
-.reason:nth-child(2){--panel:#e6ead8;--rc:#41501f;}
-.reason:nth-child(3){--panel:#ecd3b6;--rc:#69411a;}
+/* Brightened 10 Sep 2026. Mixing the Huel colours with white lightened them but
+   also DRAINED them - white mix cuts saturation as well as depth, which is why
+   they read dull. These keep each hue and its lightness and put the chroma back
+   instead: blush S41->62, pistachio S30->50, caramel S59->76.
+     #ce9f8b (Huel) -> #e4cabf (dull) -> #edc2b1
+     #d2d9b8 (Huel) -> #e6ead8 (dull) -> #e3ecc6
+     #ddaf7b (Huel) -> #ecd3b6 (dull) -> #f3cfa5
+   The line art keeps the DARK version of each colour - that contrast is what
+   stops a light panel going flat. */
+.reason:nth-child(1){--panel:#edc2b1;--rc:#5c3323;}
+.reason:nth-child(2){--panel:#e3ecc6;--rc:#41501f;}
+.reason:nth-child(3){--panel:#f3cfa5;--rc:#69411a;}
+/* The fourth is sleepyowl.co's blue, sampled off their page (#d7e5fa, the
+   colour under most of that site) and brought into this family: same hue, but
+   the saturation and lightness of the other three, which are S50-76 / L80-85
+   against their S78 / L91.
+   Their blush (#e9d0cf) was the other candidate and is the weaker one HERE -
+   it sits at hue 2 against our blush at hue 17, fifteen degrees apart, so the
+   two would read as one colour twice. The blue is 145 degrees from its nearest
+   neighbour and is the only cool note in the row, which is what makes four
+   circles read as four rather than three-and-a-spare. */
+.reason:nth-child(4){--panel:#bed1ef;--rc:#26405f;}
 
 .reason .art{
   /* The drawing occupies only the middle of its 200x200 viewBox, so the box is
      always bigger than the ink in it. On the old flat ground that was invisible;
      inside a panel it read as a hole between the icon and the heading. The box
      is smaller now and the slack is cropped rather than padded. */
-  width:clamp(48px,5.2vw,70px);height:clamp(48px,5.2vw,70px);
-  margin:0 auto clamp(5px,.7vw,10px);color:var(--rc);
+  /* One custom property, used by BOTH the wrapper and the svg, so the two can
+     never be sized by different rules. The svg took width:100% before, which
+     was quietly overridden by a leftover short-window rule further down the
+     file (see the max-height:1000px block): the wrapper stayed 55px while the
+     drawing laid out at 81px and, with overflow:visible, painted 26px of itself
+     straight down over the heading. That is the overlap the owner saw, and it
+     only ever appeared on a short window, which is why it survived this long. */
+  --icon:clamp(40px,4.4vw,62px);
+  width:var(--icon);height:var(--icon);
+  /* room between the drawing and the title, so they read as two things */
+  margin:0 auto clamp(9px,1.1vw,15px);color:var(--rc);
   transition:transform .55s var(--ease);
 }
-.reason .art svg{width:100%;height:100%;display:block;overflow:visible;}
+/* overflow:hidden, not visible: every one of the four drawings sits inside its
+   0-200 viewBox (widest is 16.3-184.4), so this clips nothing today - it is
+   here so a future icon drawn past the edge cannot land on the type again. */
+.reason .art svg{width:var(--icon);height:var(--icon);display:block;overflow:hidden;}
 .reason:hover .art{transform:translateY(-6px);}
 
 .reason h3{
   margin:0 0 10px;font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(.9rem,1.02vw,1.06rem);font-weight:600;line-height:1.18;color:var(--ink);
+  font-size:clamp(.82rem,.92vw,.98rem);font-weight:600;line-height:1.16;color:var(--ink);
 }
 /* --ink at 82%, not --sage: sage was chosen for an ivory ground and is far
    too light on these panels. Measured after the change. */
-.reason p{margin:5px auto 0;font-size:clamp(.72rem,.78vw,.82rem);line-height:1.45;
-  color:rgba(30,44,22,.82);max-width:24ch;}
+/* min-height is five lines of this type (line-height 1.4, so 5 x 1.4em = 7em).
+   The four circles are the same size and their content is centred in them, so a
+   body of three lines instead of five centres its whole block lower - which is
+   why "Uncompromising standards" sat 15px below its neighbours. Reserving the
+   tallest body's height on all four puts every icon and every title on one line
+   across the row. It is a floor, not a fixed height: longer copy still grows. */
+.reason p{margin:4px auto 0;font-size:clamp(.66rem,.7vw,.76rem);line-height:1.4;
+  color:rgba(30,44,22,.82);max-width:21ch;min-height:7em;}
 
 .rcta{text-align:center;margin-top:clamp(34px,4.4vw,56px);}
 
 @media (max-width:820px){
   .rgrid{grid-template-columns:1fr;gap:clamp(30px,5vw,44px);}
   .reason p{max-width:34ch;}
+  /* One per row here, so the arch can have the whole column rather than sitting
+     at the narrow cap meant for four-across. (This note used to explain a bug
+     the shape no longer has: as a circle with aspect-ratio:1/1 it silently
+     stretched into a 230x287 oval whenever the copy was taller than the square,
+     and unevenly, since each panel carries a different amount. The arch is
+     given an explicit height, so there is nothing left to give way.) */
+  .reason{max-width:330px;}
 }
 @media (prefers-reduced-motion:reduce){ .reason:hover .art{transform:none;} }
 
@@ -719,7 +848,27 @@ section{position:relative;}
    range and carried the cream, so with it gone the two sage sections met and
    the alternation broke. Cream is also what jainfarmfresh puts behind its own
    category cards, so the reference and the ground rule agree here. */
-.cats{padding:clamp(40px,5vw,68px) 0 clamp(34px,4.4vw,60px);background:var(--cream-sg);}
+/* 16 Sep 2026, the owner: "the screen has only that block and what we dont do
+   goes for the next scrolling". So the shelves hold a whole screen on their own
+   and "What we will not do to your food" begins below the fold, on the next
+   scroll, instead of crowding in under the cards.
+   min-height, not height: at two columns, or stacked on a phone, four cards are
+   taller than a screen and the section simply grows. The content is centred in
+   whatever is left over, and the slack at the top is what keeps the heading out
+   from under the sticky nav. */
+.cats{
+  padding:clamp(40px,5vw,68px) 0 clamp(34px,4.4vw,60px);background:var(--cream-sg);
+  /* The nav is sticky and translucent, and this section is now exactly a screen
+     tall with its content centred - so on a short window the centred content
+     rose until "SOMETHING FOR EVERY SHELF" sat behind the nav (measured: 83px
+     against a nav 81px deep, a 2px escape). The floor is the nav's own height
+     plus air. It costs nothing on a tall window, where the centring slack is
+     already bigger than this. */
+  padding-top:max(96px,clamp(40px,5vw,68px));
+  min-height:100vh;      /* fallback for anything without svh */
+  min-height:100svh;     /* the small viewport, so a phone's toolbars cannot clip it */
+  display:flex;flex-direction:column;justify-content:center;
+}
 .chead{text-align:center;margin:0 auto clamp(34px,4.4vw,58px);max-width:60ch;}
 .chead h2{margin:0;color:var(--ink);}
 /* the one remaining line is an <h2> for the outline but is still the KICK to
@@ -731,7 +880,12 @@ section{position:relative;}
    grid cannot fill the breadth however wide its own max-width is - a child
    cannot outgrow its parent, and .wrap was leaving 365px empty on each side of
    a 1920px screen. */
-.cats .wrap{max-width:min(1720px,94vw);}
+/* width:100% is load-bearing now that .cats is a flex column. .wrap carries
+   margin:0 auto, and an auto margin on the CROSS axis switches off a flex item's
+   stretch - so the wrap fell back to fit-content and, on a phone, the single
+   card came out 282px wide inside a 366px wrap. This puts the stretch back; the
+   max-width still caps it, and border-box keeps the padding inside. */
+.cats .wrap{max-width:min(1720px,94vw);width:100%;}
 
 /* Six across on a wide screen, filling the breadth; then 3, 2, 1. The counts are
    explicit rather than auto-fit because there are SIX cards and auto-fit does
@@ -739,24 +893,52 @@ section{position:relative;}
    stranded alone on a second row. Every count here divides six, so a row is
    never left with an orphan. The old fixed three columns capped at 1280px left
    a third of the page empty on either side. */
+/* Four columns because the range is four shelves (16 Sep 2026). It was six, and
+   when Spices absorbed ground/whole/blends and Healthy Essentials absorbed
+   pantry/oils, a six-column rule left one card stranded alone on a second row.
+   Four across on a wide screen, then 2x2, then a single column on a phone - so
+   no breakpoint ever ends in an orphan. */
 .catgrid{
-  display:grid;grid-template-columns:repeat(6,1fr);
+  display:grid;grid-template-columns:repeat(4,1fr);
   gap:clamp(14px,1.4vw,24px);
   width:100%;max-width:1720px;margin-inline:auto;
 }
+/* ONE CARD, ONE FRAME - 16 Sep 2026, the owner: "design it so that these things
+   are in one frame and one block".
+   The photograph used to be the only framed thing: it had the radius and the
+   shadow, and the blurb and the ITEMS line sat underneath it on the section's
+   bare sand, outside any border. So a card read as a picture with two loose
+   scraps of text below it, and with only four cards left they were big enough
+   that the scraps drifted a long way from their own photograph.
+   Now the picture and the words share ONE frame: one border, one radius, one
+   shadow, overflow hidden, and the whole thing lifts together on hover. */
 .catcard{
-  appearance:none;border:0;background:none;padding:0;cursor:pointer;font:inherit;
+  appearance:none;padding:0;cursor:pointer;font:inherit;
   text-align:left;display:flex;flex-direction:column;height:100%;
+  background:#fff;border:1px solid var(--line);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 18px 38px -24px rgba(60,81,40,.45);
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease),
+             border-color .55s var(--ease);
 }
 .catcard .cshot{
-  /* 3:2. Portrait cards made one row fill the viewport, so the second row of
-     three always sat below the fold and the six shelves never read as one
-     block. Landscape at the same width is ~165px shorter per card. */
-  position:relative;display:block;width:100%;aspect-ratio:3/2;overflow:hidden;
-  background:var(--tint);border-radius:20px;color:#fff;
+  /* A LONG RECTANGLE (16 Sep 2026, the owner). It was 3:2 landscape, which is
+     what let the next section crowd in under the cards; portrait was rejected
+     back when there were six cards in two rows, because a tall first row pushed
+     the second row off the screen. With four cards on ONE row that reason is
+     gone, so the picture is now tall.
+     Height in svh rather than an aspect-ratio: the point is to fill the screen,
+     so the picture has to answer to the window's height, not to the card's own
+     width. At 1290x860 this is a 288x482 card picture - a 3:5 rectangle. The
+     240px floor keeps it sane on a short laptop window, the 520px ceiling stops
+     it becoming a full-height sliver on a tall monitor.
+     No radius and no shadow of its own - the frame around it carries both, and
+     doubling them made a visible seam between picture and words. */
+  position:relative;display:block;width:100%;overflow:hidden;
+  height:clamp(280px,56vh,520px);
+  height:clamp(280px,56svh,520px);
+  background:var(--tint);color:#fff;
   display:grid;place-items:center;
-  box-shadow:0 18px 38px -24px rgba(60,81,40,.6);
-  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
 }
 .catcard .cshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
   /* the owner asked for the spice colour of jainfarmfresh, which runs its
@@ -784,23 +966,43 @@ section{position:relative;}
   transition:transform .45s var(--ease),background .45s var(--ease);
 }
 .catcard .carrow svg{width:52%;height:52%;}
-.catcard:hover .cshot,.catcard:focus-visible .cshot{
-  transform:translateY(-7px);box-shadow:0 30px 52px -26px rgba(60,81,40,.66);
+/* the whole frame lifts now, not the photograph inside it */
+.catcard:hover,.catcard:focus-visible{
+  transform:translateY(-7px);box-shadow:0 30px 52px -26px rgba(60,81,40,.55);
+  border-color:var(--gold-lt);
 }
 .catcard:hover .cshot img{transform:scale(1.055);}
 .catcard:hover .carrow{transform:translateX(3px);background:#fff;}
 /* flex:1 + margin-top:auto keeps every ITEMS line on one baseline across a row,
-   whether its blurb wrapped to one line or two */
-.catcard .cmeta{display:flex;flex-direction:column;gap:6px;padding:13px 2px 0;flex:1;}
+   whether its blurb wrapped to one line or two. The side padding is what puts
+   the words INSIDE the frame rather than flush against its edge. */
+.catcard .cmeta{
+  display:flex;flex-direction:column;gap:6px;flex:1;
+  padding:clamp(12px,1vw,15px) clamp(14px,1.1vw,18px) clamp(14px,1.1vw,17px);
+}
 .catcard .cblurb{font-size:.9rem;line-height:1.55;color:var(--sage);max-width:32ch;}
 .catcard .ccount{
   margin-top:auto;padding-top:7px;font-size:.68rem;letter-spacing:.14em;
   text-transform:uppercase;color:var(--gold-dk);font-weight:600;
 }
 
-@media (max-width:1400px){ .catgrid{grid-template-columns:repeat(3,1fr);} }
-@media (max-width:860px){  .catgrid{grid-template-columns:repeat(2,1fr);} }
-@media (max-width:560px){ .catgrid{grid-template-columns:1fr;} .catcard .cshot{aspect-ratio:16/10;} }
+/* Four across holds much further down the page than it used to. At the old
+   1400px switch a 1280-1400px laptop - which is most of them - dropped to two
+   columns, and two cards that wide made each one ~550px tall, so the four
+   shelves needed two screens instead of reading as one block. Four across only
+   gives way at 1080px, where a card would be under ~230px wide. */
+/* Two columns and one column both mean two or four ROWS of cards, and four rows
+   of a 56svh picture would be a very long scroll for the same four shelves. The
+   picture comes down accordingly - still a tall rectangle, just not one sized to
+   fill a screen it can no longer fill on its own. */
+@media (max-width:1080px){
+  .catgrid{grid-template-columns:repeat(2,1fr);}
+  .catcard .cshot{height:clamp(240px,38vh,380px);height:clamp(240px,38svh,380px);}
+}
+@media (max-width:560px){
+  .catgrid{grid-template-columns:1fr;}
+  .catcard .cshot{height:clamp(230px,34vh,330px);height:clamp(230px,34svh,330px);}
+}
 @media (prefers-reduced-motion:reduce){
   .catcard:hover .cshot{transform:none;} .catcard:hover .cshot img{transform:none;}
 }
@@ -883,39 +1085,7 @@ section{position:relative;}
   background:rgba(255,255,255,.94);color:var(--band);padding:4px 9px;border-radius:999px;font-weight:600;}
 
 /* ===================== why ===================== */
-.why{background:linear-gradient(180deg,var(--sage-mist) 0%,var(--sage-mist-2) 100%);
-  /* 112px missed fitting the viewport by 2px; 66px clears it with room */
-  padding:clamp(38px,5vw,66px) 0;overflow:hidden;}
-.why .leaf{inset:auto -16% -26% auto;width:min(66vw,700px);height:min(66vw,700px);
-  background:rgba(85,113,78,.15);}
-.why h2{color:var(--ink);}
-.whygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(236px,1fr));gap:clamp(14px,2vw,22px);
-  margin-top:clamp(30px,4vw,52px);position:relative;z-index:2;}
-.wcard{border-radius:18px;--r:18px;padding:26px 24px 28px;background:rgba(255,255,255,.72);
-  border:1px solid var(--clay);box-shadow:var(--sh-sm);
-  transition:background .4s,transform .5s var(--ease),box-shadow .4s;}
-.wcard:hover{background:#fff;transform:translateY(-5px);box-shadow:var(--sh-md);
-  border-color:color-mix(in srgb,var(--wc) 50%,transparent);}
-.wcard{--wc:var(--turmeric);}
-.wcard:nth-child(2){--wc:var(--chilli);}
-.wcard:nth-child(3){--wc:var(--garlic);}
-.wcard:nth-child(4){--wc:var(--coriander);}
-/* --wc at full strength was 1.97:1 against this section's ground - decorative, but
-   these numerals carry the card order, so they are darkened toward the band green.
-   55% is the measured floor: turmeric, the lightest accent, lands at 3.21:1. */
-.wcard .n{font-family:"Fraunces",serif;font-variation-settings:"SOFT" 45,"WONK" 1;font-size:1.7rem;
-  color:color-mix(in srgb,var(--wc) 55%,var(--band));display:block;margin-bottom:10px;}
-.wcard h3{font-size:1.06rem;margin:0 0 8px;color:var(--band);font-weight:600;}
-.wcard p{margin:0;font-size:.9rem;color:var(--sage);}
-
 /* ===================== promise ===================== */
-.promise{background:var(--cream-sg);padding:clamp(34px,4.4vw,62px) 0;text-align:center;}
-.promise .box{max-width:840px;margin:0 auto;padding:clamp(30px,5vw,58px) clamp(22px,4vw,54px);
-  border-radius:24px;--r:24px;position:relative;background:#fff;box-shadow:var(--sh-md);}
-.promise .badge{width:104px;margin:0 auto 20px;}
-.promise h2{color:var(--ink);font-size:clamp(1.7rem,3.5vw,2.7rem);margin:0 0 16px;}
-.promise p{color:var(--sage);max-width:58ch;margin:0 auto;}
-.promise .sig{margin-top:24px;font-size:1.2rem;color:var(--gold-dk);}
 
 /* ===================== story ===================== */
 .story{padding:clamp(58px,8vw,112px) 0;background:var(--sage-mist);}
@@ -977,16 +1147,55 @@ section{position:relative;}
    covers exactly the footer; only the photograph is pinned. A scrim this heavy
    (.90 to .94 of --ink) is not decoration - it is what keeps the existing
    footer type legible over twelve different photographs. */
+/* LIGHT since 10 Sep 2026. The Get in touch section was deleted - every one of
+   its four details was already in this footer - and the owner asked for its
+   ground, the sweetgreen mint, to come down here. So this footer was dark green
+   with cream type and is now mint with green type: the overlay, the logo, every
+   link, the rule between the columns and the veg mark all had to turn round.
+   The collage stays. It is our own contact sheet and it was carrying the whole
+   footer visually; the overlay is now a 94-97% MINT wash instead of a 90-94%
+   green one, so a ghost of it still shows through without touching contrast. */
+/* GROUND CHANGED 18 Sep 2026 to #372e35, "plum grey" - a warm charcoal with a
+   trace of violet in it, chosen off a page of eighteen charcoals previewed
+   against the sand band that arrives above this one.
+
+   WHY: the 10 Sep pass left the page with no dark band anywhere, and the note
+   at the foot of that entry asked whether it still had enough weight low down.
+   It did not. This also keeps the violet the Satwa Saheli band wore until the
+   17th somewhere on the page, now that Saheli has gone to the salt wash.
+
+   THIS IS THE 10 SEP INVERSION, RUN BACKWARDS. Everything in here was flipped
+   for a light ground and had to flip again - the logo, the links, the headings,
+   the muted text and the veg mark. Measured on #372e35:
+     blurb + links   --cream #e8dcc6   9.65:1
+     headings + btm  --gold-pale       9.77
+     muted           #c9bda4           7.04
+     veg mark        #7fbf6a           5.96
+     link hover      --gold-lt         6.74
+   And what had to GO, because none of it survives here: --green 1.19:1,
+   --sage 2.12, --gold-dk 2.10, the dark veg mark #2f7d32 2.56.
+
+   THE MUTED TEXT IS A SOLID, NOT AN ALPHA. The original dark footer set .fnote
+   to rgba(cream,.68), which measured 3.89:1 and was only legible because of the
+   photograph behind it; the mint fixed that by accident in September. #c9bda4
+   is the same idea done properly. Do not put the alpha back.
+
+   The collage wash is 92-95%, between the 90-94% this footer used when it was
+   dark green and the 94-97% the mint used. That pair of numbers is the dial: a
+   lower one shows more photograph, a higher one more flat colour. */
 footer{
-  background-color:var(--band);
+  background-color:#372e35;
   background-image:
-    linear-gradient(rgba(30,44,22,.90),rgba(30,44,22,.94)),
+    linear-gradient(rgba(55,46,53,.92),rgba(55,46,53,.95)),
     url("../assets/footer-collage.jpg");
   background-repeat:no-repeat,no-repeat;
   background-position:center,center;
   background-size:cover,cover;
   background-attachment:scroll,fixed;
-  color:rgba(250,247,242,.72);
+  color:var(--cream);
+  /* one token for every dimmed thing down here - the fnote, the address line and
+     the bottom bar - so they cannot drift apart the way they did before */
+  --f-muted:#c9bda4;
   padding:clamp(44px,5.5vw,72px) 0 clamp(76px,7vw,88px);font-size:.86rem;}
 
 /* background-attachment:fixed is a known jank source on touch devices, and iOS
@@ -999,14 +1208,30 @@ footer{
   footer{background-attachment:scroll,scroll;}
 }
 
+/* the rule between the columns and the bottom bar: a dark translucent green was
+   right on the mint, and disappears on the plum. Back to a light one. */
 .fgrid{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.15fr;gap:clamp(24px,3.4vw,52px);
-  padding-bottom:clamp(26px,3.4vw,40px);border-bottom:1px solid rgba(241,221,171,.28);}
+  padding-bottom:clamp(26px,3.4vw,40px);border-bottom:1px solid rgba(255,255,255,.18);}
 
-.fbrand .logo{height:52px;width:auto;margin-bottom:16px;}
+/* THE STACKED LOCKUP, 18 Sep 2026 - the DS sits above the wordmark here, not
+   beside it. 52px was right for the horizontal file (ratio 3.27); the stacked
+   one is all but square (760x722, ratio 1.05), so at that height it came out a
+   third of the width and read as a stamp rather than as the brand. 112px gives
+   it back its presence and makes "Dil Se Pure" and the wheat sprigs legible
+   instead of decorative; it also makes this column taller than the three link
+   columns, which is deliberate.
+   The floor is 84px because below roughly that the strapline inside the artwork
+   stops being readable at all. The nav still carries the HORIZONTAL lockup on
+   purpose - a square mark there drives the sticky header deeper on every
+   screen, which is a separate decision. */
+.fbrand .logo{height:clamp(84px,9vw,112px);width:auto;margin-bottom:16px;}
 .fbrand p{margin:0 0 18px;max-width:38ch;line-height:1.6;}
-/* was .5 - 3.89:1 on the collage, and 3.13:1 on the flat band before it, so
-   this was already below AA and the photograph only made it visible */
-.fbrand .fnote{margin:12px 0 0;font-size:.78rem;color:rgba(250,247,242,.68);}
+/* THE LINE WITH A HISTORY. On the first dark footer this was rgba(cream,.68)
+   and measured 3.89:1 - below AA, and only the photograph behind it made it
+   readable at all. The mint fixed that by accident in September (--sage, 4.74).
+   The ground is dark again, so --sage is gone (2.12 here), but the alpha is NOT
+   coming back with it: --f-muted is a solid #c9bda4 and measures 7.04:1. */
+.fbrand .fnote{margin:12px 0 0;font-size:.78rem;color:var(--f-muted);}
 .fwa{
   display:inline-flex;align-items:center;gap:9px;background:var(--gold-grad);color:#2a1f08;
   font-weight:600;font-size:.83rem;letter-spacing:.03em;padding:11px 20px;border-radius:999px;
@@ -1019,14 +1244,18 @@ footer{
   color:var(--gold-pale);font-weight:600;
 }
 .fcol ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;}
-.fcol a{color:rgba(250,247,242,.74);transition:color .3s;}
-.fcol a:hover{color:var(--gold-pale);}
-.fcol span{color:rgba(250,247,242,.6);line-height:1.5;}
+.fcol a{color:var(--cream);transition:color .3s;}
+.fcol a:hover{color:var(--gold-lt);}
+.fcol span{color:var(--f-muted);line-height:1.5;}
 
 footer .btm{display:flex;gap:12px 26px;justify-content:space-between;flex-wrap:wrap;
-  padding-top:20px;font-size:.78rem;color:rgba(250,247,242,.55);}
+  padding-top:20px;font-size:.78rem;color:var(--f-muted);}
 footer .btm .dv{color:var(--gold-pale);}
 .fveg{display:inline-flex;align-items:center;gap:7px;}
+/* The mark is a green square and dot, and which green depends on the ground:
+   the dark #2f7d32 is correct on a light one and measures 2.56:1 here, so the
+   dark footer takes the pale #7fbf6a (5.96:1) it carried before September.
+   Anything lighter than about #554a46 as a ground needs it brighter again. */
 .fveg i{width:12px;height:12px;border:1.3px solid #7fbf6a;border-radius:2px;position:relative;flex:none;}
 .fveg i::after{content:"";position:absolute;inset:2.4px;background:#7fbf6a;border-radius:50%;}
 
@@ -1253,31 +1482,6 @@ footer .btm .dv{color:var(--gold-pale);}
 }
 .pull.vision{margin-top:16px;border-left-color:var(--sage);}
 
-
-/* ---- what testers said ---- */
-.voices{background:linear-gradient(155deg,var(--cream-sg) 0%,var(--tint-cream) 100%);
-  padding:clamp(56px,7.5vw,104px) 0;}
-.vgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:clamp(16px,2vw,24px);
-  margin-top:clamp(26px,3.4vw,44px);}
-.vcard{background:#fff;border:1px solid var(--clay);border-radius:20px;--r:20px;padding:26px 24px 24px;
-  box-shadow:var(--sh-sm);display:flex;flex-direction:column;gap:14px;}
-.vcard .q{font-family:"Fraunces",serif;font-variation-settings:"SOFT" 50,"WONK" 1;font-weight:500;
-  font-size:1.06rem;line-height:1.42;color:var(--ink);margin:0;}
-.vcard .who{font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-dk);
-  font-weight:600;margin-top:auto;}
-.vcard.empty{background:rgba(255,255,255,.55);border-style:dashed;align-items:flex-start;}
-.vcard.empty .q{color:var(--sage);font-style:italic;}
-
-/* the odd one out in the paradox: dark where its neighbours are white, because it
-   is the purchase we do not study and the only one we cannot take back */
-.vcard.odd{background:var(--band);border-color:var(--band);}
-.vcard.odd .q{color:#fff;}
-.vcard.odd .who{color:var(--gold-lt);}
-.voices .lede+.lede{margin-top:14px;}
-.vnote{margin-top:clamp(22px,2.6vw,30px);font-size:.9rem;color:var(--sage);
-  display:flex;flex-wrap:wrap;align-items:center;gap:16px;}
-.vnote span{max-width:62ch;}
-
 @media (max-width:1080px){
   .tracegrid{grid-template-columns:1fr;}
   .label{transform:none;}
@@ -1350,6 +1554,14 @@ footer .btm .dv{color:var(--gold-pale);}
              width .62s var(--ease);
 }
 .made .mcard[style*="--abs: 3"],.mcard[style*="--abs:3"]{opacity:0;pointer-events:none;}
+/* FOUR cards (17 Sep 2026, one per shelf). js/satva.js writes the count onto the
+   track. With an even number of cards the one directly opposite the centre has
+   no mirror - at six it landed at abs 3 and was already hidden by the rule
+   above, but at four it lands at abs 2 and would hang on the right on its own,
+   with nothing at -2 to answer it. Hiding abs 2 at this count leaves a
+   symmetrical left / centre / right, and the fourth card simply rotates in. */
+.made .mkrow[data-count="4"] .mcard[style*="--abs: 2"],
+.made .mkrow[data-count="4"] .mcard[style*="--abs:2"]{opacity:0;pointer-events:none;}
 
 .made .mflip{
   position:relative;width:100%;height:100%;
@@ -1481,25 +1693,65 @@ footer .btm .dv{color:var(--gold-pale);}
    the one thing taken. Their block is a two-card teaser with a
    MORE RECIPES link; there is nowhere to link to yet, so ours
    shows the full set and links to WhatsApp instead. */
-/* sage, not cream: the section moved directly under the hero on 6 Sep 2026,
-   and the hero is cream - two creams meeting is the one thing the ground
-   order forbids. Moving it out from between the range and origin left those
-   two both sage, so origin took the cream this one gave up. */
-.recipes{padding:clamp(38px,4.6vw,66px) 0;background:var(--sage-mist);overflow-x:clip;}
+/* NO BACKGROUND HERE. There were two .recipes rules in this file, both setting a
+   ground, at equal specificity - so the later one silently won and this one had
+   been dead for some time while still looking authoritative. The ground is
+   declared ONCE now, in the rule further down; only layout lives here. */
+.recipes{padding:clamp(38px,4.6vw,66px) 0;overflow-x:clip;}
 .rechead{
   display:flex;align-items:flex-end;justify-content:space-between;
   gap:24px;flex-wrap:wrap;margin-bottom:clamp(26px,3.4vw,40px);
 }
-.rechead .lede{margin-top:10px;color:var(--sage);max-width:52ch;line-height:1.6;}
+/* --band, not --sage: see the note on the second .rechead .lede below. Both
+   rules are kept in step so they cannot disagree the way the two .recipes
+   grounds did. */
+.rechead .lede{margin-top:10px;color:var(--band);max-width:52ch;line-height:1.6;}
 /* ---- Cook something for someone ------------------------------------------
    Rebuilt after the "Odd for every occasion" row on oddbox.co.uk: four plain
    photographs, the dish name underneath, and nothing else. No card, no border,
    no badge, no scrim over the picture - the whole point of that row is the air
    around it. The moving strip and its two tabs came out with the redesign. */
-.recipes{padding:clamp(30px,4vh,64px) 0;background:var(--sage-mist);overflow-x:clip;}
-.rechead{text-align:center;max-width:52ch;margin:0 auto clamp(20px,2.8vh,38px);}
+/* THE MINT, 18 Sep 2026: "Keep this same background for cook for someone also -
+   green shade". This is the mission band's own ground, the same two mint stops
+   on the same 160deg - so the two green blocks on the page are green in the
+   same way rather than approximately.
+
+   It is the STATIC pair, not the mission's live one. That block mixes these
+   stops against cream through a --mx custom property as you scroll, which is
+   the colour-shifting ground the owner asked for back in September; copying the
+   shift as well would put two grounds on the page changing under the reader at
+   once. This is where that gradient settles.
+
+   THE ONLY DECLARATION OF THIS GROUND - see the note on the earlier .recipes
+   rule above, which used to set one too and lost silently.
+
+   The comment this replaces said cream was "the only one of the four that
+   does" - written when Saheli above was dark green and Contact below was sage.
+   Neither is true now: Saheli is the salt wash and the footer is plum, so the
+   run reads mint, salt, mint, plum and no two neighbours are alike. */
+.recipes{
+  padding:clamp(30px,4vh,64px) 0;
+  background:linear-gradient(160deg,var(--sage-mist),var(--sage-mist-2));
+  overflow-x:clip;
+}
+/* left, to the grid edge - a centred heading floating over a four-column grid
+   is what looked unaligned. The cards' own titles are left-aligned too, so
+   the whole block now shares one left margin. display is reset to block on
+   purpose: the earlier .rechead above is a wrapping flex row (it once put a
+   heading and a link on one line), and left as flex the h2 and the lede were
+   two wrapped flex items carrying the row's 24px gap between them. */
+.rechead{
+  display:block;text-align:left;max-width:56ch;
+  margin:0 0 clamp(20px,2.8vh,38px);
+}
 .rechead h2{margin:0;color:var(--ink);}
-.rechead .lede{margin:10px 0 0;color:var(--sage);line-height:1.55;}
+/* --band, not --sage, from 18 Sep 2026, when this block took the mission's mint.
+   The ground is a GRADIENT, so a colour has to clear AA at both stops, and
+   --sage only managed the lighter one: 4.74:1 on #d8e5d6 but 4.24 on #c9dbc5.
+   (--sage-soft is worse still here, 3.71 / 3.32 - the palette note at the top of
+   this file already says to prefer --sage on a sage-mist ground; on the deeper
+   stop even that is not enough.) --band measures 6.71 / 6.01. */
+.rechead .lede{margin:10px 0 0;color:var(--band);line-height:1.55;}
 
 .recgrid{
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -1512,9 +1764,29 @@ footer .btm .dv{color:var(--gold-pale);}
 }
 /* the photograph carries the card, so it gets the whole width and a shape that
    suits a plate: 4:3, not the old portrait crop */
+/* The bowl shape from sweetgreen.com. Measured on their menu row: the tile is
+   just a 366px square with a 20px radius - the shape the owner liked is the
+   BOWL inside the photograph, a soft square with corners so full they read as
+   round. That is a superellipse (|x|^4+|y|^4=1, the "squircle"), which CSS has
+   no keyword for, so it is traced as a 32-point polygon in percentages: the
+   points are proportional, so the shape holds at every card width. A plain
+   border-radius could not do it - a radius rounds only the corner arc and
+   leaves flat sides, while a squircle curves continuously all the way round,
+   and that continuous curve is what makes it read as a bowl rather than a
+   rounded box. Square, so the eight facets are even. */
 .recgrid .rshot{
-  position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:14px;
+  position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;
   background:var(--sage-mist-2);
+  clip-path:polygon(
+    100.0% 50.0%, 99.52% 72.08%, 98.06% 80.93%, 95.59% 87.27%,
+    92.04% 92.04%, 87.27% 95.59%, 80.93% 98.06%, 72.08% 99.52%,
+    50.0% 100.0%, 27.92% 99.52%, 19.07% 98.06%, 12.73% 95.59%,
+    7.96% 92.04%, 4.41% 87.27%, 1.94% 80.93%, 0.48% 72.08%,
+    0.0% 50.0%, 0.48% 27.92%, 1.94% 19.07%, 4.41% 12.73%,
+    7.96% 7.96%, 12.73% 4.41%, 19.07% 1.94%, 27.92% 0.48%,
+    50.0% 0.0%, 72.08% 0.48%, 80.93% 1.94%, 87.27% 4.41%,
+    92.04% 7.96%, 95.59% 12.73%, 98.06% 19.07%, 99.52% 27.92%
+  );
 }
 .recgrid .rshot img{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
@@ -1536,7 +1808,7 @@ footer .btm .dv{color:var(--gold-pale);}
      threshold - the same fix already used for the 01-04 numerals in Why SATVA. */
   color:color-mix(in srgb, var(--acc, var(--gold-dk)) 62%, var(--ink));
 }
-.recfoot{display:flex;justify-content:center;margin-top:clamp(20px,2.6vh,36px);}
+.recfoot{display:flex;justify-content:flex-start;margin-top:clamp(20px,2.6vh,36px);}
 
 @media (max-width:900px){ .recgrid{grid-template-columns:repeat(2,1fr);} }
 @media (max-width:520px){ .recgrid{grid-template-columns:1fr;} }
@@ -1545,9 +1817,32 @@ footer .btm .dv{color:var(--gold-pale);}
    Rumi Spice runs "Empowers Afghan Women" as one of three
    why-choose columns. The owner wants it as a section of its
    own under the name Satwa Saheli, so it gets the room. Two
-   portrait slots and a stat strip; the sage ground separates it
-   from the cream sections either side without going dark. */
-.saheli{padding:clamp(38px,4.6vw,66px) 0;background:var(--band);color:#fff;position:relative;overflow:hidden;}
+   portrait slots and a stat strip.
+
+   GROUND CHANGED 17 Sep 2026 to #f3dfdc, the "pink salt wash" - a pale step of
+   --himalayan #d98a8a, the unrefined salt already in the range.
+
+   WHY, because the lilac it replaces was not ugly, it was invisible: this band
+   sits between the mission band's mint above and the footer's mint below, and
+   #e2d9e3 fell BETWEEN the two in lightness (+0.042 against one, -0.042 against
+   the other) while being cool, like both. So the boundary had neither a change
+   of warmth nor a step to announce it, and the section read as a continuation
+   of the one before it. #f3dfdc is warm against both neighbours AND clearly
+   lighter (+0.099 against the mint above), so the edge reads twice over. It is
+   also the only candidate that names a product we actually sell.
+
+   Every ink got BETTER, so nothing else had to move:
+     --ink 10.70 -> 11.49   --green 8.01 -> 8.60
+     --band 6.36 -> 6.83    --gold-dk 4.53 -> 4.86
+   White (1.38) and --gold-lt (1.41) are still unusable here, as they were on
+   the lilac.
+
+   HISTORY: this was the dark brand green until 10 Sep 2026, when it became the
+   brightland.co press-bar lilac and every piece of type in here was inverted
+   from light-on-dark. That inversion is what this ground inherits.
+   NOTE: the footer is the only dark band left in the page. Worth a look at
+   whether there is enough weight low down - the green is one line away. */
+.saheli{padding:clamp(38px,4.6vw,66px) 0;background:#f3dfdc;color:var(--green);position:relative;overflow:hidden;}
 .saheli::before{
   content:"";position:absolute;inset:0;pointer-events:none;opacity:.06;
   background:url("../assets/leaf-mask.png") center/contain no-repeat;
@@ -1556,52 +1851,67 @@ footer .btm .dv{color:var(--gold-pale);}
   display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(28px,4vw,58px);align-items:stretch;
   position:relative;
 }
-.saheli .kick{color:var(--gold-lt);}
-.saheli h2{color:#fff;}
-.saheli h2 .goldtext{color:var(--gold-lt);-webkit-text-fill-color:currentColor;background:none;}
+.saheli .kick{color:var(--gold-dk);}
+.saheli h2{color:var(--ink);}
+.saheli h2 .goldtext{color:var(--gold-dk);-webkit-text-fill-color:currentColor;background:none;}
 .sahname{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
   font-size:clamp(1.9rem,3.4vw,2.7rem);font-weight:600;line-height:1.1;margin:0 0 6px;
 }
-.sahname .dv{display:block;font-size:.62em;color:var(--gold-lt);margin-bottom:6px;}
-.saheli .lede{color:rgba(255,255,255,.88);font-size:1.03rem;line-height:1.68;margin-top:14px;}
-.saheli .lede b{color:#fff;}
+.sahname .dv{display:block;font-size:.62em;color:var(--gold-dk);margin-bottom:6px;}
+/* --green, not --sage. On the old lilac --sage measured 4.49:1, a hundredth
+   short of AA, which is what forced this. On the salt wash it comes to 4.83 and
+   would now be legal - but --green measures 8.60 here and body copy is the last
+   place to spend contrast, so it stays. */
+.saheli .lede{color:var(--green);font-size:1.03rem;line-height:1.68;margin-top:14px;}
+.saheli .lede b{color:var(--ink);}
 .sahstats{display:flex;gap:clamp(20px,3vw,40px);flex-wrap:wrap;margin-top:clamp(22px,2.6vw,30px);}
 .sahstat{display:flex;flex-direction:column;gap:3px;}
 .sahstat b{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
-  font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--gold-lt);line-height:1;font-weight:600;
+  font-size:clamp(1.6rem,2.6vw,2.1rem);color:var(--gold-dk);line-height:1;font-weight:600;
 }
-.sahstat span{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.7);}
-.sahstat.todo b{font-size:1.05rem;color:rgba(255,255,255,.5);font-style:italic;letter-spacing:0;}
+.sahstat span{font-size:.74rem;letter-spacing:.13em;text-transform:uppercase;color:var(--band);}
+/* the unfilled slots still have to be READABLE - they are a promise to the
+   reader that a number is coming, not decoration */
+.sahstat.todo b{font-size:1.05rem;color:var(--band);font-style:italic;letter-spacing:0;opacity:.75;}
 .sahcta{margin-top:clamp(24px,3vw,34px);display:flex;gap:12px;flex-wrap:wrap;}
-/* the shared ghost button assumes a light ground (--green on translucent white),
-   which lands at 1.26:1 over the band green. Inverted here: 5.24:1. */
-.saheli .btn-ghost{
-  border-color:rgba(241,221,171,.5);color:var(--gold-pale);background:rgba(255,255,255,.08);
-}
-.saheli .btn-ghost:hover{border-color:var(--gold-lt);color:#fff;background:rgba(255,255,255,.16);}
+/* the ghost button was inverted for the dark ground; the ground is light again,
+   so the shared light-ground version is correct and the override goes. */
 .sahart{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,18px);}
 .sahshot{
   position:relative;overflow:hidden;border-radius:16px;background:var(--tint);
-  border:1px solid rgba(241,221,171,.24);min-height:clamp(240px,30vw,340px);
+  border:1px solid rgba(30,44,22,.18);min-height:clamp(240px,30vw,340px);
 }
 .sahshot:nth-child(1){margin-top:clamp(18px,3vw,34px);}
 .sahshot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+/* The two placeholder tiles follow the ground, and always a step DEEPER than it
+   (17 Sep 2026: #e9d6d3 -> #d8c6c4 against #f3dfdc, the same 0.96x / 0.89x steps
+   the lilac pair used) because a panel painted its own background's colour is
+   not a panel; the dashed border carries the rest of the boundary. The tint is
+   set per tile in index.html, so it has to be changed THERE whenever this
+   ground changes - the two cannot drift apart silently.
+   Everything that sat on them was built for the old dark green and brown fills
+   and had to come with them: a white icon and a dark-to-transparent caption
+   scrim both disappear on a pale tile. */
 .sahshot svg{
   position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-  width:40%;height:auto;color:#fff;opacity:.5;
+  width:40%;height:auto;color:var(--band);opacity:.4;
 }
-.sahshot.todo{border-style:dashed;border-color:rgba(241,221,171,.45);}
+.sahshot.todo{border-style:dashed;border-color:rgba(30,44,22,.34);}
 .sahshot .stag{
   position:absolute;bottom:0;left:0;right:0;padding:9px 11px;
-  background:linear-gradient(to top,rgba(30,44,22,.85),rgba(30,44,22,0));
-  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-pale);
+  /* no scrim: it existed to lift pale gold off a dark photo tile, and on a pale
+     tile it would be a dark smear across the bottom of the panel. --band on the
+     tile's darker stop measures 5.33:1 on the salt wash (4.88 on the old lilac);
+     --gold-dk was the other candidate and reaches only 3.79 there, so it is not
+     used. */
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--band);
 }
 .sahnote{
   margin-top:clamp(24px,3vw,34px);font-size:.86rem;line-height:1.6;
-  color:rgba(255,255,255,.62);max-width:70ch;position:relative;
-  border-left:2px solid var(--gold);padding-left:14px;
+  color:var(--green);max-width:70ch;position:relative;
+  border-left:2px solid var(--gold-dk);padding-left:14px;
 }
 @media (max-width:900px){ .sahgrid{grid-template-columns:1fr;} .sahshot:nth-child(1){margin-top:0;} }
 
@@ -1616,9 +1926,12 @@ footer .btm .dv{color:var(--gold-pale);}
 .mission{
   --mx:0;
   padding:clamp(64px,8vw,116px) 0;position:relative;overflow:hidden;
-  /* At rest this is the cream of the section before it; fully shifted it is the
-     sage of the section after it. So the mission does not just change colour, it
-     is the hinge between the cream half of the page and the sage half. */
+  /* At rest this is the cream of the section before it (how it is made). It
+     shifts toward sage as it crosses the middle of the screen - which used to
+     be the ground of the section after it, when the recipe row followed. Satva
+     Saheli was moved up above the recipes on 10 Sep 2026, so what follows is
+     now the dark green band: the shift no longer lands on its neighbour's
+     colour, it just carries the page from cream into the dark. */
   background:
     linear-gradient(160deg,
       color-mix(in oklab,var(--cream-sg),var(--sage-mist) calc(var(--mx) * 100%)) 0%,
@@ -1635,20 +1948,282 @@ footer .btm .dv{color:var(--gold-pale);}
   }
 }
 .mission .wrap{position:relative;}
-.misgrid{max-width:74ch;margin:0 auto;text-align:center;}
 .mission .kick{color:var(--gold-dk);}
+
+/* ---- the mission/story slider ---------------------------------------------
+   Layout taken from rumispice.com/pages/about, measured at 1240 wide: the
+   photograph is 368x556 - a 2:3 portrait - flush with the left edge of the
+   wrap, 71px of air to the copy, and the copy top-aligned with the top of the
+   picture rather than centred on it. That top alignment is most of the look:
+   it is what leaves the deep well of space under the paragraph.
+
+   The two slides are stacked in ONE grid cell rather than laid side by side in
+   a track. A track would need its width measured and shifted (the trap the
+   recipe marquee hit, where half the track was not the pitch once a gap
+   existed); one cell needs no arithmetic, cross-fades for free, and takes the
+   height of the TALLER slide, so the ground never jumps when they swap. */
+/* 17 Sep 2026, the owner: "THis block should have a sliding between the our
+   story card and the mission card". The two slides used to CROSS-FADE, which
+   from a reader's seat is the section quietly becoming a different section -
+   nothing tells you a second panel exists or which way it went. They now travel:
+   the outgoing card leaves to one side and the incoming card arrives from the
+   other, so the movement itself says "there are two of these, side by side".
+   The stack stays exactly as it was - both slides still share one grid cell, so
+   no track has to be measured (the trap the recipe marquee hit) and the view is
+   still as tall as the TALLER slide. Only the transform is new.
+   overflow-x:clip, not hidden: `hidden` on one axis forces the other to `auto`
+   and silently makes this a scroll container, which would trap the page's own
+   scrolling here. `clip` does not, and the 28px margin lets the pictures' own
+   shadows sit outside the clip edge instead of being sliced off. */
+.msview{display:grid;overflow-x:clip;overflow-clip-margin:28px;}
+.msslide{
+  grid-area:1 / 1;                     /* every slide in the same cell */
+  display:grid;grid-template-columns:auto minmax(0,1fr);
+  gap:clamp(24px,5.7vw,71px);align-items:start;
+  /* the view is as tall as the TALLER slide, so the shorter one has slack. This
+     splits that slack above and below its row instead of dropping it all
+     underneath, where it read as a hole rather than as air. align-items:start
+     above still tops the copy against the picture inside the row. */
+  align-content:center;
+  opacity:0;visibility:hidden;pointer-events:none;
+  /* --x is the side this slide waits on, written by js/satva.js the instant
+     before it moves: the leaving card is sent to one side, the arriving card is
+     parked on the other. The opacity ramp is shorter than the travel so the
+     card is fully solid before it lands, rather than fading the whole way. */
+  transform:translateX(var(--x,100%));
+  transition:transform .62s var(--ease),opacity .34s var(--ease),
+             visibility 0s linear .62s;
+}
+.msslide.is-on{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transform:translateX(0);transition-delay:0s;
+}
+
+/* The picture is sized by viewport HEIGHT, not width. This section has to fit a
+   screen, and a 2:3 portrait is the tallest thing on the page - at Rumi's 33%
+   of the wrap it is 556px, which alone is most of a laptop window. Driving the
+   height and letting the aspect give the width is the only way a fixed-ratio
+   picture can answer to the space it actually has. At 1100px tall it lands on
+   540x360, within a couple of pixels of Rumi's own. */
+.msshot{
+  /* Enlarged 10 Sep 2026 - the owner asked for a bigger picture. 56vh matched
+     Rumi's 556px exactly, but on the laptop window this is actually read on
+     (625px of page) that came to 350px tall and left 137px of the screen unused
+     under the block. 74vh takes most of that back: 462x308 here, 620x413 on a
+     tall window, against Rumi's 556x368. The section still fits a screen, which
+     is the constraint that set this number in the first place. */
+  height:clamp(300px,74vh,620px);aspect-ratio:2/3;
+  border-radius:20px;overflow:hidden;background:var(--sage-mist-2);flex:none;
+}
+.msshot img{width:100%;height:100%;object-fit:cover;display:block;}
+
+/* 64ch, not 56: the picture is sized by viewport height, so on a short window it
+   narrows and drags the copy left with it - at 625px tall that left a 233px
+   gutter down the right of the section. A wider measure takes most of it back
+   and still breaks near Rumi's own 615px line. */
+.mscopy{max-width:64ch;padding-top:clamp(2px,1.4vh,18px);}
 .misline{
   font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
   font-size:clamp(1.5rem,3.3vw,2.5rem);font-weight:600;color:var(--ink);
   line-height:1.22;margin:14px 0 0;
 }
 .misline em{font-style:normal;display:block;color:var(--sage);}
-.mission .lede{margin-top:clamp(16px,2vw,22px);color:var(--green);font-size:1.04rem;line-height:1.7;}
-.mission .rule{margin-inline:auto;margin-top:clamp(20px,2.4vw,28px);}
+/* 1.8, which is Rumi's 16px on 28.8px. Long-form copy beside a tall picture
+   needs the extra leading; the site's usual 1.6 reads cramped in this column. */
+.mission .lede{margin-top:clamp(16px,2vw,22px);color:var(--green);
+  font-size:1.04rem;line-height:1.8;}
+.mission .rule{margin-top:clamp(20px,2.4vw,28px);}
+.msmore{margin-top:clamp(14px,1.8vw,20px);}
+.msmore a{font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-dk);border-bottom:1px solid currentColor;padding-bottom:2px;}
+.msmore a:hover{color:var(--green);}
+
+/* ---- the mission slide, after brightland.co ---------------------------------
+   Their block reverses the Rumi one: the copy is on the LEFT and the picture on
+   the RIGHT, the mission is set as a QUOTATION rather than a headline, and it
+   is signed underneath. Measured on their page at 1240 wide:
+     copy column   621px, text starting 28px inside the row
+     quote         40px, weight 450, no extra leading
+     picture       449 x 520, object-fit cover, 18px radius
+     column gap    18px  (much tighter than Rumi's 71)
+     caption       12px, letter-spacing .6px, capitalised
+   The tight 18px gap is the deliberate part - it is what makes the picture read
+   as a panel butting against the words rather than a separate column. */
+/* 59/39, which is Brightland's own split (677 and 449 of a 1144 row). The
+   picture takes a SHARE of the width here rather than being sized by its own
+   ratio like the Rumi slide: on their page the picture fills its column and is
+   cropped to fit, and doing the same is what keeps their tight 18px gap tight.
+   Sizing it by height instead left the quote ending 201px short of the picture
+   on a laptop window - the gap was the whole point of the design and it had
+   quietly become the largest space in the block. */
+/* vahdam.com's version of this row, which is what the owner asked the picture
+   to look like: copy on the left, and on the right a ROUND portrait with the
+   signature and name beside it. Measured on their page at 1440 wide - the row
+   is 1208, the copy 625, and the right-hand group 584 x 369 with the circle
+   about 252px across. The right column is `auto` here rather than a share of
+   the width, because a circle has a size of its own and should not be stretched
+   by the column it sits in. */
+.msslide.brt{grid-template-columns:minmax(0,1fr) auto;gap:clamp(20px,3vw,48px);}
+.msaside{display:flex;align-items:center;gap:clamp(14px,1.8vw,26px);}
+/* the copy column IS the 1fr here, so it must not carry the Rumi slide's 64ch
+   cap - that cap left the box ending at 722 while the picture started at 875,
+   turning Brightland's tight 18px gap into 153px of nothing. The measure is
+   kept on the quote (26ch) and the paragraph (46ch) instead, where it belongs. */
+.msslide.brt .mscopy{max-width:none;}
+/* ROUND, and sized by height like everything else in this slider so it holds
+   its shape on a short window. Vahdam's circle is 252px; this runs 170-260. */
+.msslide.brt .msshot{
+  width:auto;height:clamp(170px,34vh,260px);aspect-ratio:1/1;
+  border-radius:50%;flex:none;
+}
+.msq{
+  margin:14px 0 0;font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 45,"WONK" 1;
+  /* their quote is a flat 40px; ours has to survive a 390px phone, so it is a
+     clamp that tops out just above theirs */
+  font-size:clamp(1.32rem,2.9vw,2.35rem);font-weight:600;line-height:1.2;
+  color:var(--ink);
+  /* 26ch is where their line broke: "Brightland exists to bring" is 26
+     characters in 621px at 40px */
+  max-width:26ch;
+}
+.msqsub{
+  margin:clamp(14px,1.8vh,22px) 0 0;max-width:46ch;
+  color:var(--green);font-size:.96rem;line-height:1.75;
+}
+/* the signature, now beside the circle rather than under the copy - Vahdam sets
+   the mark and the caption to the right of the portrait, and that grouping is
+   what makes the circle read as a person signing rather than a stray photo. */
+.mssign{max-width:19ch;}
+/* the signature mark is the stacked lockup as well now; a square mark at the old
+   42px cap was 44px wide and read as a speck next to the caption beside it */
+.mssign img{display:block;width:auto;height:clamp(46px,6vh,66px);opacity:.92;}
+.mssigcap{
+  margin:10px 0 0;font-size:.72rem;line-height:1.55;letter-spacing:.08em;
+  text-transform:uppercase;font-weight:600;color:var(--sage);
+}
+/* the brand name leads, the place follows, exactly as Vahdam stacks the name
+   above the role above the descriptor */
+.mssigcap b{display:block;color:var(--band);letter-spacing:.1em;}
+.mssigcap span{display:block;}
+
+/* ---- the whole story, inside the story slide -------------------------------
+   The standalone Our Story section was folded in here, so the button opens the
+   real thing in place rather than sending the reader somewhere else.
+   grid-template-rows 0fr -> 1fr is the animatable way to do height:auto; the
+   inner wrapper is what actually gets clipped. */
+/* height, driven from satva.js, NOT the grid-template-rows:0fr->1fr trick.
+   That trick is the tidier CSS and it is what was here first, but measured on
+   the page it did not interpolate: the row sat at 15.4px for the whole half
+   second and then snapped to 923 at the end - a dead pause followed by a jump.
+   1fr resolves against the container's height, and while the container is
+   collapsing to nothing there is nothing for it to resolve against. A pixel
+   height measured off the content animates properly because both ends of the
+   transition are real lengths; satva.js sets it, then hands back to `auto` so
+   the panel still reflows if the window changes. */
+.msfull{height:0;overflow:hidden;transition:height .45s var(--ease);}
+.msfullin{opacity:0;transition:opacity .3s var(--ease);}
+.msslide.is-open .msfullin{opacity:1;transition-delay:.12s;}
+/* a little air once it is open, and the story's own top margin is not needed
+   because the summary above it has gone */
+.msslide.is-open .msfullin{padding-top:clamp(6px,1.4vh,16px);}
+/* the summary is the closed state's copy, so it goes when the full text opens */
+.msslide.is-open .msgist{display:none;}
+/* open, this slide is an article, not a panel beside a picture: the type gets
+   a reading measure and the picture stops dictating the height */
+.msslide.is-open{align-items:start;}
+.msslide.is-open .msshot{height:clamp(240px,34vh,340px);}
+
+/* the story's own elements, restyled for this narrower column. These rules used
+   to hang off .story, which no longer exists. */
+.msfull p{margin:0 0 1.05em;color:var(--green);font-size:.96rem;line-height:1.8;}
+.msfull p:last-child{margin-bottom:0;}
+.msfull .first::first-letter{
+  float:left;font-family:"Fraunces",Georgia,serif;font-weight:600;
+  font-size:3.1em;line-height:.82;margin:.06em .09em 0 0;color:var(--gold-dk);
+}
+.msfull .pull{
+  margin:1.4em 0;padding:2px 0 2px 20px;border-left:3px solid var(--gold);
+  font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:1.12rem;
+  line-height:1.32;color:var(--ink);
+}
+.msfull .pull cite{
+  display:block;margin-top:10px;font-family:inherit;font-style:normal;
+  font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;color:var(--gold-dk);
+}
+.msfull .storysub{
+  margin:1.6em 0 0;font-family:"Fraunces",Georgia,serif;
+  font-variation-settings:"SOFT" 50,"WONK" 1;
+  font-size:1.14rem;line-height:1.2;color:var(--band);font-weight:600;
+}
+.msfull .tracelist{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:11px;}
+.msfull .tracelist li{display:flex;gap:11px;align-items:flex-start;
+  font-size:.92rem;line-height:1.6;color:var(--green);}
+.msfull .tracelist .tick{
+  flex:none;width:19px;height:19px;margin-top:3px;border-radius:50%;
+  background:var(--sage-mist-2);color:var(--band);display:grid;place-items:center;
+}
+.msfull .tracelist .tick svg{width:12px;height:12px;}
+.msfull .sign{margin-top:1.6em;font-size:.9rem;color:var(--sage);}
+.msfull .sign b{display:block;font-size:1.02rem;color:var(--band);font-weight:600;}
+.msfull .sign .tag{display:block;font-size:.86rem;color:var(--gold-dk);
+  font-weight:500;letter-spacing:.04em;margin-bottom:3px;}
+.msfull .sign .heart{font-size:.8em;vertical-align:1px;}
+
+/* the disclosure is a button, not a link - it changes this page rather than
+   going to another one, and a screen reader needs to hear it is expandable */
+.msopen{
+  border:0;background:none;padding:0 0 2px;cursor:pointer;
+  font:inherit;font-size:.82rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;color:var(--gold-dk);border-bottom:1px solid currentColor;
+}
+.msopen:hover{color:var(--green);}
+
+/* controls under the copy column, not over the picture: the picture is the
+   subject here and an arrow sitting on it would be the second thing you see */
+.msnav{display:flex;align-items:center;gap:18px;margin-top:clamp(20px,2.6vh,34px);}
+.msnav .arrow{position:static;width:40px;height:40px;}
+.msnav .arrow svg{width:15px;height:15px;}
+.msarrows{display:flex;gap:9px;}
+.msdots{display:flex;gap:9px;align-items:center;}
+.msdots button{width:10px;height:10px;padding:0;border-radius:50%;
+  border:1px solid rgba(62,48,20,.3);background:rgba(255,255,255,.75);cursor:pointer;
+  transition:.35s var(--ease);}
+.msdots button[aria-selected="true"]{background:var(--gold-dk);border-color:var(--gold-dk);
+  width:30px;border-radius:999px;}
+
+/* one column below the point where a 2:3 picture and a paragraph stop fitting
+   side by side; the picture goes wide and short so it does not push the copy
+   off the screen */
+@media (max-width:820px){
+  /* .msslide.brt has to be named here too. A media query adds no specificity,
+     so the .msslide.brt rule above (0,2,0) beat a bare .msslide (0,1,0) inside
+     this block and the brightland slide stayed two columns on a phone - copy
+     crushed into 128px and 637px tall. */
+  .msslide,.msslide.brt{grid-template-columns:1fr;gap:clamp(18px,3vw,26px);}
+  .msshot,.msslide.is-open .msshot{
+    height:auto;width:100%;aspect-ratio:4/3;
+  }
+  /* the mission circle stays a circle on a phone - it just gets smaller and
+     the signature drops under it */
+  .msslide.brt .msshot{height:clamp(140px,42vw,190px);width:auto;aspect-ratio:1/1;}
+  .msaside{flex-direction:column;align-items:flex-start;gap:14px;}
+  .mscopy{padding-top:0;max-width:none;}
+  /* the picture goes first on a phone even on the brightland slide, where it is
+     second in the source: a screenful of type before any image is a wall */
+  .msslide.brt .mscopy{order:2;}
+  .msslide.brt .msshot{order:1;}
+  .msq{max-width:none;}
+}
 /* the shift is decorative; anyone who asked for less motion gets the plain ground */
 @media (prefers-reduced-motion:reduce){
   .mission{transition:none;background:linear-gradient(160deg,var(--sage-mist),var(--sage-mist-2));}
   .mission::before{display:none;}
+  /* the slides still swap - by dot, arrow or swipe - they just do not travel.
+     translateX is dropped rather than set to 0, so a waiting slide is not left
+     sitting on top of the live one; visibility still takes it out of the way. */
+  .msslide{transition:none;transform:none;}
 }
 
 /* ---- one block per screen -------------------------------------------------
@@ -1715,10 +2290,14 @@ footer{scroll-snap-align:start;}
    laptop window got none of it and nothing fitted there either. */
 @media (max-height:1000px){
   .shelves,.recipes,.reasons,.cats,.range,.origin,.trace,
-  .mission,.why,.promise,.story,.saheli,.voices,.contact{
+  .mission,.story,.saheli,.contact{
     padding-top:clamp(16px,2.4vh,34px);
     padding-bottom:clamp(16px,2.4vh,34px);
   }
+  /* except the two blocks that are a full screen with their content centred:
+     they keep a top padding deep enough to hold the heading clear of the sticky
+     nav. See the notes on .cats and .reasons. */
+  .cats,.reasons{ padding-top:max(96px,clamp(16px,2.4vh,34px)); }
   .dsp.big{font-size:clamp(1.5rem,3.4vh,2.3rem);}
   .lede{font-size:clamp(.8rem,1.55vh,.96rem);line-height:1.46;}
   .chead{margin-bottom:clamp(14px,2vh,26px);}
@@ -1760,11 +2339,18 @@ footer{scroll-snap-align:start;}
   .rangepick{padding:clamp(12px,2vh,22px) clamp(16px,2vw,26px);font-size:.9rem;}
   .rangenote{font-size:.8rem;}
 
-  /* the why-choose illustrations are 212px of line drawing each - the single
-     biggest item in that section, and the one thing there that can lose height
-     without losing meaning */
+  /* the why-choose illustrations are the one thing in that section that can
+     lose height without losing meaning. This USED to size the svg directly -
+     width:clamp(74px,13vh,120px) - and that was written when the icons were
+     212px line drawings on a flat ground. Once they moved inside the circles
+     the wrapper became 55px while this rule still gave the svg 81px (13vh of a
+     625px window), and since it is the later rule of two with equal
+     specificity it won: the drawing painted 26px past its box, straight down
+     onto the heading. It now moves the SAME custom property the circle uses,
+     so the wrapper and the drawing can never disagree again - and on a short
+     window the icon gets smaller, which was the intent all along. */
   .reasons .rgrid,.reasons .wgrid{gap:clamp(12px,1.8vh,22px);}
-  .reasons .rgrid svg{width:clamp(74px,13vh,120px);height:auto;}
+  .reason .art{--icon:clamp(40px,8.6vh,58px);}
   .reasons .rhead{margin-bottom:clamp(10px,1.6vh,20px);}
   .reasons .rcta{margin-top:clamp(10px,1.6vh,20px);}
 
@@ -1797,3 +2383,39 @@ footer{scroll-snap-align:start;}
   .origin .onote{margin-top:clamp(8px,1.4vh,16px);font-size:.76rem;line-height:1.4;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 }
+
+/* ============================================================
+   RECIPES GROUND → #dbd9db.                         22 Sep 2026
+   ------------------------------------------------------------
+   The owner picked this grey from eight tints of the footer plum
+   (#372e35) compared at site-v3/tints.html, and asked for it on
+   this site too: "i want it in the other site also … one is the
+   original site".
+
+   It replaces the sage-mist gradient this block has carried. Note
+   this is the FIRST change to this file since 18 Sep, when the
+   instruction was to leave the original alone - made on the
+   owner's explicit say-so. The previous file is beside it as
+   satva.css.bak-HHMM if it needs to come back.
+
+   Appended at the end rather than edited in place so the original
+   rule is still readable above, and so this is one contiguous
+   block to delete if it is reverted.
+
+   Measured on #dbd9db before changing anything:
+     --ink heading                      10.48:1
+     --band lede                         6.23:1
+     .ruses, all four featured recipes   5.59 - 6.01:1
+       (they are color-mix(acc 62%, --ink), tuned for the sage
+       ground; the grey is darker than sage-mist and they still
+       hold, so none needed touching)
+   ============================================================ */
+.recipes{
+  background:#dbd9db;
+  background-image:none;
+}
+/* The one thing that did not survive the change. .btn-ghost's border is
+   --clay, chosen for warm grounds; on this grey it measures 1.07:1 and the
+   outline disappears, leaving the label floating. WCAG 1.4.11 wants 3:1 for
+   a control's boundary. --sage is 4.40:1. Same fix as site-v3. */
+.recipes .btn-ghost{border-color:var(--sage);}

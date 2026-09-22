@@ -21,49 +21,62 @@
      save it at that exact path and reload. Nothing else to edit.
      --------------------------------------------------------- */
   var PRODUCTS = [
-    /* ---- ground spices ---- */
-    { acc:"#e8a713", ink:"#94660a", en:"Turmeric", hi:"हल्दी", cat:"ground", form:"Ground", glyph:"हल",
+    /* ---- SPICES · ground ---- */
+    { acc:"#e8a713", ink:"#94660a", en:"Turmeric", hi:"हल्दी", cat:"spices", form:"Ground", glyph:"हल",
       d:"The everyday base — dal, sabzi and every tadka starts here.",
       img:"assets/p-haldi.jpg", tint:"linear-gradient(150deg,#e3ae3c,#c1860f)" },
-    { acc:"#c3341a", ink:"#a52a13", en:"Chilli Powder", hi:"लाल मिर्च", cat:"ground", form:"Ground", glyph:"मि",
+    { acc:"#c3341a", ink:"#a52a13", en:"Chilli Powder", hi:"लाल मिर्च", cat:"spices", form:"Ground", glyph:"मि",
       d:"Colour and heat, ground from whole dried chillies.",
       img:"assets/p-mirchi.jpg", tint:"linear-gradient(150deg,#cf5238,#a8321b)" },
-    { acc:"#93a04b", ink:"#5f6a26", en:"Coriander Powder", hi:"धनिया", cat:"ground", form:"Ground", glyph:"ध",
+    { acc:"#93a04b", ink:"#5f6a26", en:"Coriander Powder", hi:"धनिया", cat:"spices", form:"Ground", glyph:"ध",
       d:"Warm and nutty — the quiet base under a good curry.",
       img:"assets/p-dhane.jpg", tint:"linear-gradient(150deg,#bcae63,#948537)" },
 
-    /* ---- whole spices, for tadka ---- */
-    { acc:"#a3763f", ink:"#6b5029", en:"Cumin Seeds", hi:"जीरा", cat:"whole", form:"Whole", glyph:"जी",
+    /* ---- SPICES · whole, for tadka ---- */
+    { acc:"#a3763f", ink:"#6b5029", en:"Cumin Seeds", hi:"जीरा", cat:"spices", form:"Whole", glyph:"जी",
       d:"Whole, for the first crackle in hot oil.",
       img:"assets/p-jeera.jpg", tint:"linear-gradient(150deg,#b98d55,#8a6a3a)" },
-    { acc:"#c9962a", ink:"#8a6510", en:"Mustard Seeds", hi:"राई", cat:"whole", form:"Whole", glyph:"रा",
+    { acc:"#c9962a", ink:"#8a6510", en:"Mustard Seeds", hi:"राई", cat:"spices", form:"Whole", glyph:"रा",
       d:"Small, sharp and made for tadka.",
       img:"assets/p-rai.jpg", tint:"linear-gradient(150deg,#d3a844,#a87d16)" },
-    { acc:"#b08b2e", ink:"#7d6118", en:"Fenugreek Seeds", hi:"मेथी दाना", cat:"whole", form:"Whole", glyph:"मे",
+    { acc:"#b08b2e", ink:"#7d6118", en:"Fenugreek Seeds", hi:"मेथी दाना", cat:"spices", form:"Whole", glyph:"मे",
       d:"A bitter edge for pickles, dal and tadka.",
       img:"assets/p-methi.jpg", tint:"linear-gradient(150deg,#bf9c48,#94781f)" },
 
-    /* ---- masala blends ---- */
-    { acc:"#a8462a", ink:"#8a3720", en:"Kanda Lasun Masala", hi:"प्याज़ लहसुन मसाला", cat:"blend", glyph:"प्या",
+    /* ---- SPICES · masala blends ---- */
+    { acc:"#a8462a", ink:"#8a3720", en:"Kanda Lasun Masala", hi:"प्याज़ लहसुन मसाला", cat:"spices", glyph:"प्या",
       d:"Onion, garlic and chilli — the Marathwada blend, ground fresh.",
       img:"assets/p-kandalasun.jpg", tint:"linear-gradient(150deg,#c9603f,#9e3d22)" },
-    { acc:"#7d5630", ink:"#634324", en:"Garam Masala", hi:"गरम मसाला", cat:"blend", glyph:"गर",
+    { acc:"#7d5630", ink:"#634324", en:"Garam Masala", hi:"गरम मसाला", cat:"spices", glyph:"गर",
       d:"The finishing spoon — stirred in at the end, not boiled away.",
       img:"assets/p-garam.jpg", tint:"linear-gradient(150deg,#a38055,#74562f)" },
-    { acc:"#8f2e28", ink:"#7a2620", en:"Meat Masala", hi:"मीट मसाला", cat:"blend", glyph:"मी",
+    { acc:"#8f2e28", ink:"#7a2620", en:"Meat Masala", hi:"मीट मसाला", cat:"spices", glyph:"मी",
       d:"Built for slow-cooked mutton and chicken curry.",
       img:"assets/p-meat.jpg", tint:"linear-gradient(150deg,#a7473f,#7c2721)" },
-    { acc:"#e2912b", ink:"#94590c", en:"Biryani Masala", hi:"बिरयानी मसाला", cat:"blend", glyph:"बि",
+    { acc:"#e2912b", ink:"#94590c", en:"Biryani Masala", hi:"बिरयानी मसाला", cat:"spices", glyph:"बि",
       d:"For layered rice — whole spices ground for aroma, not just heat.",
       img:"assets/p-biryani.jpg", tint:"linear-gradient(150deg,#e8a750,#c07a17)" },
-    { acc:"#7f6a4e", ink:"#5f5039", en:"Chaat Masala", hi:"चाट मसाला", cat:"blend", glyph:"चा",
+    { acc:"#7f6a4e", ink:"#5f5039", en:"Chaat Masala", hi:"चाट मसाला", cat:"spices", glyph:"चा",
       d:"The tangy finish for chaat, fruit and a glass of buttermilk.",
       img:"assets/p-chaat.jpg", tint:"linear-gradient(150deg,#9b8768,#6d5a41)" },
-    { acc:"#b8453c", ink:"#96332b", en:"Chatpat Masala", hi:"चटपट मसाला", cat:"blend", glyph:"चट",
+    { acc:"#b8453c", ink:"#96332b", en:"Chatpat Masala", hi:"चटपट मसाला", cat:"spices", glyph:"चट",
       d:"Sharp and tangy — for chivda, raw mango, anything that needs a lift.",
       img:"assets/p-chatpat.jpg", tint:"linear-gradient(150deg,#c9605a,#a3352c)" },
 
-    /* ---- seeds ---- */
+    /* ---- PULSES ----
+       Toor and chana are the two pulses the venture's own master list
+       (fmcg/Household-Items-List.md) marks as already in the plan; everything
+       else on that list - moong, masoor, urad, rajma - is a later addition.
+       No photographs exist yet, so both cards fall back to their designed tile,
+       which is the same behaviour every un-photographed product already has. */
+    { acc:"#cf8f34", ink:"#8a5c14", en:"Toor Dal", hi:"तूर दाल", cat:"pulses", glyph:"तू",
+      d:"Unpolished arhar — the everyday varan, cooked soft.",
+      img:"assets/p-toor.jpg", tint:"linear-gradient(150deg,#dda751,#b5761d)" },
+    { acc:"#cbab3c", ink:"#7f6a14", en:"Chana Dal", hi:"चना दाल", cat:"pulses", glyph:"च",
+      d:"Split gram, unpolished — for dal, puran and amti.",
+      img:"assets/p-chana.jpg", tint:"linear-gradient(150deg,#d7bc5c,#a98d22)" },
+
+    /* ---- SEEDS ---- */
     { acc:"#a08256", ink:"#6a4a33", en:"Flax Seeds", hi:"अलसी", cat:"seeds", glyph:"अल",
       d:"Roast and grind for chutney, or stir into roti dough.",
       img:"assets/p-flax.jpg", tint:"linear-gradient(150deg,#b39468,#8a6244)" },
@@ -74,46 +87,55 @@
       d:"Cooks like rice, in about fifteen minutes.",
       img:"assets/p-quinoa.jpg", tint:"linear-gradient(150deg,#d0ba92,#a88d5c)" },
 
-    /* ---- pantry staples ---- */
-    { acc:"#d98a8a", ink:"#a04a55", en:"Himalayan Pink Salt", hi:"गुलाबी नमक", cat:"pantry", glyph:"नम",
+    /* ---- HEALTHY ESSENTIALS · salt and sweetener ---- */
+    { acc:"#d98a8a", ink:"#a04a55", en:"Himalayan Pink Salt", hi:"गुलाबी नमक", cat:"essentials", glyph:"नम",
       d:"Unrefined rock salt, ground coarse or fine.",
       img:"assets/p-pinksalt.jpg", tint:"linear-gradient(150deg,#e3a3a3,#c07474)" },
     /* TO CONFIRM: khandsari / desi khand, or jaggery? If jaggery, this cannot
        be labelled sugar — rename to Jaggery / गुड़ before any label is printed. */
-    { acc:"#b5813f", ink:"#855c26", en:"Unprocessed Sugar", hi:"खांडसरी", cat:"pantry", glyph:"खां",
+    { acc:"#b5813f", ink:"#855c26", en:"Unprocessed Sugar", hi:"खांडसरी", cat:"essentials", glyph:"खां",
       d:"Unrefined and unbleached, with the molasses left in.",
       img:"assets/p-khandsari.jpg", tint:"linear-gradient(150deg,#c4954f,#96692a)" },
 
-    /* ---- cold-pressed oils ---- */
-    { acc:"#d98f2f", ink:"#8f6a13", en:"Groundnut Oil", hi:"मूंगफली तेल", cat:"oils", glyph:"मू",
+    /* ---- HEALTHY ESSENTIALS · cold-pressed oils ---- */
+    { acc:"#d98f2f", ink:"#8f6a13", en:"Groundnut Oil", hi:"मूंगफली तेल", cat:"essentials", glyph:"मू",
       d:"Cold-pressed, for everyday cooking.",
       img:"assets/p-groundnutoil.jpg", tint:"linear-gradient(150deg,#e0a54a,#b57b1c)" },
-    { acc:"#c9a86a", ink:"#7f6733", en:"Sesame Oil", hi:"तिल तेल", cat:"oils", glyph:"ति",
+    { acc:"#c9a86a", ink:"#7f6733", en:"Sesame Oil", hi:"तिल तेल", cat:"essentials", glyph:"ति",
       d:"Cold-pressed til oil, for tadka and for pickles.",
       img:"assets/p-sesameoil.jpg", tint:"linear-gradient(150deg,#d4b880,#a88b4c)" },
-    { acc:"#cfa81f", ink:"#866c08", en:"Mustard Oil", hi:"सरसों तेल", cat:"oils", glyph:"सर",
+    { acc:"#cfa81f", ink:"#866c08", en:"Mustard Oil", hi:"सरसों तेल", cat:"essentials", glyph:"सर",
       d:"Sharp and pungent, cold-pressed.",
       img:"assets/p-mustardoil.jpg", tint:"linear-gradient(150deg,#dcb93a,#a8880e)" },
-    { acc:"#8a9a84", ink:"#566250", en:"Coconut Oil", hi:"नारियल तेल", cat:"oils", glyph:"ना",
+    { acc:"#8a9a84", ink:"#566250", en:"Coconut Oil", hi:"नारियल तेल", cat:"essentials", glyph:"ना",
       d:"Cold-pressed, mild and clean.",
       img:"assets/p-coconutoil.jpg", tint:"linear-gradient(150deg,#a3b09d,#6f7d69)" }
   ];
 
-  /* Tabs. `cats:null` means everything.
-     The owner walked through jainproducts-style shelving on 4 Sep 2026 and asked
-     for the spices split the way that site splits them - "whole spices, blend and
-     seeds and all in that way we can have" - so "Spices" was broken into its two
-     real shelves. Ground and Whole are now separate tabs and separate category
-     cards; nothing else about the filtering changed. */
+  /* THE FOUR SHELVES. 16 Sep 2026, the owner: "Keep everything in the site in
+     this order Spices | Pulses | Seeds | Healthy Essentials ... anything else can
+     be added later. So only these four categories."
+
+     So this array IS the site's category order, and it is the only place that
+     order is written down - the shop-by-category cards, the header dropdown, the
+     hero shelf slides and the footer range list are all read from it or ordered
+     to match it. A fifth shelf is added here first, never in the markup.
+
+     The six shelves that came before (ground / whole / blends / seeds / pantry /
+     oils) were not deleted, they were folded in: ground, whole and blends are all
+     Spices now, and pantry (salt, khandsari) and oils are Healthy Essentials.
+     `cat` on a product is still the fine-grained shelf, so that split survives in
+     the data and can be un-folded later without retyping the range. */
   var GROUPS = [
-    { id:"all",    label:"Everything",    cats:null },
-    { id:"ground", label:"Ground spices", cats:["ground"] },
-    { id:"whole",  label:"Whole spices",  cats:["whole"] },
-    { id:"blend",  label:"Blends",        cats:["blend"] },
-    { id:"seeds",  label:"Seeds",         cats:["seeds"] },
-    { id:"pantry", label:"Pantry",        cats:["pantry"] },
-    { id:"oils",   label:"Oils",          cats:["oils"] }
+    { id:"spices",     label:"Spices",            cats:["spices"] },
+    { id:"pulses",     label:"Pulses",            cats:["pulses"] },
+    { id:"seeds",      label:"Seeds",             cats:["seeds"] },
+    { id:"essentials", label:"Healthy Essentials", cats:["essentials"] }
   ];
+
+  /* Not a category - the dropdown's "see the lot" entry, kept out of GROUPS so
+     that array stays exactly the four shelves the owner asked for. */
+  var ALL = { id:"all", label:"Everything", cats:null };
 
   var MORTAR = '<svg class="mortar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/></svg>';
   var CHAT = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>';
@@ -127,81 +149,43 @@
     }).join("");
   });
 
-  /* Category tabs, counted off the list itself so they stay correct as it grows.
-     MENU-FIRST (5 Sep 2026, the owner's instruction): nothing is listed until a
-     shelf is chosen. The tabs are the menu; #rangepick holds the space until the
-     first choice, then never returns. Before this, all 21 products were listed
-     on load under a selected "Everything" tab, which put the whole catalogue on
-     the page before anyone had asked for any of it. */
-  var tabsEl = document.getElementById("tabs");
-  var pickEl = document.getElementById("rangepick");
+  /* The range tabs, showGroup() and the menu-first listing were removed with the
+     range block on 10 Sep 2026 - their DOM (#tabs, #grid, #rangepick) no longer
+     exists. GROUPS and PRODUCTS stay: the shelf counts, the header dropdown, the
+     hero pills and the recipe accents are all still driven from them. */
   var inGroup = function (g, cat) { return !g.cats || g.cats.indexOf(cat) > -1; };
-
-  function showGroup(g, tabBtn) {
-    if (tabsEl) {
-      [].forEach.call(tabsEl.children, function (o) { o.setAttribute("aria-selected", "false"); });
-      if (tabBtn) tabBtn.setAttribute("aria-selected", "true");
-    }
-    [].forEach.call(document.querySelectorAll(".pcard"), function (card) {
-      var out = !inGroup(g, card.dataset.cat);
-      card.classList.toggle("hide", out);
-      // a card that was display:none never met the reveal observer, so it would
-      // come back at opacity 0 - the same trap as the recipe tabs
-      if (!out) card.classList.add("in");
-    });
-    if (pickEl) pickEl.hidden = true;
-    var grid = document.getElementById("grid");
-    if (grid) grid.classList.add("is-listed");
-  }
-
-  if (tabsEl) {
-    GROUPS.forEach(function (g) {
-      var count = PRODUCTS.filter(function (p) { return inGroup(g, p.cat); }).length;
-      if (!count) return;                       // never render an empty tab
-      var b = document.createElement("button");
-      b.className = "tab";
-      b.type = "button";
-      b.setAttribute("role", "tab");
-      b.setAttribute("aria-selected", "false");   // nothing chosen yet
-      b.dataset.cat = g.id;
-      b.innerHTML = g.label + '<span class="n">' + count + "</span>";
-      b.addEventListener("click", function () { showGroup(g, b); });
-      tabsEl.appendChild(b);
-    });
-  }
 
   /* ---------------------------------------------------------
      1b. SHOP BY CATEGORY
-     Arch-topped cards, one per GROUPS entry (minus "all"). Counts
-     and labels come off GROUPS and PRODUCTS, so adding a product
-     or a group updates this block with no edit here. Clicking a
-     card selects the matching tab and scrolls to the grid.
+     Arch-topped cards, one per GROUPS entry, in GROUPS order -
+     so the four shelves appear here as Spices, Pulses, Seeds,
+     Healthy Essentials. Counts and labels come off GROUPS and
+     PRODUCTS, so adding a product or a shelf updates this block
+     with no edit here. Clicking a card asks about that shelf on
+     WhatsApp.
      --------------------------------------------------------- */
+  /* One entry per GROUPS id. A group with no art here gets no card, so this map
+     and GROUPS are edited together. The four tints are deliberately far apart -
+     spice orange, dal sand, seed green, salt rose - because three of the four
+     shelves are otherwise yellow and the cards would read as one block. */
   var CAT_ART = {
-    ground: { tint:"linear-gradient(150deg,#f7e2ad,#deac3f)",
-              blurb:"Stone-ground, in their own colour and smell.",
-              icon:'<path d="M3.5 12.5h17a8.5 8.5 0 0 1-17 0Z"/><path d="M6.5 12.5c1.5-4 3.2-6 5.5-6s4 2 5.5 6"/>' },
-    whole:  { tint:"linear-gradient(150deg,#e8dcb6,#a98f46)",
-              blurb:"Left whole, to grind when you cook.",
-              icon:'<path d="M7 4.5c3.4 0 5 2.2 5 7.5s-1.6 7.5-5 7.5"/><path d="M17 4.5c-3.4 0-5 2.2-5 7.5s1.6 7.5 5 7.5"/><path d="M12 4.5v15"/>' },
-    blend:  { tint:"linear-gradient(150deg,#e6b795,#b9714a)",
-              blurb:"The everyday masalas, built from whole spices.",
-              icon:'<path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/>' },
-    seeds:  { tint:"linear-gradient(150deg,#d8e2b4,#93a04b)",
-              blurb:"Whole and unrefined, nothing polished off.",
-              icon:'<ellipse cx="8" cy="9" rx="3.2" ry="2.2" transform="rotate(-25 8 9)"/><ellipse cx="15.5" cy="11" rx="3.2" ry="2.2" transform="rotate(15 15.5 11)"/><ellipse cx="11" cy="15.5" rx="3.2" ry="2.2" transform="rotate(-8 11 15.5)"/>' },
-    pantry: { tint:"linear-gradient(150deg,#f2d3d3,#d98a8a)",
-              blurb:"Salt and sugar as they come, not as they are bleached.",
-              icon:'<rect x="6" y="8" width="12" height="13" rx="2.5"/><path d="M9 8V5h6v3M8 5h8"/>' },
-    oils:   { tint:"linear-gradient(150deg,#f6e7ae,#cfa72a)",
-              blurb:"Pressed, not refined, so the smell survives.",
-              icon:'<path d="M10.5 3h3v3l2.8 3.5A4 4 0 0 1 17 12v7a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-7a4 4 0 0 1 .7-2.5L10.5 6Z"/><path d="M12 13.5c1.2 1.4 2 2.4 2 3.2a2 2 0 1 1-4 0c0-.8.8-1.8 2-3.2Z"/>' }
+    spices:     { tint:"linear-gradient(150deg,#f6d7a0,#d98a2b)",
+                  blurb:"Ground, whole and blended - in their own colour and smell.",
+                  icon:'<path d="M5 11h14a7 7 0 0 1-7 7 7 7 0 0 1-7-7Z"/><path d="M12 18v3M8 21h8"/><path d="M16 8.5 19 4"/>' },
+    pulses:     { tint:"linear-gradient(150deg,#eee6c0,#c2ab4e)",
+                  blurb:"Unpolished dal - no dangerous polish to make it shine.",
+                  icon:'<circle cx="12" cy="7.8" r="4.3"/><path d="M7.7 7.8h8.6"/><ellipse cx="7" cy="17.2" rx="3.1" ry="2.2" transform="rotate(-18 7 17.2)"/><ellipse cx="16.6" cy="17.2" rx="3.1" ry="2.2" transform="rotate(14 16.6 17.2)"/>' },
+    seeds:      { tint:"linear-gradient(150deg,#d8e2b4,#93a04b)",
+                  blurb:"Whole and unrefined, nothing polished off.",
+                  icon:'<ellipse cx="8" cy="9" rx="3.2" ry="2.2" transform="rotate(-25 8 9)"/><ellipse cx="15.5" cy="11" rx="3.2" ry="2.2" transform="rotate(15 15.5 11)"/><ellipse cx="11" cy="15.5" rx="3.2" ry="2.2" transform="rotate(-8 11 15.5)"/>' },
+    essentials: { tint:"linear-gradient(150deg,#f2d3d3,#d98a8a)",
+                  blurb:"Cold-pressed oils, unrefined salt and khandsari.",
+                  icon:'<path d="M10.5 3h3v3l2.8 3.5A4 4 0 0 1 17 12v7a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v-7a4 4 0 0 1 .7-2.5L10.5 6Z"/><path d="M12 13.5c1.2 1.4 2 2.4 2 3.2a2 2 0 1 1-4 0c0-.8.8-1.8 2-3.2Z"/>' }
   };
 
   var catWrap = document.getElementById("cats");
   if (catWrap) {
     GROUPS.forEach(function (g) {
-      if (g.id === "all") return;                       // not a category
       var a = CAT_ART[g.id];
       if (!a) return;                                   // no art, no card
       var count = PRODUCTS.filter(function (p) {
@@ -244,12 +228,12 @@
         probe.src = "assets/cat-" + g.id + ".jpg";
       })(card);
 
+      /* The range block was deleted on 10 Sep 2026, so there is no longer a
+         listing to filter and scroll to. Rather than leave a card that looks
+         clickable and does nothing, it asks about that shelf on WhatsApp -
+         which is how every other enquiry on this site works. */
       card.addEventListener("click", function () {
-        // drive the existing tabs rather than duplicate their filtering
-        var tab = document.querySelector('.tab[data-cat="' + g.id + '"]');
-        if (tab) tab.click();
-        var range = document.getElementById("range");
-        if (range) range.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        window.open("https://wa.me/917709932222?text=Namaskar%21%20Please%20tell%20me%20about%20your%20" + encodeURIComponent(g.label) + ".", "_blank", "noopener");
       });
 
       catWrap.appendChild(card);
@@ -258,8 +242,9 @@
 
   /* ---------------------------------------------------------
      1c. THE SHELF SLIDER
-     Five editorial openings, one per shelf, after the page the
-     owner sent on 6 Sep 2026 (jainfarmfresh.com/products/spices).
+     Four editorial openings, one per shelf and in GROUPS order,
+     after the page the owner sent on 6 Sep 2026
+     (jainfarmfresh.com/products/spices).
 
      Deliberately NOT autoplaying. The hero already advances on
      its own, and two carousels moving at once on one page read
@@ -268,7 +253,7 @@
      for anyone who would rather flick through.
 
      Counts and tab labels come off the slides and PRODUCTS, so
-     adding a sixth slide needs no edit here, and a count can
+     adding a fifth slide needs no edit here, and a count can
      never drift from what the range below will actually list.
      --------------------------------------------------------- */
   var shStage = document.getElementById("shstage");
@@ -398,64 +383,16 @@
     });
     shStage.addEventListener("pointercancel", function () { sx0 = null; });
 
-    /* Each pill drives the existing range tabs rather than filtering on its own
-       - exactly what a category card does when clicked, so a visitor arriving
-       from either lands on the same listed shelf. */
+    /* The hero pills pointed at the range listing, which is gone (10 Sep 2026).
+       Each one now asks about its own shelf on WhatsApp, the same as a category
+       card, so a visitor arriving from either lands in the same place. */
     shStage.addEventListener("click", function (e) {
       var pill = e.target.closest ? e.target.closest(".pill[data-go]") : null;
       if (!pill) return;
       e.preventDefault();
-      var tab = document.querySelector('.tab[data-cat="' + pill.dataset.go + '"]');
-      if (tab) tab.click();
-      var range = document.getElementById("range");
-      if (range) range.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    });
-  }
-
-  /* one product card, used by both the full grid and the essentials row below,
-     so the two can never drift apart */
-  function buildCard(p, cls) {
-    var card = document.createElement("article");
-    card.className = "pcard frame" + (cls ? " " + cls : "");
-    card.style.setProperty("--r", "20px");
-    card.style.setProperty("--acc", p.acc);
-    card.style.setProperty("--acc-ink", p.ink);
-    card.dataset.cat = p.cat;
-    card.innerHTML =
-      '<div class="pthumb tile" style="--tint:' + p.tint + '">' +
-        '<span class="glyph">' + p.glyph + '</span>' + MORTAR + VEG +
-      '</div>' +
-      '<div class="pbody">' +
-        '<h3>' + p.en + '</h3>' +
-        '<p class="dv">' + p.hi + '</p>' +
-        (p.form ? '<span class="pform">' + p.form + '</span>' : '') +
-        '<p>' + p.d + '</p>' +
-        '<a class="ask" href="' + WA + encodeURIComponent("Namaste! Please send me the pack sizes and price for SATVA " + p.en + ".") + '">' +
-          CHAT + "Ask price on WhatsApp</a>" +
-      "</div>";
-
-    // swap the tile for a real photo if one exists at p.img
-    var probe = new Image();
-    probe.onload = function () {
-      var thumb = card.querySelector(".pthumb");
-      thumb.classList.remove("tile");
-      thumb.removeAttribute("style");
-      thumb.innerHTML = "";
-      probe.alt = p.en;
-      thumb.appendChild(probe);
-      thumb.insertAdjacentHTML("beforeend", VEG);
-    };
-    probe.src = p.img;
-
-    return card;
-  }
-
-  var grid = document.getElementById("grid");
-  if (grid) {
-    PRODUCTS.forEach(function (p, i) {
-      var card = buildCard(p, "reveal d" + (i % 4));
-      card.classList.add("hide");               // nothing listed until a shelf is picked
-      grid.appendChild(card);
+      var g = GROUPS.filter(function (o) { return o.id === pill.dataset.go; })[0];
+      var label = g ? g.label : pill.textContent.trim();
+      window.open("https://wa.me/917709932222?text=Namaskar%21%20Please%20tell%20me%20about%20your%20" + encodeURIComponent(label) + ".", "_blank", "noopener");
     });
   }
 
@@ -471,22 +408,28 @@
   /* ---------------------------------------------------------
      1e. HEADER: range dropdown + rotating announcement
      Both after curiospice.com. The dropdown is filled from
-     GROUPS so it lists exactly what the grid can show, and each
-     item drives the existing tabs - one filtering mechanism for
-     the whole site.
+     GROUPS, in GROUPS order, so it can never list a shelf the
+     category cards do not show; "Everything" is prepended from
+     ALL rather than stored as a group, because the range is
+     exactly four categories.
      --------------------------------------------------------- */
   var rangeMenu = document.getElementById("rangemenu");
   if (rangeMenu) {
-    var jumpTo = function (id) {
-      var tab = document.querySelector('.tab[data-cat="' + id + '"]');
-      if (tab) tab.click();
-      var range = document.getElementById("range");
-      if (range) range.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-      // let go of hover-open so the menu does not hang around after the jump
+    /* This menu used to filter the range listing and scroll to it. With the range
+       block gone (10 Sep 2026) each entry asks about that shelf on WhatsApp, and
+       "Everything" goes to the shelves block, which is what is left of the range
+       on the page. */
+    var askAbout = function (g) {
       if (document.activeElement && document.activeElement.blur) document.activeElement.blur();
+      if (g.id === "all") {
+        var cats = document.getElementById("categories");
+        if (cats) cats.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        return;
+      }
+      window.open("https://wa.me/917709932222?text=Namaskar%21%20Please%20tell%20me%20about%20your%20" + encodeURIComponent(g.label) + ".", "_blank", "noopener");
     };
 
-    GROUPS.forEach(function (g) {
+    [ALL].concat(GROUPS).forEach(function (g) {
       var count = PRODUCTS.filter(function (p) {
         return !g.cats || g.cats.indexOf(p.cat) > -1;
       }).length;
@@ -494,13 +437,13 @@
 
       var li = document.createElement("li");
       var a  = document.createElement("a");
-      a.href = "#range";
+      a.href = g.id === "all" ? "#categories" : "#categories";
       a.innerHTML = (g.id === "all" ? "Everything" : g.label) +
                     '<span class="mn">' + count + "</span>";
       if (g.id === "all") li.className = "all";
       a.addEventListener("click", function (e) {
         e.preventDefault();
-        jumpTo(g.id);
+        askAbout(g);
       });
       li.appendChild(a);
       rangeMenu.appendChild(li);
@@ -724,43 +667,60 @@
      2b. HOW IT IS MADE
      A coverflow carousel of flip cards, after "Meet Our Canneries"
      on eatfishwife.com. Front: the process, on video. Back: the
-     spice itself. Turning a card is the point of the block, so the
+     shelf itself. Turning a card is the point of the block, so the
      centre card flips on click and the side cards step to centre.
+     One card per shelf, four of them, in GROUPS order.
 
      The videos are muted, looping, playsinline and - the part that
-     matters - ONLY the centre one plays. Six videos decoding at once
-     on a laptop is a fan-spinner for no benefit, and autoplay with
-     sound would be refused by every browser anyway.
+     matters - ONLY the centre one plays. Several videos decoding at
+     once on a laptop is a fan-spinner for no benefit, and autoplay
+     with sound would be refused by every browser anyway.
      --------------------------------------------------------- */
   /* Copy kept SHORT on purpose (cut hard 9 Sep 2026). A card that turns itself
      after four seconds cannot carry a paragraph - nobody finishes it before the
      card moves. One line on the front, one on the back, both readable at a
      glance. The long version of any of this belongs in the range or the story. */
+  /* ONE CARD PER SHELF - 17 Sep 2026, the owner: "IN these cards sliding, have
+     only those categories". This was six cards named after products and
+     processes (Chilli, Turmeric, Coriander, Seeds, Cold-Pressed Oils, Pink
+     Salt), which made the block read as a second, competing list of the range.
+     It is now the same four shelves as GROUPS, in the same order, so the whole
+     site says the range once: Spices, Pulses, Seeds, Healthy Essentials.
+
+     `film` is the footage's own name, kept separate from `id` (the shelf) on
+     purpose: the film on the Spices card is turmeric being stone-ground, and
+     naming the file for what it actually shows is what stops the next person
+     assuming there is a "spices" clip. It resolves to assets/proc-<film>.mp4
+     with assets/proc-<film>.jpg as the poster.
+
+     `film:null` means no footage exists yet, and `still` is the photograph the
+     card shows instead. Only Pulses is in that position. mPaint() already wraps
+     play() in a catch, so a card with no film simply sits on its still. */
   var MAKING = [
-    { id:"chilli",   en:"Chilli Powder",     hi:"लाल तिखट",
-      step:"Whole dried chillies, ground with the seed still in.",
-      back:"assets/p-mirchi.jpg",
-      note:"Colour from the skin. Heat from the seed." },
-    { id:"turmeric", en:"Turmeric",          hi:"हळद",
-      step:"Boiled, dried, stone-ground — slowly, so the oil stays in.",
-      back:"assets/p-haldi.jpg",
-      note:"Hingoli turmeric, 180km from where we pack." },
-    { id:"dhaniya",  en:"Coriander Powder",  hi:"धणे पूड",
-      step:"Dry-roasted just enough, then ground coarse.",
-      back:"assets/p-dhane.jpg",
-      note:"Coarse on purpose. Fine powder goes flat." },
-    { id:"seeds",    en:"Seeds",             hi:"बिया",
+    { id:"spices",     en:"Spices",             hi:"मसाले",
+      film:"turmeric",                       // turmeric on the grinding stone
+      step:"Stone-ground slowly, or left whole for the tadka.",
+      back:"assets/cat-spices.jpg",
+      note:"Ground, whole and blended. Colour from the spice." },
+    /* No pulses footage and no second pulses photograph exist yet, so this card
+       shows one still on both faces and only its words change on the turn. It
+       is the weakest of the four and the first to fix - see the shelf
+       photographs table above. */
+    { id:"pulses",     en:"Pulses",             hi:"डाळ",
+      film:null, still:"assets/cat-pulses.jpg",
+      step:"Cleaned and graded. Never polished.",
+      back:"assets/cat-pulses.jpg",
+      note:"Toor and chana, exactly as they grew." },
+    { id:"seeds",      en:"Seeds",              hi:"बिया",
+      film:"seeds",
       step:"Cleaned, and left whole. Never ground.",
       back:"assets/cat-seeds.jpg",
       note:"Roast them the day you use them." },
-    { id:"oil",      en:"Cold-Pressed Oils", hi:"तेल",
-      step:"Pressed cold. Never refined.",
-      back:"assets/cat-oils.jpg",
-      note:"Groundnut, sesame, mustard, coconut." },
-    { id:"salt",     en:"Pink Salt",         hi:"गुलाबी मीठ",
-      step:"Rock salt, crushed and graded. Nothing added.",
-      back:"assets/cat-pantry.jpg",
-      note:"The pink is iron. It belongs there." }
+    { id:"essentials", en:"Healthy Essentials", hi:"तेल · मीठ · खांडसरी",
+      film:"oil",                            // the press; the salt film is unused
+      step:"Pressed cold, crushed coarse. Never refined.",
+      back:"assets/cat-essentials.jpg",
+      note:"Cold-pressed oils, pink salt, khandsari." }
   ];
 
 
@@ -773,12 +733,19 @@
       var card = document.createElement("article");
       card.className = "mcard";
       card.dataset.i = i;
+      // the poster is the film's own still unless the shelf has no film yet
+      var poster = m.still || ("assets/proc-" + m.film + ".jpg");
+      // no <source> at all when there is no footage, so nothing asks the server
+      // for an mp4 that was never shot
+      var source = m.film
+        ? '<source src="assets/proc-' + m.film + '.mp4" type="video/mp4">'
+        : "";
       card.innerHTML =
         '<div class="mflip">' +
           '<div class="mface mfront">' +
             '<video class="mvid" muted loop playsinline preload="none" ' +
-                   'poster="assets/proc-' + m.id + '.jpg" aria-hidden="true">' +
-              '<source src="assets/proc-' + m.id + '.mp4" type="video/mp4">' +
+                   'poster="' + poster + '" aria-hidden="true">' +
+              source +
             "</video>" +
             '<span class="mtag">How it is made</span>' +
             '<div class="mcopy">' +
@@ -811,6 +778,14 @@
       mTrack.appendChild(card);
       mCards.push(card);
     });
+
+    /* The coverflow's far positions are handled in CSS, and how many "far"
+       positions exist depends on how many cards there are - so the count goes
+       onto the track for CSS to read. With an even number the card opposite the
+       centre one cannot sit on both sides at once, and at four it would hang
+       alone on the right; the stylesheet hides it at that count so the row stays
+       symmetrical. See the note on [data-count="4"] in satva.css. */
+    mTrack.dataset.count = String(mCards.length);
 
     function mPaint() {
       var n = mCards.length;
@@ -1115,6 +1090,201 @@
 
       recGrid.appendChild(card);
     });
+  }
+
+  /* ---------------------------------------------------------
+     2c-bis. THE MISSION / STORY SLIDER
+     Two slides in the rumispice.com/pages/about layout: the
+     mission, then a precis of the story. Stacked in one grid
+     cell by the CSS, so this only has to move a class - there is
+     no track to measure and no transform to keep in step.
+
+     Autoplay follows the same manners as the shelf slider above,
+     for the same reasons: it pauses under the pointer and while
+     anything inside has focus, pauses when the tab is hidden,
+     stops for good once a visitor drives it themselves, and
+     never starts at all under prefers-reduced-motion. Slower
+     than the shelf (9s against 6s) because a slide here is a
+     paragraph to read, not a shelf name to glance at.
+     --------------------------------------------------------- */
+  var msld = document.getElementById("msld");
+  if (msld) {
+    var msSlides = [].slice.call(msld.querySelectorAll(".msslide"));
+    var msDots   = document.getElementById("msdots");
+    var msCur = 0, msTimer = null, msStopped = false;
+
+    // one dot per slide, built here so the markup cannot fall out of step
+    msSlides.forEach(function (sl, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", i === 0 ? "true" : "false");
+      b.setAttribute("aria-label", sl.getAttribute("aria-label") || ("Slide " + (i + 1)));
+      // a dot to the right of the current one slides forward, to the left back
+      b.addEventListener("click", function () { msStop(); msGo(i, i > msCur ? 1 : -1); });
+      if (msDots) msDots.appendChild(b);
+    });
+
+    /* The slides TRAVEL now (17 Sep 2026) rather than cross-fading, so each one
+       has to be on the correct side before it moves. CSS parks a waiting slide
+       at translateX(var(--x)) and pulls the current one to 0; this works out
+       which side is which.
+
+       The arriving card is the fiddly one: it is already parked wherever the
+       last move left it, and if that is the side it is supposed to arrive FROM,
+       fine - but after a Back it is on the wrong side, and animating it across
+       would send it the wrong way. So it is moved to the entry side with its
+       transition switched off, the layout is flushed, and only then does it get
+       is-on. Reading offsetWidth is what forces that flush; without it the two
+       style changes collapse into one frame and nothing animates. */
+    function msGo(to, dir) {
+      var n = msSlides.length;
+      var prev = msCur;
+      msCur = (to + n) % n;
+      if (dir === undefined) {
+        // forward unless this is a step back; for two slides either is one step
+        dir = (((msCur - prev) % n) + n) % n === 1 ? 1 : -1;
+      }
+      var enter = dir > 0 ? "100%" : "-100%";
+      var exit  = dir > 0 ? "-100%" : "100%";
+
+      if (msCur !== prev) {
+        var inc = msSlides[msCur];
+        inc.style.transition = "none";
+        inc.style.setProperty("--x", enter);
+        void inc.offsetWidth;                 // flush, so the next change moves
+        inc.style.transition = "";
+        if (msSlides[prev]) msSlides[prev].style.setProperty("--x", exit);
+      }
+      msSlides.forEach(function (sl, i) {
+        // anything neither arriving nor leaving waits on the entry side
+        if (i !== msCur && i !== prev) sl.style.setProperty("--x", enter);
+        var on = i === msCur;
+        sl.classList.toggle("is-on", on);
+        // the off slide is still in the grid cell, so it has to be taken out
+        // of the reading order too - not just faded out
+        sl.setAttribute("aria-hidden", on ? "false" : "true");
+        if ("inert" in sl) sl.inert = !on;
+      });
+      if (msDots) [].forEach.call(msDots.children, function (b, i) {
+        b.setAttribute("aria-selected", i === msCur ? "true" : "false");
+      });
+    }
+
+    function msStop()  { msStopped = true; clearTimeout(msTimer); msTimer = null; }
+    function msPause() { clearTimeout(msTimer); msTimer = null; }
+    function msPlay()  {
+      if (msStopped || reduce || msSlides.length < 2) return;
+      clearTimeout(msTimer);
+      msTimer = setTimeout(function () { msGo(msCur + 1, 1); msPlay(); }, 9000);
+    }
+
+    msGo(0, 1);   // slide 2 waits on the right, which is where it comes from
+
+    /* The whole of Our Story now lives inside the story slide, behind this
+       button. Two things have to happen when it opens, and both are the point:
+       autoplay STOPS for good - sliding an article out from under someone
+       mid-paragraph is the worst thing this carousel could do - and the slider
+       is put on the story slide first, in case the button was reached by a
+       #story link rather than by hand. */
+    var msOpen = document.getElementById("msopen");
+    var msStorySlide = document.getElementById("story");
+
+    var msFull  = document.getElementById("msfull");
+    var msInner = msFull && msFull.querySelector(".msfullin");
+    var msSettle = null;
+
+    /* The panel's height is animated in PIXELS from here rather than left to a
+       0fr->1fr grid transition in the CSS. Measured on the page, that
+       transition did not interpolate - the row held at 15px for the full half
+       second and then jumped to its full height - because `1fr` has nothing to
+       resolve against while its container is collapsed. Two real lengths
+       animate properly. It is handed back to `auto` once open so the panel
+       still reflows if the window is resized or the type wraps differently. */
+    function msShowStory(open) {
+      if (!msOpen || !msStorySlide) return;
+      msStorySlide.classList.toggle("is-open", open);
+      msOpen.setAttribute("aria-expanded", open ? "true" : "false");
+      msOpen.textContent = open ? "Close the story" : "Read the whole story";
+      if (open) msStop();
+      if (!msFull || !msInner) return;
+
+      if (open) {
+        msFull.style.height = msInner.scrollHeight + "px";
+        /* Hand back to `auto` once it has arrived, so the panel still reflows if
+           the window is resized or the type wraps differently.
+           BOTH a transitionend and a timer, because the end state must not
+           depend on the animation running at all. Caught in testing: where
+           transitions do not tick, the first open left the panel pinned at a
+           height that never took, and the section actually got SHORTER than
+           when it was closed - the picture shrank, the story never appeared,
+           and only a second click fixed it. A reader must never have to press
+           it twice, so the timer settles it whether the transition fires or
+           not, and whichever wins cancels the other. */
+        clearTimeout(msSettle);
+        var settle = function () {
+          clearTimeout(msSettle);
+          msFull.removeEventListener("transitionend", onEnd);
+          if (msStorySlide.classList.contains("is-open")) msFull.style.height = "auto";
+        };
+        var onEnd = function (e) { if (e.propertyName === "height") settle(); };
+        msFull.addEventListener("transitionend", onEnd);
+        msSettle = setTimeout(settle, 600);          // the transition is 450ms
+      } else {
+        // from `auto` there is nothing to animate FROM, so pin the current
+        // height first, force the browser to take it, then go to zero
+        clearTimeout(msSettle);
+        msFull.style.height = msInner.offsetHeight + "px";
+        void msFull.offsetHeight;
+        msFull.style.height = "0px";
+      }
+    }
+
+    if (msOpen) {
+      msOpen.addEventListener("click", function () {
+        var open = msOpen.getAttribute("aria-expanded") !== "true";
+        msStop();
+        msGo(msSlides.indexOf(msStorySlide), 1);
+        msShowStory(open);
+      });
+    }
+
+    /* Every #story link on the page - the nav, the footer, the dropdown - used
+       to point at a section of its own. It now points at this slide, so the
+       slider has to turn to it and open it, or the link would land on a slide
+       that is faded out and a story that is closed. */
+    function msFromHash() {
+      if (location.hash !== "#story" || !msStorySlide) return;
+      msStop();
+      msGo(msSlides.indexOf(msStorySlide), 1);
+      msShowStory(true);
+    }
+    addEventListener("hashchange", msFromHash);
+    msFromHash();
+
+    var msPrevBtn = document.getElementById("msprev");
+    var msNextBtn = document.getElementById("msnext");
+    if (msPrevBtn) msPrevBtn.addEventListener("click", function () { msStop(); msGo(msCur - 1, -1); });
+    if (msNextBtn) msNextBtn.addEventListener("click", function () { msStop(); msGo(msCur + 1, 1); });
+
+    if (!reduce && msSlides.length > 1) {
+      msld.addEventListener("pointerenter", msPause);
+      msld.addEventListener("pointerleave", function () { msPlay(); });
+      msld.addEventListener("focusin", msPause);
+      msld.addEventListener("focusout", function () { msPlay(); });
+      document.addEventListener("visibilitychange", function () {
+        if (document.hidden) msPause(); else msPlay();
+      });
+      // swipe, same 55px threshold as the hero and the shelf slider
+      var mx0 = null;
+      msld.addEventListener("pointerdown", function (e) { mx0 = e.clientX; });
+      msld.addEventListener("pointerup", function (e) {
+        if (mx0 === null) return;
+        var dx = e.clientX - mx0; mx0 = null;
+        if (Math.abs(dx) > 55) { msStop(); msGo(msCur + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); }
+      });
+      msPlay();
+    }
   }
 
   /* ---------------------------------------------------------
