@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 9 Oct 2026. Owner: "give me some 15 different variations in a page. will
+     choose from that. This looks a little congested. Give me neat and spacious
+     and attractive description and everything else added to the extended link".
+     A review page only - not linked from the site, marked noindex.
+     Each preview is drawn at the owner's real screen size for one section
+     (1245 x 569 CSS px: the 657px window less the 88px menu) and scaled down
+     to fit; click one to see it at full size.
+     Copy is the owner's own, word for word from the current section - nothing
+     new is claimed. What each variation leaves out (the second paragraph, the
+     role descriptions, the three join steps) stays on saheli.html, which the
+     "Read the Saheli story" link opens. Photos are the ones already on the
+     site (assets/sah-*.jpg, hero-saheli-winnowing.jpg; Unsplash/Commons,
+     credited in index.html). -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Satva Saheli Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..600&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#f3dfdc;--pink-lt:#f9ecea;--pink-dk:#e8c9c4;--rose:#b4707a;
+  --ivory:#fbf6ee;--green:#2c4220;--ink:#1e2c16;--sage:#4e6848;
+  --gold:#bf8a17;--gold-dk:#7f5a0f;--gold-pale:#f1ddab;
+  --grad:linear-gradient(135deg,#f0cf74 0%,#d9a531 55%,#bf8a17 100%);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#efe9e2;color:var(--ink);font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+header.top{max-width:1400px;margin:0 auto;padding:36px 0 8px}
+header.top .k{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:var(--gold-dk);font-weight:500}
+header.top h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0 8px;color:var(--green)}
+header.top p{color:#5b5348;max-width:76ch;line-height:1.65}
+.list{max-width:1400px;margin:30px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,600px),1fr));gap:38px 30px}
+figure{margin:0}
+figcaption{margin-top:12px;color:#5b5348;font-size:.95rem;line-height:1.45}
+figcaption b{color:var(--gold-dk);font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+
+/* ---- a preview: a real 1245x569 section, scaled to its column ---- */
+.frame{position:relative;aspect-ratio:1245/569;overflow:hidden;border-radius:12px;cursor:zoom-in;box-shadow:0 18px 40px -26px rgba(60,30,20,.55);outline:none}
+.frame:focus-visible{box-shadow:0 0 0 3px var(--gold)}
+.stage{position:absolute;left:0;top:0;width:1245px;height:569px;transform-origin:0 0;transform:scale(var(--s,.48));overflow:hidden;background:var(--pink);color:var(--green)}
+.frame.full{position:fixed;inset:0;z-index:50;border-radius:0;aspect-ratio:auto;background:rgba(20,16,12,.88);cursor:zoom-out}
+.frame.full .stage{left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s))}
+body.isfull{overflow:hidden}
+.hint{display:none;position:fixed;z-index:60;top:14px;right:16px;background:rgba(0,0,0,.65);color:#fff;padding:8px 14px;border-radius:99px;font-size:.9rem}
+body.isfull .hint{display:block}
+
+/* ---- shared parts, at the real size ---- */
+.stage a{color:inherit;text-decoration:none}
+.kk{font:500 13px/1 "Jost";letter-spacing:.32em;text-transform:uppercase;color:var(--gold-dk)}
+.lk{display:flex;align-items:center;gap:18px}
+.lk img{width:92px;height:auto;display:block}
+.nm{display:flex;flex-direction:column;line-height:1}
+.nm b{font:500 50px/1 "Fraunces",serif;letter-spacing:.04em;text-transform:uppercase;color:var(--green)}
+.nm b span{display:block;font:400 18px/1 "Fraunces",serif;letter-spacing:.55em;margin-top:8px}
+.nm i{font:italic 400 19px/1.2 "Fraunces",serif;color:var(--gold-dk);margin-top:10px}
+.dv{font-family:"Tiro Devanagari Hindi",serif}
+.p{font-size:19px;line-height:1.7;font-weight:300;color:var(--green);max-width:46ch}
+.p i{font-family:"Fraunces",serif}
+.h{font:500 46px/1.12 "Fraunces",serif;color:var(--ink);letter-spacing:-.005em}
+.h em{font-style:italic;color:var(--gold-dk)}
+.btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.bg{display:inline-flex;align-items:center;gap:9px;background:var(--grad);color:#2a1f08;font:600 15px/1 "Jost";letter-spacing:.05em;padding:16px 26px;border-radius:999px;box-shadow:0 10px 24px -12px rgba(160,116,20,.85)}
+.bl{display:inline-flex;align-items:center;gap:8px;font:500 15px/1 "Jost";letter-spacing:.05em;color:var(--green);padding:15px 22px;border-radius:999px;border:1.5px solid rgba(44,66,32,.25);background:rgba(255,255,255,.35)}
+.bl.u{border:0;background:none;padding:15px 4px;border-bottom:1.5px solid var(--gold);border-radius:0;padding-bottom:4px}
+.ph{display:block;width:100%;height:100%;object-fit:cover}
+.st b{display:block;font:500 54px/1 "Fraunces",serif;color:var(--gold-dk)}
+.st span{display:block;margin-top:8px;font:500 12px/1.4 "Jost";letter-spacing:.2em;text-transform:uppercase;color:var(--sage)}
+
+/* 1 - Centred calm */
+.v1{display:grid;place-items:center;text-align:center;background:radial-gradient(ellipse at 50% 40%,#fbefec 0%,var(--pink) 70%)}
+.v1 .in{display:flex;flex-direction:column;align-items:center;gap:26px}
+.v1 .lk{flex-direction:column;gap:14px}.v1 .nm{align-items:center}
+.v1 .p{text-align:center;max-width:40ch}
+
+/* 2 - Half photo */
+.v2{display:grid;grid-template-columns:1fr 1fr}
+.v2 .in{padding:0 70px 0 64px;display:flex;flex-direction:column;justify-content:center;gap:26px}
+
+/* 3 - Full-bleed photo */
+.v3{color:#fff}
+.v3 .ph{position:absolute;inset:0}
+.v3::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,20,12,.86) 0%,rgba(28,20,12,.62) 42%,rgba(28,20,12,0) 75%)}
+.v3 .in{position:absolute;z-index:2;left:72px;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;gap:24px;width:520px}
+.v3 .kk{color:var(--gold-pale)}.v3 .nm b,.v3 .p{color:#fff}.v3 .nm i{color:var(--gold-pale)}
+.v3 .bl{color:#fff;border-color:rgba(255,255,255,.55);background:none}
+
+/* 4 - Three photos */
+.v4{padding:44px 64px 0;display:flex;flex-direction:column;align-items:center;text-align:center}
+.v4 .h{font-size:40px}
+.v4 .p{margin:12px auto 0;text-align:center;max-width:52ch;font-size:17px}
+.v4 .row{display:grid;grid-template-columns:1fr 1.25fr 1fr;gap:18px;width:100%;margin-top:26px;height:240px}
+.v4 .row figure{border-radius:16px;overflow:hidden;position:relative}
+.v4 .row figcaption{position:absolute;left:14px;bottom:12px;margin:0;color:#fff;font:500 12px/1 "Jost";letter-spacing:.2em;text-transform:uppercase;text-shadow:0 1px 8px rgba(0,0,0,.6)}
+.v4 .btns{margin-top:24px;justify-content:center}
+
+/* 5 - Arch */
+.v5{display:grid;grid-template-columns:1.15fr .85fr;align-items:center;padding:0 90px 0 72px;gap:40px}
+.v5 .in{display:flex;flex-direction:column;gap:26px}
+.v5 .arch{height:470px;width:360px;justify-self:center;border-radius:180px 180px 18px 18px;overflow:hidden;box-shadow:0 30px 60px -30px rgba(90,40,30,.6);outline:10px solid var(--pink-lt);outline-offset:0}
+
+/* 6 - The promise, as a quote */
+.v6{background:var(--ivory);display:grid;place-items:center;text-align:center}
+.v6 .in{display:flex;flex-direction:column;align-items:center;gap:28px;max-width:900px}
+.v6 .lk img{width:64px}
+.v6 q{font:400 52px/1.18 "Fraunces",serif;color:var(--ink);quotes:"\201C" "\201D"}
+.v6 q em{color:var(--rose);font-style:italic}
+.v6 .by{font:500 13px/1 "Jost";letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dk)}
+
+/* 7 - Two roles, photo-led */
+.v7{padding:46px 72px 0;display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.v7 .in{display:flex;flex-direction:column;justify-content:center;gap:24px;padding-bottom:46px}
+.v7 .roles{display:grid;grid-template-columns:1fr 1fr;gap:20px;padding-bottom:46px}
+.v7 .role{position:relative;border-radius:20px;overflow:hidden}
+.v7 .role::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0) 55%,rgba(20,14,8,.75))}
+.v7 .role span{position:absolute;z-index:2;left:22px;bottom:20px;color:#fff;font:500 28px/1.05 "Fraunces",serif}
+.v7 .role small{display:block;font:500 11px/1 "Jost";letter-spacing:.24em;text-transform:uppercase;color:var(--gold-pale);margin-bottom:8px}
+
+/* 8 - The numbers */
+.v8{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 80px;gap:70px}
+.v8 .in{display:flex;flex-direction:column;gap:26px}
+.v8 .nums{display:grid;gap:22px}
+.v8 .num{background:var(--ivory);border-radius:24px;padding:34px 38px;display:flex;align-items:center;gap:30px;box-shadow:0 20px 40px -30px rgba(90,40,30,.5)}
+.v8 .num b{font:500 86px/1 "Fraunces",serif;color:var(--rose);min-width:200px}
+.v8 .num span{font:500 15px/1.5 "Jost";letter-spacing:.18em;text-transform:uppercase;color:var(--green)}
+
+/* 9 - Deep green */
+.v9{background:#24361b;color:#f4ecdc;display:grid;grid-template-columns:1fr auto;align-items:center;padding:0 96px 0 80px;gap:60px}
+.v9 .in{display:flex;flex-direction:column;gap:26px}
+.v9 .kk{color:var(--gold-pale)}.v9 .nm b,.v9 .p{color:#f4ecdc}.v9 .nm i{color:#e3c27a}
+.v9 .ring{width:380px;height:380px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 12px #2f4524,0 0 0 13px rgba(227,194,122,.6)}
+.v9 .bl{color:#f4ecdc;border-color:rgba(244,236,220,.4);background:none}
+
+/* 10 - Card on photo */
+.v10 .ph{position:absolute;inset:0}
+.v10 .card{position:absolute;left:64px;top:50%;transform:translateY(-50%);width:500px;background:rgba(251,246,238,.96);border-radius:26px;padding:42px 44px;display:flex;flex-direction:column;gap:22px;box-shadow:0 30px 70px -30px rgba(0,0,0,.6)}
+.v10 .p{font-size:18px}
+
+/* 11 - Editorial */
+.v11{display:grid;grid-template-columns:330px 1fr;background:var(--pink-lt)}
+.v11 .in{padding:0 90px 0 70px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+.v11 .h{font-size:58px;line-height:1.05}
+.v11 .meta{display:flex;align-items:center;gap:14px;color:var(--gold-dk);font:500 13px/1 "Jost";letter-spacing:.28em;text-transform:uppercase}
+.v11 .meta img{width:42px}
+
+/* 12 - Polaroids */
+.v12{display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:0 70px 0 76px;gap:30px}
+.v12 .in{display:flex;flex-direction:column;gap:26px}
+.v12 .pile{position:relative;height:460px}
+.v12 .pol{position:absolute;background:#fff;padding:12px 12px 44px;box-shadow:0 22px 40px -22px rgba(60,30,20,.6);border-radius:4px}
+.v12 .pol img{display:block;object-fit:cover}
+.v12 .pol span{position:absolute;left:0;right:0;bottom:12px;text-align:center;font:italic 400 17px/1 "Fraunces",serif;color:var(--gold-dk)}
+.v12 .a{left:10px;top:60px;transform:rotate(-6deg)}.v12 .a img{width:220px;height:270px}
+.v12 .b{left:190px;top:10px;transform:rotate(3deg);z-index:2}.v12 .b img{width:250px;height:250px}
+.v12 .c{left:300px;top:225px;transform:rotate(-2deg);z-index:3}.v12 .c img{width:230px;height:170px}
+
+/* 13 - Devanagari watermark */
+.v13{display:grid;place-items:center;text-align:center;background:linear-gradient(180deg,var(--pink-lt),var(--pink))}
+.v13 .wm{position:absolute;left:50%;top:50%;transform:translate(-50%,-54%);font:400 300px/1 "Tiro Devanagari Hindi",serif;color:rgba(180,112,122,.13);white-space:nowrap;pointer-events:none}
+.v13 .in{position:relative;display:flex;flex-direction:column;align-items:center;gap:26px}
+.v13 .h{font-size:60px}
+.v13 .p{text-align:center;max-width:44ch}
+
+/* 14 - Three steps, one word each */
+.v14{padding:0 80px;display:flex;flex-direction:column;justify-content:center;background:var(--ivory)}
+.v14 .top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px}
+.v14 .p{max-width:38ch;font-size:18px}
+.v14 .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:60px}
+.v14 .step{border-top:2px solid var(--rose);padding-top:22px}
+.v14 .step i{font:italic 400 18px/1 "Fraunces",serif;color:var(--rose)}
+.v14 .step b{display:block;margin-top:14px;font:500 40px/1.1 "Fraunces",serif;color:var(--ink)}
+.v14 .btns{margin-top:60px}
+
+/* 15 - Two circles */
+.v15{display:grid;grid-template-columns:280px 1fr 280px;align-items:center;padding:0 60px;gap:40px;text-align:center}
+.v15 .c{width:280px;height:280px;border-radius:50%;overflow:hidden;box-shadow:0 24px 50px -28px rgba(90,40,30,.6)}
+.v15 .c.lo{transform:translateY(60px)}.v15 .c.hi{transform:translateY(-60px)}
+.v15 .in{display:flex;flex-direction:column;align-items:center;gap:24px}
+.v15 .lk{flex-direction:column;gap:12px}.v15 .nm{align-items:center}
+.v15 .p{text-align:center;font-size:18px;max-width:34ch}
+.v15 .cap{display:block;margin-top:14px;font:500 12px/1 "Jost";letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dk)}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="k">Satva Saheli &middot; review page</p>
+  <h1>15 ways to show Satva Saheli</h1>
+  <p>Each one is drawn at your screen size (one section under the menu) and has room to breathe: one or two lines, a picture, and two buttons. <b>Become a Saheli</b> opens WhatsApp; <b>Read the Saheli story</b> opens the full page, which keeps everything taken out here &mdash; the second paragraph, both roles in full, the three steps to join and the numbers. Click any one to see it full size, then tell me its number.</p>
+</header>
+<span class="hint">Click or press Esc to close</span>
+
+<main class="list">
+
+<!-- 1 -->
+<figure><div class="frame" tabindex="0"><div class="stage v1"><div class="in">
+  <p class="kk">Giving back</p>
+  <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+  <p class="p">A <i>saheli</i> is the friend a woman actually turns to. We work with women in their own communities, and the work and the wage stay with them.</p>
+  <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the Saheli story &rarr;</a></div>
+</div></div></div>
+<figcaption><b>1 &middot; Centred calm</b>Just the logo, one line and two buttons, in the middle of the screen. The quietest option.</figcaption></figure>
+
+<!-- 2 -->
+<figure><div class="frame" tabindex="0"><div class="stage v2">
+  <img class="ph" src="assets/hero-saheli-winnowing.jpg" alt="">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">Purity begins at home &mdash; so instead of a factory network, we work with women in their own communities, and the work and the wage stay with them.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+</div></div>
+<figcaption><b>2 &middot; Half photo</b>Picture on the left, story on the right, the same width each. Clean and familiar.</figcaption></figure>
+
+<!-- 3 -->
+<figure><div class="frame" tabindex="0"><div class="stage v3">
+  <img class="ph" src="assets/hero-saheli-winnowing.jpg" alt="">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-bright.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">We work with women in their own communities, and the work and the wage stay with them.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+</div></div>
+<figcaption><b>3 &middot; Full-screen photo</b>The picture fills the section; white words over a soft shadow on the left. The most dramatic.</figcaption></figure>
+
+<!-- 4 -->
+<figure><div class="frame" tabindex="0"><div class="stage v4">
+  <p class="kk">Satva Saheli &middot; <span class="dv" style="letter-spacing:0;text-transform:none">सत्व सहेली</span></p>
+  <h2 class="h" style="margin-top:14px">Empowering women. <em>Enriching kitchens.</em></h2>
+  <p class="p">Masalas roasted and blended at home by women, using their own family recipes &mdash; and the wage stays with them.</p>
+  <div class="row">
+    <figure><img class="ph" src="assets/sah-maker.jpg" alt=""><figcaption>The Maker</figcaption></figure>
+    <figure><img class="ph" src="assets/sah-join.jpg" alt=""></figure>
+    <figure><img class="ph" src="assets/sah-promoter.jpg" alt=""><figcaption>The Promoter</figcaption></figure>
+  </div>
+  <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl u" href="saheli.html">Read the Saheli story &rarr;</a></div>
+</div></div>
+<figcaption><b>4 &middot; Three photos</b>Heading centred, then a row of three pictures naming the two roles. Warm and human.</figcaption></figure>
+
+<!-- 5 -->
+<figure><div class="frame" tabindex="0"><div class="stage v5">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">A <i>saheli</i> is the friend a woman actually turns to. Every Saheli is trained in FSSAI food safety, hygiene and nutrition before she packs anything.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div class="arch"><img class="ph" src="assets/sah-maker.jpg" alt=""></div>
+</div></div>
+<figcaption><b>5 &middot; Arch</b>One tall picture in an arch, the same shape as the "Why choose SATVA" arches, so the site feels of a piece.</figcaption></figure>
+
+<!-- 6 -->
+<figure><div class="frame" tabindex="0"><div class="stage v6"><div class="in">
+  <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""></div>
+  <q>Purity begins at home &mdash; and <em>the work and the wage stay with them.</em></q>
+  <p class="by">Satva Saheli &middot; Empowering women. Enriching kitchens.</p>
+  <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the Saheli story &rarr;</a></div>
+</div></div></div>
+<figcaption><b>6 &middot; The promise</b>No picture at all: the promise set large, like a quote, on ivory. Bold and very spacious.</figcaption></figure>
+
+<!-- 7 -->
+<figure><div class="frame" tabindex="0"><div class="stage v7">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p" style="font-size:18px">Work from home, on your own hours, with no stock to buy up front.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl u" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div class="roles">
+    <a class="role" href="saheli.html"><img class="ph" src="assets/sah-maker.jpg" alt=""><span><small>Two ways to be a Saheli</small>The Satva Maker</span></a>
+    <a class="role" href="saheli.html"><img class="ph" src="assets/sah-promoter.jpg" alt="" style="object-position:30% 50%"><span><small>&nbsp;</small>The Satva Promoter</span></a>
+  </div>
+</div></div>
+<figcaption><b>7 &middot; Two roles</b>Two tall picture cards, Maker and Promoter, titles only. Each opens the full story.</figcaption></figure>
+
+<!-- 8 -->
+<figure><div class="frame" tabindex="0"><div class="stage v8">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">We work with women in their own communities, and the work and the wage stay with them.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div class="nums">
+    <div class="num"><b>30+</b><span>Households each<br>Saheli reaches</span></div>
+    <div class="num"><b>100%</b><span>Of this work<br>stays local</span></div>
+  </div>
+</div></div>
+<figcaption><b>8 &middot; The numbers</b>The two figures, big and clear, beside a short story. Good if you want the impact first.</figcaption></figure>
+
+<!-- 9 -->
+<figure><div class="frame" tabindex="0"><div class="stage v9">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-bright.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">Select masalas are roasted and blended at home by women using their own family recipes.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div class="ring"><img class="ph" src="assets/sah-join.jpg" alt="" style="object-position:72% 50%"></div>
+</div></div>
+<figcaption><b>9 &middot; Deep green</b>The brand green with gold, and one round picture. Stands out from the pink and cream around it.</figcaption></figure>
+
+<!-- 10 -->
+<figure><div class="frame" tabindex="0"><div class="stage v10">
+  <img class="ph" src="assets/sah-promoter.jpg" alt="" style="object-position:50% 40%">
+  <div class="card">
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt="" style="width:74px"><div class="nm"><b style="font-size:42px">Satva<span>Saheli</span></b><i style="font-size:17px">Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">A <i>saheli</i> is the friend a woman actually turns to. The work and the wage stay with her.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl u" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+</div></div>
+<figcaption><b>10 &middot; Card on a photo</b>The women together fill the screen; a neat ivory card floats over it.</figcaption></figure>
+
+<!-- 11 -->
+<figure><div class="frame" tabindex="0"><div class="stage v11">
+  <img class="ph" src="assets/sah-maker.jpg" alt="">
+  <div class="in">
+    <p class="meta"><img src="assets/saheli-mark-grad.svg" alt="">Satva Saheli &middot; <span class="dv" style="letter-spacing:0">सत्व सहेली</span></p>
+    <h2 class="h">Empowering women.<br><em>Enriching kitchens.</em></h2>
+    <p class="p">Purity begins at home &mdash; so instead of a factory network, we work with women in their own communities, and the work and the wage stay with them.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl u" href="saheli.html">Read the Saheli story &rarr;</a></div>
+  </div>
+</div></div>
+<figcaption><b>11 &middot; Editorial</b>A narrow portrait strip and the tagline as a big headline, like a magazine page.</figcaption></figure>
+
+<!-- 12 -->
+<figure><div class="frame" tabindex="0"><div class="stage v12">
+  <div class="in">
+    <p class="kk">Giving back</p>
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">Select masalas are roasted and blended at home by women using their own family recipes.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div class="pile">
+    <div class="pol a"><img src="assets/sah-maker.jpg" alt=""><span>the Maker</span></div>
+    <div class="pol b"><img src="assets/sah-join.jpg" alt="" style="object-position:75% 50%"></div>
+    <div class="pol c"><img src="assets/sah-promoter.jpg" alt=""><span>the Promoter</span></div>
+  </div>
+</div></div>
+<figcaption><b>12 &middot; Photo pile</b>Three snapshots dropped on the table, each with a handwritten-style label. Friendly, like a saheli.</figcaption></figure>
+
+<!-- 13 -->
+<figure><div class="frame" tabindex="0"><div class="stage v13">
+  <span class="wm">सत्व सहेली</span>
+  <div class="in">
+    <img src="assets/saheli-mark-grad.svg" alt="" style="width:84px">
+    <p class="kk">Satva Saheli</p>
+    <h2 class="h">Empowering women.<br><em>Enriching kitchens.</em></h2>
+    <p class="p">We work with women in their own communities, and the work and the wage stay with them.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl" href="saheli.html">Read the Saheli story &rarr;</a></div>
+  </div>
+</div></div>
+<figcaption><b>13 &middot; In Hindi, behind</b>"सत्व सहेली" written large and faint behind a centred heading. Simple, rooted.</figcaption></figure>
+
+<!-- 14 -->
+<figure><div class="frame" tabindex="0"><div class="stage v14">
+  <div class="top">
+    <div>
+      <p class="kk">Join us</p>
+      <h2 class="h" style="margin-top:14px;font-size:54px">Become a Saheli</h2>
+    </div>
+    <p class="p">Work from home, on your own hours, with no stock to buy up front.</p>
+  </div>
+  <div class="steps">
+    <div class="step"><i>one</i><b>Get trained</b></div>
+    <div class="step"><i>two</i><b>Make or promote</b></div>
+    <div class="step"><i>three</i><b>Earn on every pouch</b></div>
+  </div>
+  <div class="btns"><a class="bg" href="#">Apply on WhatsApp</a><a class="bl" href="saheli.html">Read the Saheli story &rarr;</a></div>
+</div></div>
+<figcaption><b>14 &middot; Three steps</b>Leads with the invitation: just the three step names, big. The details are on the story page.</figcaption></figure>
+
+<!-- 15 -->
+<figure><div class="frame" tabindex="0"><div class="stage v15">
+  <div><div class="c lo"><img class="ph" src="assets/sah-maker.jpg" alt=""></div><span class="cap" style="transform:translateY(60px)">The Maker</span></div>
+  <div class="in">
+    <div class="lk"><img src="assets/saheli-mark-grad.svg" alt=""><div class="nm"><b>Satva<span>Saheli</span></b><i>Empowering women. Enriching kitchens.</i></div></div>
+    <p class="p">A <i>saheli</i> is the friend a woman actually turns to. The work and the wage stay with her.</p>
+    <div class="btns"><a class="bg" href="#">Become a Saheli</a><a class="bl u" href="saheli.html">Read the story &rarr;</a></div>
+  </div>
+  <div><div class="c hi"><img class="ph" src="assets/sah-promoter.jpg" alt=""></div><span class="cap" style="transform:translateY(-60px)">The Promoter</span></div>
+</div></div>
+<figcaption><b>15 &middot; Two circles</b>Maker and Promoter in two round pictures either side, the story in the middle. Balanced and light.</figcaption></figure>
+
+</main>
+
+<script>
+(function () {
+  var frames = [].slice.call(document.querySelectorAll(".frame"));
+  function fit(f) {
+    var s = f.classList.contains("full")
+      ? Math.min(innerWidth / 1245, innerHeight / 569)
+      : f.clientWidth / 1245;
+    f.style.setProperty("--s", s);
+  }
+  var ro = new ResizeObserver(function (es) { es.forEach(function (e) { fit(e.target); }); });
+  frames.forEach(function (f) {
+    ro.observe(f);
+    function toggle() {
+      var on = !f.classList.contains("full");
+      frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+      if (on) f.classList.add("full");
+      document.body.classList.toggle("isfull", on);
+      fit(f);
+    }
+    // links inside a preview do nothing here - this is a picture of the section
+    f.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
+    f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+  addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+    document.body.classList.remove("isfull");
+  });
+  addEventListener("resize", function () { frames.forEach(fit); });
+})();
+</script>
+</body>
+</html>

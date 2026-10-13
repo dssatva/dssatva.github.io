@@ -179,6 +179,22 @@
     { id:"essentials", label:"Healthy Essentials", cats:["essentials"] }
   ];
 
+  /* A page can take a whole shelf off the site without editing this file:
+     window.SATVA_HIDE_SHELVES = ["pulses"] (ports/8002, 13 Oct 2026, owner:
+     "remove the pulses section from the whole website"). The shelf goes from
+     GROUPS and its products from PRODUCTS, so the counts, the dropdown, the
+     category cards, the range listing and "How we make" all lose it at once.
+     Unset - every other page - nothing changes. */
+  var HIDE = window.SATVA_HIDE_SHELVES || [];
+  // names of the products that went with it - a recipe that calls for
+  // "Satva Toor Dal" then reads plain "toor dal", not as something we sell
+  var HIDDEN = PRODUCTS.filter(function (p) { return HIDE.indexOf(p.cat) > -1; })
+                       .map(function (p) { return p.en; });
+  if (HIDE.length) {
+    GROUPS = GROUPS.filter(function (g) { return HIDE.indexOf(g.id) < 0; });
+    PRODUCTS = PRODUCTS.filter(function (p) { return HIDE.indexOf(p.cat) < 0; });
+  }
+
   /* Not a category - the dropdown's "see the lot" entry, kept out of GROUPS so
      that array stays exactly the four shelves the owner asked for. */
   var ALL = { id:"all", label:"Everything", cats:null };
@@ -761,8 +777,17 @@
           text: "Not roasted, not ground, not treated. Chia's oil is protected inside a " +
                 "hard seed coat that also makes the gel — break it and you lose both.",
           short: "Not roasted, not ground, not treated.",
+          /* Replaced 22 Sep 2026. The previous frame was a botanical macro -
+             genuinely chia, but shot at such magnification that the seeds read
+             as river pebbles. The owner asked, reasonably, whether it was real
+             chia at all.
+             Replaced first with a flat field of seed - correct, but a grey
+             rectangle with no focal point - and then with this: the same seed
+             in a white dish on slate, cropped so the dish fills the arch. The
+             rim gives it a shape and the slate gives it depth, which the flat
+             texture could not. */
           shot: "assets/j-chia-3-seed.jpg",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Seed_of_chia_(Salvia_hispanica)Salvia_hispanica_group.jpg" target="_blank" rel="noopener">Chia seed</a>, CC BY-SA.' }
+          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Chia_Seed.jpg" target="_blank" rel="noopener">Chia Seed</a> by Jubair Bin Iqbal, CC BY-SA 4.0.' }
       ],
       end: { title: "Nothing happened to it",
         text: "Which, for a seed this fragile, is the most you can ask.",
@@ -1213,6 +1238,66 @@
     return card;
   }
 
+  /* The one picture each still card shows: the ingredient itself, as
+     it is sold - not the crop in the field.                 6 Oct 2026
+     "i want it to be natural picture ... with the main ingredient",
+     then "i want stunning pictures".
+     u-*.jpg are Unsplash License photographs - free for commercial
+     use; photographer and link for each in assets/UNSPLASH-CREDITS.txt.
+     Coriander Powder and Monk Fruit keep their journey photographs:
+     Unsplash had nothing true to the product for either. */
+  var STILL_SHOT = {
+    "Turmeric":             "assets/u-turmeric.jpg",
+    "Chilli Powder":        "assets/u-chilli-powder.jpg",
+    "Coriander Powder":     "assets/j-coriander-3-powder.jpg",
+    "Coriander Seeds":      "assets/u-coriander-seeds.jpg",
+    "Cumin Seeds":          "assets/u-cumin-seeds.jpg",
+    "Mustard Seeds":        "assets/u-mustard-seeds.jpg",
+    "Black Pepper":         "assets/u-black-pepper.jpg",
+    "Garam Masala":         "assets/u-garam-masala.jpg",
+    "Biryani Masala":       "assets/u-biryani-masala.jpg",
+    "Meat Masala":          "assets/u-meat-masala.jpg",
+    "Sambar Masala":        "assets/u-sambar-masala.jpg",
+    "Chatpat Masala":       "assets/u-chatpat-masala.jpg",
+    "Toor Dal":             "assets/u-toor-dal.jpg",
+    "Chana Dal":            "assets/u-chana-dal.jpg",
+    "Chia Seeds":           "assets/u-chia-seeds.jpg",
+    "Flax Seeds":           "assets/u-flax-seeds.jpg",
+    "Quinoa":               "assets/u-quinoa.jpg",
+    "Methi Seeds":          "assets/u-methi-seeds.jpg",
+    "Himalayan Pink Salt":  "assets/u-himalayan-pink-salt.jpg",
+    "Coconut Sugar":        "assets/u-coconut-sugar.jpg",
+    "Monk Fruit Sweetener": "assets/j-monk-3-powder.jpg"
+  };
+
+  /* The dish behind each "How it's made" card's Recipe button - an id in
+     RECIPES (name, time, line) and RECIPE_BOOK (ingredients, method).
+     Owner, 8 Oct 2026. Where the page's rotating recipe sets already
+     pair a product with a dish, this uses the same dish. */
+  var RECIPE_FOR = {
+    "Turmeric":             "haldi-doodh",
+    "Chilli Powder":        "misal",
+    "Coriander Powder":     "bharli-vangi",
+    "Coriander Seeds":      "dhane-aloo",
+    "Cumin Seeds":          "jeera-bhaat",
+    "Mustard Seeds":        "fodni-poha",
+    "Black Pepper":         "miri-rasam",
+    "Garam Masala":         "chole",
+    "Biryani Masala":       "biryani",
+    "Meat Masala":          "rassa",
+    "Sambar Masala":        "sambar",
+    "Chatpat Masala":       "bhel",
+    "Toor Dal":             "varan-bhaat",
+    "Chana Dal":            "chana-dal",
+    "Chia Seeds":           "chia",
+    "Flax Seeds":           "javas-chutney",
+    "Quinoa":               "quinoa",
+    "Methi Seeds":          "methi-dal",
+    "Himalayan Pink Salt":  "nimbu-pani",
+    "Coconut Sugar":        "kheer",
+    "Monk Fruit Sweetener": "shrikhand"
+  };
+
   function stillCard(p) {
     var j = JOURNEYS[p.en];
     var card = document.createElement("article");
@@ -1222,7 +1307,7 @@
     card.innerHTML =
       '<div class="still-shot">' +
         VEG +
-        '<img src="' + j.stages[0].shot + '" alt="' + p.en + '" loading="lazy">' +
+        '<img src="' + (STILL_SHOT[p.en] || j.stages[0].shot) + '" alt="' + p.en + '" loading="lazy">' +
       "</div>" +
       '<div class="pbody">' +
         '<p class="jcard-kick">' + j.intro.kick + "</p>" +
@@ -1322,7 +1407,8 @@
            number and the cards on screen cannot quietly disagree. */
         var held = PRODUCTS.filter(function (p) { return p.hideInAll; })
                            .map(function (p) { return p.en; });
-        rSub.textContent = PRODUCTS.length + " staples, across four shelves" +
+        rSub.textContent = PRODUCTS.length + " staples, across " +
+          (["no", "one", "two", "three", "four", "five", "six"][GROUPS.length] || GROUPS.length) + " shelves" +
           (held.length ? " \u2014 " + held.join(", ") +
              (held.length === 1 ? " is" : " are") + " on the Spices shelf." : ".");
       } else {
@@ -1464,7 +1550,10 @@
           shot.querySelector("svg").remove();
           shot.classList.add("has-photo");
         };
-        probe.src = "assets/cat-" + g.id + ".jpg";
+        /* A page may name its own card pictures (window.SATVA_CAT_IMG, set
+           before this script, e.g. ports/8002). Without it: cat-<id>.jpg. */
+        probe.src = (window.SATVA_CAT_IMG && window.SATVA_CAT_IMG[g.id]) ||
+                    ("assets/cat-" + g.id + ".jpg");
       })(card);
 
       /* There IS a listing again (20 Sep 2026), so the card does the obvious
@@ -1594,9 +1683,14 @@
     function shPlay() {
       if (shStopped || reduce || shelves.length < 2) return;
       clearTimeout(shTimer);
-      shTimer = setTimeout(function () { shGo(shCur + 1); shPlay(); }, SH_DELAY);
+      /* a slide may ask to be held longer with data-hold="ms" - ports/8002's
+         "Why SATVA" slide steps through four cards of its own (13 Oct 2026) */
+      shTimer = setTimeout(function () { shGo(shCur + 1); shPlay(); }, +shelves[shCur].dataset.hold || SH_DELAY);
       shPaint();
     }
+    /* A slide that runs a sequence of its own can hand on to the next slide
+       when it is done, paused or not (ports/8002 "Why SATVA", 13 Oct 2026) */
+    window.SATVA_HERO_NEXT = function () { shGo(shCur + 1); shPlay(); };
 
     if (!reduce && shelves.length > 1) {
       shStage.addEventListener("pointerenter", shPause);
@@ -1971,14 +2065,20 @@
       back:"assets/cat-pantry.jpg",
       note:"Pink salt, coconut sugar, monk fruit." }
   ];
+  MAKING = MAKING.filter(function (m) { return HIDE.indexOf(m.id) < 0; });
 
 
   var mTrack = document.getElementById("mkrow");
+  /* A page may ask for the per-product "How we make" without the rest of
+     card.html's journey cards (window.SATVA_MAKE_PER_PRODUCT, e.g.
+     ports/8002). It then also runs on from one shelf into the next, so
+     every product's making slides past in turn. */
+  var MKPROD = CARDMODE || !!window.SATVA_MAKE_PER_PRODUCT;
   var mTabs  = document.getElementById("mtabs");
   /* card.html rebuilds this section per PRODUCT rather than per shelf - see
      the block after this one. index.html, inline.html and a3.html keep the
      four-shelf coverflow exactly as it was. */
-  if (mTrack && !CARDMODE) {
+  if (mTrack && !MKPROD) {
     var mCards = [], mCur = 0;
 
     MAKING.forEach(function (m, i) {
@@ -2165,10 +2265,10 @@
      front face is not one still but the six-stage journey, cycling,
      the same treatment the range card uses.
      --------------------------------------------------------- */
-  if (mTrack && CARDMODE) {
+  if (mTrack && MKPROD) {
     var mkCards = [], mkCur = 0, mkShelf = GROUPS[0].id, mkFilms = [];
     var MK_FRONT = 4600, MK_BACK = 2200;
-    var mkT1 = null, mkT2 = null, mkHold = false;
+    var mkT1 = null, mkT2 = null, mkHold = false, mkRecipeOpen = false;
     var mkNote = document.querySelector(".mnote");
 
     function mkFace(p) {
@@ -2226,20 +2326,33 @@
               '<span class="mturn">Turn <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></span>' +
             "</div>" +
             '<div class="mface mback">' +
-              '<img src="' + ((p.img && p.photo) ? p.img : "assets/cat-" + p.cat + ".jpg") + '" alt="' + p.en + '" loading="lazy">' +
+              /* the ingredient itself (STILL_SHOT), never the shelf picture -
+                 owner, 8 Oct 2026: coriander, cumin and mustard all turned
+                 over to turmeric powder */
+              '<img src="' + (STILL_SHOT[p.en] || ((p.img && p.photo) ? p.img : "assets/cat-" + p.cat + ".jpg")) + '" alt="' + p.en + '" loading="lazy">' +
               '<div class="mcopy">' +
                 "<h3>" + p.en + "</h3>" +
                 "<p>" + p.d + "</p>" +
+                (RECIPE_FOR[p.en]
+                  ? '<button type="button" class="mrecipe">Recipe <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>'
+                  : "") +
               "</div>" +
               '<span class="mturn">Back <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></span>' +
             "</div>" +
           "</div>";
 
+        var rb = card.querySelector(".mrecipe");
+        if (rb) rb.addEventListener("click", function (e) {
+          e.stopPropagation();                    // the card must not turn
+          mkRecipeOpen = true; mkClear();         // nor the carousel move under the sheet
+          openRecipe(p, function () { mkRecipeOpen = false; mkCycle(); });
+        });
+
         card.addEventListener("click", function () {
           if (i === mkCur) {
             card.classList.toggle("is-flipped");
             mkClear();
-            if (!mkHold && !reduce) mkT2 = setTimeout(function () { mkGo(mkCur + 1); }, MK_BACK);
+            if (!mkHold && !reduce) mkT2 = setTimeout(mkNext, MK_BACK);
           } else mkGo(i);
         });
         mTrack.appendChild(card);
@@ -2289,6 +2402,8 @@
         };
         f.go(nth % slides.length);   /* same anti-lockstep offset as the grid */
         if (!reduce) f.t = setInterval(function () { f.go(f.i + 1); }, 2600);
+        f.n = slides.length;
+        film.__mk = f;
         mkFilms.push(f);
       });
     }
@@ -2328,12 +2443,41 @@
     function mkStop() { mkClear(); mkFilms.forEach(function (f) { clearInterval(f.t); }); mkFilms = []; }
     function mkCycle() {
       mkClear();
-      if (mkHold || reduce || mkCards.length < 2) return;
+      if (mkHold || mkRecipeOpen || reduce || mkCards.length < 2) return;
+      /* On a page that asked for every shelf (SATVA_MAKE_PER_PRODUCT) a card
+         is PLAYED before it turns: a product whose front is a step-by-step
+         journey starts from step one and shows every step, and only then
+         turns over. Elsewhere the front holds for MK_FRONT, as before. */
+      var front = MK_FRONT, cc = mkCards[mkCur];
+      var film = window.SATVA_MAKE_PER_PRODUCT && cc && cc.querySelector(".mkjrn");
+      if (film && film.__mk) {
+        var f = film.__mk;
+        clearInterval(f.t);
+        f.go(0);
+        f.t = setInterval(function () { f.go(f.i + 1); }, 2600);
+        front = Math.max(MK_FRONT, f.n * 2600);
+      }
       mkT1 = setTimeout(function () {
         var c = mkCards[mkCur];
         if (c) c.classList.add("is-flipped");
-        mkT2 = setTimeout(function () { mkGo(mkCur + 1); }, MK_BACK);
-      }, MK_FRONT);
+        mkT2 = setTimeout(mkNext, MK_BACK);
+      }, front);
+    }
+
+    /* The next card - or, on a page that asked for every shelf to run
+       on, the first card of the next shelf once this one is done. */
+    function mkNext() {
+      if (window.SATVA_MAKE_PER_PRODUCT && mkCur === mkCards.length - 1) {
+        var gi = 0;
+        GROUPS.forEach(function (g, i) { if (g.id === mkShelf) gi = i; });
+        mkShelfGo((gi + 1) % GROUPS.length);
+      } else mkGo(mkCur + 1);
+    }
+    function mkShelfGo(gi) {
+      if (mTabs) [].forEach.call(mTabs.children, function (x, i) {
+        x.setAttribute("aria-selected", i === gi ? "true" : "false");
+      });
+      mkBuild(GROUPS[gi].id);
     }
 
     /* The tabs now choose a shelf, not a card. */
@@ -2345,16 +2489,29 @@
         b.setAttribute("role", "tab");
         b.setAttribute("aria-selected", i === 0 ? "true" : "false");
         b.innerHTML = g.label + ' <sup>' + PRODUCTS.filter(function (p) { return p.cat === g.id; }).length + "</sup>";
-        b.addEventListener("click", function () {
-          [].forEach.call(mTabs.children, function (x) { x.setAttribute("aria-selected", "false"); });
-          b.setAttribute("aria-selected", "true");
-          mkBuild(g.id);
-        });
+        b.addEventListener("click", function () { mkShelfGo(i); });
         mTabs.appendChild(b);
       });
     }
 
-    if (!reduce) {
+    if (!reduce && window.SATVA_MAKE_PER_PRODUCT) {
+      /* Here it runs on by itself, card after card (owner, 8 Oct 2026: "once
+         each card is played, I want the next card to come automatically") -
+         so no pause under the pointer, which read as the slider having
+         stopped. It waits only while it is off screen or the tab is hidden. */
+      var mkVis = true;
+      var mkRun = function () {
+        var hold = !mkVis || document.hidden;
+        if (hold === mkHold) return;
+        mkHold = hold;
+        if (hold) mkClear(); else mkCycle();
+      };
+      if ("IntersectionObserver" in window) {
+        new IntersectionObserver(function (es) { mkVis = es[0].isIntersecting; mkRun(); },
+          { threshold: 0.3 }).observe(mTrack);
+      }
+      document.addEventListener("visibilitychange", mkRun);
+    } else if (!reduce) {
       var mkSec = mTrack.closest(".made");
       if (mkSec) {
         mkSec.addEventListener("pointerenter", function () { mkHold = true; mkClear(); });
@@ -2483,13 +2640,449 @@
     { id:"quinoa", group:"seed", name:"Quinoa Bowl", hi:"क्विनोआ", time:"25 min",
       icon:RICE, tint:"linear-gradient(150deg,#dfe3c9,#8a9457)",
       desc:"Rinse it properly first — that bitter coating is why most people decide they dislike quinoa. Then treat it as bhaat: a fodni, whatever vegetable is in the house, lime.",
-      uses:"Quinoa" }
+      uses:"Quinoa" },
+
+    /* ---- for the "How it's made" Recipe button (RECIPE_FOR), 8 Oct 2026 ---- */
+    { id:"haldi-doodh", group:"masala", name:"Haldi Doodh", hi:"हळदीचे दूध", time:"10 min",
+      icon:POT, tint:"linear-gradient(150deg,#f7e2ad,#deac3f)",
+      desc:"Warm milk, a spoon of turmeric, a pinch of pepper and a little ginger, simmered gently and never boiled hard. What gets made when someone in the house has a cold.",
+      uses:"Turmeric" },
+
+    { id:"dhane-aloo", group:"seed", name:"Dhaniya Aloo", hi:"धने आलू", time:"25 min",
+      icon:PAN, tint:"linear-gradient(150deg,#e3e6c0,#8a9a52)",
+      desc:"Coriander seeds roasted and crushed coarse by hand, not ground — the bits of husk are the point. Tossed with boiled potatoes until the edges catch.",
+      uses:"Coriander Seeds" },
+
+    { id:"miri-rasam", group:"seed", name:"Miri Rasam", hi:"मिरी रसम", time:"25 min",
+      icon:POT, tint:"linear-gradient(150deg,#cfc8bf,#6b6259)",
+      desc:"Pepper, cumin and garlic pounded together and dropped into hot tamarind water. Take it off the moment it froths — boiled pepper turns harsh.",
+      uses:"Black Pepper" },
+
+    /* ---- for the rotating "Cook something for someone" row on :8002
+       (js/recipes-rotate-8002.js), 8 Oct 2026 - the owner: clicking a
+       picture must show its recipe ---- */
+    { id:"paneer-tikka", group:"masala", name:"Paneer Tikka", hi:"पनीर टिक्का", time:"40 min + 2 hr resting",
+      icon:PAN, tint:"linear-gradient(150deg,#f0b97a,#b5561d)",
+      desc:"Paneer, onion and capsicum in a thick curd marinade coloured with chilli, then charred hot and fast. The chilli is there for colour as much as heat, so be generous with it.",
+      uses:"Chilli Powder" },
+
+    { id:"butter-chicken", group:"masala", name:"Butter Chicken", hi:"बटर चिकन", time:"1 hr + 1 hr resting",
+      icon:POT, tint:"linear-gradient(150deg,#f3b585,#b44a1f)",
+      desc:"Chicken charred first, then simmered in a tomato and cashew gravy finished with butter, kasuri methi and a little cream. Garam masala at the start and again at the end.",
+      uses:"Garam Masala" },
+
+    { id:"pav-bhaji", group:"masala", name:"Pav Bhaji", hi:"पाव भाजी", time:"45 min",
+      icon:PAN, tint:"linear-gradient(150deg,#f2a86b,#b9461c)",
+      desc:"Vegetables boiled, then mashed down on the pan with butter, tomato and chilli until they are one thick bhaji. Butter-toasted pav, raw onion and lemon on the side.",
+      uses:"Chilli Powder" },
+
+    { id:"pepper-mutton", group:"masala", name:"Pepper Mutton Fry", hi:"मिरी मटण", time:"1 hr 15 min",
+      icon:PAN, tint:"linear-gradient(150deg,#b7a48f,#4f3b2c)",
+      desc:"Mutton cooked tender, then fried dry with onions and curry leaves. A heap of freshly crushed black pepper goes in at the very end, so it stays sharp.",
+      uses:"Black Pepper" },
+
+    { id:"chicken-curry", group:"masala", name:"Chicken Curry", hi:"चिकन करी", time:"50 min",
+      icon:POT, tint:"linear-gradient(150deg,#e8a35f,#9c4a17)",
+      desc:"A home chicken curry, built on onions browned slowly and plenty of coriander powder, which thickens the gravy as much as it flavours it.",
+      uses:"Coriander Powder" },
+
+    { id:"chana-dal", group:"seed", name:"Chana Dal Fry", hi:"चणा डाळ", time:"45 min",
+      icon:POT, tint:"linear-gradient(150deg,#f3e2a6,#cbab3c)",
+      desc:"Cooked soft but still holding its shape, then a second tadka of ghee and red chilli poured over at the table.",
+      uses:"Chana Dal" },
+
+    { id:"nimbu-pani", group:"seed", name:"Nimbu Pani", hi:"निंबू पाणी", time:"5 min",
+      icon:POT, tint:"linear-gradient(150deg,#f6e3e3,#d98a8a)",
+      desc:"Lemon, cold water, a little sugar and just enough pink salt that you notice it. Roasted cumin if you want it to taste like a summer afternoon.",
+      uses:"Himalayan Pink Salt" },
+
+    { id:"kheer", group:"seed", name:"Kheer", hi:"खीर", time:"45 min",
+      icon:POT, tint:"linear-gradient(150deg,#ecd8bf,#b07a42)",
+      desc:"Rice cooked slowly in milk until the milk gives up a third of itself. Coconut sugar goes in off the heat and turns it the colour of caramel.",
+      uses:"Coconut Sugar" },
+
+    { id:"shrikhand", group:"seed", name:"Shrikhand", hi:"श्रीखंड", time:"15 min + a night",
+      icon:POT, tint:"linear-gradient(150deg,#e7efdf,#7fa06a)",
+      desc:"Yogurt hung overnight until it is thick enough to hold a spoon, then sweetened with monk fruit, saffron and cardamom. No sugar in it at all.",
+      uses:"Monk Fruit Sweetener" }
   ];
 
   var RGROUPS = [
     { id:"masala", label:"With our masalas" },
     { id:"seed",   label:"With our seeds & grains" }
   ];
+
+  /* ---------------------------------------------------------
+     THE RECIPE SHEET - the "How it's made" cards' Recipe button
+     (owner, 8 Oct 2026: "the same stunning image and the list of
+     ingredients with measurements and the way to make it").
+     RECIPES above holds each dish's name, time and line; this
+     holds what goes in and how. Ordinary household quantities,
+     cups and spoons as an Indian kitchen measures them. An item
+     beginning "Satva " is one of ours and is marked on the sheet.
+     --------------------------------------------------------- */
+  var RECIPE_BOOK = {
+    "haldi-doodh": { serves:"2",
+      ing:[["2 cups","full-fat milk"],["1 tsp","Satva Turmeric"],["a pinch","Satva Black Pepper, freshly crushed"],
+           ["½ inch","ginger, grated"],["1 small stick","cinnamon"],["2 tsp","jaggery or honey"],["½ tsp","ghee"]],
+      steps:["Put the milk, turmeric, pepper, ginger and cinnamon in a small pan and whisk so the turmeric does not clump.",
+             "Bring it up to a gentle simmer and keep it there for 5 minutes, whisking now and then. Do not let it boil hard.",
+             "Strain into two cups and stir in the ghee.",
+             "Sweeten once it is warm rather than hot - honey especially should never go into boiling milk."] },
+
+    "misal": { serves:"4",
+      ing:[["2 cups","sprouted matki (moth beans)"],["2","onions - 1 sliced, 1 finely chopped"],["¼ cup","dry coconut, grated"],
+           ["6 cloves","garlic"],["1 inch","ginger"],["4 tbsp","oil"],["2 tsp","Satva Chilli Powder"],["½ tsp","Satva Turmeric"],
+           ["1 tsp","Satva Garam Masala"],["1 tsp","tamarind paste"],["to taste","salt"],["2 cups","farsan or mixed namkeen"],
+           ["¼ cup","coriander leaves, chopped"],["1","lemon, in wedges"],["8","pav"]],
+      steps:["Dry-roast the sliced onion in a pan until deep brown, then add the coconut and roast until it browns too - about 12 minutes in all. Grind with the garlic, ginger and a little water to a smooth paste.",
+             "Pressure-cook the matki with ¼ tsp turmeric, salt and 2 cups water for 2 whistles. It should be cooked but still whole.",
+             "For the kat, heat the oil, add the paste and fry for 5 minutes until the oil separates. Lower the heat, add the chilli powder and the rest of the turmeric and stir for 20 seconds - colour without a burnt edge.",
+             "Add the garam masala, tamarind, 4 cups water and salt. Simmer 15 minutes until a red layer of oil (the tarri) floats on top.",
+             "To serve: matki in a bowl, kat poured over, then farsan, chopped onion and coriander. Lemon and pav on the side."] },
+
+    "bharli-vangi": { serves:"4",
+      ing:[["8","small round brinjals (about 400 g)"],["⅓ cup","roasted peanuts"],["⅓ cup","dry coconut, grated"],
+           ["1 tbsp","sesame seeds"],["2 tsp","Satva Coriander Powder"],["1 tsp","Satva Chilli Powder"],["¼ tsp","Satva Turmeric"],
+           ["½ tsp","Satva Garam Masala"],["1 tsp","jaggery"],["1 tsp","tamarind paste"],["1 tsp","salt"],
+           ["2 tbsp","coriander leaves, chopped"],["3 tbsp","oil"],["½ tsp","Satva Mustard Seeds"],["½ cup","water"]],
+      steps:["Dry-roast the coconut and sesame for 2 minutes, then grind coarse with the peanuts.",
+             "Mix in the coriander powder, chilli, turmeric, garam masala, jaggery, tamarind, salt, coriander leaves and 1 tbsp of the oil. This is the stuffing.",
+             "Slit each brinjal in a cross from the bottom, stopping short of the stem so it holds together. Keep them in salted water until you are ready.",
+             "Press the stuffing into each brinjal. Keep whatever is left over.",
+             "Heat the rest of the oil, let the mustard seeds pop, then lay the brinjals in. Add the leftover stuffing and the water.",
+             "Cover and cook on low for 20-25 minutes, turning gently now and then, until the skins give. Serve with bhakri or chapati."] },
+
+    "dhane-aloo": { serves:"4",
+      ing:[["4 medium","potatoes (about 500 g), boiled and cubed"],["1½ tbsp","Satva Coriander Seeds"],["½ tsp","Satva Cumin Seeds"],
+           ["2","green chillies, slit"],["1 tsp","ginger, grated"],["2 tbsp","oil"],["¼ tsp","Satva Turmeric"],
+           ["½ tsp","Satva Chilli Powder"],["¾ tsp","salt"],["1 tbsp","lemon juice"],["2 tbsp","coriander leaves, chopped"]],
+      steps:["Dry-roast the coriander seeds for 1-2 minutes until they smell warm and turn a shade darker. Cool, then crush coarse in a mortar - not to a powder.",
+             "Heat the oil, add the cumin, then the crushed coriander, green chillies and ginger. Stir for 30 seconds.",
+             "Add the turmeric and chilli powder, then straight away the potatoes and salt.",
+             "Toss on medium-high for 6-8 minutes, leaving them alone long enough for the edges to catch and crisp.",
+             "Finish with lemon juice and coriander leaves."] },
+
+    "jeera-bhaat": { serves:"3-4",
+      ing:[["1 cup","basmati rice"],["1¾ cups","water"],["2 tbsp","ghee"],["1½ tsp","Satva Cumin Seeds"],
+           ["1","bay leaf"],["2","cloves"],["¾ tsp","salt"]],
+      steps:["Rinse the rice until the water runs clear, soak for 20 minutes, then drain.",
+             "Heat the ghee and add the cumin. Wait until it darkens a shade and smells toasted - 30 to 40 seconds, no longer.",
+             "Add the bay leaf and cloves, then the rice. Stir gently for a minute to coat every grain.",
+             "Pour in the water and salt and bring to a boil. Cover, turn the heat to its lowest and cook 12 minutes. No stirring.",
+             "Turn off the heat, leave the lid on for 5 minutes, then fluff with a fork."] },
+
+    "fodni-poha": { serves:"3",
+      ing:[["2 cups","thick poha"],["2 tbsp","oil"],["1 tsp","Satva Mustard Seeds"],["½ tsp","Satva Cumin Seeds"],
+           ["10","curry leaves"],["¼ cup","raw peanuts"],["1 large","onion, chopped"],["2","green chillies, chopped"],
+           ["½ tsp","Satva Turmeric"],["¾ tsp","salt"],["1 tsp","sugar"],["½","lemon"],
+           ["2 tbsp","coriander leaves, chopped"],["2 tbsp","fresh coconut, grated (optional)"]],
+      steps:["Rinse the poha in a sieve under running water for a few seconds, drain, and sprinkle over the salt and sugar. Leave 5 minutes to soften.",
+             "Heat the oil and fry the peanuts until golden. Lift them out.",
+             "Add the mustard seeds and wait until they actually pop. Then the cumin, curry leaves and chillies.",
+             "Add the onion and cook until soft, about 3 minutes. Stir in the turmeric.",
+             "Add the poha and toss gently until it is evenly yellow. Cover and leave on low for 2 minutes.",
+             "Finish with the peanuts, a squeeze of lemon, coriander and coconut."] },
+
+    "miri-rasam": { serves:"4",
+      ing:[["1 tbsp","tamarind paste (or a lime-sized ball soaked in 1 cup water)"],["1","tomato, chopped"],
+           ["1½ tsp","Satva Black Pepper"],["1 tsp","Satva Cumin Seeds"],["4 cloves","garlic"],["¼ tsp","Satva Turmeric"],
+           ["1 tsp","salt"],["4 cups","water"],["1 tbsp","ghee"],["½ tsp","Satva Mustard Seeds"],["8","curry leaves"],
+           ["a pinch","asafoetida (hing)"],["2 tbsp","coriander leaves, chopped"]],
+      steps:["Pound the pepper, cumin and garlic together to a coarse paste.",
+             "Simmer the tamarind with the tomato, turmeric, salt and 2 cups of the water for 8 minutes, until the raw tamarind smell has gone.",
+             "Add the remaining 2 cups water and the pounded spices. Heat until a froth rises to the top, then turn it off - do not let it boil.",
+             "Heat the ghee, let the mustard seeds pop, add the curry leaves and hing, and pour it over the rasam.",
+             "Scatter coriander leaves. Serve with hot rice, or drink it from a cup."] },
+
+    "chole": { serves:"4",
+      ing:[["1 cup","kabuli chana, soaked overnight"],["3 cups","water"],["1","tea bag (for colour, optional)"],
+           ["2","onions, finely chopped"],["2","tomatoes, pureed"],["1 tbsp","ginger-garlic paste"],["1","green chilli, slit"],
+           ["3 tbsp","oil"],["1 tsp","Satva Cumin Seeds"],["2 tsp","Satva Coriander Powder"],["1 tsp","Satva Chilli Powder"],
+           ["½ tsp","Satva Turmeric"],["1½ tsp","Satva Garam Masala"],["1 tsp","amchur"],["1¼ tsp","salt"],
+           ["to finish","coriander leaves, ginger strips, lemon"]],
+      steps:["Pressure-cook the chana with the water, salt and tea bag for 5-6 whistles, until very soft. Throw away the tea bag; keep the water.",
+             "Heat the oil, add the cumin, then the onions. Cook until properly golden brown, about 10 minutes.",
+             "Add the ginger-garlic paste and chilli for a minute, then the coriander powder, chilli powder and turmeric for 30 seconds.",
+             "Add the tomato and cook until the oil separates, about 8 minutes.",
+             "Add the chana with its water and mash a few against the side of the pot. Simmer 15 minutes.",
+             "Turn off the heat, then stir in the garam masala and amchur and cover for 5 minutes. Finish with coriander, ginger and lemon."] },
+
+    "biryani": { serves:"4-5",
+      ing:[["750 g","chicken, bone-in, in large pieces"],["¾ cup","thick yogurt"],["2½ tbsp","Satva Biryani Masala"],
+           ["1½ tbsp","ginger-garlic paste"],["½ tsp","Satva Turmeric"],["1 tsp","Satva Chilli Powder"],["1","lemon"],
+           ["2 tsp","salt, plus more for the rice water"],["2 cups","basmati rice"],["3","onions, thinly sliced and fried golden"],
+           ["4 tbsp","ghee"],["2 + 4 + 4","bay leaves, green cardamom, cloves"],["1 inch","cinnamon"],
+           ["½ cup each","mint and coriander leaves"],["a pinch","saffron, in 3 tbsp warm milk"]],
+      steps:["Marinate the chicken with the yogurt, 2 tbsp of the biryani masala, ginger-garlic paste, turmeric, chilli, lemon juice, salt, half the fried onions and half the mint. At least an hour; overnight in the fridge is better.",
+             "Rinse the rice and soak it for 30 minutes.",
+             "Boil a large pot of well-salted water with half the whole spices. Add the drained rice and cook until about 70% done, 5-6 minutes. Drain.",
+             "In a heavy pot, warm 2 tbsp ghee with the rest of the whole spices for 30 seconds. Add the chicken and marinade and cook on medium for 10 minutes.",
+             "Spread the rice over the chicken. Sprinkle the last ½ tbsp of masala, the rest of the onions, mint and coriander, the saffron milk and the remaining ghee.",
+             "Seal the lid with foil or dough. Cook 3 minutes on high, then 30 minutes on the lowest heat, ideally on a tawa under the pot.",
+             "Leave it sealed for 10 minutes off the heat. Open it at the table."] },
+
+    "rassa": { serves:"4",
+      ing:[["750 g","mutton, bone-in"],["½ cup","yogurt"],["3 tbsp","Satva Meat Masala"],["½ tsp","Satva Turmeric"],
+           ["1½ tsp","salt"],["3","onions - 2 sliced, 1 chopped"],["½ cup","dry coconut, grated"],["8 cloves","garlic"],
+           ["1 inch","ginger"],["½ cup","coriander leaves"],["4 tbsp","oil"],["4 cups","water"]],
+      steps:["Marinate the mutton with the yogurt, turmeric, salt and 1 tbsp of the meat masala for an hour.",
+             "Roast the sliced onions in 1 tbsp oil until deep brown, then add the coconut and roast until brown too - about 12 minutes. This browning is the whole gravy; do not hurry it.",
+             "Grind the onion and coconut with the garlic, ginger, coriander leaves and a little water to a smooth paste.",
+             "Heat the remaining oil, fry the chopped onion until golden, add the mutton and sear for 8 minutes.",
+             "Add the paste and the rest of the meat masala. Fry 5 minutes until the oil shows at the edges.",
+             "Add the water and pressure-cook 6-7 whistles (or simmer, covered, 1¼ hours) until the meat is tender. Thin it to taste. Serve with bhakri or rice."] },
+
+    "sambar": { serves:"4-5",
+      ing:[["¾ cup","Satva Toor Dal"],["½ tsp","Satva Turmeric"],["2 cups","mixed vegetables (drumstick, pumpkin, brinjal, okra)"],
+           ["10","shallots, or 1 onion in chunks"],["1","tomato, chopped"],["1 tbsp","tamarind paste"],["1 tsp","jaggery"],
+           ["2½ tbsp","Satva Sambar Masala"],["1½ tsp","salt"],["2 tbsp","oil or ghee"],["1 tsp","Satva Mustard Seeds"],
+           ["¼ tsp","Satva Methi Seeds"],["2","dry red chillies"],["10","curry leaves"],["a pinch","asafoetida (hing)"],
+           ["2 tbsp","coriander leaves"]],
+      steps:["Pressure-cook the dal with the turmeric and 2½ cups water for 4 whistles. Mash smooth.",
+             "Simmer the vegetables, shallots and tomato in 2 cups water with the salt until just tender, 8-10 minutes. Drumstick first, okra last, so everything keeps its shape.",
+             "Add the tamarind and jaggery and boil for 5 minutes.",
+             "Add the dal, bring back to the boil, then lower the heat. Stir in the sambar masala (loosened in a little water) off the boil and simmer gently 5 minutes.",
+             "Heat the oil, pop the mustard seeds, then the methi, red chillies, curry leaves and hing. Pour over and add the coriander."] },
+
+    "bhel": { serves:"4",
+      ing:[["4 cups","puffed rice (kurmura)"],["1 cup","fine sev"],["1","boiled potato, diced"],["1","onion, finely chopped"],
+           ["1","tomato, finely chopped"],["¼ cup","roasted peanuts"],["3 tbsp","green chutney"],["3 tbsp","tamarind-date chutney"],
+           ["1½ tsp","Satva Chatpat Masala"],["½","lemon"],["¼ cup","coriander leaves, chopped"]],
+      steps:["If the puffed rice is not crisp, dry-roast it for 2-3 minutes and let it cool.",
+             "Have everything chopped and ready before you start mixing. Bhel waits for nobody.",
+             "In a big bowl, toss the puffed rice with the potato, onion, tomato and peanuts.",
+             "Add both chutneys and toss quickly.",
+             "Top with sev and coriander, squeeze over the lemon, and dust the chatpat masala over everything last. Eat straight away."] },
+
+    "varan-bhaat": { serves:"4",
+      ing:[["¾ cup","Satva Toor Dal"],["2½ cups","water"],["½ tsp","Satva Turmeric"],["1 tsp","salt"],
+           ["1 tsp","jaggery (optional)"],["2 tbsp","ghee, plus more to serve"],["½ tsp","Satva Mustard Seeds"],
+           ["½ tsp","Satva Cumin Seeds"],["a pinch","asafoetida (hing)"],["to serve","steamed rice and a lemon wedge"]],
+      steps:["Rinse the dal three times.",
+             "Pressure-cook it with the water and turmeric for 4-5 whistles, until completely soft.",
+             "Whisk smooth, add the salt and jaggery, and simmer 5 minutes. Loosen with hot water until it pours.",
+             "Heat the ghee, let the mustard seeds pop, add the cumin and hing, and pour it over the dal.",
+             "Serve over hot rice with a spoon of ghee on top and lemon on the side."] },
+
+    "chana-dal": { serves:"4",
+      ing:[["1 cup","Satva Chana Dal, soaked 1 hour"],["½ tsp","Satva Turmeric"],["3 cups","water"],
+           ["2 + 1 tbsp","ghee"],["1 tsp","Satva Cumin Seeds"],["1","onion, chopped"],["1","tomato, chopped"],
+           ["1 tsp","ginger-garlic paste"],["1","green chilli, slit"],["1 tsp","Satva Chilli Powder, plus a pinch"],
+           ["1 tsp","Satva Coriander Powder"],["½ tsp","Satva Garam Masala"],["1 tsp","salt"],["2","dry red chillies"],
+           ["to finish","lemon and coriander leaves"]],
+      steps:["Pressure-cook the drained dal with the turmeric and water for 3 whistles - soft, but still holding its shape.",
+             "Heat 2 tbsp ghee, add the cumin, then the onion. Cook until golden.",
+             "Add the ginger-garlic paste and green chilli, then the tomato, and cook until soft.",
+             "Stir in the chilli and coriander powders for 30 seconds, then add the dal and salt. Add water to the thickness you like and simmer 10 minutes. Stir in the garam masala.",
+             "For the second tadka, heat 1 tbsp ghee, add the red chillies and a pinch of chilli powder, and pour it over at the table. Lemon and coriander to finish."] },
+
+    "chia": { serves:"1",
+      ing:[["3 tbsp","Satva Chia Seeds"],["1 cup","milk (any kind)"],["1-2 tsp","honey or jaggery"],
+           ["a pinch","cardamom powder"],["½ cup","fresh fruit"],["1 tbsp","chopped nuts"]],
+      steps:["Whisk the chia into the milk with the sweetener and cardamom.",
+             "Leave 5 minutes, then whisk again - this breaks up the clumps that always form the first time.",
+             "Cover and refrigerate overnight, or at least 4 hours.",
+             "In the morning, stir, and top with the fruit and nuts."] },
+
+    "javas-chutney": { serves:"makes about 1 cup",
+      ing:[["½ cup","Satva Flax Seeds"],["4-6","dry red chillies (or 1½ tsp Satva Chilli Powder)"],["6-8 cloves","garlic"],
+           ["½ tsp","Satva Cumin Seeds"],["¾ tsp","salt"],["2 tbsp","dry coconut, grated (optional)"]],
+      steps:["Dry-roast the flax on low-medium for 4-5 minutes, stirring, until the seeds crackle and puff. Tip them out.",
+             "In the same pan, roast the red chillies and cumin for 30 seconds (and the coconut, if using).",
+             "Let everything cool completely - warm seeds turn to paste.",
+             "Grind the flax, chillies, cumin and salt in short pulses until coarse.",
+             "Add the garlic and pulse 2-3 more times. It should stay coarse and dry. Keeps a fortnight in an airtight dabba."] },
+
+    "quinoa": { serves:"3",
+      ing:[["1 cup","Satva Quinoa"],["1¾ cups","water"],["1½ tbsp","oil"],["½ tsp","Satva Mustard Seeds"],
+           ["½ tsp","Satva Cumin Seeds"],["8","curry leaves"],["1","green chilli, chopped"],["1","onion, chopped"],
+           ["1 cup","mixed vegetables (peas, carrot, capsicum)"],["¼ tsp","Satva Turmeric"],["¾ tsp","salt"],
+           ["½","lemon"],["2 tbsp","roasted peanuts"],["2 tbsp","coriander leaves"]],
+      steps:["Rinse the quinoa in a fine sieve under running water, rubbing it between your fingers, for 1-2 minutes until it stops foaming. This is what takes the bitterness away.",
+             "Cook it with the water and a pinch of salt, covered, on low for 15 minutes. Rest 5 minutes, then fluff with a fork.",
+             "Heat the oil, let the mustard seeds pop, then add the cumin, curry leaves and chilli.",
+             "Add the onion for 2 minutes, then the vegetables for 4-5 minutes. Stir in the turmeric and salt.",
+             "Add the quinoa and toss for 2 minutes. Finish with lemon, peanuts and coriander."] },
+
+    "methi-dal": { serves:"4",
+      ing:[["¾ cup","Satva Toor Dal"],["½ tsp","Satva Turmeric"],["1","tomato, chopped"],["1 tsp","salt"],
+           ["2 tbsp","ghee"],["4-5 seeds","Satva Methi Seeds (no more)"],["½ tsp","Satva Mustard Seeds"],
+           ["½ tsp","Satva Cumin Seeds"],["3 cloves","garlic, sliced"],["2","dry red chillies"],["a pinch","asafoetida (hing)"],
+           ["½ tsp","Satva Chilli Powder"],["to finish","coriander leaves and lemon"]],
+      steps:["Pressure-cook the dal with the turmeric, tomato and 2½ cups water for 4 whistles. Whisk, add the salt, loosen with hot water and simmer 5 minutes.",
+             "Heat the ghee and pop the mustard seeds. Add the methi seeds and let them turn reddish-brown - about 10 seconds. Black methi is bitter; start again if it burns.",
+             "Add the cumin, then the garlic until golden, then the red chillies and hing.",
+             "Turn off the heat, stir in the chilli powder, and pour the tadka over the dal. Cover for 2 minutes.",
+             "Finish with coriander and a squeeze of lemon."] },
+
+    "nimbu-pani": { serves:"4",
+      ing:[["3","lemons"],["4 cups","chilled water"],["½ tsp","Satva Himalayan Pink Salt"],["4 tbsp","sugar or jaggery"],
+           ["½ tsp","Satva Cumin Seeds, roasted and ground"],["a pinch","Satva Black Pepper"],["8","mint leaves"],["to serve","ice"]],
+      steps:["Dissolve the sugar and salt in 1 cup of the water first - they will not dissolve in ice-cold water later.",
+             "Roll the lemons on the counter, then squeeze them in.",
+             "Add the rest of the water, the cumin and the pepper. Taste: the salt should be just noticeable, not salty.",
+             "Bruise the mint leaves, drop them in, and serve over ice."] },
+
+    "kheer": { serves:"4",
+      ing:[["1 litre","full-fat milk"],["3 tbsp","short-grain or basmati rice, rinsed and soaked 20 minutes"],
+           ["5 tbsp","Satva Coconut Sugar"],["4","green cardamom, crushed"],["a pinch","saffron"],
+           ["2 tbsp","almonds and pistachios, slivered"]],
+      steps:["Bring the milk to a boil in a heavy-bottomed pan. Add the drained rice.",
+             "Simmer on low for 35-40 minutes, stirring often and scraping the bottom, until the rice is soft and the milk has reduced by about a third.",
+             "Turn off the heat and wait 2 minutes. Then stir in the coconut sugar - added to boiling milk it can make the milk split.",
+             "Stir in the cardamom and saffron, and scatter the nuts on top.",
+             "Serve warm or chilled. It thickens as it cools."] },
+
+    "shrikhand": { serves:"4",
+      ing:[["1 kg","full-fat yogurt (hangs down to about 450 g)"],["to taste","Satva Monk Fruit Sweetener - start with ¼ tsp"],
+           ["a pinch","saffron, in 1 tbsp warm milk"],["¼ tsp","cardamom powder"],["a pinch","nutmeg"],
+           ["1 tbsp","pistachios, chopped"]],
+      steps:["Tie the yogurt in a muslin cloth and hang it over a bowl in the fridge for 6-8 hours or overnight, until thick enough to hold a spoon.",
+             "Whisk the hung yogurt until smooth, or press it through a sieve for a silkier finish.",
+             "Add the monk fruit a little at a time, tasting as you go. It is far sweeter than sugar, so start with ¼ tsp.",
+             "Stir in the saffron milk, cardamom and nutmeg.",
+             "Chill for an hour, and scatter the pistachios over before serving."] },
+
+    "paneer-tikka": { serves:"3-4",
+      ing:[["400 g","paneer, in 1½ inch cubes"],["1 each","onion and capsicum, in squares"],["½ cup","thick hung curd"],
+           ["1 tbsp","besan, dry-roasted"],["1 tbsp","ginger-garlic paste"],["2 tsp","Satva Chilli Powder"],
+           ["½ tsp","Satva Turmeric"],["1 tsp","Satva Coriander Powder"],["1 tsp","Satva Garam Masala"],
+           ["1 tbsp","mustard oil"],["1 tbsp","lemon juice"],["1 tsp","salt"],["2 tbsp","butter, melted, for basting"]],
+      steps:["Roast the besan in a dry pan for a minute until it smells nutty. It binds the marinade so it clings instead of sliding off.",
+             "Whisk the curd with the besan, ginger-garlic paste, chilli powder, turmeric, coriander powder, garam masala, mustard oil, lemon and salt.",
+             "Fold in the paneer, onion and capsicum gently so the paneer does not break. Cover and rest for 2 hours in the fridge (30 minutes at least).",
+             "Thread onto skewers, alternating paneer with onion and capsicum.",
+             "Grill at 230°C (or over a hot tawa) for 12-15 minutes, turning once and basting with butter, until the edges char.",
+             "Serve straight away with onion rings, lemon and green chutney."] },
+
+    "butter-chicken": { serves:"4",
+      ing:[["600 g","boneless chicken thighs, in pieces"],["½ cup","curd"],["1 tbsp","ginger-garlic paste"],
+           ["2½ tsp","Satva Chilli Powder (1 for the marinade)"],["1½ tsp","Satva Garam Masala (½ for the marinade)"],["1 tbsp","lemon juice"],
+           ["3 tbsp","butter"],["1 tbsp","oil"],["4 large","tomatoes, puréed"],["12","cashews, soaked and ground to a paste"],
+           ["1 tsp","kasuri methi"],["1 tsp","Satva Coconut Sugar"],["⅓ cup","fresh cream"],["to taste","salt"]],
+      steps:["Mix the chicken with the curd, half the ginger-garlic paste, 1 tsp chilli powder, ½ tsp garam masala, lemon and a little salt. Rest for an hour.",
+             "Sear the chicken in a very hot pan, or grill it, until charred in places. It does not need to cook through. Set aside.",
+             "Heat the butter and oil, add the rest of the ginger-garlic paste and stir for a minute. Add the tomato purée and cook for about 15 minutes, until it thickens and the butter separates.",
+             "Stir in the cashew paste, the remaining chilli powder and garam masala, salt and 1 cup of water. Simmer for 10 minutes. Blend smooth if you like it silky.",
+             "Add the chicken and simmer for 10 minutes until cooked through.",
+             "Crush the kasuri methi between your palms over the pan, stir in the coconut sugar and cream, and take it off the heat. Rest for 5 minutes before serving."] },
+
+    "pav-bhaji": { serves:"4",
+      ing:[["3","potatoes"],["1 cup","cauliflower florets"],["½ cup","green peas"],["1","capsicum, finely chopped"],
+           ["2","onions, finely chopped"],["4","tomatoes, finely chopped"],["1 tbsp","ginger-garlic paste"],
+           ["2 tsp","Satva Chilli Powder"],["½ tsp","Satva Turmeric"],["2 tsp","Satva Coriander Powder"],["1 tsp","Satva Garam Masala"],
+           ["5 tbsp","butter"],["to taste","salt"],["1","lemon"],["¼ cup","coriander leaves, chopped"],["8","pav"]],
+      steps:["Pressure-cook the potatoes, cauliflower and peas for 3 whistles. Drain and mash roughly.",
+             "Melt 3 tbsp butter in a wide pan. Fry half the onion until soft, then the capsicum and ginger-garlic paste for 2 minutes.",
+             "Add the tomatoes and cook until they break down completely, about 6 minutes.",
+             "Add the chilli powder, turmeric, coriander powder, garam masala and salt, and stir for a minute.",
+             "Add the mashed vegetables and 1 cup of water. Keep mashing on the pan as it simmers for 10 minutes, until thick and smooth.",
+             "Finish with a knob of butter, half the coriander and a squeeze of lemon.",
+             "Slit the pav, toast it in the remaining butter on a tawa, and serve with the bhaji, the rest of the onion, coriander and lemon wedges."] },
+
+    "pepper-mutton": { serves:"4",
+      ing:[["500 g","mutton, on the bone"],["½ tsp","Satva Turmeric"],["1 tsp","salt"],["3 tbsp","oil"],
+           ["1 tsp","Satva Cumin Seeds"],["2 sprigs","curry leaves"],["2","onions, thinly sliced"],["1 tbsp","ginger-garlic paste"],
+           ["1 tsp","Satva Coriander Powder"],["½ tsp","Satva Chilli Powder"],["½ tsp","Satva Garam Masala"],
+           ["2 tsp","Satva Black Pepper, freshly crushed"],["2 tbsp","coriander leaves, chopped"]],
+      steps:["Pressure-cook the mutton with the turmeric, salt and 1 cup of water for 5-6 whistles, until tender. Keep the stock.",
+             "Heat the oil, add the cumin seeds and curry leaves, then the onions. Fry until deep golden, about 10 minutes.",
+             "Add the ginger-garlic paste and fry for 2 minutes, then the coriander powder, chilli powder and garam masala for 30 seconds.",
+             "Add the mutton with its stock. Cook on high, stirring, until the liquid has gone and the masala coats every piece, about 10 minutes.",
+             "Add the black pepper in the last 3 minutes and keep tossing until the meat looks dark and dry.",
+             "Finish with coriander leaves."] },
+
+    "chicken-curry": { serves:"4",
+      ing:[["750 g","chicken, curry cut"],["3 tbsp","oil"],["1 tsp","Satva Cumin Seeds"],["1","bay leaf"],
+           ["2","onions, finely chopped"],["1 tbsp","ginger-garlic paste"],["2","tomatoes, puréed"],
+           ["2½ tsp","Satva Coriander Powder"],["1 tsp","Satva Chilli Powder"],["½ tsp","Satva Turmeric"],
+           ["1 tsp","Satva Garam Masala"],["¼ cup","curd, whisked"],["to taste","salt"],["2 tbsp","coriander leaves, chopped"]],
+      steps:["Heat the oil, add the cumin seeds and bay leaf, then the onions. Brown them slowly, 12-15 minutes. This is where the colour of the gravy comes from.",
+             "Add the ginger-garlic paste and fry for 2 minutes, then the tomato purée. Cook until the oil separates, about 8 minutes.",
+             "Lower the heat, add the coriander powder, chilli powder and turmeric, and stir for 30 seconds.",
+             "Add the chicken and salt and fry for 5 minutes on high, so the masala sticks to it.",
+             "Take the pan off the heat for a moment and stir in the curd so it does not split. Add 1½ cups of hot water, cover and simmer for 20 minutes until the chicken is done.",
+             "Stir in the garam masala, rest for 5 minutes, and finish with coriander leaves."] }
+  };
+
+  var recSheet = null, recDone = null;
+
+  function openRecipe(p, onClose) {
+    var r = RECIPES.filter(function (o) { return o.id === RECIPE_FOR[p.en]; })[0];
+    showRecipe(r, STILL_SHOT[p.en] || p.img, p.en, onClose);
+  }
+
+  /* A recipe by its id, with a photograph of the page's choosing - for the
+     rotating recipe row on :8002 (js/recipes-rotate-8002.js), whose cards
+     show a dish photo rather than a product's. Returns false when there is
+     no recipe written for that id, so the caller can leave the card alone. */
+  window.SATVA_openRecipe = function (id, shot, onClose, madeWith) {
+    var r = RECIPES.filter(function (o) { return o.id === id; })[0];
+    if (!r || !RECIPE_BOOK[r.id]) return false;
+    showRecipe(r, shot, madeWith || r.uses, onClose);
+    return true;
+  };
+
+  /* A recipe's name, Marathi name, time and one-line description, for the
+     "See all recipes" gallery on :8002. Null when there is no recipe. */
+  window.SATVA_recipeInfo = function (id) {
+    var r = RECIPES.filter(function (o) { return o.id === id; })[0];
+    if (!r || !RECIPE_BOOK[r.id]) return null;
+    return { name: r.name, hi: r.hi, time: r.time, desc: r.desc };
+  };
+
+  function showRecipe(r, shot, madeWith, onClose) {
+    var b = r && RECIPE_BOOK[r.id];
+    if (!b) { if (onClose) onClose(); return; }
+
+    if (!recSheet) {
+      recSheet = document.createElement("dialog");
+      recSheet.className = "rsheet";
+      recSheet.setAttribute("aria-labelledby", "rsheet-title");
+      document.body.appendChild(recSheet);
+      // a click on the backdrop (the dialog itself, outside its box) closes it
+      recSheet.addEventListener("click", function (e) { if (e.target === recSheet) recSheet.close(); });
+      recSheet.addEventListener("close", function () {
+        document.documentElement.classList.remove("rsheet-open");
+        var f = recDone; recDone = null;
+        if (f) f();
+      });
+    }
+
+    var ours = function (item) {
+      var gone = HIDDEN.filter(function (n) { return item.indexOf("Satva " + n) === 0; })[0];
+      if (gone) return item.replace("Satva " + gone, gone.toLowerCase());
+      return /^Satva /.test(item) ? '<b class="rs-ours">' + item + "</b>" : item;
+    };
+    recSheet.innerHTML =
+      '<div class="rs-box">' +
+        '<figure class="rs-shot"><img src="' + shot + '" alt="' + r.name + '"></figure>' +
+        '<div class="rs-body">' +
+          '<button type="button" class="rs-close" aria-label="Close recipe">' +
+            '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg>' +
+          "</button>" +
+          '<p class="rs-kick">Recipe &middot; made with ' + madeWith + "</p>" +
+          '<h2 id="rsheet-title">' + r.name + '<span class="dv">' + r.hi + "</span></h2>" +
+          '<p class="rs-meta"><span>' + r.time + "</span><span>Serves " + b.serves + "</span></p>" +
+          '<p class="rs-desc">' + r.desc + "</p>" +
+          "<h3>Ingredients</h3>" +
+          '<ul class="rs-ing">' +
+            b.ing.map(function (x) { return "<li><span>" + x[0] + "</span><span>" + ours(x[1]) + "</span></li>"; }).join("") +
+          "</ul>" +
+          "<h3>Method</h3>" +
+          '<ol class="rs-steps">' +
+            b.steps.map(function (s) { return "<li>" + s + "</li>"; }).join("") +
+          "</ol>" +
+        "</div>" +
+      "</div>";
+    recSheet.querySelector(".rs-close").addEventListener("click", function () { recSheet.close(); });
+    recSheet.querySelector(".rs-body").scrollTop = 0;
+
+    recDone = onClose || null;
+    document.documentElement.classList.add("rsheet-open");
+    recSheet.showModal();
+  }
 
   function buildRecipeCard(r, i) {
     var prod = PRODUCTS.filter(function (p) { return p.en === r.uses; })[0];
@@ -2549,6 +3142,10 @@
      reasons to buy four different things. The other eleven recipes stay in
      RECIPES; change FEATURED to change what shows. */
   var FEATURED = ["fodni-poha", "methi-dal", "bharli-vangi", "quinoa"];
+  /* A page may choose its own four and their photographs
+     (window.SATVA_FEATURED / window.SATVA_RECIPE_IMG, set before this
+     script, e.g. ports/8002). Without them nothing changes. */
+  if (window.SATVA_FEATURED) FEATURED = window.SATVA_FEATURED;
 
   var recGrid = document.getElementById("recipes-grid");
   if (recGrid) {
@@ -2576,7 +3173,8 @@
         shot.appendChild(probe);
         shot.classList.add("has-photo");
       };
-      probe.src = "assets/recipe-" + r.id + ".jpg";
+      probe.src = (window.SATVA_RECIPE_IMG && window.SATVA_RECIPE_IMG[r.id]) ||
+                  ("assets/recipe-" + r.id + ".jpg");
 
       recGrid.appendChild(card);
     });

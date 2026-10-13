@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     DS SATVA — MASALA POUCH ARTWORK.                22 Sep 2026
+     ------------------------------------------------------------
+     Built from the Pratima Masale sample the owner supplied: same
+     ANATOMY (badge front, printed white panel back, green EPR
+     strip at the foot), DS Satva's own identity and details.
+
+     SIZE: 100 x 150 mm, the common 100 g masala pouch, drawn here
+     at 1:1 for print. Bleed 3 mm, safe margin 5 mm, both marked.
+     Change --w / --h below for a different pouch.
+
+     PRINT: Ctrl+P, A4, margins "None", background graphics ON.
+     Two pages come out - front, then back.
+
+     EVERY UNKNOWN IS MARKED IN RED AND SAYS "TO FILL". Nothing on
+     this artwork is invented: the phone, the email and the town are
+     the owner's real ones, taken from the site. The licence number,
+     the street address, the bag maker and the EPR consent number
+     are not known and are NOT guessed.
+     ============================================================ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>DS Satva — masala pouch artwork</title>
+<link rel="icon" href="assets/mark-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+:root{
+  --w:100mm; --h:150mm; --bleed:3mm; --safe:5mm;
+  --ink:#1e2c16; --green:#2c4220; --band:#3c5128;
+  --cream:#e8dcc6; --ivory:#f4f3e7; --sand:#efe7d5;
+  --gold:#c1a257; --gold-lt:#d3bb86; --gold-dk:#7f5a0f; --gold-pale:#f1ddab;
+  --todo:#b3261e;
+}
+*{box-sizing:border-box;}
+body{margin:0;background:#2a2d24;font-family:"Jost",system-ui,sans-serif;color:#f4f3e7;}
+.sheet{max-width:1100px;margin:0 auto;padding:26px 20px 60px;}
+.sheet h1{font:400 1.5rem/1.2 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  color:var(--gold-pale);margin:0 0 6px;}
+.sheet .note{margin:0 0 4px;font-size:.88rem;line-height:1.6;color:rgba(244,243,231,.78);max-width:86ch;}
+.sheet .note b{color:#fff;}
+.lab{margin:26px 0 8px;font:600 .72rem/1 "Jost",sans-serif;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--gold-lt);}
+.pair{display:flex;gap:26px;flex-wrap:wrap;}
+
+/* ---- the pouch ------------------------------------------------ */
+.pouch{
+  width:var(--w);height:var(--h);position:relative;overflow:hidden;
+  background:var(--ivory);color:var(--ink);
+  box-shadow:0 18px 40px -20px rgba(0,0,0,.7);
+}
+.guide{position:absolute;inset:var(--safe);border:.3mm dashed rgba(30,44,22,.28);
+  pointer-events:none;z-index:9;}
+.pouch.back .guide{border-color:rgba(30,44,22,.22);}
+
+/* veg mark */
+.veg{width:5mm;height:5mm;border:.5mm solid #1f7a34;background:#fff;
+  display:grid;place-items:center;border-radius:.4mm;}
+.veg i{width:2.4mm;height:2.4mm;border-radius:50%;background:#1f7a34;display:block;}
+
+/* ---- FRONT ---------------------------------------------------- */
+.front{background:linear-gradient(168deg,#fffdf8 0%,var(--sand) 62%,var(--cream) 100%);}
+.front .topbar{position:absolute;top:var(--safe);left:var(--safe);right:var(--safe);
+  display:flex;justify-content:space-between;align-items:flex-start;z-index:4;}
+.front .seal{
+  width:17mm;height:17mm;border-radius:50%;background:var(--green);color:var(--gold-pale);
+  display:grid;place-items:center;text-align:center;padding:1mm;
+  font:600 2.5mm/1.15 "Jost",sans-serif;letter-spacing:.04em;text-transform:uppercase;
+}
+.front .badge{
+  position:absolute;left:50%;top:26mm;transform:translateX(-50%);
+  width:56mm;height:56mm;border-radius:50%;
+  background:var(--green);border:1.4mm solid var(--gold);
+  display:grid;place-items:center;z-index:3;
+}
+.front .badge img{width:34mm;display:block;}
+.front .name{
+  position:absolute;left:var(--safe);right:var(--safe);top:88mm;text-align:center;z-index:3;
+}
+.front .name .dv{display:block;font-family:"Tiro Devanagari Hindi",serif;
+  font-size:5mm;color:var(--band);margin:0 0 1mm;}
+.front .name h2{
+  margin:0;font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-weight:600;font-size:9mm;line-height:1.05;color:var(--ink);letter-spacing:-.02em;
+}
+.front .name .form{
+  display:inline-block;margin-top:2mm;padding:.8mm 3mm;border:.3mm solid var(--gold-dk);
+  border-radius:99mm;font:600 2.6mm/1 "Jost",sans-serif;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--gold-dk);
+}
+.front .claim{
+  position:absolute;left:var(--safe);right:var(--safe);top:112mm;text-align:center;z-index:3;
+  font:400 3.3mm/1.5 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-style:italic;color:var(--band);
+}
+.front .strip{
+  position:absolute;left:0;right:0;bottom:0;background:var(--green);color:var(--cream);
+  padding:3mm var(--safe);text-align:center;z-index:4;
+  font:500 2.8mm/1 "Jost",sans-serif;letter-spacing:.12em;text-transform:uppercase;
+}
+/* the faint spice line-art the sample uses as a watermark */
+.front .art{position:absolute;inset:0;z-index:1;opacity:.07;}
+.front .art svg{width:100%;height:100%;}
+
+/* ---- BACK ----------------------------------------------------- */
+.back{background:var(--ivory);}
+.back .panel{position:absolute;left:0;right:0;top:0;bottom:0;padding:var(--safe);
+  display:flex;flex-direction:column;gap:2mm;}
+.back h3{margin:0 0 1mm;font:600 2.5mm/1 "Jost",sans-serif;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--gold-dk);}
+.back .row{display:flex;gap:3mm;align-items:flex-start;}
+.back .fssai{flex:none;text-align:center;}
+.back .fssai .mark{font:600 5mm/1 "Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-style:italic;letter-spacing:.02em;color:var(--ink);border-bottom:.4mm solid var(--ink);
+  padding-bottom:.6mm;}
+.back .fssai .no{display:block;margin-top:1mm;font-size:2.3mm;color:var(--todo);font-weight:600;}
+.back .by{flex:1;font-size:2.7mm;line-height:1.45;}
+.back .by b{display:block;font-size:3.4mm;color:var(--green);
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;}
+.back .fields{display:grid;grid-template-columns:auto 1fr;gap:1.2mm 2mm;
+  font-size:2.8mm;align-items:end;}
+.back .fields span{white-space:nowrap;}
+.back .fields i{display:block;border-bottom:.3mm dotted rgba(30,44,22,.5);height:3.6mm;}
+.back .addr{font-size:2.6mm;line-height:1.5;}
+.back .ing{font-size:2.5mm;line-height:1.45;}
+.back .ing b{color:var(--green);}
+.back .nut{width:100%;border-collapse:collapse;font-size:2.3mm;}
+.back .nut th,.back .nut td{border:.25mm solid rgba(30,44,22,.35);padding:.7mm 1.2mm;text-align:left;}
+.back .nut th{background:var(--sand);font-weight:600;}
+.back .use{margin-top:1mm;}
+.back .use p{margin:0 0 1mm;font-size:2.4mm;line-height:1.45;}
+.back .use .promise{
+  font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-style:italic;font-size:2.7mm;line-height:1.4;color:var(--green);
+  border-left:.5mm solid var(--gold);padding-left:2mm;margin-top:1.5mm;
+}
+.back .icons{display:flex;gap:3mm;align-items:center;margin-top:auto;padding-top:1.5mm;}
+.back .icons svg{height:8mm;width:auto;color:var(--ink);}
+.back .epr{
+  margin:0 calc(-1 * var(--safe)) calc(-1 * var(--safe));
+  background:#7fbf6a;color:#12200d;padding:2mm var(--safe);
+  font-size:2.2mm;line-height:1.35;
+}
+.todo{color:var(--todo);font-weight:600;}
+
+@media print{
+  body{background:#fff;}
+  .sheet{max-width:none;padding:0;}
+  .sheet h1,.sheet .note,.lab,.legend{display:none;}
+  .pair{display:block;}
+  .pouch{box-shadow:none;page-break-after:always;margin:0;}
+  .guide{display:none;}
+  @page{size:A4;margin:8mm;}
+}
+.legend{margin-top:22px;font-size:.84rem;line-height:1.7;color:rgba(244,243,231,.78);}
+.legend b{color:#ff9d94;}
+</style>
+</head>
+<body>
+<div class="sheet">
+  <h1>DS Satva — masala pouch, 100 × 150 mm</h1>
+  <p class="note">Same anatomy as the Pratima sample, DS Satva&rsquo;s own identity. Drawn at <b>1:1</b> &mdash; print at A4 with margins set to <b>None</b> and background graphics <b>on</b>, and it comes out at true size. Dashed line is the 5 mm safe margin; keep type inside it.</p>
+  <p class="note">Anything in <b class="todo" style="color:#ff9d94">red</b> is a real gap, not a design choice. I have not invented a licence number or an address.</p>
+
+  <p class="lab">Front &nbsp;·&nbsp; Back</p>
+  <div class="pair">
+
+    <!-- ══════════ FRONT ══════════ -->
+    <div class="pouch front">
+      <div class="guide"></div>
+      <div class="art" aria-hidden="true">
+        <svg viewBox="0 0 100 150" fill="none" stroke="#2c4220" stroke-width=".5">
+          <circle cx="18" cy="122" r="7"/><circle cx="26" cy="128" r="4.5"/>
+          <path d="M70 118c4-5 10-5 13 0s-2 10-6 10-11-5-7-10Z"/>
+          <path d="M78 116c2-4 1-7-1-9"/>
+          <path d="M14 26c5-6 12-6 16 0s-2 11-7 11-14-5-9-11Z"/>
+          <path d="M84 30c0 5-3 9-7 9s-7-4-7-9 3-9 7-9 7 4 7 9Z"/>
+          <path d="M88 60l-6 10M82 60l6 10"/><path d="M10 62c6 2 10 6 12 11"/>
+        </svg>
+      </div>
+
+      <div class="topbar">
+        <span class="veg" title="Vegetarian"><i></i></span>
+        <span class="seal">Nothing<br>added</span>
+      </div>
+
+      <div class="badge"><img src="assets/logo-stack-soft-cream.png" alt="DS SATVA"></div>
+
+      <div class="name">
+        <span class="dv">गरम मसाला</span>
+        <h2>Garam Masala</h2>
+        <span class="form">Ground · Small batch</span>
+      </div>
+
+      <p class="claim">Each spice roasted on its own,<br>then ground together.</p>
+
+      <div class="strip">Keep in a cool, dry place</div>
+    </div>
+
+    <!-- ══════════ BACK ══════════ -->
+    <div class="pouch back">
+      <div class="guide"></div>
+      <div class="panel">
+
+        <div class="row">
+          <div class="fssai">
+            <div class="mark">fssai</div>
+            <span class="no">TO FILL<br>Lic. No.</span>
+          </div>
+          <div class="by">
+            <h3>Manufactured &amp; marketed by</h3>
+            <b>DS Satva Foods</b>
+            <span class="todo">TO FILL — street, area, PIN</span><br>
+            Chhatrapati Sambhajinagar, Maharashtra
+          </div>
+        </div>
+
+        <div class="fields">
+          <span>Net Weight</span><i></i>
+          <span>Batch / Lot No.</span><i></i>
+          <span>Packed On</span><i></i>
+          <span>Best Before</span><i></i>
+          <span>MRP ₹ <small>(incl. of all taxes)</small></span><i></i>
+        </div>
+
+        <div class="ing">
+          <b>Ingredients:</b> <span class="todo">TO FILL — every spice by weight, highest first</span><br>
+          <b>Allergen:</b> <span class="todo">TO FILL — or “No declared allergens”</span>
+        </div>
+
+        <table class="nut">
+          <tr><th colspan="2">Nutritional information (per 100 g)</th></tr>
+          <tr><td>Energy (kcal)</td><td class="todo">TO FILL</td></tr>
+          <tr><td>Protein / Carbohydrate / Total Sugars</td><td class="todo">TO FILL</td></tr>
+          <tr><td>Total Fat / Saturated Fat / Trans Fat</td><td class="todo">TO FILL</td></tr>
+          <tr><td>Sodium</td><td class="todo">TO FILL</td></tr>
+        </table>
+
+        <div class="addr">
+          <b>Customer care:</b> +91 77099 32222 &nbsp;·&nbsp; dssatva@gmail.com<br>
+          Country of origin: India
+        </div>
+
+        <!-- The sample fills this space with line-art. Ours fills it with the
+             two things a buyer actually wants at the point of opening the
+             packet - how to keep it and how to use it - and the one promise
+             the brand is built on. It also stops the icons floating alone at
+             the foot of an empty panel. -->
+        <div class="use">
+          <h3>Storing &amp; using</h3>
+          <p>Keep the pouch closed, away from heat and steam. Do not spoon in
+             a wet spoon. Best within six months of opening.</p>
+          <p class="promise">Ground slowly, in small batches. No colour, no filler,
+             no polish &mdash; nothing in this pouch that was not in the spice.</p>
+        </div>
+
+        <div class="icons">
+          <span class="veg"><i></i></span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 8h12l-1 12H5L4 8Z"/><path d="M8 8V5h4v3"/><path d="M18 4c1.5 1 2 2.5 2 4"/>
+            <circle cx="19" cy="14" r="2"/><path d="M19 16v4"/>
+          </svg>
+          <svg viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
+            <circle cx="11" cy="12" r="6"/><circle cx="29" cy="12" r="6"/>
+            <path d="M17 12h6M5 10 1 7M35 10l4-3"/>
+          </svg>
+          <span style="font-size:2.1mm;line-height:1.3">Swachh Bharat<br>एक कदम स्वच्छता की ओर</span>
+        </div>
+
+        <div class="epr">
+          <b>EPR:</b> <span class="todo">TO FILL — buy-back terms</span> ·
+          Bag mfg. by <span class="todo">TO FILL</span> ·
+          Consent No. <span class="todo">TO FILL</span><br>
+          This bag is above 50 microns · 100% recyclable
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <p><b>What I still need from you</b> — FSSAI licence number · full street address and PIN · the ingredient list by weight for each blend · nutritional values per 100 g · EPR buy-back terms, bag manufacturer and consent number · whether you have a website domain to print.</p>
+    <p><b>Three things the Pratima sample leaves out that Indian law asks for</b>, and which I have added: an <b>ingredients list</b>, a <b>nutritional information</b> panel, and a <b>batch / lot number</b> field. Worth checking with your printer before you copy that sample any further.</p>
+    <p><b>To change product:</b> edit the Devanagari name, the English name, the form pill and the one italic line on the front. Everything else is the same on every pouch.</p>
+  </div>
+</div>
+</body></html>

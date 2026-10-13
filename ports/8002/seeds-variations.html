@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 13 Oct 2026. Owner: "give in a seperate page combining variations of flax
+     seeds and chia seeds to keep it in one hero section". Review page only -
+     not linked from the site, noindex. Combined pictures are in
+     seeds-variations/ (this port only), made from photographs already in
+     assets/. Click a hero to see it full screen. -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Flax &amp; Chia Heroes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Jost:wght@300..600&family=Noto+Sans+Devanagari:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#11150e;--ink:#f4f3e7;--muted:#b9b29f;--gold:#e9cf98;--line:#2a3123;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Jost",system-ui,sans-serif;padding:0 16px 60px}
+header.top{max-width:1400px;margin:0 auto;padding:36px 0 10px}
+header.top p.k{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:var(--gold)}
+header.top h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.8rem);margin:8px 0 6px}
+header.top p{color:var(--muted);max-width:70ch;line-height:1.6}
+nav.jump{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+nav.jump a{color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+nav.jump a:hover{border-color:var(--gold)}
+section{max-width:1400px;margin:0 auto;padding-top:40px}
+section>h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.6rem;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,620px),1fr));gap:30px 26px}
+figcaption{margin-top:10px;color:var(--muted);font-size:.95rem;line-height:1.4}
+figcaption b{color:var(--gold);font-family:"Fraunces",serif;font-size:1.1rem;margin-right:6px}
+/* the mini hero - everything in cqw so it scales like the real one */
+.hero{position:relative;aspect-ratio:1440/550;overflow:hidden;border-radius:10px;container-type:inline-size;cursor:zoom-in;background:#0e120d;outline:none}
+.hero:focus-visible{box-shadow:0 0 0 3px var(--gold)}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.04)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,13,9,.80) 0%,rgba(10,13,9,.74) 34%,rgba(10,13,9,.40) 56%,rgba(10,13,9,.12) 74%,rgba(10,13,9,0) 88%)}
+.copy{position:absolute;z-index:2;left:3.6cqw;top:50%;transform:translateY(-50%);width:46cqw}
+.kick{font-size:1.05cqw;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.copy h2{font-family:"Fraunces",serif;font-weight:600;font-size:3.9cqw;line-height:1.04;margin:1.5cqw 0 1.2cqw;color:#f4f3e7}
+.copy h2 em{display:block;font-style:normal}
+.copy h2 span{color:var(--gold)}
+.body{font-size:1.18cqw;line-height:1.6;color:#e8dcc6;font-weight:300}
+.pill{display:inline-flex;align-items:center;gap:1.4cqw;margin-top:1.8cqw;border:.12cqw solid #e8dcc6;border-radius:99px;padding:.7cqw .7cqw .7cqw 2cqw;font-size:.95cqw;letter-spacing:.14em;text-transform:uppercase}
+.pill i{font-style:normal;display:grid;place-items:center;width:3.2cqw;height:3.2cqw;border-radius:50%;background:#e8dcc6;color:#16200f;font-size:1.4cqw}
+.cnt{margin-top:.8cqw;font-size:1.25cqw;letter-spacing:.2em;text-transform:uppercase;color:#cdbfa4}
+.arch{position:absolute;z-index:3;right:7cqw;top:50%;transform:translateY(-50%);width:16cqw;aspect-ratio:4/5;overflow:hidden;border-radius:8.4cqw 8.4cqw 1.4cqw 1.4cqw;box-shadow:0 2cqw 4cqw -2.4cqw rgba(0,0,0,.7)}
+.arch img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.14) contrast(1.04)}
+/* full-screen view */
+.hero.full{position:fixed;inset:0;z-index:50;border-radius:0;aspect-ratio:auto;cursor:zoom-out}
+.closehint{display:none;position:fixed;z-index:60;top:14px;right:16px;background:rgba(0,0,0,.6);color:#fff;padding:8px 14px;border-radius:99px;font-size:.9rem}
+body.isfull .closehint{display:block}
+body.isfull{overflow:hidden}
+.credits{max-width:1400px;margin:50px auto 0;color:var(--muted);font-size:.85rem;line-height:1.7}
+.credits h3{color:var(--ink);font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;margin-bottom:6px}
+.credits ul{list-style:none;columns:2 320px}
+.credits a{color:var(--gold)}
+.credits b{color:var(--ink);display:inline-block;min-width:2.6em}
+
+/* two-arch layouts: a large arch with a smaller one stepping out of it */
+.arch.a-big{right:12cqw;width:15cqw}
+.arch.a-small{right:4.5cqw;width:10cqw;top:62%;border:.35cqw solid #f4ead2;z-index:4}
+.arch.a-l{right:20cqw;width:13cqw}
+.arch.a-r{right:5cqw;width:13cqw}
+.tags{display:flex;gap:1cqw;margin-top:.9cqw}
+.tags span{font-size:.9cqw;letter-spacing:.14em;text-transform:uppercase;color:#e8dcc6;border:.1cqw solid rgba(232,220,198,.5);border-radius:99px;padding:.35cqw 1.1cqw}
+.dv{font-family:"Noto Sans Devanagari","Jost",sans-serif;font-weight:500;font-size:.62em;color:var(--gold)}
+
+/* plant + seed layouts (13 Oct, second round) */
+.pa{position:absolute;z-index:3;top:46%;transform:translateY(-50%);width:12.6cqw;aspect-ratio:4/5;border-radius:6.3cqw 6.3cqw 1.2cqw 1.2cqw;overflow:visible}
+.pa>img{width:100%;height:100%;object-fit:cover;display:block;border-radius:inherit;box-shadow:0 2cqw 4cqw -2.4cqw rgba(0,0,0,.75);filter:saturate(1.08)}
+.pa.l{right:19.5cqw}.pa.r{right:4.6cqw}.pa.c{right:12cqw;width:10cqw}
+.pa.big{right:11cqw;width:15cqw;border-radius:7.5cqw 7.5cqw 1.4cqw 1.4cqw}
+.pa.small{right:3.4cqw;width:9.5cqw;top:58%;border-radius:4.75cqw 4.75cqw 1cqw 1cqw}
+.pa.small>img{outline:.35cqw solid #f4ead2}
+.coin{position:absolute;left:-1.6cqw;bottom:-1.4cqw;width:5.4cqw;height:5.4cqw;border-radius:50%;overflow:hidden;border:.35cqw solid #f4ead2;box-shadow:0 1cqw 2cqw -1cqw rgba(0,0,0,.7)}
+.coin img{width:100%;height:100%;object-fit:cover;display:block}
+.lbl{position:absolute;left:50%;transform:translateX(-50%);top:calc(100% + .9cqw);text-align:center;line-height:1.25;white-space:nowrap;background:rgba(10,13,9,.62);border-radius:.8cqw;padding:.45cqw 1cqw;text-shadow:0 1px 2px rgba(0,0,0,.6)}
+.lbl b{display:block;font-family:"Fraunces",serif;font-weight:600;font-size:1.25cqw;color:#f4f3e7;margin:0}
+.lbl i{display:block;font-size:.95cqw;color:var(--gold);letter-spacing:.02em}
+.disc{position:absolute;z-index:4;right:14.7cqw;top:14%;width:7cqw;height:7cqw;border-radius:50%;overflow:hidden;border:.4cqw solid #f4ead2}
+.disc img{width:100%;height:100%;object-fit:cover}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="k">DS Satva &middot; hero review</p>
+  <h1>Flax &amp; Chia &mdash; one hero, 18 variations</h1>
+  <p>Flax and chia together in a single Seeds slide, so Chia Seeds no longer needs a slide of its own. Each one is drawn at the hero's real proportions. Click any hero to see it full screen; click again or press Esc to come back. Tell me the number you like &mdash; e.g. &ldquo;P03&rdquo; or &ldquo;07&rdquo;.</p>
+  <nav class="jump"><a href="#ps">Both plants + seeds (8)</a><a href="#fc">Earlier round (10)</a><a href="index.html">Back to the site</a></nav>
+</header>
+<section id="ps"><h2>Both plants + both seeds</h2>
+<p style="color:var(--muted);margin:-6px 0 18px;max-width:75ch;line-height:1.6">The actual plants, from photographs filed under their species on Wikimedia Commons: flax is <i>Linum usitatissimum</i> &mdash; blue five-petal flowers and the round seed bolls; chia is <i>Salvia hispanica</i> &mdash; the dense flower spike with blue lipped flowers. Each sits with its own seed.</p>
+<div class="grid">
+<figure class="var" id="ps1">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 1: Flax field + two arches, each the plant above its own seed, named. Click to view full screen">
+    <img class="bg" src="assets/hero-seeds-flax-plant.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/ps-flax.jpg" alt="" loading="lazy"><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/ps-chia.jpg" alt="" loading="lazy"><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P01</b> Flax field + two arches, each the plant above its own seed, named</figcaption>
+</figure>
+<figure class="var" id="ps2">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 2: Soft dark field + plant-over-seed arches (second pair of plant photos). Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-blur-field.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/ps-flax-b.jpg" alt="" loading="lazy"><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/ps-chia-b.jpg" alt="" loading="lazy"><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P02</b> Soft dark field + plant-over-seed arches (second pair of plant photos)</figcaption>
+</figure>
+<figure class="var" id="ps3">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 3: Flax field + the two plants in arches, each seed in a round inset. Click to view full screen">
+    <img class="bg" src="assets/hero-seeds-flax-plant.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/plant-flax-bolls.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-flax.jpg" alt=""></span><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/plant-chia-plant.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-chia.jpg" alt=""></span><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P03</b> Flax field + the two plants in arches, each seed in a round inset</figcaption>
+</figure>
+<figure class="var" id="ps4">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 4: Soft dark field + plants with seed insets (second pair). Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-blur-field.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/plant-flax-pair.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-flax.jpg" alt=""></span><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/plant-chia-spike-b.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-chia.jpg" alt=""></span><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P04</b> Soft dark field + plants with seed insets (second pair)</figcaption>
+</figure>
+<figure class="var" id="ps5">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 5: The two plants with both seeds in one round disc between them. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-blur-field.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/plant-flax-bolls.jpg" alt="" loading="lazy"><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/plant-chia-plant.jpg" alt="" loading="lazy"><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div><div class="disc"><img src="seeds-variations/arch-split.jpg" alt=""></div>
+  </div>
+  <figcaption><b>P05</b> The two plants with both seeds in one round disc between them</figcaption>
+</figure>
+<figure class="var" id="ps6">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 6: Flax bolls (seed pods) behind + plants with seed insets. Click to view full screen">
+    <img class="bg" src="assets/j-flax-2-bolls.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/plant-flax-plants.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-flax.jpg" alt=""></span><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/plant-chia-plant.jpg" alt="" loading="lazy"><span class="coin"><img src="seeds-variations/arch-chia.jpg" alt=""></span><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P06</b> Flax bolls (seed pods) behind + plants with seed insets</figcaption>
+</figure>
+<figure class="var" id="ps7">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 7: Flax field + a large flax plant-and-seed arch with a smaller chia one, no labels. Click to view full screen">
+    <img class="bg" src="assets/hero-seeds-flax-plant.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa big"><img src="seeds-variations/ps-flax.jpg" alt="" loading="lazy"></div><div class="pa small"><img src="seeds-variations/ps-chia.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>P07</b> Flax field + a large flax plant-and-seed arch with a smaller chia one, no labels</figcaption>
+</figure>
+<figure class="var" id="ps8">
+  <div class="hero" tabindex="0" role="button" aria-label="Plant and seed 8: Green flax field + plant-over-seed arches, named. Click to view full screen">
+    <img class="bg" src="assets/arch-seeds-flax.jpg" alt="" loading="lazy" style="object-position:center 70%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="pa l"><img src="seeds-variations/ps-flax.jpg" alt="" loading="lazy"><span class="lbl"><b>Flax &middot; अलसी</b><i>Linum usitatissimum</i></span></div><div class="pa r"><img src="seeds-variations/ps-chia-b.jpg" alt="" loading="lazy"><span class="lbl"><b>Chia &middot; चिया</b><i>Salvia hispanica</i></span></div>
+  </div>
+  <figcaption><b>P08</b> Green flax field + plant-over-seed arches, named</figcaption>
+</figure>
+</div></section>
+<section id="fc"><h2>Flax &amp; Chia</h2><div class="grid">
+<figure class="var" id="fc1">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 1: Flax field in flower (live now) + one arch split down the middle, flax | chia. Click to view full screen">
+    <img class="bg" src="assets/hero-seeds-flax-plant.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch"><img src="seeds-variations/arch-split.jpg" alt="" loading="lazy" style="object-position:center"></div>
+  </div>
+  <figcaption><b>01</b> Flax field in flower (live now) + one arch split down the middle, flax | chia</figcaption>
+</figure>
+<figure class="var" id="fc2">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 2: Flax field + a flax arch with a smaller chia arch stepping out of it. Click to view full screen">
+    <img class="bg" src="assets/hero-seeds-flax-plant.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch a-big"><img src="seeds-variations/arch-flax.jpg" alt="" loading="lazy"></div><div class="arch a-small"><img src="seeds-variations/arch-chia.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>02</b> Flax field + a flax arch with a smaller chia arch stepping out of it</figcaption>
+</figure>
+<figure class="var" id="fc3">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 3: Flax field fading into the chia plant + split arch. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-field-chia.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch"><img src="seeds-variations/arch-split.jpg" alt="" loading="lazy" style="object-position:center"></div>
+  </div>
+  <figcaption><b>03</b> Flax field fading into the chia plant + split arch</figcaption>
+</figure>
+<figure class="var" id="fc4">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 4: Flax field fading into chia + two arches side by side, Hindi names. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-field-chia.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia Seeds<em><span class="dv">अलसी &middot; चिया बीज</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch a-l"><img src="seeds-variations/arch-flax.jpg" alt="" loading="lazy"></div><div class="arch a-r"><img src="seeds-variations/arch-chia.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>04</b> Flax field fading into chia + two arches side by side, Hindi names</figcaption>
+</figure>
+<figure class="var" id="fc5">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 5: Blue flax flower beside blue chia flowers + diagonal split arch. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-flowers.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch"><img src="seeds-variations/arch-diag.jpg" alt="" loading="lazy" style="object-position:center"></div>
+  </div>
+  <figcaption><b>05</b> Blue flax flower beside blue chia flowers + diagonal split arch</figcaption>
+</figure>
+<figure class="var" id="fc6">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 6: Both blue flowers + flax in a wooden bowl, chia in its dish. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-flowers.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia Seeds<em><span class="dv">अलसी &middot; चिया बीज</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch a-big"><img src="seeds-variations/arch-flax-bowl.jpg" alt="" loading="lazy"></div><div class="arch a-small"><img src="seeds-variations/arch-chia-dish.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>06</b> Both blue flowers + flax in a wooden bowl, chia in its dish</figcaption>
+</figure>
+<figure class="var" id="fc7">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 7: Chia plant in flower + arch stacked, flax over chia. Click to view full screen">
+    <img class="bg" src="assets/j-chia-1-plant.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch"><img src="seeds-variations/arch-stack.jpg" alt="" loading="lazy" style="object-position:center"></div>
+  </div>
+  <figcaption><b>07</b> Chia plant in flower + arch stacked, flax over chia</figcaption>
+</figure>
+<figure class="var" id="fc8">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 8: Flax bolls fading into chia leaves + bowl and dish side by side. Click to view full screen">
+    <img class="bg" src="seeds-variations/bg-bolls-leaf.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch a-l"><img src="seeds-variations/arch-flax-bowl.jpg" alt="" loading="lazy"></div><div class="arch a-r"><img src="seeds-variations/arch-chia-dish.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>08</b> Flax bolls fading into chia leaves + bowl and dish side by side</figcaption>
+</figure>
+<figure class="var" id="fc9">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 9: Green flax field to the horizon + diagonal arch, Hindi names. Click to view full screen">
+    <img class="bg" src="assets/arch-seeds-flax.jpg" alt="" loading="lazy" style="object-position:center 70%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia Seeds<em><span class="dv">अलसी &middot; चिया बीज</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch"><img src="seeds-variations/arch-diag.jpg" alt="" loading="lazy" style="object-position:center"></div>
+  </div>
+  <figcaption><b>09</b> Green flax field to the horizon + diagonal arch, Hindi names</figcaption>
+</figure>
+<figure class="var" id="fc10">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 10: Single flax flower close up + chia dish arch with a flax seed arch. Click to view full screen">
+    <img class="bg" src="assets/j-flax-1-flower.jpg" alt="" loading="lazy" style="object-position:center 40%">
+    <div class="copy"><p class="kick">Nutrient-dense seeds</p><h2>Flax &amp; Chia<em>Nothing <span>Polished Off</span></em></h2><p class="body">Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p><div class="tags"><span>Flax &middot; अलसी</span><span>Chia &middot; चिया</span></div>
+      <span class="pill">See all seeds<i>&rarr;</i></span><p class="cnt">4 items packed</p></div>
+    <div class="arch a-big"><img src="seeds-variations/arch-chia-dish.jpg" alt="" loading="lazy"></div><div class="arch a-small"><img src="seeds-variations/arch-flax.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>10</b> Single flax flower close up + chia dish arch with a flax seed arch</figcaption>
+</figure>
+</div></section>
+<div class="credits"><h3>Plant photographs (Wikimedia Commons)</h3><ul style="columns:1"><li><b>Flax, flowers and bolls</b> Peer Schilperoord &middot; <a href="https://commons.wikimedia.org/wiki/File:Linum_usitatissimum_Lein_Flachs_flax.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li><li><b>Flax flowers</b> Stanzilla &middot; <a href="https://commons.wikimedia.org/wiki/File:Linum_usitatissimum_Morsan.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li><li><b>Flax plants</b> Ursula Ninfa &middot; <a href="https://commons.wikimedia.org/wiki/File:Gemeiner_Lein_Roscheiderhof_H1a.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li><li><b>Chia flower spike</b> Alex Abair &middot; <a href="https://commons.wikimedia.org/wiki/File:Salvia_hispanica_27990294.jpg" target="_blank" rel="noopener">CC BY 4.0</a></li><li><b>Chia in flower</b> Krzysztof Ziarnek, Kenraiz &middot; <a href="https://commons.wikimedia.org/wiki/File:Salvia_hispanica_kz2.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li><li><b>Flax field (blurred background)</b> Paul van de Velde &middot; <a href="https://commons.wikimedia.org/wiki/File:Vlas_-_Linum_usitatissimum_01_(50021778742).jpg" target="_blank" rel="noopener">CC BY 2.0</a></li></ul><h3 style="margin-top:14px">Other photographs</h3><p>All are the site's own photographs from assets/ (already credited on the site); the split and stacked pictures are combinations of them.</p></div>
+<div class="closehint">Click or press Esc to close</div>
+<script>
+document.querySelectorAll('.hero').forEach(function(h){
+  function toggle(){ var on=!h.classList.contains('full'); document.querySelectorAll('.hero.full').forEach(function(x){x.classList.remove('full')}); if(on) h.classList.add('full'); document.body.classList.toggle('isfull',on); }
+  h.addEventListener('click',toggle);
+  h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();} });
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ document.querySelectorAll('.hero.full').forEach(function(x){x.classList.remove('full')}); document.body.classList.remove('isfull'); } });
+</script>
+</body>
+</html>

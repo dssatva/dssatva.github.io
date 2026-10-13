@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 9 Oct 2026. Owner: "can you resize the picture and give me some variations
+     so that i will see which one i like. atleast 30 modifications in a page".
+     The Our Mission block, drawn at the owner's screen size (1245 x 569: the
+     657px window less the 88px menu), with the founder photo sized and framed
+     differently each time. Review page only - not linked, noindex. Built by a
+     script from the scratchpad; photos are assets/mission-founder-*.jpg/png
+     (his own photo, background removed, 9 Oct). Click one for full size. -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Founder Photo Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#eef0ea;color:#1e2c16;font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+header.top{max-width:1400px;margin:0 auto;padding:36px 0 8px}
+header.top .k{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#7f5a0f;font-weight:500}
+header.top h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0;color:#2c4220}
+header.top p{color:#4f5848;max-width:76ch;line-height:1.65}
+.list{max-width:1400px;margin:30px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,600px),1fr));gap:38px 30px}
+figure{margin:0}
+figcaption{margin-top:12px;color:#4f5848;font-size:.95rem;line-height:1.45}
+figcaption b{color:#7f5a0f;font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+.frame{position:relative;aspect-ratio:1245/569;overflow:hidden;border-radius:12px;cursor:zoom-in;box-shadow:0 18px 40px -26px rgba(30,44,22,.55);outline:none}
+.frame:focus-visible{box-shadow:0 0 0 3px #c99a2e}
+.stage{position:absolute;left:0;top:0;width:1245px;height:569px;transform-origin:0 0;transform:scale(var(--s,.48));overflow:hidden;
+  background:linear-gradient(160deg,#d8e5d6,#c9dbc5);color:#1e2c16;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:48px;padding:0 70px 0 50px}
+.frame.full{position:fixed;inset:0;z-index:50;border-radius:0;aspect-ratio:auto;background:rgba(14,20,10,.88);cursor:zoom-out}
+.frame.full .stage{left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s))}
+body.isfull{overflow:hidden}
+.hint{display:none;position:fixed;z-index:60;top:14px;right:16px;background:rgba(0,0,0,.65);color:#fff;padding:8px 14px;border-radius:99px;font-size:.9rem}
+body.isfull .hint{display:block}
+
+/* the mission copy, as on the site */
+.copy{max-width:560px}
+.kk{font:500 12px/1 "Jost";letter-spacing:.3em;text-transform:uppercase;color:#7f5a0f}
+.q{margin-top:14px;font:600 35px/1.22 "Fraunces",serif;color:#1e2c16}
+.pp{margin-top:20px;font-size:15.5px;line-height:1.75;color:#2c4220}
+.pp b{font-weight:600}
+.aside{display:flex;align-items:flex-end;gap:30px;position:relative;z-index:2}
+.sign{padding:0 0 18px 18px;border-left:2px solid #f1ddab}
+.sign img{height:46px;display:block;opacity:.92}
+.sign p{margin-top:10px;font:600 11.5px/1.6 "Jost";letter-spacing:.08em;text-transform:uppercase;color:#4e6848;max-width:19ch}
+.sign b{display:block;color:#3c5128;letter-spacing:.1em}
+.sign span{display:block}
+.nav{position:absolute;left:50px;bottom:22px;display:flex;align-items:center;gap:8px}
+.nav .d{width:9px;height:9px;border-radius:9px;background:#fff;display:block}
+.nav .d.on{width:30px;background:#7f5a0f}
+.nav .a{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;font:400 20px/1 "Jost";color:#2c4220;margin-left:8px;font-style:normal}
+
+/* the frame - default is today's */
+.shot{position:relative;height:357px;aspect-ratio:3/4;border-radius:18px;overflow:hidden;flex:none;
+  box-shadow:16px 16px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.55);margin:0 16px 16px 0}
+.shot img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* special frames */
+.shot.pol{height:auto;aspect-ratio:auto;width:270px;background:#fff;padding:12px 12px 46px;border-radius:4px;transform:rotate(-3deg);overflow:visible;box-shadow:0 26px 44px -22px rgba(30,44,22,.6)}
+.shot.pol img{height:320px}
+.shot.pol span{position:absolute;left:0;right:0;bottom:15px;text-align:center;font:italic 400 17px/1 "Fraunces",serif;color:#7f5a0f}
+.shot.pop,.shot.poparch,.shot.blob,.shot.wm{height:420px;aspect-ratio:auto;width:330px;box-shadow:none;margin:0;border-radius:0 0 165px 165px;overflow:hidden}
+.shot.pop i{position:absolute;left:0;right:0;bottom:0;height:330px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4dc9a,#d9a531)}
+.shot.pop img,.shot.poparch img,.shot.blob img,.shot.wm img,.shot.rise img{position:absolute;bottom:0;left:50%;transform:translateX(-46%);width:116%;height:auto}
+.shot.poparch{border-radius:0 0 18px 18px}
+.shot.poparch i{position:absolute;left:0;right:0;bottom:0;height:360px;border-radius:165px 165px 18px 18px;background:linear-gradient(180deg,#fbf6ee,#efe4cf)}
+.shot.blob{border-radius:0;overflow:visible}
+.shot.blob i{position:absolute;left:-20px;right:-30px;bottom:0;height:330px;border-radius:58% 42% 50% 50%/55% 60% 40% 45%;background:#b6cdb0}
+.shot.blob img{clip-path:inset(0 0 0 0 round 0 0 40px 40px)}
+.shot.rise{height:569px;width:420px;aspect-ratio:auto;box-shadow:none;margin:0 0 -0px 0;border-radius:0;align-self:end}
+.shot.rise i{display:none}
+.shot.rise img{width:100%;transform:translateX(-50%)}
+.rise .aside,.aside_bottom .aside{align-self:end;align-items:center}
+.aside_bottom{padding-right:40px}
+.aside_bottom .sign{margin-bottom:60px}
+.shot.wm{border-radius:0;overflow:visible}
+.shot.wm i{display:none}
+.wmtext{position:absolute;right:30px;top:60px;font:700 170px/1 "Fraunces",serif;color:rgba(255,255,255,.45);letter-spacing:.02em}
+.wm .shot.wm{height:500px;width:375px;align-self:end}
+.wm .aside{align-self:end;align-items:center}
+.wm .sign{margin-bottom:40px;background:rgba(216,229,214,.85);padding-top:12px}
+
+/* layouts */
+.half{padding-right:0;grid-template-columns:minmax(0,1fr) 470px;gap:40px}
+.half .halfimg{grid-column:2;grid-row:1;height:569px}
+.half .halfimg img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
+.half .aside{position:absolute;right:500px;bottom:60px;display:none}
+.half.swap{grid-template-columns:420px minmax(0,1fr);padding:0 70px 0 0}
+.half.swap .halfimg{grid-column:1}
+.half.swap .copy{grid-column:2}
+.swap:not(.half){grid-template-columns:auto minmax(0,1fr);padding:0 60px 0 80px}
+.swap:not(.half) .aside{grid-column:1;grid-row:1;flex-direction:row-reverse}
+.swap:not(.half) .shot{margin:0 0 16px 16px}
+.swap:not(.half) .sign{border-left:0;border-right:2px solid #f1ddab;padding:0 18px 18px 0;text-align:right}
+.swap:not(.half) .sign img{margin-left:auto}
+.swap .nav{left:auto;right:60px}
+.stack .aside{flex-direction:column;align-items:center;gap:26px}
+.stack .sign{border:0;padding:0;text-align:center;display:flex;align-items:center;gap:14px}
+.stack .sign img{height:40px}
+.stack .sign p{margin:0;text-align:left}
+.card .aside{}
+.stage .card{background:#fbf6ee;border-radius:24px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 30px 60px -34px rgba(30,44,22,.6)}
+.card .card .sign{border:0;padding:0;display:flex;align-items:center;gap:12px}
+.card .card .sign img{height:38px}
+.card .card .sign p{margin:0}
+.tiny .aside{flex-direction:row;align-items:center;background:#fbf6ee;border-radius:999px;padding:14px 34px 14px 14px;gap:22px;box-shadow:0 24px 50px -34px rgba(30,44,22,.6)}
+.tiny .shot{margin:0}
+.tiny .sign{border:0;padding:0}
+.center{grid-template-columns:1fr;justify-items:center;text-align:center;padding:0 120px}
+.center .copy{max-width:900px}
+.center .q{font-size:40px}
+.center .aside{justify-content:center;align-items:center;margin-top:30px;gap:20px}
+.center .shot{margin:0}
+.center .sign{border:0;padding:0;text-align:left}
+.center .nav{left:50%;transform:translateX(-50%)}
+.edge{grid-template-columns:minmax(0,1fr) 300px;padding-right:0}
+.edge .edgeimg{position:absolute;right:-170px;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 14px rgba(255,255,255,.35)}
+.edge .edgeimg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%}
+.edge .aside{position:absolute;right:390px;bottom:50px;display:none}
+.edge .copy{max-width:640px}
+
+.f2 .shot{height:290px}
+.f3 .shot{height:440px}
+.f4 .shot{height:320px;aspect-ratio:1;border-radius:50%;box-shadow:0 26px 50px -30px rgba(30,44,22,.6)}.f4 .shot img{object-position:60% 30%}
+.f5 .shot{height:330px;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 8px #d8e5d6,0 0 0 10px #d9b45a,0 26px 50px -30px rgba(30,44,22,.6)}.f5 .shot img{object-position:60% 30%}
+.f6 .shot{height:400px;aspect-ratio:3/4;border-radius:160px 160px 16px 16px;box-shadow:0 26px 50px -30px rgba(30,44,22,.6)}
+.f7 .shot{height:400px;aspect-ratio:3/4;border-radius:160px 160px 16px 16px;box-shadow:0 26px 50px -30px rgba(30,44,22,.6)}
+.f8 .shot{height:330px;aspect-ratio:1;border-radius:24px;box-shadow:12px 12px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.55)}.f8 .shot img{object-position:60% 25%}
+.f9 .shot{height:380px;aspect-ratio:3/4;border-radius:50%;box-shadow:0 0 0 6px #fbf6ee,0 26px 50px -30px rgba(30,44,22,.6)}
+.f10 .shot{height:420px;aspect-ratio:9/16;border-radius:999px;box-shadow:0 26px 50px -30px rgba(30,44,22,.6)}.f10 .shot img{object-position:62% 50%}
+.f11 .shot{height:370px;aspect-ratio:3/4;border-radius:150px 8px 150px 8px;box-shadow:0 26px 50px -30px rgba(30,44,22,.6)}
+.f12 .shot{height:360px;aspect-ratio:3/4;border-radius:14px;box-shadow:0 26px 50px -30px rgba(30,44,22,.55);overflow:visible}.f12 .shot img{border-radius:14px}.f12 .shot::after{content:'';position:absolute;inset:16px -16px -16px 16px;border:1.5px solid #c99a2e;border-radius:14px;z-index:-1}
+.f13 .shot{height:360px;aspect-ratio:3/4;border-radius:6px;border:12px solid #fbf6ee;box-shadow:0 26px 50px -24px rgba(30,44,22,.55)}
+.f15 .shot{height:360px;aspect-ratio:3/4;border-radius:18px;box-shadow:14px 14px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.6)}
+.f16 .shot{height:360px;aspect-ratio:3/4;border-radius:18px;box-shadow:14px 14px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.6)}
+.f17 .shot{height:360px;aspect-ratio:3/4;border-radius:18px;box-shadow:14px 14px 0 #c9a6a0,0 26px 50px -30px rgba(30,44,22,.6)}
+.f23 .shot{height:360px;aspect-ratio:3/4;border-radius:18px;box-shadow:-14px 14px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.6)}
+.f25 .shot{height:320px;aspect-ratio:3/4;border-radius:18px;box-shadow:12px 12px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.6)}
+.f26 .shot{height:300px;aspect-ratio:3/4;border-radius:14px}
+.f27 .shot{height:150px;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 4px #fbf6ee}.f27 .shot img{object-position:60% 28%}
+.f28 .shot{height:110px;aspect-ratio:1;border-radius:50%;box-shadow:0 0 0 4px #fbf6ee}.f28 .shot img{object-position:60% 28%}
+.f30 .shot{height:360px;aspect-ratio:3/4;border-radius:18px;box-shadow:14px 14px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.6)}.f30 .shot img{filter:grayscale(1) contrast(1.05) brightness(1.03)}
+.f32 .shot{height:310px;aspect-ratio:1;border-radius:50%;overflow:visible}.f32 .shot img{border-radius:50%;object-position:60% 30%}.f32 .shot::after{content:'';position:absolute;inset:-14px;border:2px dashed #c99a2e;border-radius:50%}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="k">Our mission &middot; founder photo &middot; review page</p>
+  <h1>32 ways to show the founder photo</h1>
+  <p>Each one is the Our Mission block exactly as it sits on the site, drawn at your screen size, with the photo resized and framed differently. Some use the other backgrounds made from the same photo (cream, deep green, soft pink) or the cut-out with no background. Click any one to see it full size, then tell me its number.</p>
+</header>
+<span class="hint">Click or press Esc to close</span>
+<main class="list">
+<figure><div class="frame" tabindex="0"><div class="stage f1 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>1 &middot; As it is now</b>3:4 portrait, gold panel behind, sign-off beside. For comparison.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f2 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>2 &middot; Smaller</b>The same frame, a size down - the quote gets more room.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f3 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>3 &middot; Larger</b>The same frame, as big as the block allows.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f4 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>4 &middot; Circle</b>Round, like the first founder picture.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f5 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>5 &middot; Circle, gold ring</b>Round with a thin gold ring set off the photo.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f6 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>6 &middot; Arch</b>The arch shape used in Why choose SATVA.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f7 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-cream.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>7 &middot; Arch on cream</b>Arch, with the cream-background photo so it stands out from the green.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f8 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>8 &middot; Square</b>A soft rounded square.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f9 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>9 &middot; Oval</b>A tall oval, like a classic portrait.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f10 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>10 &middot; Capsule</b>A tall pill shape - slim and modern.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f11 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>11 &middot; Leaf</b>Two round corners and two sharp - a leaf, for a food brand.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f12 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>12 &middot; Gold outline</b>A thin gold line offset behind the photo, not a solid panel.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f13 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>13 &middot; Mount</b>A white border around the photo, like a framed print.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f14 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot pol"><img src="assets/mission-founder-sage.jpg" alt=""><span>DS Satva Foods</span></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>14 &middot; Polaroid</b>A white snapshot, slightly tilted.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f15 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-green.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>15 &middot; Deep green photo</b>The green-background photo - he stands out boldly.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f16 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-cream.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>16 &middot; Cream photo</b>The cream-background photo in the current frame.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f17 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-blush.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>17 &middot; Blush photo</b>The soft pink photo - ties in with Satva Saheli.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f18 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot pop"><i></i><img src="assets/mission-founder-cutout.png" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>18 &middot; Pop-out circle</b>No frame: he rises out of a gold circle, head above its edge.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f19 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot poparch"><i></i><img src="assets/mission-founder-cutout.png" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>19 &middot; Pop-out arch</b>He stands in front of a cream arch, head over the top.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f20 aside_bottom"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot rise"><i></i><img src="assets/mission-founder-cutout.png" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>20 &middot; Rising from the edge</b>Cut-out, large, coming up from the bottom of the block.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f21 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot blob"><i></i><img src="assets/mission-founder-cutout.png" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>21 &middot; On a soft shape</b>Cut-out on a hand-drawn sage blob.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f22 half"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="halfimg"><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="aside"><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>22 &middot; Half the block</b>The photo fills the right half, edge to edge.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f23 swap"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>23 &middot; Photo left</b>Picture first, the mission quote on the right.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f24 half swap"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="halfimg"><img src="assets/mission-founder-cream.jpg" alt=""></div><div class="aside"><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>24 &middot; Left, full height</b>The cream photo as a tall strip down the left side.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f25 stack"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>25 &middot; Sign-off below</b>The logo and place name centred under the photo.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f26 card"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="card"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>26 &middot; Card</b>Photo and sign-off together on an ivory card.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f27 tiny"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>27 &middot; Small signature</b>A small circle next to the sign-off, like an email signature.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f28 center"><div class="copy c"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>28 &middot; Testimonial</b>Quote centred; small round photo and sign-off underneath.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f29 edge"><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="edgeimg"><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="aside"><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>29 &middot; Half circle off the edge</b>A big circle that runs off the right side of the screen.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f30 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-cream.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>30 &middot; Soft black & white</b>The photo in gentle black and white, classic and calm.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f31 wm"><span class="wmtext">SATVA</span><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot wm"><i></i><img src="assets/mission-founder-cutout.png" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>31 &middot; Over the brand name</b>Cut-out in front of a large, faint SATVA.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f32 "><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="aside"><div class="shot "><img src="assets/mission-founder-sage.jpg" alt=""></div><div class="sign"><img src="assets/logo-stack-dark.png" alt=""><p><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>32 &middot; Dashed ring</b>Round, with a dashed gold ring - light and friendly.</figcaption></figure>
+</main>
+<script>
+(function () {
+  var frames = [].slice.call(document.querySelectorAll(".frame"));
+  function fit(f) {
+    var s = f.classList.contains("full") ? Math.min(innerWidth / 1245, innerHeight / 569) : f.clientWidth / 1245;
+    f.style.setProperty("--s", s);
+  }
+  var ro = new ResizeObserver(function (es) { es.forEach(function (e) { fit(e.target); }); });
+  frames.forEach(function (f) {
+    ro.observe(f);
+    function toggle() {
+      var on = !f.classList.contains("full");
+      frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+      if (on) f.classList.add("full");
+      document.body.classList.toggle("isfull", on);
+      fit(f);
+    }
+    f.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
+    f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+  addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+    document.body.classList.remove("isfull");
+  });
+  addEventListener("resize", function () { frames.forEach(fit); });
+})();
+</script>
+</body>
+</html>

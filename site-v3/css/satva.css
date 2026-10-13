@@ -2403,3 +2403,80 @@ footer{scroll-snap-align:start;}
   .origin .onote{margin-top:clamp(8px,1.4vh,16px);font-size:.76rem;line-height:1.4;
     display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;}
 }
+
+/* ---- "How it's made": the Recipe button and the recipe sheet (8 Oct 2026) ----
+   The button sits under the line on the BACK of a card, so it only shows
+   once the card has turned to the ingredient photograph. The sheet is a
+   native <dialog>: Esc closes it, focus is kept inside, the page behind
+   cannot be scrolled. Same photograph as the card, then the recipe. */
+.made .mrecipe{
+  margin-top:12px;display:inline-flex;align-items:center;gap:7px;
+  font:700 .7rem/1 "Jost",system-ui,sans-serif;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--ink);background:var(--gold-grad);border:0;border-radius:999px;
+  padding:10px 16px;cursor:pointer;box-shadow:0 6px 18px -8px rgba(0,0,0,.6);
+  transition:transform .2s ease,box-shadow .2s ease;
+}
+.made .mrecipe svg{width:14px;height:14px;}
+.made .mrecipe:hover{transform:translateY(-1px);box-shadow:0 10px 22px -8px rgba(0,0,0,.7);}
+.made .mrecipe:focus-visible{outline:2px solid #fff;outline-offset:3px;}
+.made .mcard:not(.is-on) .mrecipe{visibility:hidden;}
+
+html.rsheet-open{overflow:hidden;}
+.rsheet{
+  width:min(1080px,calc(100vw - 32px));max-height:calc(100vh - 32px);
+  padding:0;border:0;border-radius:24px;overflow:hidden;
+  background:var(--cream);color:var(--ink);
+  box-shadow:0 30px 80px -20px rgba(10,16,6,.6);
+}
+.rsheet::backdrop{background:rgba(16,23,12,.62);backdrop-filter:blur(4px);}
+.rsheet[open]{animation:rs-in .28s ease-out;}
+@keyframes rs-in{from{opacity:0;transform:translateY(14px) scale(.985);}to{opacity:1;transform:none;}}
+.rs-box{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);height:min(760px,calc(100vh - 32px));}
+.rs-shot{margin:0;position:relative;background:var(--ink);}
+.rs-shot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;}
+.rs-body{position:relative;overflow-y:auto;padding:clamp(28px,4vw,52px) clamp(22px,3.6vw,48px);overscroll-behavior:contain;}
+.rs-close{
+  position:sticky;top:0;float:right;margin:-12px -12px 0 12px;width:40px;height:40px;
+  display:grid;place-items:center;border-radius:50%;border:1px solid rgba(30,44,22,.18);
+  background:rgba(255,255,255,.75);color:var(--ink);cursor:pointer;z-index:2;
+}
+.rs-close svg{width:18px;height:18px;}
+.rs-close:hover{background:#fff;}
+.rs-kick{margin:0 0 10px;font:700 .68rem/1.3 "Jost",system-ui,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-dk);}
+.rsheet h2{
+  margin:0;font-family:"Fraunces",Georgia,serif;font-variation-settings:"SOFT" 45,"WONK" 1;
+  font-size:clamp(1.8rem,3.4vw,2.6rem);font-weight:600;line-height:1.05;color:var(--green);
+}
+.rsheet h2 .dv{display:block;margin-top:6px;font-size:.5em;font-weight:400;color:var(--gold-dk);}
+.rs-meta{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 0;}
+.rs-meta span{font-size:.78rem;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--gold-pale);color:var(--ink);}
+.rs-desc{margin:16px 0 0;font-size:1rem;line-height:1.6;color:rgba(30,44,22,.85);}
+.rsheet h3{
+  margin:28px 0 10px;font-family:"Fraunces",Georgia,serif;font-size:1.15rem;font-weight:600;color:var(--green);
+  padding-bottom:8px;border-bottom:1px solid rgba(191,138,23,.45);
+}
+.rs-ing{list-style:none;margin:0;padding:0;}
+.rs-ing li{display:grid;grid-template-columns:minmax(84px,30%) 1fr;gap:14px;padding:8px 0;border-bottom:1px dashed rgba(30,44,22,.14);font-size:.95rem;line-height:1.45;}
+.rs-ing li span:first-child{font-weight:700;color:var(--gold-dk);}
+.rs-ours{font-weight:700;color:var(--green);}
+.rs-steps{margin:0;padding:0;list-style:none;counter-reset:rs;}
+.rs-steps li{position:relative;padding:0 0 14px 44px;font-size:.97rem;line-height:1.6;counter-increment:rs;}
+.rs-steps li::before{
+  content:counter(rs);position:absolute;left:0;top:-2px;width:30px;height:30px;border-radius:50%;
+  display:grid;place-items:center;font:600 .85rem/1 "Fraunces",Georgia,serif;
+  background:var(--green);color:var(--gold-pale);
+}
+@media (max-width:760px){
+  .rsheet{width:calc(100vw - 24px);max-height:calc(100vh - 24px);border-radius:20px;}
+  .rs-box{grid-template-columns:1fr;grid-template-rows:auto;height:auto;max-height:calc(100vh - 24px);overflow-y:auto;}
+  .rs-shot{height:38vh;}
+  .rs-body{overflow:visible;}
+  .rs-ing li{grid-template-columns:minmax(72px,34%) 1fr;}
+}
+@media (prefers-reduced-motion:reduce){.rsheet[open]{animation:none;}}
+/* A turned card's hidden face still takes clicks in Chrome (backface-visibility
+   hides it but does not take it out of hit-testing), so the front's copy sat
+   over the back's Recipe button and turned the card instead. Only the face
+   you can see takes the pointer. */
+.made .mcard.is-flipped .mfront,
+.made .mcard:not(.is-flipped) .mback{pointer-events:none;}

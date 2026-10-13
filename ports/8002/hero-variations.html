@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 7 Oct 2026. Owner: "give me some 20 variations for 10 each in a seperate
+     page for these two hero". A review page only - not linked from the site,
+     marked noindex. Photographs are in hero-variations/ (this port only) or
+     the shared assets/; all Wikimedia Commons except the site's own earlier
+     ones, credited at the foot. Click a hero to see it full screen. -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Hero Variations — Pulses &amp; Healthy Essentials</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#11150e;--ink:#f4f3e7;--muted:#b9b29f;--gold:#e9cf98;--line:#2a3123;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font-family:"Jost",system-ui,sans-serif;padding:0 16px 60px}
+header.top{max-width:1400px;margin:0 auto;padding:36px 0 10px}
+header.top p.k{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:var(--gold)}
+header.top h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.8rem);margin:8px 0 6px}
+header.top p{color:var(--muted);max-width:70ch;line-height:1.6}
+nav.jump{display:flex;gap:10px;margin-top:16px;flex-wrap:wrap}
+nav.jump a{color:var(--ink);text-decoration:none;border:1px solid var(--line);padding:8px 16px;border-radius:999px}
+nav.jump a:hover{border-color:var(--gold)}
+section{max-width:1400px;margin:0 auto;padding-top:40px}
+section>h2{font-family:"Fraunces",serif;font-weight:600;font-size:1.6rem;margin-bottom:18px;padding-bottom:10px;border-bottom:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,620px),1fr));gap:30px 26px}
+figcaption{margin-top:10px;color:var(--muted);font-size:.95rem;line-height:1.4}
+figcaption b{color:var(--gold);font-family:"Fraunces",serif;font-size:1.1rem;margin-right:6px}
+/* the mini hero - everything in cqw so it scales like the real one */
+.hero{position:relative;aspect-ratio:1440/550;overflow:hidden;border-radius:10px;container-type:inline-size;cursor:zoom-in;background:#0e120d;outline:none}
+.hero:focus-visible{box-shadow:0 0 0 3px var(--gold)}
+.hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(1.08) contrast(1.04)}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(10,13,9,.80) 0%,rgba(10,13,9,.74) 34%,rgba(10,13,9,.40) 56%,rgba(10,13,9,.12) 74%,rgba(10,13,9,0) 88%)}
+.copy{position:absolute;z-index:2;left:3.6cqw;top:50%;transform:translateY(-50%);width:46cqw}
+.kick{font-size:1.05cqw;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.copy h2{font-family:"Fraunces",serif;font-weight:600;font-size:3.9cqw;line-height:1.04;margin:1.5cqw 0 1.2cqw;color:#f4f3e7}
+.copy h2 em{display:block;font-style:normal}
+.copy h2 span{color:var(--gold)}
+.body{font-size:1.18cqw;line-height:1.6;color:#e8dcc6;font-weight:300}
+.pill{display:inline-flex;align-items:center;gap:1.4cqw;margin-top:1.8cqw;border:.12cqw solid #e8dcc6;border-radius:99px;padding:.7cqw .7cqw .7cqw 2cqw;font-size:.95cqw;letter-spacing:.14em;text-transform:uppercase}
+.pill i{font-style:normal;display:grid;place-items:center;width:3.2cqw;height:3.2cqw;border-radius:50%;background:#e8dcc6;color:#16200f;font-size:1.4cqw}
+.cnt{margin-top:.8cqw;font-size:1.25cqw;letter-spacing:.2em;text-transform:uppercase;color:#cdbfa4}
+.arch{position:absolute;z-index:3;right:7cqw;top:50%;transform:translateY(-50%);width:16cqw;aspect-ratio:4/5;overflow:hidden;border-radius:8.4cqw 8.4cqw 1.4cqw 1.4cqw;box-shadow:0 2cqw 4cqw -2.4cqw rgba(0,0,0,.7)}
+.arch img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.14) contrast(1.04)}
+/* full-screen view */
+.hero.full{position:fixed;inset:0;z-index:50;border-radius:0;aspect-ratio:auto;cursor:zoom-out}
+.closehint{display:none;position:fixed;z-index:60;top:14px;right:16px;background:rgba(0,0,0,.6);color:#fff;padding:8px 14px;border-radius:99px;font-size:.9rem}
+body.isfull .closehint{display:block}
+body.isfull{overflow:hidden}
+.credits{max-width:1400px;margin:50px auto 0;color:var(--muted);font-size:.85rem;line-height:1.7}
+.credits h3{color:var(--ink);font-family:"Fraunces",serif;font-weight:600;font-size:1.1rem;margin-bottom:6px}
+.credits ul{list-style:none;columns:2 320px}
+.credits a{color:var(--gold)}
+.credits b{color:var(--ink);display:inline-block;min-width:2.6em}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="k">DS Satva &middot; hero review</p>
+  <h1>Pulses &amp; Healthy Essentials &mdash; 20 hero variations</h1>
+  <p>Ten photograph pairs for each slide, with the real copy, scrim and arch at the hero's proportions. Click any hero to see it full screen; click again or press Esc to come back. Tell me the numbers you like &mdash; e.g. &ldquo;Pulses 04, Essentials 07&rdquo;.</p>
+  <nav class="jump"><a href="#pu">Pulses (11)</a><a href="#he">Healthy Essentials (10)</a><a href="index.html">Back to the site</a></nav>
+</header>
+<section id="pu"><h2>Pulses</h2><div class="grid">
+<figure class="var" id="pu1">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 1: Market sacks of dal + toor pods on the plant (live now). Click to view full screen">
+    <img class="bg" src="assets/hero-pulses-market.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-toor-pods.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>01</b> Market sacks of dal + toor pods on the plant (live now)</figcaption>
+</figure>
+<figure class="var" id="pu2">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 2: Ooty market sacks with red chillies + chickpeas in a bowl. Click to view full screen">
+    <img class="bg" src="hero-variations/p1.jpg" alt="" loading="lazy" style="object-position:center 45%">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-q4.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>02</b> Ooty market sacks with red chillies + chickpeas in a bowl</figcaption>
+</figure>
+<figure class="var" id="pu3">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 3: Kolli Hills stall, dals in coloured tubs + toor dal. Click to view full screen">
+    <img class="bg" src="hero-variations/p4.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-dal.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>03</b> Kolli Hills stall, dals in coloured tubs + toor dal</figcaption>
+</figure>
+<figure class="var" id="pu4">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 4: Pigeon-pea (toor) field to the horizon + fresh pigeon peas. Click to view full screen">
+    <img class="bg" src="hero-variations/q7.jpg" alt="" loading="lazy" style="object-position:center 70%">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-q2.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>04</b> Pigeon-pea (toor) field to the horizon + fresh pigeon peas</figcaption>
+</figure>
+<figure class="var" id="pu5">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 5: Toor rows in Andhra Pradesh + chana dal. Click to view full screen">
+    <img class="bg" src="hero-variations/q8.jpg" alt="" loading="lazy" style="object-position:center 70%">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-chana.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>05</b> Toor rows in Andhra Pradesh + chana dal</figcaption>
+</figure>
+<figure class="var" id="pu6">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 6: Chickpea plant in leaf + whole chana. Click to view full screen">
+    <img class="bg" src="hero-variations/q11.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-q3.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>06</b> Chickpea plant in leaf + whole chana</figcaption>
+</figure>
+<figure class="var" id="pu7">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 7: White and green chana, close up + chickpea pod and flower. Click to view full screen">
+    <img class="bg" src="hero-variations/q3.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-q11.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>07</b> White and green chana, close up + chickpea pod and flower</figcaption>
+</figure>
+<figure class="var" id="pu8">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 8: A tray of dal, close up + toor pods on the plant. Click to view full screen">
+    <img class="bg" src="hero-variations/q5.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-toor-pods.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>08</b> A tray of dal, close up + toor pods on the plant</figcaption>
+</figure>
+<figure class="var" id="pu9">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 9: Kolli Hills street market + toor dal. Click to view full screen">
+    <img class="bg" src="hero-variations/p3.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/u-toor-dal.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>09</b> Kolli Hills street market + toor dal</figcaption>
+</figure>
+<figure class="var" id="pu10">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 10: Toor plant (the previous photo) + toor pods. Click to view full screen">
+    <img class="bg" src="assets/hero-pulses-toor-plant.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-toor-pods.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>10</b> Toor plant (the previous photo) + toor pods</figcaption>
+</figure>
+<figure class="var" id="pu11">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 11: variations 1 and 2 combined, pulses only. Click to view full screen">
+    <img class="bg" src="hero-variations/pulses-all-colours.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Pulses</p><h2>Unpolished Pulses<em>Nothing <span>Buffed Off</span></em></h2><p class="body">Toor and chana packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. The shelf opens with the two dals this kitchen cooks most; the rest of the list follows them.</p>
+      <span class="pill">See all pulses<i>&rarr;</i></span><p class="cnt">2 items packed</p></div>
+    <div class="arch"><img src="assets/arch-pulses-toor-pods.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>11</b> NEW &mdash; 01 and 02 combined, pulses only: the Ooty and Darjeeling sacks joined into one picture, with the chillies, rice and maize cut out + toor pods</figcaption>
+</figure>
+</div></section>
+<section id="he"><h2>Healthy Essentials</h2><div class="grid">
+<figure class="var" id="he1">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 1: Salt-mine tunnel + coarse pink salt (live now). Click to view full screen">
+    <img class="bg" src="assets/hero-essentials-salt-mine.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="assets/arch-essentials-pink-salt.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>01</b> Salt-mine tunnel + coarse pink salt (live now)</figcaption>
+</figure>
+<figure class="var" id="he2">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 2: Green-lit mine gallery + raw rock salt. Click to view full screen">
+    <img class="bg" src="hero-variations/e5.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-e4.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>02</b> Green-lit mine gallery + raw rock salt</figcaption>
+</figure>
+<figure class="var" id="he3">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 3: Violet-lit mine gallery + pale pink rock. Click to view full screen">
+    <img class="bg" src="hero-variations/e6.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-s7.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>03</b> Violet-lit mine gallery + pale pink rock</figcaption>
+</figure>
+<figure class="var" id="he4">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 4: The salt-brick mosque inside the mine + coarse salt. Click to view full screen">
+    <img class="bg" src="hero-variations/e2.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="assets/arch-essentials-pink-salt.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>04</b> The salt-brick mosque inside the mine + coarse salt</figcaption>
+</figure>
+<figure class="var" id="he5">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 5: Glowing salt walls + salt rocks on black. Click to view full screen">
+    <img class="bg" src="hero-variations/e1.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-s6.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>05</b> Glowing salt walls + salt rocks on black</figcaption>
+</figure>
+<figure class="var" id="he6">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 6: The Salt Range hills at dusk + fine pink salt. Click to view full screen">
+    <img class="bg" src="hero-variations/s2.jpg" alt="" loading="lazy" style="object-position:center 40%">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-e12.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>06</b> The Salt Range hills at dusk + fine pink salt</figcaption>
+</figure>
+<figure class="var" id="he7">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 7: Kerala backwaters lined with coconut palms + coconut on the palm. Click to view full screen">
+    <img class="bg" src="hero-variations/c2.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-e11.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>07</b> Kerala backwaters lined with coconut palms + coconut on the palm</figcaption>
+</figure>
+<figure class="var" id="he8">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 8: Coarse pink salt, close up + monk fruit sweetener. Click to view full screen">
+    <img class="bg" src="hero-variations/s5.jpg" alt="" loading="lazy" style="object-position:center 60%">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-e10.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>08</b> Coarse pink salt, close up + monk fruit sweetener</figcaption>
+</figure>
+<figure class="var" id="he9">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 9: Glowing salt-lamp blocks + pink salt in two bowls. Click to view full screen">
+    <img class="bg" src="hero-variations/e13.jpg" alt="" loading="lazy" style="object-position:center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="assets/arch-essentials-salt.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>09</b> Glowing salt-lamp blocks + pink salt in two bowls</figcaption>
+</figure>
+<figure class="var" id="he10">
+  <div class="hero" tabindex="0" role="button" aria-label="Variation 10: Coconut-grove path (the previous photo) + pale pink rock. Click to view full screen">
+    <img class="bg" src="assets/hero-essentials-coconut-plant.jpg" alt="" loading="lazy" style="object-position:52% center">
+    <div class="copy"><p class="kick">Healthy essentials</p><h2>Healthy Essentials<em>Unrefined, <span>Unbleached</span></em></h2><p class="body">Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+      <span class="pill">See all healthy essentials<i>&rarr;</i></span><p class="cnt">3 items packed</p></div>
+    <div class="arch"><img src="hero-variations/arch-s7.jpg" alt="" loading="lazy"></div>
+  </div>
+  <figcaption><b>10</b> Coconut-grove path (the previous photo) + pale pink rock</figcaption>
+</figure>
+</div></section>
+<div class="credits"><h3>Photograph credits (Wikimedia Commons)</h3><ul>
+<li><b>s1</b> Shikari7 &middot; <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mine_-_Crystal_Deposits_on_the_mine_walls.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>s5</b> Ivar Leidus &middot; <a href="https://commons.wikimedia.org/wiki/File:Himalayan_salt_(coarse).jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e5</b> Shahzaib Damn Cruze &middot; <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mines4.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e4</b> James St. John &middot; <a href="https://commons.wikimedia.org/wiki/File:Rock_salt_(halitite)_(Billianwala_Salt_Member,_Salt_Range_Formation,_Ediacaran_to_Lower_Cambrian;_Khewra_Salt_Mine,_Salt_Range,_Pakistan)_11_(33275221442).jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+<li><b>e6</b> Shahzaib Damn Cruze &middot; <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mines5.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>s7</b> Cantons-de-l&#x27;Est &middot; <a href="https://commons.wikimedia.org/wiki/File:Khewra_rock_salt_-_light_pink.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>e2</b> Guilhem Vellut from Annecy, France &middot; <a href="https://commons.wikimedia.org/wiki/File:Mosque_@_Khewra_Salt_Mine_(15297756489).jpg" target="_blank" rel="noopener">CC BY 2.0</a></li>
+<li><b>e1</b> Afsheen Zafar &middot; <a href="https://commons.wikimedia.org/wiki/File:Inside_Khewra_salt_mines.JPG" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>s6</b> Hubertl &middot; <a href="https://commons.wikimedia.org/wiki/File:2015-03-07_Pakistanisches,_sogenanntes_Himalaya-Salz_0399.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>s2</b> Mohammad.Waris.khan &middot; <a href="https://commons.wikimedia.org/wiki/File:Khewra_Salt_Mines_landscape_IMG_3127.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e12</b> Poyraz 72 &middot; <a href="https://commons.wikimedia.org/wiki/File:Himalayan_salt_fine_grain_V1.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>c2</b> Kkkriku &middot; <a href="https://commons.wikimedia.org/wiki/File:Inland_waters_of_Kerala_..reflecting_countless_coconut_palms.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e11</b> Vengolis &middot; <a href="https://commons.wikimedia.org/wiki/File:Coconut_tree_06271.JPG" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e10</b> SamHolt6 &middot; <a href="https://commons.wikimedia.org/wiki/File:Monkfruit_Sweetener.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>e13</b> Donald Trung Quoc Don &middot; <a href="https://commons.wikimedia.org/wiki/File:Himalayan_salt_lamps,_Groningen_(2020)_03.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>p2</b> Adam Jones &middot; <a href="https://commons.wikimedia.org/wiki/File:Pulses_for_Sale_in_Market_-_Darjeeling_-_West_Bengal_-_India_(12431603075).jpg" target="_blank" rel="noopener">CC BY-SA 2.0</a></li>
+<li><b>p7</b> Nanditha Gogate, WELL Labs &middot; <a href="https://commons.wikimedia.org/wiki/File:Pigeon_pea_pods_in_Raichur,_Karnataka.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>p1</b> Timothy A. Gonsalves &middot; <a href="https://commons.wikimedia.org/wiki/File:Pulses_Red_Chillies_Ooty_Market_Nilgiris_Aug25_A7CR_07122.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>q4</b> AlixSaz &middot; <a href="https://commons.wikimedia.org/wiki/File:Ordinary_chickpeas_in_a_ceramic_bowl.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>p4</b> P Jeganathan &middot; <a href="https://commons.wikimedia.org/wiki/File:Pulses_for_sales_opp_tribal_market_kolli_hills_JEG3337_.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>q7</b> PJeganathan &middot; <a href="https://commons.wikimedia.org/wiki/File:Pigeon_Pea_field_in_Andhra_Pradesh_(49363).jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>q2</b> David E Mead &middot; <a href="https://commons.wikimedia.org/wiki/File:Pigeon_peas_fresh_marketed_1.jpg" target="_blank" rel="noopener">CC0</a></li>
+<li><b>q8</b> PJeganathan &middot; <a href="https://commons.wikimedia.org/wiki/File:Pigeon_Pea_field_in_Andhra_Pradesh_(96030).jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>q11</b> Carl Davies, CSIRO &middot; <a href="https://commons.wikimedia.org/wiki/File:CSIRO_ScienceImage_3600_Chickpeas_in_glasshouse.jpg" target="_blank" rel="noopener">CC BY 3.0</a></li>
+<li><b>q3</b> Sanjay Acharya &middot; <a href="https://commons.wikimedia.org/wiki/File:Sa-whitegreen-chickpea.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+<li><b>q5</b> PJeganathan &middot; <a href="https://commons.wikimedia.org/wiki/File:Black_gram_dal_Phaseolus_mungo_JEG3361.jpg" target="_blank" rel="noopener">CC BY-SA 4.0</a></li>
+<li><b>p3</b> P Jeganathan &middot; <a href="https://commons.wikimedia.org/wiki/File:Pulses_for_sales_opp_tribal_market_kolli_hills_JEG3339_.jpg" target="_blank" rel="noopener">CC BY-SA 3.0</a></li>
+</ul><p>Variations that use one of the site's own earlier photographs list only the new picture.</p></div>
+<div class="closehint">Click or press Esc to close</div>
+<script>
+document.querySelectorAll('.hero').forEach(function(h){
+  function toggle(){ var on=!h.classList.contains('full'); document.querySelectorAll('.hero.full').forEach(function(x){x.classList.remove('full')}); if(on) h.classList.add('full'); document.body.classList.toggle('isfull',on); }
+  h.addEventListener('click',toggle);
+  h.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){e.preventDefault();toggle();} });
+});
+document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ document.querySelectorAll('.hero.full').forEach(function(x){x.classList.remove('full')}); document.body.classList.remove('isfull'); } });
+</script>
+</body>
+</html>

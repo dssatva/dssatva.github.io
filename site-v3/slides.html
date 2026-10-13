@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- ============================================================
+     EVERY PRODUCT AS A HERO SLIDE — a review page, 22 Sep 2026.
+     The owner: "Keep the exact plant on the background and the item
+     in that arch for the spices and all the other items in a
+     seperate page ... I will review and tell what slides to keep in
+     the front."
+
+     Generated from the JOURNEYS data in js/satva.js, so it cannot
+     drift from the real journeys: the background is each product's
+     FIRST stage (the crop growing) and the arch is its LAST (the
+     thing in the packet). Nothing here is hand-picked.
+
+     This page does not use satva.js at all - it carries its own
+     twenty lines of switching, so nothing on the live site can be
+     affected by it.
+
+     Not linked from anywhere. Delete when the slides are chosen.
+     ============================================================ -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>All 21 as hero slides — DS Satva</title>
+<link rel="icon" href="assets/mark-dark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/satva.css">
+<link rel="stylesheet" href="css/hero-dark.css">
+<style>
+  /* ONE VIEWPORT, NO PAGE SCROLL. First cut used a fixed stage height and the
+     tab strip landed at exactly y=900 on a 900px window - every button below
+     the fold and unclickable. Measured: head 123 + stage 774 + bar 127 = 1023
+     against 900. So the page is now a flex column the height of the window,
+     the stage takes whatever is left, and the tabs are pinned where they can
+     always be reached. */
+  html,body{height:100%;}
+  body{margin:0;background:#16180f;height:100svh;display:flex;flex-direction:column;overflow:hidden;}
+  .revhead{flex:none;max-width:1280px;width:100%;margin:0 auto;padding:14px 24px 10px;color:#f4f3e7;
+    font-family:"Jost",system-ui,sans-serif;box-sizing:border-box;}
+  .revhead h1{margin:0 0 5px;font:400 clamp(1.05rem,2.2vh,1.35rem)/1.2 "Fraunces",Georgia,serif;
+    font-variation-settings:"SOFT" 45,"WONK" 1;color:#f1ddab;}
+  .revhead p{margin:0;font-size:clamp(.76rem,1.5vh,.86rem);line-height:1.5;
+    color:rgba(244,243,231,.72);max-width:88ch;}
+  /* satva.css sets `.shelves.is-hero{min-height:calc(100svh - 81px)}` - two
+     classes, so a plain `.shelves` override loses to it and the block stayed
+     819px tall no matter what the flex column asked for. Matching its
+     specificity is what actually releases it. */
+  .shelves.is-hero{position:relative;flex:1 1 auto;min-height:0;}
+  .shstage{position:relative;height:100%;overflow:hidden;}
+  .shelf{position:absolute;inset:0;opacity:0;visibility:hidden;
+    transition:opacity .7s cubic-bezier(.66,0,.24,1),visibility .7s;}
+  .shelf.is-on{opacity:1;visibility:visible;}
+  .sh-copy .meta{margin-top:14px;font-size:.82rem;line-height:1.6;color:#cdbfa4;}
+  .sh-copy .meta b{color:var(--gold-pale);font-weight:600;}
+  .sh-copy .pill{cursor:default;}
+  /* Pinned, and its own scroller - twenty-one names wrap to three rows on a
+     narrow window and would otherwise push the stage off the screen. */
+  .revbar{flex:none;max-width:1280px;width:100%;margin:0 auto;padding:10px 24px 12px;
+    box-sizing:border-box;max-height:34vh;overflow-y:auto;}
+  .revtabs{display:flex;flex-wrap:wrap;gap:6px;}
+  .revtabs .etab{padding:7px 13px;border:1px solid rgba(232,220,198,.28);border-radius:999px;
+    background:none;color:#e8dcc6;font:500 .8rem/1 "Jost",sans-serif;cursor:pointer;
+    transition:background .2s,border-color .2s,color .2s;}
+  .revtabs .etab:hover{border-color:var(--gold-lt);color:#fff;}
+  .revtabs .etab[aria-selected="true"]{background:var(--gold-lt);border-color:var(--gold-lt);color:#221806;}
+</style>
+</head>
+<body>
+<div class="revhead">
+  <h1>All 21, each as a hero slide</h1>
+  <p>Built straight from the journey data: the background is every product&rsquo;s <b>first</b> stage &mdash; the crop growing &mdash; and the arch is its <b>last</b>, the thing in the packet. Click a name, or use the arrow keys.</p>
+</div>
+
+<section class="shelves is-hero" aria-label="Every product">
+  <div class="shstage" id="stage">
+    <article class="shelf plant is-on" data-i="0" data-label="Turmeric"
+             style="--acc:#e8a713">
+      <div class="sh-shot"><img src="assets/j-turmeric-1-field.jpg" alt="It grows as a root, not a spice" loading="eager"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 6 stages</p>
+          <h2 class="dsp">Turmeric<em><span class="dv">हल्दी</span></em></h2>
+          <p>The everyday base — dal, sabzi and every tadka starts here.</p>
+          <p class="meta"><b>Background</b> It grows as a root, not a spice<br>
+             <b>In the arch</b> Ground slowly, so it keeps its oils</p>
+          <span class="pill"><span>Ground</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 1 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-turmeric-6-ground.jpg" alt="Ground slowly, so it keeps its oils" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="1" data-label="Chilli Powder"
+             style="--acc:#c3341a">
+      <div class="sh-shot"><img src="assets/j-chilli-1-field.jpg" alt="Picked red, never green" loading="eager"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 4 stages</p>
+          <h2 class="dsp">Chilli Powder<em><span class="dv">लाल मिर्च</span></em></h2>
+          <p>Colour and heat, ground from whole dried chillies.</p>
+          <p class="meta"><b>Background</b> Picked red, never green<br>
+             <b>In the arch</b> Ground with the seed left in</p>
+          <span class="pill"><span>Ground</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 2 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/arch-spices-chilli-powder.jpg" alt="Ground with the seed left in" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="2" data-label="Coriander Powder"
+             style="--acc:#93a04b">
+      <div class="sh-shot"><img src="assets/j-coriander-1-flower.jpg" alt="It flowers before it seeds" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 3 stages</p>
+          <h2 class="dsp">Coriander Powder<em><span class="dv">धनिया पावडर</span></em></h2>
+          <p>Warm and nutty — the quiet base under a good curry.</p>
+          <p class="meta"><b>Background</b> It flowers before it seeds<br>
+             <b>In the arch</b> Roasted short, ground cool</p>
+          <span class="pill"><span>Ground</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 3 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/p-dhane.jpg" alt="Roasted short, ground cool" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="3" data-label="Coriander Seeds"
+             style="--acc:#8a9a52">
+      <div class="sh-shot"><img src="assets/j-coriander-1-flower.jpg" alt="It flowers before it seeds" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 3 stages</p>
+          <h2 class="dsp">Coriander Seeds<em><span class="dv">धनिया</span></em></h2>
+          <p>Whole dhaniya — crush it fresh, or roast it for a masala.</p>
+          <p class="meta"><b>Background</b> It flowers before it seeds<br>
+             <b>In the arch</b> The grinding is yours to do</p>
+          <span class="pill"><span>Whole</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 4 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-coriander-4-whole.jpg" alt="The grinding is yours to do" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="4" data-label="Cumin Seeds"
+             style="--acc:#a3763f">
+      <div class="sh-shot"><img src="assets/j-cumin-1-field.jpg" alt="A field of small white flowers" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 3 stages</p>
+          <h2 class="dsp">Cumin Seeds<em><span class="dv">जीरा</span></em></h2>
+          <p>Whole, for the first crackle in hot oil.</p>
+          <p class="meta"><b>Background</b> A field of small white flowers<br>
+             <b>In the arch</b> Sieved, graded, and nothing more</p>
+          <span class="pill"><span>Whole</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 5 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-cumin-2-seed.jpg" alt="Sieved, graded, and nothing more" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="5" data-label="Mustard Seeds"
+             style="--acc:#c9962a">
+      <div class="sh-shot"><img src="assets/j-mustard-1-field.jpg" alt="A field of yellow, all at once" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 3 stages</p>
+          <h2 class="dsp">Mustard Seeds<em><span class="dv">राई</span></em></h2>
+          <p>Small, sharp and made for tadka.</p>
+          <p class="meta"><b>Background</b> A field of yellow, all at once<br>
+             <b>In the arch</b> Threshed, winnowed, and left alone</p>
+          <span class="pill"><span>Whole</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 6 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-mustard-3-seed.jpg" alt="Threshed, winnowed, and left alone" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="6" data-label="Black Pepper"
+             style="--acc:#6b6259">
+      <div class="sh-shot"><img src="assets/j-pepper-1-vine.jpg" alt="It climbs, and it waits" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 3 stages</p>
+          <h2 class="dsp">Black Pepper<em><span class="dv">काली मिर्च</span></em></h2>
+          <p>Whole peppercorns — grind them over the dish, not into the pot.</p>
+          <p class="meta"><b>Background</b> It climbs, and it waits<br>
+             <b>In the arch</b> Graded, never ground</p>
+          <span class="pill"><span>Whole</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 7 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-pepper-3-corns.jpg" alt="Graded, never ground" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="7" data-label="Garam Masala"
+             style="--acc:#7d5630">
+      <div class="sh-shot"><img src="assets/cat-whole.jpg" alt="Eight or nine spices, whole" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 2 stages</p>
+          <h2 class="dsp">Garam Masala<em><span class="dv">गरम मसाला</span></em></h2>
+          <p>The finishing spoon — stirred in at the end, not boiled away.</p>
+          <p class="meta"><b>Background</b> Eight or nine spices, whole<br>
+             <b>In the arch</b> Ground cool, in small batches</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 8 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/cat-whole.jpg" alt="Ground cool, in small batches" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="8" data-label="Biryani Masala"
+             style="--acc:#e2912b">
+      <div class="sh-shot"><img src="assets/p-biryani.jpg" alt="Cardamom and cinnamon lead" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 2 stages</p>
+          <h2 class="dsp">Biryani Masala<em><span class="dv">बिरयानी मसाला</span></em></h2>
+          <p>For layered rice — whole spices ground for aroma, not just heat.</p>
+          <p class="meta"><b>Background</b> Cardamom and cinnamon lead<br>
+             <b>In the arch</b> Ground on stone, in small batches</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 9 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/cat-blend.jpg" alt="Ground on stone, in small batches" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="9" data-label="Meat Masala"
+             style="--acc:#8f2e28">
+      <div class="sh-shot"><img src="assets/p-chilli-whole.jpg" alt="Chilli, coriander and cumin, by weight" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 2 stages</p>
+          <h2 class="dsp">Meat Masala<em><span class="dv">मीट मसाला</span></em></h2>
+          <p>Built for slow-cooked mutton and chicken curry.</p>
+          <p class="meta"><b>Background</b> Chilli, coriander and cumin, by weight<br>
+             <b>In the arch</b> Pounded, not pulverised</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 10 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/cat-ground.jpg" alt="Pounded, not pulverised" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="10" data-label="Sambar Masala"
+             style="--acc:#c05a24">
+      <div class="sh-shot"><img src="assets/j-chana-3-dal.jpg" alt="The dal goes in the pan too" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 2 stages</p>
+          <h2 class="dsp">Sambar Masala<em><span class="dv">सांबार मसाला</span></em></h2>
+          <p>For sambar and the South Indian pot — roasted dal in the blend.</p>
+          <p class="meta"><b>Background</b> The dal goes in the pan too<br>
+             <b>In the arch</b> Stone-ground, so the dal does not gum</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 11 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-chana-3-dal.jpg" alt="Stone-ground, so the dal does not gum" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="11" data-label="Chatpat Masala"
+             style="--acc:#b8453c">
+      <div class="sh-shot"><img src="assets/cat-blend.jpg" alt="Cumin, black salt, and the sour one" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Spices &middot; 2 stages</p>
+          <h2 class="dsp">Chatpat Masala<em><span class="dv">चटपट मसाला</span></em></h2>
+          <p>Sharp and tangy — for chivda, raw mango, anything that needs a lift.</p>
+          <p class="meta"><b>Background</b> Cumin, black salt, and the sour one<br>
+             <b>In the arch</b> Ground, with the amchur folded in last</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 12 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/cat-blend.jpg" alt="Ground, with the amchur folded in last" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="12" data-label="Toor Dal"
+             style="--acc:#cf8f34">
+      <div class="sh-shot"><img src="assets/j-toor-1-plant.jpg" alt="Flowers and pods at the same time" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Pulses &middot; 3 stages</p>
+          <h2 class="dsp">Toor Dal<em><span class="dv">तूर दाल</span></em></h2>
+          <p>Unpolished arhar — the everyday varan, cooked soft.</p>
+          <p class="meta"><b>Background</b> Flowers and pods at the same time<br>
+             <b>In the arch</b> Split — and nothing after that</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 13 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-toor-3-dal.jpg" alt="Split — and nothing after that" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="13" data-label="Chana Dal"
+             style="--acc:#cbab3c">
+      <div class="sh-shot"><img src="assets/j-chana-2-pods.jpg" alt="One pink flower, one pod" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Pulses &middot; 3 stages</p>
+          <h2 class="dsp">Chana Dal<em><span class="dv">चना दाल</span></em></h2>
+          <p>Split gram, unpolished — for dal, puran and amti.</p>
+          <p class="meta"><b>Background</b> One pink flower, one pod<br>
+             <b>In the arch</b> Split, and left dull</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 14 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-chana-3-dal.jpg" alt="Split, and left dull" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="14" data-label="Chia Seeds"
+             style="--acc:#68737e">
+      <div class="sh-shot"><img src="assets/j-chia-1-plant.jpg" alt="A sage, with blue flowers" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Seeds &middot; 3 stages</p>
+          <h2 class="dsp">Chia Seeds<em><span class="dv">चिया बीज</span></em></h2>
+          <p>Stir into water, curd or a smoothie.</p>
+          <p class="meta"><b>Background</b> A sage, with blue flowers<br>
+             <b>In the arch</b> Sieved, and that is the end of it</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 15 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-chia-3-seed.jpg" alt="Sieved, and that is the end of it" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="15" data-label="Flax Seeds"
+             style="--acc:#a08256">
+      <div class="sh-shot"><img src="assets/j-flax-1-flower.jpg" alt="Blue for a single morning" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Seeds &middot; 3 stages</p>
+          <h2 class="dsp">Flax Seeds<em><span class="dv">अलसी</span></em></h2>
+          <p>Roast and grind for chutney, or stir into roti dough.</p>
+          <p class="meta"><b>Background</b> Blue for a single morning<br>
+             <b>In the arch</b> Cleaned cold, and never ground</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 16 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-flax-3-seed.jpg" alt="Cleaned cold, and never ground" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="16" data-label="Quinoa"
+             style="--acc:#c2a878">
+      <div class="sh-shot"><img src="assets/j-quinoa-1-field.jpg" alt="A goosefoot, not a grass" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Seeds &middot; 3 stages</p>
+          <h2 class="dsp">Quinoa<em><span class="dv">क्विनोआ</span></em></h2>
+          <p>Cooks like rice, in about fifteen minutes.</p>
+          <p class="meta"><b>Background</b> A goosefoot, not a grass<br>
+             <b>In the arch</b> Washed until the bitterness goes</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 17 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-quinoa-3-grain.jpg" alt="Washed until the bitterness goes" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="17" data-label="Methi Seeds"
+             style="--acc:#b08b2e">
+      <div class="sh-shot"><img src="assets/j-methi-1-plant.jpg" alt="A clover, not a grass" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Seeds &middot; 3 stages</p>
+          <h2 class="dsp">Methi Seeds<em><span class="dv">मेथी दाना</span></em></h2>
+          <p>A bitter edge for pickles, dal and tadka.</p>
+          <p class="meta"><b>Background</b> A clover, not a grass<br>
+             <b>In the arch</b> Dried, cleaned, graded</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 18 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-methi-2-seed.jpg" alt="Dried, cleaned, graded" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="18" data-label="Himalayan Pink Salt"
+             style="--acc:#d98a8a">
+      <div class="sh-shot"><img src="assets/j-salt-1-range.jpg" alt="The Salt Range, in Punjab" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Healthy Essentials &middot; 3 stages</p>
+          <h2 class="dsp">Himalayan Pink Salt<em><span class="dv">गुलाबी नमक</span></em></h2>
+          <p>Unrefined rock salt, ground coarse or fine.</p>
+          <p class="meta"><b>Background</b> The Salt Range, in Punjab<br>
+             <b>In the arch</b> Crushed and graded. Nothing else.</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 19 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-salt-3-rock.jpg" alt="Crushed and graded. Nothing else." loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="19" data-label="Coconut Sugar"
+             style="--acc:#b07a42">
+      <div class="sh-shot"><img src="assets/j-coco-1-flower.jpg" alt="The flower, not the fruit" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Healthy Essentials &middot; 2 stages</p>
+          <h2 class="dsp">Coconut Sugar<em><span class="dv">नारियल शक्कर</span></em></h2>
+          <p>From the sap of the coconut palm, dried and never bleached.</p>
+          <p class="meta"><b>Background</b> The flower, not the fruit<br>
+             <b>In the arch</b> Cut, and collected</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 20 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-coco-1-flower.jpg" alt="Cut, and collected" loading="lazy"></div>
+      </div>
+    </article>
+    <article class="shelf plant" data-i="20" data-label="Monk Fruit Sweetener"
+             style="--acc:#7fa06a">
+      <div class="sh-shot"><img src="assets/j-monk-1-fruit.jpg" alt="A small melon, picked hard" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <p class="kick">Healthy Essentials &middot; 3 stages</p>
+          <h2 class="dsp">Monk Fruit Sweetener<em><span class="dv">मंक फ्रूट</span></em></h2>
+          <p>Sweetness from the fruit itself, with no sugar in it at all.</p>
+          <p class="meta"><b>Background</b> A small melon, picked hard<br>
+             <b>In the arch</b> Juiced, then dried to a powder</p>
+          <span class="pill"><span>Blend</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></span>
+          <p class="sh-count">Slide 21 of 21</p>
+        </div>
+        <div class="sh-arch"><img src="assets/j-monk-3-powder.jpg" alt="Juiced, then dried to a powder" loading="lazy"></div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="revbar"><div class="revtabs" id="tabs" role="tablist"><button class="etab" type="button" role="tab" data-i="0" aria-selected="true">Turmeric</button><button class="etab" type="button" role="tab" data-i="1" aria-selected="false">Chilli Powder</button><button class="etab" type="button" role="tab" data-i="2" aria-selected="false">Coriander Powder</button><button class="etab" type="button" role="tab" data-i="3" aria-selected="false">Coriander Seeds</button><button class="etab" type="button" role="tab" data-i="4" aria-selected="false">Cumin Seeds</button><button class="etab" type="button" role="tab" data-i="5" aria-selected="false">Mustard Seeds</button><button class="etab" type="button" role="tab" data-i="6" aria-selected="false">Black Pepper</button><button class="etab" type="button" role="tab" data-i="7" aria-selected="false">Garam Masala</button><button class="etab" type="button" role="tab" data-i="8" aria-selected="false">Biryani Masala</button><button class="etab" type="button" role="tab" data-i="9" aria-selected="false">Meat Masala</button><button class="etab" type="button" role="tab" data-i="10" aria-selected="false">Sambar Masala</button><button class="etab" type="button" role="tab" data-i="11" aria-selected="false">Chatpat Masala</button><button class="etab" type="button" role="tab" data-i="12" aria-selected="false">Toor Dal</button><button class="etab" type="button" role="tab" data-i="13" aria-selected="false">Chana Dal</button><button class="etab" type="button" role="tab" data-i="14" aria-selected="false">Chia Seeds</button><button class="etab" type="button" role="tab" data-i="15" aria-selected="false">Flax Seeds</button><button class="etab" type="button" role="tab" data-i="16" aria-selected="false">Quinoa</button><button class="etab" type="button" role="tab" data-i="17" aria-selected="false">Methi Seeds</button><button class="etab" type="button" role="tab" data-i="18" aria-selected="false">Himalayan Pink Salt</button><button class="etab" type="button" role="tab" data-i="19" aria-selected="false">Coconut Sugar</button><button class="etab" type="button" role="tab" data-i="20" aria-selected="false">Monk Fruit Sweetener</button></div></div>
+
+<script>
+(function () {
+  var slides = [].slice.call(document.querySelectorAll('#stage .shelf'));
+  var tabs   = [].slice.call(document.querySelectorAll('#tabs .etab'));
+  var cur = 0;
+  function go(n) {
+    cur = (n + slides.length) % slides.length;
+    slides.forEach(function (s, i) { s.classList.toggle('is-on', i === cur); });
+    tabs.forEach(function (t, i) { t.setAttribute('aria-selected', i === cur ? 'true' : 'false'); });
+    tabs[cur].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  }
+  tabs.forEach(function (t, i) { t.addEventListener('click', function () { go(i); }); });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft')  go(cur - 1);
+  });
+})();
+</script>
+</body></html>

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- 9 Oct 2026. Owner: "can you resize the picture and give me some variations
+     so that i will see which one i like. atleast 30 modifications in a page".
+     The Our Mission block, drawn at the owner's screen size (1245 x 569: the
+     657px window less the 88px menu), with the founder photo sized and framed
+     differently each time. Review page only - not linked, noindex. Built by a
+     script from the scratchpad; photos are assets/mission-founder-*.jpg/png
+     (his own photo, background removed, 9 Oct). Click one for full size. -->
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mission Block Variations</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#eef0ea;color:#1e2c16;font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+header.top{max-width:1400px;margin:0 auto;padding:36px 0 8px}
+header.top .k{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#7f5a0f;font-weight:500}
+header.top h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0;color:#2c4220}
+header.top p{color:#4f5848;max-width:76ch;line-height:1.65}
+.list{max-width:1400px;margin:30px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,600px),1fr));gap:38px 30px}
+figure{margin:0}
+figcaption{margin-top:12px;color:#4f5848;font-size:.95rem;line-height:1.45}
+figcaption b{color:#7f5a0f;font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+.frame{position:relative;aspect-ratio:1245/569;overflow:hidden;border-radius:12px;cursor:zoom-in;box-shadow:0 18px 40px -26px rgba(30,44,22,.55);outline:none}
+.frame:focus-visible{box-shadow:0 0 0 3px #c99a2e}
+.stage{position:absolute;left:0;top:0;width:1245px;height:569px;transform-origin:0 0;transform:scale(var(--s,.48));overflow:hidden;
+  background:linear-gradient(160deg,#d8e5d6,#c9dbc5);color:#1e2c16;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:48px;padding:0 70px 0 50px}
+.frame.full{position:fixed;inset:0;z-index:50;border-radius:0;aspect-ratio:auto;background:rgba(14,20,10,.88);cursor:zoom-out}
+.frame.full .stage{left:50%;top:50%;transform:translate(-50%,-50%) scale(var(--s))}
+body.isfull{overflow:hidden}
+.hint{display:none;position:fixed;z-index:60;top:14px;right:16px;background:rgba(0,0,0,.65);color:#fff;padding:8px 14px;border-radius:99px;font-size:.9rem}
+body.isfull .hint{display:block}
+
+/* the mission copy, as on the site */
+.copy{max-width:560px}
+.kk{font:500 12px/1 "Jost";letter-spacing:.3em;text-transform:uppercase;color:#7f5a0f}
+.q{margin-top:14px;font:600 35px/1.22 "Fraunces",serif;color:#1e2c16}
+.pp{margin-top:20px;font-size:15.5px;line-height:1.75;color:#2c4220}
+.pp b{font-weight:600}
+.aside{display:flex;align-items:flex-end;gap:30px;position:relative;z-index:2}
+.sign{padding:0 0 18px 18px;border-left:2px solid #f1ddab}
+.sign img{height:46px;display:block;opacity:.92}
+.sign p{margin-top:10px;font:600 11.5px/1.6 "Jost";letter-spacing:.08em;text-transform:uppercase;color:#4e6848;max-width:19ch}
+.sign b{display:block;color:#3c5128;letter-spacing:.1em}
+.sign span{display:block}
+.nav{position:absolute;left:50px;bottom:22px;display:flex;align-items:center;gap:8px}
+.nav .d{width:9px;height:9px;border-radius:9px;background:#fff;display:block}
+.nav .d.on{width:30px;background:#7f5a0f}
+.nav .a{width:38px;height:38px;border-radius:50%;background:#fff;display:grid;place-items:center;font:400 20px/1 "Jost";color:#2c4220;margin-left:8px;font-style:normal}
+
+/* the frame - default is today's */
+.shot{position:relative;height:357px;aspect-ratio:3/4;border-radius:18px;overflow:hidden;flex:none;
+  box-shadow:16px 16px 0 #f1ddab,0 26px 50px -30px rgba(30,44,22,.55);margin:0 16px 16px 0}
+.shot img{display:block;width:100%;height:100%;object-fit:cover}
+
+/* special frames */
+.shot.pol{height:auto;aspect-ratio:auto;width:270px;background:#fff;padding:12px 12px 46px;border-radius:4px;transform:rotate(-3deg);overflow:visible;box-shadow:0 26px 44px -22px rgba(30,44,22,.6)}
+.shot.pol img{height:320px}
+.shot.pol span{position:absolute;left:0;right:0;bottom:15px;text-align:center;font:italic 400 17px/1 "Fraunces",serif;color:#7f5a0f}
+.shot.pop,.shot.poparch,.shot.blob,.shot.wm{height:420px;aspect-ratio:auto;width:330px;box-shadow:none;margin:0;border-radius:0 0 165px 165px;overflow:hidden}
+.shot.pop i{position:absolute;left:0;right:0;bottom:0;height:330px;border-radius:50%;background:radial-gradient(circle at 40% 35%,#f4dc9a,#d9a531)}
+.shot.pop img,.shot.poparch img,.shot.blob img,.shot.wm img,.shot.rise img{position:absolute;bottom:0;left:50%;transform:translateX(-46%);width:116%;height:auto}
+.shot.poparch{border-radius:0 0 18px 18px}
+.shot.poparch i{position:absolute;left:0;right:0;bottom:0;height:360px;border-radius:165px 165px 18px 18px;background:linear-gradient(180deg,#fbf6ee,#efe4cf)}
+.shot.blob{border-radius:0;overflow:visible}
+.shot.blob i{position:absolute;left:-20px;right:-30px;bottom:0;height:330px;border-radius:58% 42% 50% 50%/55% 60% 40% 45%;background:#b6cdb0}
+.shot.blob img{clip-path:inset(0 0 0 0 round 0 0 40px 40px)}
+.shot.rise{height:569px;width:420px;aspect-ratio:auto;box-shadow:none;margin:0 0 -0px 0;border-radius:0;align-self:end}
+.shot.rise i{display:none}
+.shot.rise img{width:100%;transform:translateX(-50%)}
+.rise .aside,.aside_bottom .aside{align-self:end;align-items:center}
+.aside_bottom{padding-right:40px}
+.aside_bottom .sign{margin-bottom:60px}
+.shot.wm{border-radius:0;overflow:visible}
+.shot.wm i{display:none}
+.wmtext{position:absolute;right:30px;top:60px;font:700 170px/1 "Fraunces",serif;color:rgba(255,255,255,.45);letter-spacing:.02em}
+.wm .shot.wm{height:500px;width:375px;align-self:end}
+.wm .aside{align-self:end;align-items:center}
+.wm .sign{margin-bottom:40px;background:rgba(216,229,214,.85);padding-top:12px}
+
+/* layouts */
+.half{padding-right:0;grid-template-columns:minmax(0,1fr) 470px;gap:40px}
+.half .halfimg{grid-column:2;grid-row:1;height:569px}
+.half .halfimg img{width:100%;height:100%;object-fit:cover;object-position:60% 30%}
+.half .aside{position:absolute;right:500px;bottom:60px;display:none}
+.half.swap{grid-template-columns:420px minmax(0,1fr);padding:0 70px 0 0}
+.half.swap .halfimg{grid-column:1}
+.half.swap .copy{grid-column:2}
+.swap:not(.half){grid-template-columns:auto minmax(0,1fr);padding:0 60px 0 80px}
+.swap:not(.half) .aside{grid-column:1;grid-row:1;flex-direction:row-reverse}
+.swap:not(.half) .shot{margin:0 0 16px 16px}
+.swap:not(.half) .sign{border-left:0;border-right:2px solid #f1ddab;padding:0 18px 18px 0;text-align:right}
+.swap:not(.half) .sign img{margin-left:auto}
+.swap .nav{left:auto;right:60px}
+.stack .aside{flex-direction:column;align-items:center;gap:26px}
+.stack .sign{border:0;padding:0;text-align:center;display:flex;align-items:center;gap:14px}
+.stack .sign img{height:40px}
+.stack .sign p{margin:0;text-align:left}
+.card .aside{}
+.stage .card{background:#fbf6ee;border-radius:24px;padding:22px;display:flex;flex-direction:column;align-items:center;gap:18px;box-shadow:0 30px 60px -34px rgba(30,44,22,.6)}
+.card .card .sign{border:0;padding:0;display:flex;align-items:center;gap:12px}
+.card .card .sign img{height:38px}
+.card .card .sign p{margin:0}
+.tiny .aside{flex-direction:row;align-items:center;background:#fbf6ee;border-radius:999px;padding:14px 34px 14px 14px;gap:22px;box-shadow:0 24px 50px -34px rgba(30,44,22,.6)}
+.tiny .shot{margin:0}
+.tiny .sign{border:0;padding:0}
+.center{grid-template-columns:1fr;justify-items:center;text-align:center;padding:0 120px}
+.center .copy{max-width:900px}
+.center .q{font-size:40px}
+.center .aside{justify-content:center;align-items:center;margin-top:30px;gap:20px}
+.center .shot{margin:0}
+.center .sign{border:0;padding:0;text-align:left}
+.center .nav{left:50%;transform:translateX(-50%)}
+.edge{grid-template-columns:minmax(0,1fr) 300px;padding-right:0}
+.edge .edgeimg{position:absolute;right:-170px;top:50%;transform:translateY(-50%);width:520px;height:520px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 14px rgba(255,255,255,.35)}
+.edge .edgeimg img{width:100%;height:100%;object-fit:cover;object-position:62% 30%}
+.edge .aside{position:absolute;right:390px;bottom:50px;display:none}
+.edge .copy{max-width:640px}
+
+
+.stage{grid-template-columns:auto minmax(0,1fr);gap:56px;padding:0 70px 0 66px}
+.ph{position:relative;z-index:2}
+.po{position:relative;height:375px;aspect-ratio:3/4;isolation:isolate;margin:0 0 16px 0;box-shadow:0 26px 50px -30px rgba(30,44,22,.55);border-radius:16px}
+.po img{display:block;width:100%;height:100%;object-fit:cover;border-radius:16px}
+.po::after{content:"";position:absolute;inset:16px 16px -16px -16px;border:1.5px solid #c99a2e;border-radius:16px;z-index:-1}
+.copy{position:relative;z-index:2;max-width:600px}
+.q em{font-style:italic;color:#9a6c12}
+.x-dark .q em{color:#e3c27a}
+.ul{background:linear-gradient(transparent 62%,rgba(223,180,89,.55) 62%,rgba(223,180,89,.55) 92%,transparent 92%);padding:0 2px}
+.x-dark .ul{background:linear-gradient(transparent 62%,rgba(223,180,89,.35) 62%,rgba(223,180,89,.35) 92%,transparent 92%)}
+.chips{display:flex;gap:10px;margin-top:22px}
+.chips span{font:500 12px/1 "Jost";letter-spacing:.18em;text-transform:uppercase;color:#2c4220;background:rgba(255,255,255,.6);border:1px solid rgba(201,154,46,.5);padding:10px 16px;border-radius:999px}
+.x-dark .chips span{color:#f6efe2;background:rgba(255,255,255,.06)}
+.lg{display:block;height:54px;margin-bottom:18px}
+.bq{position:absolute;left:-58px;top:6px;font:700 190px/1 "Fraunces",serif;color:rgba(201,154,46,.22);z-index:-1;pointer-events:none}
+.cardc{background:rgba(251,246,238,.92);border-radius:26px;padding:38px 42px;box-shadow:0 30px 60px -36px rgba(30,44,22,.55)}
+.sprig{position:absolute;right:46px;top:40px;width:96px;height:130px;opacity:.85;z-index:1}
+.wmhi{position:absolute;right:30px;bottom:40px;font:400 130px/1 "Tiro Devanagari Hindi",serif;color:rgba(44,66,32,.07);white-space:nowrap;z-index:0}
+.archbg{position:absolute;left:30px;top:70px;width:330px;height:499px;border-radius:165px 165px 0 0;background:rgba(251,246,238,.55);z-index:0}
+.rl{display:block;width:70px;height:2px;background:#c99a2e;margin:22px 0 0}
+.pp.it{font-family:"Fraunces",serif;font-style:italic;font-size:17px}
+.nav{left:66px}
+.f4{background:linear-gradient(160deg,#fbf6ee,#efe4cf)}
+.f5{background:radial-gradient(ellipse at 70% 40%,#34502a,#1f3017)}.f5 .q{color:#f6efe2}.f5 .pp{color:#d9d2c0}.f5 .pp b{color:#f1ddab}.f5 .kk{color:#e3c27a}
+.f13{background:linear-gradient(90deg,#bfd3ba 0,#bfd3ba 34%,#d8e5d6 34%,#cfe0cb 100%)}
+.f16 .q{font-style:italic;font-weight:400;font-size:38px;line-height:1.25}
+.f17 .q{font-size:44px;line-height:1.15}.f17 .copy{max-width:640px}
+.f18{background-image:radial-gradient(rgba(44,66,32,.09) 1px,transparent 1.4px),linear-gradient(160deg,#d8e5d6,#c9dbc5);background-size:14px 14px,auto}
+.f19{background:linear-gradient(110deg,#d8e5d6 0%,#e3e7d8 55%,#f3dfdc 100%)}
+.f20 .q{font-size:31px}.f20 .cardc{padding:28px 36px}.f20 .lg{height:44px;margin-bottom:12px}
+.f21{background:radial-gradient(ellipse at 70% 40%,#34502a,#1f3017)}.f21 .q{color:#f6efe2}.f21 .pp{color:#d9d2c0}.f21 .pp b{color:#f1ddab}.f21 .kk{color:#e3c27a}
+.f22{background:linear-gradient(160deg,#fbf6ee,#efe4cf)}
+</style>
+</head>
+<body>
+<header class="top">
+  <p class="k">Our mission &middot; block design &middot; review page</p>
+  <h1>22 ways to dress the mission block</h1>
+  <p>The block as it is now on the site &mdash; photo on the left with the gold outline &mdash; made more attractive in different ways: the background, gold accents in the words, a quote mark, a card, the logo, three small promises, a sprig of leaves. The words are yours and unchanged. Click any one to see it full size, then tell me its number (or a mix).</p>
+</header>
+<span class="hint">Click or press Esc to close</span>
+<main class="list">
+<figure><div class="frame" tabindex="0"><div class="stage f1 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>1 &middot; As it is now</b>For comparison.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f2 x-bigq"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><span class="bq">&ldquo;</span><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>2 &middot; Big gold quote mark</b>A large, soft gold quotation mark behind the words.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f3 x-card"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy cardc"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>3 &middot; Ivory card</b>The words sit on a soft ivory card.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f4 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>4 &middot; Cream ground</b>The whole block in warm cream instead of mint.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f5 x-dark"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>5 &middot; Deep green</b>Brand green with ivory words and gold accents.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f6 x-qhl"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in <em>pure, farm-fresh and nutrient-rich</em> daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>6 &middot; Words in gold</b>The heart of the promise set in gold italic.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f7 x-khl"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b class="ul">it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>7 &middot; Kitchen underlined</b>A gold brush-stroke under “it is built in your kitchen”.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f8 x-qhl x-khl"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in <em>pure, farm-fresh and nutrient-rich</em> daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b class="ul">it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>8 &middot; Gold highlights both</b>Gold italic in the quote and the underline in the line below.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f9 x-chips"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p><div class="chips"><span>Pure</span><span>Farm-fresh</span><span>Nutrient-rich</span></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>9 &middot; Three promises</b>Pure · Farm-fresh · Nutrient-rich as three small chips under the words.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f10 x-logo"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><img class="lg" src="assets/logo-stack-dark.png" alt=""><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>10 &middot; Logo above</b>The SATVA logo leads the block, above “Our mission”.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f11 x-sprig"><svg class="sprig" viewBox="0 0 120 160" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round"><path d="M60 155C60 110 58 70 62 8"/><path d="M61 120c-14-4-26-16-30-34 16 2 27 14 30 34z"/><path d="M61 95c14-5 25-17 28-35-15 3-26 15-28 35z"/><path d="M61 68c-12-5-21-15-24-30 13 2 22 12 24 30z"/><path d="M62 42c10-5 17-14 19-27-11 3-18 11-19 27z"/></svg><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>11 &middot; A sprig of leaves</b>A hand-drawn gold sprig in the corner - a nod to farm-fresh.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f12 x-wmhi"><span class="wmhi">दिल से शुद्ध</span><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>12 &middot; Faint Hindi behind</b>“दिल से शुद्ध” written large and faint behind the words.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f13 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>13 &middot; Deeper panel behind photo</b>A deeper green band behind the photo side.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f14 x-archbg"><span class="archbg"></span><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>14 &middot; Soft arch behind photo</b>A pale arch rising behind the photo.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f15 x-rule"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><i class="rl"></i><p class="pp it">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>15 &middot; Gold rule and signature line</b>A gold rule under the quote; the line below in italic.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f16 x-qhl"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in <em>pure, farm-fresh and nutrient-rich</em> daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>16 &middot; Editorial italic</b>The quote in a lighter italic - calm and elegant.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f17 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>17 &middot; Larger quote</b>Bigger words, less else - very bold.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f18 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>18 &middot; Dotted texture</b>A fine dotted pattern over the mint, like handmade paper.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f19 "><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>19 &middot; Mint and blush</b>Mint fading into soft pink, ties to Satva Saheli.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f20 x-card x-logo x-chips"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy cardc"><img class="lg" src="assets/logo-stack-dark.png" alt=""><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p><div class="chips"><span>Pure</span><span>Farm-fresh</span><span>Nutrient-rich</span></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>20 &middot; Card with logo and chips</b>Ivory card, logo above, three promises below.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f21 x-dark x-qhl x-sprig"><svg class="sprig" viewBox="0 0 120 160" fill="none" stroke="#c99a2e" stroke-width="1.6" stroke-linecap="round"><path d="M60 155C60 110 58 70 62 8"/><path d="M61 120c-14-4-26-16-30-34 16 2 27 14 30 34z"/><path d="M61 95c14-5 25-17 28-35-15 3-26 15-28 35z"/><path d="M61 68c-12-5-21-15-24-30 13 2 22 12 24 30z"/><path d="M62 42c10-5 17-14 19-27-11 3-18 11-19 27z"/></svg><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><p class="q">&ldquo;To become India&rsquo;s most trusted household name in <em>pure, farm-fresh and nutrient-rich</em> daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>21 &middot; Green with sprig and gold words</b>Deep green, gold italic words and the gold sprig.</figcaption></figure>
+
+<figure><div class="frame" tabindex="0"><div class="stage f22 x-bigq x-chips"><div class="ph"><div class="po"><img src="assets/mission-founder-cream.jpg" alt=""></div></div><div class="copy"><p class="kk">Our mission</p><span class="bq">&ldquo;</span><p class="q">&ldquo;To become India&rsquo;s most trusted household name in pure, farm-fresh and nutrient-rich daily foods.&rdquo;</p><p class="pp">Health is not built in a pharmacy &mdash; <b>it is built in your kitchen</b>.<br>When your daily ingredients are honest, your body thrives.</p><div class="chips"><span>Pure</span><span>Farm-fresh</span><span>Nutrient-rich</span></div></div><div class="nav"><i class="d on"></i><i class="d"></i><i class="a">&lsaquo;</i><i class="a">&rsaquo;</i></div></div></div>
+<figcaption><b>22 &middot; Cream with big quote mark and chips</b>Warm cream, gold quote mark, three promises.</figcaption></figure>
+</main>
+<script>
+(function () {
+  var frames = [].slice.call(document.querySelectorAll(".frame"));
+  function fit(f) {
+    var s = f.classList.contains("full") ? Math.min(innerWidth / 1245, innerHeight / 569) : f.clientWidth / 1245;
+    f.style.setProperty("--s", s);
+  }
+  var ro = new ResizeObserver(function (es) { es.forEach(function (e) { fit(e.target); }); });
+  frames.forEach(function (f) {
+    ro.observe(f);
+    function toggle() {
+      var on = !f.classList.contains("full");
+      frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+      if (on) f.classList.add("full");
+      document.body.classList.toggle("isfull", on);
+      fit(f);
+    }
+    f.addEventListener("click", function (e) { e.preventDefault(); toggle(); });
+    f.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(); } });
+  });
+  addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    frames.forEach(function (o) { o.classList.remove("full"); fit(o); });
+    document.body.classList.remove("isfull");
+  });
+  addEventListener("resize", function () { frames.forEach(fit); });
+})();
+</script>
+</body>
+</html>
