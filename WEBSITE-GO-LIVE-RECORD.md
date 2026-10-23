@@ -58,11 +58,22 @@ The cloud must stay grey. Orange (proxied) breaks GitHub's HTTPS certificate.
 - Monk fruit: "zero glycemic index".
 - Chilli Powder card opens four varieties: Teja, 341 (owner's photos), Byadgi, Kashmiri; same four in Customise your kit.
 
-## Still to do (optional)
-- Free email forwarding hello@dssatva.com → Gmail (Cloudflare → Email → Email Routing).
-- Google Business Profile and Google Search Console.
-- Change the GitHub password (it was typed into a chat on 22 Oct) and turn on GitHub two-step login.
-- dssatva.in as a redirect, if wanted.
+## Done on 23 Oct 2026
+- Speed: WebP copies of every photo; phone first load ~10 MB → ~6 MB (`~/dssatva/publish-live.py` builds the live copy).
+- Footer: FSSAI Lic. No. 21526044005691 · GSTIN 27AANCD0378A1ZT; full address Plot No. 31W, MIDC Chikalthana, Chhatrapati Sambhajinagar, Maharashtra 431001.
+- Privacy policy at https://dssatva.com/privacy.html (PDF: DS-Satva-Privacy-Policy.pdf).
+- Search: noindex removed; canonical, sharing (OG/Twitter) tags, business details (LocalBusiness), robots.txt, sitemap.xml, 404 page, icons.
+- Google Search Console (account dssatva@gmail.com): domain verified through Cloudflare, sitemap processed (4 pages), home page indexed, indexing requested.
+- Products: Chatpat Masala renamed "Chatpat / Kanda Lasun Masala"; Meat Masala replaced by Chaat Masala.
+
+## Pending — waiting on the client
+| # | Step | Question for the client |
+|---|---|---|
+| 5 | Google Business Profile (Google Maps) | Can customers walk in at Plot No. 31W, MIDC Chikalthana (show address on Maps), or delivery only (hide address, list service area)? Which phone gets Google's verification code? Opening hours? 3–5 photos? |
+| 6 | Visitor count (Cloudflare Web Analytics, free, no cookie banner) | OK to add? Who should see the numbers? |
+| 7 | Business email hello@dssatva.com (free forwarding to dssatva@gmail.com via Cloudflare Email Routing) | Which address name (hello@ / orders@ / info@)? Forward to which inbox? |
+
+Also: change the dssatva GitHub password (typed in chat on 22 Oct) and turn on GitHub two-step login. dssatva.in redirect if wanted.
 
 ## Where everything is kept
 | What | Where |
