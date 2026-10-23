@@ -39,7 +39,7 @@
       ["kheer",         "Kheer",             "Coconut Sugar"] ],
     [ ["pav-bhaji",     "Pav Bhaji",         "Chilli Powder"],
       ["pepper-mutton", "Pepper Mutton Fry", "Black Pepper"],
-      ["quinoa",        "Quinoa Bowl",       "Quinoa"],
+      ["jeera-bhaat",   "Jeera Bhaat",       "Cumin Seeds"], /* 20 Oct 2026: replaces Quinoa Bowl */
       ["chicken-curry", "Chicken Curry",     "Coriander Powder"] ]
   ];
   /* the card's id where it differs from the recipe written for it */

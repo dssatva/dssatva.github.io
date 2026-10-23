@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- DS Satva small stickers, 5 variations. 21 Oct 2026, owner on
+     ds-sticker-variations.html: "i did not like any of the stickers, it looks too
+     congested. create something else with small size, without the name of the
+     items and give 5 variations".
+     So: no product names, no icon row, lots of air. Logo + veg mark + 100%
+     Natural, and the 20 products (js/satva.js order) as small unlabelled
+     photos in one band. Die-cut shapes on transparent ground.
+     ?only=N shows sticker N alone (render-ds-sticker-small.sh). -->
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>DS Satva Small Stickers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Fraunces:wght@600&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#1e1f1b;color:#f4efe6;font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+  header{max-width:1200px;margin:0 auto;padding:36px 0 10px}
+  header .k0{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#e9cf98}
+  header h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0}
+  header p{color:#c9bfb0;max-width:84ch;line-height:1.6}
+  main{max-width:1200px;margin:26px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:34px 28px;align-items:end}
+  figure{min-width:0}
+  .box{width:100%;position:relative;overflow:hidden;background:repeating-conic-gradient(#2a2b26 0 25%,#24251f 0 50%) 0 0/24px 24px;border-radius:10px}
+  .st{position:absolute;left:0;top:0;transform-origin:0 0}
+  figcaption{margin-top:10px;color:#d9cfbf;font-size:.98rem}
+  figcaption b{color:#e9cf98;font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+  figcaption a{color:#e9cf98;margin-left:6px;font-size:.85rem}
+  figcaption small{display:block;color:#9d9586;margin-top:3px;font-size:.82rem}
+  body.only{padding:0;background:transparent} body.only header,body.only figcaption{display:none}
+  body.only main{display:block;margin:0;max-width:none} body.only figure{display:none}
+  body.only figure.on{display:block} body.only .box{background:none;border-radius:0}
+  .ab{position:absolute}
+  .ph{border-radius:50%;overflow:hidden;flex:none;background:#fff}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .veg{width:46px;height:46px;border:3px solid #1f8a3a;display:grid;place-items:center;background:#fff}
+  .veg i{width:24px;height:24px;border-radius:50%;background:#1f8a3a}
+  .leafbg{position:absolute;inset:0;background:url(assets/leaf-mask.png) 0 0/300px auto repeat;opacity:.12;mix-blend-mode:multiply}
+</style>
+</head>
+<body>
+<header><p class="k0">DS Satva &middot; Small sticker</p><h1>5 small stickers, room to breathe</h1>
+<p>No product names and no icon row. Just the logo, the veg mark, 100% Natural and the 20 products as small photos in one tidy band. Each is a die-cut shape (the checked area is see-through) and stays clear printed small, around 5&ndash;7&nbsp;cm. PNGs are at 2&times; for print.</p></header>
+<main id="m"></main>
+<script>
+const IM=['u-turmeric','u-chilli-powder','j-coriander-3-powder','u-cumin-seeds','u-mustard-seeds','u-black-pepper','u-garam-masala','u-biryani-masala','u-meat-masala','u-sambar-masala','u-chatpat-masala',
+ 'u-toor-dal','u-chana-dal','u-chia-seeds','u-flax-seeds','u-coriander-seeds','u-methi-seeds','u-himalayan-pink-salt','u-coconut-sugar','j-monk-3-powder'].map(f=>`assets/${f}.jpg`);
+const ph=(src,d,ring='#fff',rw=3,css='')=>`<div class="ph" style="width:${d}px;height:${d}px;border:${rw}px solid ${ring};${css}"><img src="${src}" alt=""></div>`;
+const logo=(h,dark=true)=>`<img src="assets/logo-stack-${dark?'dark':'cream'}.png" style="height:${h}px;display:block">`;
+const nat=(w,cream=false)=>`<img src="assets/badge-${cream?'cream':'natural'}.png" style="width:${w}px;display:block">`;
+const veg=`<div class="veg"><i></i></div>`;
+const V=[];const add=(name,note,w,h,html)=>V.push({name,note,w,h,html});
+
+/* 1 Round seal: products as a ring of small dots on a green band */
+add('Round seal','A round sticker. The logo sits alone in the middle; the 20 products make a thin ring on the green edge.',900,900,
+ (()=>{const c=450,R=376;let s='';IM.forEach((m,i)=>{const a=-Math.PI/2+i*2*Math.PI/20;s+=`<div class="ab" style="left:${c+R*Math.cos(a)-34}px;top:${c+R*Math.sin(a)-34}px">${ph(m,68,'#f1ddab',3)}</div>`});
+  return `<div class="ab" style="inset:0;border-radius:50%;background:#3c5128;border:6px solid #d4a63c"></div>
+   <div class="ab" style="inset:${c-R+52}px;border-radius:50%;background:#f7f2e6;overflow:hidden"><div class="leafbg"></div></div>
+   <div class="ab" style="inset:${c-R+66}px;border-radius:50%;border:1.5px solid #bf8a17"></div>${s}
+   <div class="ab" style="left:0;right:0;top:220px;display:flex;flex-direction:column;align-items:center;gap:30px">${logo(300)}<div style="display:flex;gap:18px;align-items:center">${nat(86)}${veg}</div></div>`})());
+
+/* 2 Rounded square: logo up top, one smile-shaped arc of products below */
+add('Smile arc','A rounded square. Logo on top, the products in a single gentle arc underneath, like a smile.',900,900,
+ (()=>{let s='';IM.forEach((m,i)=>{const r=i<10?0:1,t=(i%10)/9,x=120+t*660,u=(x-450)/330,y=600+r*110+50*(1-u*u);s+=`<div class="ab" style="left:${x-31}px;top:${y-31}px">${ph(m,62,'#fff',3,'box-shadow:0 4px 8px -4px rgba(60,40,10,.5)')}</div>`});
+  return `<div class="ab" style="inset:0;border-radius:70px;background:#f7f2e6;border:8px solid #3c5128;overflow:hidden"><div class="leafbg"></div></div>
+   <div class="ab" style="inset:20px;border-radius:54px;border:2px solid #d4a63c"></div>
+   <div class="ab" style="left:60px;top:60px">${nat(96)}</div><div class="ab" style="right:66px;top:68px">${veg}</div>
+   <div class="ab" style="left:0;right:0;top:140px;display:flex;justify-content:center">${logo(320)}</div>${s}`})());
+
+/* 3 Oval label: logo centred, products running along a band at the foot */
+add('Oval label','A wide oval, like a jar label. Logo in the middle, the products in a single row along a green band at the foot.',1200,720,
+ (()=>{let s='';IM.forEach(m=>{s+=ph(m,50,'#f1ddab',2)});
+  return `<div class="ab" style="inset:0;border-radius:50%;background:#f7f2e6;border:8px solid #3c5128;overflow:hidden"><div class="leafbg"></div>
+    <div class="ab" style="left:0;right:0;bottom:0;height:200px;background:#3c5128"></div><div class="ab" style="left:0;right:0;bottom:200px;height:5px;background:#d4a63c"></div></div>
+   <div class="ab" style="inset:22px;border-radius:50%;border:2px solid #d4a63c;clip-path:inset(0 0 190px 0)"></div>
+   <div class="ab" style="left:0;right:0;top:60px;display:flex;justify-content:center">${logo(300)}</div>
+   <div class="ab" style="left:150px;top:230px">${nat(90)}</div><div class="ab" style="right:166px;top:248px">${veg}</div>
+   <div class="ab" style="left:0;right:0;bottom:46px;display:grid;justify-content:center;grid-template-columns:repeat(10,50px);gap:10px 12px">${s}</div>`})());
+
+/* 4 Arch: die-cut arch, products follow the curve of the top */
+add('Arch','An arch-shaped sticker, like the arches on the website. The products follow the curve of the top.',780,1000,
+ (()=>{const cx=390,cy=390,R=318;let s='';IM.forEach((m,i)=>{const a=Math.PI+i*Math.PI/19;s+=`<div class="ab" style="left:${cx+R*Math.cos(a)-22}px;top:${cy+R*Math.sin(a)-22}px">${ph(m,44,'#f1ddab',3)}</div>`});
+  return `<div class="ab" style="inset:0;border-radius:390px 390px 40px 40px;background:#3c5128;border:6px solid #d4a63c"></div>
+   <div class="ab" style="left:44px;right:44px;top:44px;bottom:44px;border-radius:346px 346px 22px 22px;background:#f7f2e6;overflow:hidden"><div class="leafbg"></div></div>
+   ${s}
+   <div class="ab" style="left:0;right:0;top:290px;display:flex;flex-direction:column;align-items:center;gap:40px">${logo(300)}<div style="display:flex;gap:18px;align-items:center">${nat(90)}${veg}</div></div>
+   <div class="ab" style="left:0;right:0;bottom:70px;display:flex;justify-content:center"><img src="assets/rule-gold.png" style="width:300px"></div>`})());
+
+/* 5 Green band label: plain rectangle, products as a neat 2-row block on the right */
+add('Side band','A small rectangle label. Logo on the left in plenty of space, the products in a neat block on a green panel to the right.',1200,640,
+ (()=>{let s='';IM.forEach(m=>{s+=ph(m,74,'#f1ddab',3)});
+  return `<div class="ab" style="inset:0;border-radius:36px;background:#f7f2e6;border:6px solid #3c5128;overflow:hidden"><div class="leafbg"></div>
+    <div class="ab" style="right:0;top:0;bottom:0;width:470px;background:#3c5128"></div><div class="ab" style="right:470px;top:0;bottom:0;width:6px;background:#d4a63c"></div></div>
+   <div class="ab" style="left:0;top:0;bottom:0;width:724px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px">${logo(300)}<div style="display:flex;gap:18px;align-items:center">${nat(84)}${veg}</div></div>
+   <div class="ab" style="right:0;top:0;bottom:0;width:470px;display:grid;place-content:center;grid-template-columns:repeat(4,74px);gap:14px 22px">${s}</div>`})());
+
+const q=new URLSearchParams(location.search).get('only');
+document.getElementById('m').innerHTML=V.map((v,i)=>`<figure data-n="${i+1}"><div class="box" style="aspect-ratio:${v.w}/${v.h}"><div class="st" style="width:${v.w}px;height:${v.h}px">${v.html}</div></div>
+ <figcaption><b>${String(i+1).padStart(2,'0')}</b>${v.name} <a href="ds-sticker-small/${String(i+1).padStart(2,'0')}.png" download>PNG</a><small>${v.note}</small></figcaption></figure>`).join('');
+if(q){document.body.classList.add('only');const f=document.querySelector(`figure[data-n="${q}"]`);f&&f.classList.add('on')}
+const fit=()=>document.querySelectorAll('.box').forEach(b=>{const a=b.firstElementChild;if(q){b.style.width=a.style.width;b.style.height=a.style.height;a.style.transform='none'}else a.style.transform=`scale(${b.clientWidth/parseFloat(a.style.width)})`});
+fit();addEventListener('resize',fit);
+</script>
+</body>
+</html>

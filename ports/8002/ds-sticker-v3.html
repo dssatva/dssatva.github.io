@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- DS Satva sticker, 15 variations (v3). 21 Oct 2026, owner: "check the update
+     website and create the stickers ... i like 2,3,8,9 from [ds-sticker-variations.html]
+     give me variations in this by making all this spices very small and also
+     [DS_STICKER.pdf] keep the central picture of the colourful spices in the sticker
+     also, just make it small and give me 15 variations".
+     Built on 2 (by shelf), 3 (orbit), 8 (round die-cut), 9 (garland). The 20
+     products are the website's (js/satva.js PRODUCTS + STILL_SHOT, with the :8002
+     Sambar photo), shown very small and unlabelled - the owner called the labelled
+     ones congested. The colourful spice picture is cut from DS_STICKER.pdf
+     (ds-sticker-v3/spices-*.{png,jpg}). Helpers copied from ds-sticker-variations.html.
+     ?only=N shows sticker N alone (render-ds-sticker-v3.sh). -->
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>DS Satva Stickers v3</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Cinzel:wght@500;600&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#1e1f1b;color:#f4efe6;font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+  header{max-width:1200px;margin:0 auto;padding:36px 0 10px}
+  header .k0{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#e9cf98}
+  header h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0}
+  header p{color:#c9bfb0;max-width:84ch;line-height:1.6}
+  main{max-width:1200px;margin:26px auto 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:30px 24px}
+  figure{min-width:0}
+  .box{width:100%;aspect-ratio:1;overflow:hidden;border-radius:10px;position:relative}
+  .st{width:1080px;height:1080px;position:absolute;left:0;top:0;transform-origin:0 0;overflow:hidden;color:#2f4a26;font-family:"Poppins",sans-serif}
+  figcaption{margin-top:10px;color:#d9cfbf;font-size:.98rem}
+  figcaption b{color:#e9cf98;font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+  figcaption a{color:#e9cf98;margin-left:6px;font-size:.85rem}
+  figcaption small{display:block;color:#9d9586;margin-top:3px;font-size:.82rem}
+  body.only{padding:0;background:transparent} body.only header,body.only figcaption{display:none}
+  body.only main{display:block;margin:0;max-width:none} body.only figure{display:none}
+  body.only figure.on{display:block} body.only .box{width:1080px;height:1080px;border-radius:0}
+
+  /* shared sticker parts */
+  .ab{position:absolute}
+  .cream{background:#f7f2e6}
+  .leafbg{position:absolute;inset:0;background:url(assets/leaf-mask.png) 0 0/360px auto repeat;opacity:.16;mix-blend-mode:multiply}
+  .veg{width:54px;height:54px;border:3px solid #1f8a3a;display:grid;place-items:center;background:#fff}
+  .veg i{width:28px;height:28px;border-radius:50%;background:#1f8a3a}
+  .icons{display:flex;align-items:flex-start;justify-content:center}
+  .icons>div{display:flex;flex-direction:column;align-items:center;gap:6px;padding:0 22px;font:600 19px/1 "Poppins";color:#2f4a26}
+  .icons>div+div{border-left:2px solid currentColor;border-image:linear-gradient(transparent,#2f4a2666,transparent) 1}
+  .ic{width:62px;height:62px;border-radius:50%;border:2px solid currentColor;display:grid;place-items:center}
+  .ic svg{width:36px;height:36px}
+  .foot{position:absolute;left:0;right:0;bottom:0;height:72px;background:#3c5128}
+  .foot:before{content:"";position:absolute;left:0;right:0;top:-6px;height:6px;background:#bf8a17}
+  .medal{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:84px;height:84px;border-radius:50%;background:#3c5128;border:4px solid #dfb459;display:grid;place-items:center}
+  .medal svg{width:42px;height:42px}
+  .fl{position:absolute;bottom:22px;height:30px;width:120px;background:url(assets/kit-sprig-l.png) center/contain no-repeat}
+  .frame{position:absolute;inset:18px;border:3px solid #3c5128;border-bottom:none;pointer-events:none}
+  .frame:after{content:"";position:absolute;inset:8px;border:1.5px solid #bf8a17;border-bottom:none}
+  .ph{border-radius:50%;overflow:hidden;background:#fff;flex:none}
+  .ph img{width:100%;height:100%;object-fit:cover;display:block}
+  .nm{font:600 15px/1.15 "Poppins";text-align:center;color:#2f4a26}
+  .hi{font:400 14px/1.2 "Tiro Devanagari Hindi",serif;color:#8a6a1f;text-align:center}
+</style>
+</head>
+<body>
+<header><p class="k0">DS Satva &middot; Sticker</p><h1>26 stickers from your 2, 3, 8 and 9</h1>
+<p>The colourful spice picture from your sticker sits small in the middle; all 20 website products are very small photos with no names. Every sticker keeps the DS SATVA logo, 100% Natural, the veg mark and Natural &middot; Pure &middot; Homemade &middot; Authentic. PNGs are 2160 px, for print; the round ones have see-through corners.</p></header>
+<main id="m"></main>
+<script>
+/* the 20 products, in js/satva.js order */
+const PR=[
+ ['Turmeric','हल्दी','u-turmeric.jpg','spices'],['Chilli Powder','लाल मिर्च','u-chilli-powder.jpg','spices'],
+ ['Coriander Powder','धनिया पावडर','j-coriander-3-powder.jpg','spices'],['Cumin Seeds','जीरा','u-cumin-seeds.jpg','spices'],
+ ['Mustard Seeds','राई','u-mustard-seeds.jpg','spices'],['Black Pepper','काली मिर्च','u-black-pepper.jpg','spices'],
+ ['Garam Masala','गरम मसाला','u-garam-masala.jpg','spices'],['Biryani Masala','बिरयानी मसाला','u-biryani-masala.jpg','spices'],
+ ['Meat Masala','मीट मसाला','u-meat-masala.jpg','spices'],['Sambar Masala','सांबार मसाला','u-sambar-masala-8002.jpg','spices'],
+ ['Chatpat Masala','चटपट मसाला','u-chatpat-masala.jpg','spices'],
+ ['Toor Dal','तूर दाल','u-toor-dal.jpg','pulses'],['Chana Dal','चना दाल','u-chana-dal.jpg','pulses'],
+ ['Chia Seeds','चिया बीज','u-chia-seeds.jpg','seeds'],['Flax Seeds','अलसी','u-flax-seeds.jpg','seeds'],
+ ['Coriander Seeds','धनिया','u-coriander-seeds.jpg','seeds'],['Methi Seeds','मेथी दाना','u-methi-seeds.jpg','seeds'],
+ ['Himalayan Pink Salt','गुलाबी नमक','u-himalayan-pink-salt.jpg','essentials'],['Coconut Sugar','नारियल शक्कर','u-coconut-sugar.jpg','essentials'],
+ ['Monk Fruit Sweetener','मंक फ्रूट','j-monk-3-powder.jpg','essentials']].map(([en,hi,img,cat])=>({en,hi,img:'assets/'+img,cat}));
+const CATS=[['spices','Spices'],['pulses','Pulses'],['seeds','Seeds'],['essentials','Healthy Essentials']];
+const of=c=>PR.filter(p=>p.cat==c);
+
+/* line icons, drawn here so they stay crisp and recolour */
+const SV=(d)=>`<svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+const I={
+ natural:SV('<path d="M24 42V24"/><path d="M24 26c0-9 6-15 15-15 0 9-6 15-15 15z" fill="currentColor" fill-opacity=".85"/><path d="M24 30c0-8-5-13-13-13 0 8 5 13 13 13z" fill="currentColor" fill-opacity=".55"/>'),
+ pure:SV('<path d="M6 33h9l8 3h9a3 3 0 0 0 0-6h-7"/><path d="M15 33l7-6h6"/><path d="M6 40h28l9-7"/><path d="M30 22V12"/><path d="M30 15c0-5 3-8 8-8 0 5-3 8-8 8z" fill="currentColor" fill-opacity=".85"/><path d="M30 18c0-4-3-7-7-7 0 4 3 7 7 7z" fill="currentColor" fill-opacity=".55"/>'),
+ homemade:SV('<path d="M8 24h32c0 9-7 15-16 15S8 33 8 24z" fill="currentColor" fill-opacity=".2"/><path d="M14 42h20"/><path d="M27 21l12-14"/><path d="M36 6l5 4"/>'),
+ authentic:SV('<path d="M24 4l4 3 5-1 2 5 5 2-1 5 3 4-3 4 1 5-5 2-2 5-5-1-4 3-4-3-5 1-2-5-5-2 1-5-3-4 3-4-1-5 5-2 2-5 5 1z" fill="currentColor" fill-opacity=".15"/><path d="M17 24l5 5 9-10"/>'),
+ leaf:SV('<path d="M24 42V22"/><path d="M24 24c0-9 6-15 15-15 0 9-6 15-15 15z" fill="#dfb459" stroke="#dfb459"/><path d="M24 28c0-8-5-13-13-13 0 8 5 13 13 13z" fill="#f1ddab" stroke="#f1ddab"/>')};
+/* 21 Oct 2026, owner: "add the logo of satva saheli in all the pictures. its not seen. add in
+   all the stickers". SAHL = the Satva Saheli mark + SATVA / SAHELI wordmark (Cinzel, as in
+   saheli-logos). icons() now carries it under the four promises, so every sticker with the
+   promise row shows it; the round ones without that row get it between 100% Natural and veg. */
+const SAHL=(h=64,dark=false)=>`<div style="display:flex;align-items:center;gap:${h*.16}px"><img src="assets/saheli-mark-${dark?'bright':'grad'}.svg" style="height:${h}px;display:block"><div style="line-height:1;text-align:left"><div style="font:600 ${h*.44}px Cinzel,serif;color:${dark?'#f1e6cf':'#3f6b34'};letter-spacing:.04em">SATVA</div><div style="font:500 ${h*.21}px Cinzel,serif;letter-spacing:.34em;color:${dark?'#dfb459':'#7a3f22'};margin-top:${h*.07}px">SAHELI</div></div></div>`;
+const icons=(col='#2f4a26',sz=1)=>`<div style="zoom:${sz};display:flex;flex-direction:column;align-items:center;gap:16px">${icons0(col,1)}${SAHL(140,col!='#2f4a26')}</div>`;
+const icons0=(col='#2f4a26',sz=1)=>`<div class="icons" style="color:${col};zoom:${sz}">${[['natural','Natural'],['pure','Pure'],['homemade','Homemade'],['authentic','Authentic']].map(([k,t])=>`<div><span class="ic">${I[k]}</span>${t}</div>`).join('')}</div>`;
+const logo=(h,dark=true)=>`<img src="assets/logo-stack-${dark?'dark':'cream'}.png" style="height:${h}px;display:block">`;
+const natural=(w,cream=false)=>`<img src="assets/badge-${cream?'cream':'natural'}.png" style="width:${w}px;display:block">`;
+const veg=`<div class="veg"><i></i></div>`;
+const foot=(bg='#3c5128')=>`<div class="foot" style="background:${bg}"></div><div class="fl" style="left:calc(50% - 190px)"></div><div class="fl" style="left:calc(50% + 70px);transform:scaleX(-1)"></div><div class="medal" style="background:${bg}">${I.leaf}</div>`;
+const corners=(cream=false)=>`<div class="ab" style="left:52px;top:46px">${natural(118,cream)}</div><div class="ab" style="right:56px;top:56px">${veg}</div>`;
+const ph=(p,d,ring='#fff',rw=4,extra='')=>`<div class="ph" style="width:${d}px;height:${d}px;border:${rw}px solid ${ring};box-shadow:0 8px 16px -8px rgba(60,40,10,.5);${extra}"><img src="${p.img}" alt=""></div>`;
+const item=(p,d,o={})=>{const {ring='#fff',col='#2f4a26',hi=false,hcol='#8a6a1f',w=d+40,fs=15}=o;
+  return `<div style="display:flex;flex-direction:column;align-items:center;gap:7px;width:${w}px">${ph(p,d,ring)}<div class="nm" style="color:${col};font-size:${fs}px">${p.en}</div>${hi?`<div class="hi" style="color:${hcol};margin-top:-4px">${p.hi}</div>`:''}</div>`};
+
+const V=[];const add=(name,note,html)=>V.push({name,note,html});
+const HERO=w=>`<img src="ds-sticker-v3/spices-soft.png" style="width:${w}px;display:block">`;
+const HEROR=(d,ring='#d4a63c',rw=6)=>`<div style="width:${d}px;height:${d}px;border-radius:50%;overflow:hidden;border:${rw}px solid ${ring};box-shadow:0 14px 30px -14px rgba(60,40,10,.55)"><img src="ds-sticker-v3/spices-rect.jpg" style="height:100%;width:auto;margin-left:-${d*.95}px;display:block"></div>`;
+const dot=(p,d,ring='#fff',rw=2.5)=>ph(p,d,ring,rw).replace('box-shadow:0 8px 16px -8px rgba(60,40,10,.5)','box-shadow:0 3px 6px -3px rgba(60,40,10,.5)');
+const dots=(ps,d,gap,ring)=>`<div style="display:flex;justify-content:center;gap:${gap}px">${ps.map(p=>dot(p,d,ring)).join('')}</div>`;
+const head=(t,col='#bf8a17',fs=13)=>`<div style="display:flex;align-items:center;gap:10px;justify-content:center;font:600 ${fs}px/1 Poppins;letter-spacing:.26em;text-transform:uppercase;color:${col};margin-bottom:9px"><span style="width:26px;height:1.5px;background:${col}"></span>${t}<span style="width:26px;height:1.5px;background:${col}"></span></div>`;
+const col=(gap)=>`display:flex;flex-direction:column;align-items:center;gap:${gap}px`;
+const shelves=(d,ring,hc,gap=10)=>`<div style="${col(22)}"><div>${head('Spices',hc)}${dots(of('spices'),d,gap,ring)}</div>
+  <div style="display:flex;gap:46px">${[['pulses','Pulses'],['seeds','Seeds'],['essentials','Healthy Essentials']].map(([c,t])=>`<div>${head(t,hc)}${dots(of(c),d,gap,ring)}</div>`).join('')}</div></div>`;
+const GREEN='radial-gradient(circle at 50% 30%,#34502a,#1a2a12 75%)';
+const ring=(cx,cy,R,d,rc='#fff',start=-Math.PI/2,span=2*Math.PI,n=PR.length,full=true)=>PR.map((p,i)=>{const a=start+i*span/(full?n:n-1);return `<div class="ab" style="left:${cx+R*Math.cos(a)-d/2}px;top:${cy+R*Math.sin(a)-d/2}px">${dot(p,d,rc)}</div>`}).join('');
+const textRing=(c,r,txt,size,colr,ls)=>`<svg class="ab" style="left:0;top:0" width="1080" height="1080"><defs><path id="tr${r}" d="M ${c-r},${c} a ${r},${r} 0 1,1 ${2*r},0 a ${r},${r} 0 1,1 ${-2*r},0"/></defs><text font-family="Poppins" font-weight="600" font-size="${size}" letter-spacing="${ls}" fill="${colr}"><textPath href="#tr${r}" textLength="${2*Math.PI*r-size}" lengthAdjust="spacing">${txt}</textPath></text></svg>`;
+const MAIN=(top,bottom,html,gap=22)=>`<div class="ab" style="left:0;right:0;top:${top}px;bottom:${bottom}px;${col(gap)};justify-content:center">${html}</div>`;
+
+/* ---- from your 2: by shelf ---- */
+add('Shelf, picture in the middle','Your 2, tidied: logo, the spice picture small in the middle, then the 20 products as small dots under their shelf names.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(36,92,`${logo(190)}${icons('#2f4a26',.66)}${HERO(560)}${shelves(66,'#fff','#bf8a17')}`,18)}${foot()}</div>`);
+add('Shelf, deep green','The same shelf layout on deep green with gold rings.',
+ `<div class="st" style="background:${GREEN}"><div class="frame" style="border-color:#dfb459"></div>${corners(true)}
+  ${MAIN(36,92,`${logo(185,false)}${icons('#f1ddab',.66)}<div style="background:#f7f2e6;border-radius:22px;padding:8px 18px">${HERO(500)}</div>${shelves(66,'#dfb459','#dfb459')}`,18)}${foot('#0f180a')}</div>`);
+add('Shelf, picture on top','The spice picture leads at the top, the logo under it, the shelves at the foot.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(60,92,`${HERO(580)}${logo(175)}${icons('#2f4a26',.62)}${shelves(66,'#fff','#bf8a17')}`,16)}${foot()}</div>`);
+add('Shelf, framed card','The shelves sit on a white card with a gold edge, under the picture.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(36,92,`${logo(180)}${icons('#2f4a26',.64)}${HERO(520)}<div style="background:#fffdf7;border:2px solid #d4a63c;border-radius:20px;padding:16px 26px">${shelves(60,'#f1ddab','#7f5a0f',9)}</div>`,16)}${foot()}</div>`);
+
+/* ---- from your 3: orbit ---- */
+add('Orbit, picture inside','Your 3 with tiny dots: the 20 products circle the logo, with the spice picture under the logo.',
+ (()=>{const cx=540,cy=505,R=430;return `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:${cx-R}px;top:${cy-R}px;width:${2*R}px;height:${2*R}px;border-radius:50%;border:1.5px dashed #bf8a17;opacity:.7"></div>
+  <div class="ab" style="left:${cx-380}px;top:${cy-380}px;width:760px;height:760px;border-radius:50%;background:#fffaf0;box-shadow:0 20px 50px -28px rgba(80,60,20,.5)"></div>
+  ${ring(cx,cy,R,72)}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-330}px;height:660px;${col(16)};justify-content:center">${logo(170)}${icons('#2f4a26',.52)}${HERO(400)}</div>
+  <div class="ab" style="left:26px;top:22px">${natural(96)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot()}</div>`})());
+add('Orbit, round picture','The spice picture in a round window at the centre, the logo above it, the products circling both.',
+ (()=>{const cx=540,cy=505,R=430;return `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:${cx-R}px;top:${cy-R}px;width:${2*R}px;height:${2*R}px;border-radius:50%;border:1.5px solid #d4a63c"></div>
+  ${ring(cx,cy,R,72)}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-345}px;height:690px;${col(18)};justify-content:center">${logo(165)}${HEROR(200)}${icons('#2f4a26',.5)}</div>
+  <div class="ab" style="left:26px;top:22px">${natural(96)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot()}</div>`})());
+add('Orbit, deep green','The orbit on deep green, gold-ringed dots, the picture on a cream oval.',
+ (()=>{const cx=540,cy=505,R=430;return `<div class="st" style="background:${GREEN}">
+  <div class="ab" style="left:${cx-R}px;top:${cy-R}px;width:${2*R}px;height:${2*R}px;border-radius:50%;border:1.5px dashed #dfb459;opacity:.7"></div>
+  ${ring(cx,cy,R,72,'#dfb459')}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-330}px;height:660px;${col(16)};justify-content:center">${logo(170,false)}${icons('#f1ddab',.52)}<div style="background:#f7f2e6;border-radius:50%/40%;padding:14px 30px">${HERO(380)}</div></div>
+  <div class="ab" style="left:26px;top:22px">${natural(96,true)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot('#0f180a')}</div>`})());
+add('Orbit, by shelf','The ring is split into the four shelves with small gaps between them, so it reads as Spices, Pulses, Seeds and Essentials.',
+ (()=>{const cx=540,cy=505,R=430,d=70;let s='',a=-Math.PI/2;const step=2*Math.PI/24;
+  CATS.forEach(([c])=>{of(c).forEach(p=>{s+=`<div class="ab" style="left:${cx+R*Math.cos(a)-d/2}px;top:${cy+R*Math.sin(a)-d/2}px">${dot(p,d)}</div>`;a+=step});a+=step});
+  return `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:${cx-380}px;top:${cy-380}px;width:760px;height:760px;border-radius:50%;background:#fffaf0;border:2px solid #d4a63c"></div>
+  ${s}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-330}px;height:660px;${col(16)};justify-content:center">${logo(170)}${icons('#2f4a26',.52)}${HERO(400)}</div>
+  <div class="ab" style="left:26px;top:22px">${natural(96)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot()}</div>`})());
+
+/* ---- from your 8: round die-cut ---- */
+const roundBase=(rim,centre,inner)=>`<div class="ab" style="inset:6px;border-radius:50%;background:${rim};border:6px solid #d4a63c"></div><div class="ab" style="inset:96px;border-radius:50%;background:${centre};overflow:hidden">${inner||''}</div>`;
+add('Round, picture in the centre','Your 8 with tiny dots on the green rim; the logo and the spice picture in the cream centre.',
+ `<div class="st" style="background:transparent">${roundBase('#3c5128','#f7f2e6','<div class="leafbg"></div>')}
+  ${textRing(540,505,'100% NATURAL · PURE · HOMEMADE · AUTHENTIC · DIL SE PURE · ',22,'#f1ddab',5)}${ring(540,540,396,62,'#f1ddab')}
+  <div class="ab" style="inset:120px;display:none;border-radius:50%;border:1.5px solid #bf8a17"></div>
+  ${MAIN(170,170,`${logo(180)}${HERO(420)}<div style="display:flex;gap:14px;align-items:center">${natural(70)}${SAHL(100,false)}${veg}</div>`,18)}</div>`);
+add('Round, round window','A round sticker with the spice picture in a round window; logo above, seal and veg mark below.',
+ `<div class="st" style="background:transparent">${roundBase('#3c5128','#f7f2e6','<div class="leafbg"></div>')}
+  ${ring(540,540,489,68,'#f1ddab')}<div class="ab" style="inset:120px;border-radius:50%;border:1.5px solid #bf8a17"></div>
+  ${MAIN(160,160,`${logo(160)}${HEROR(210)}<div style="display:flex;gap:14px;align-items:center">${natural(70)}${SAHL(100,false)}${veg}</div>`,20)}</div>`);
+add('Round, gold rim','Cream all over with a gold rim; the words run round the edge, the tiny products just inside.',
+ `<div class="st" style="background:transparent"><div class="ab" style="inset:6px;border-radius:50%;background:#f7f2e6;border:8px solid #d4a63c;overflow:hidden"><div class="leafbg"></div></div>
+  <div class="ab" style="inset:26px;border-radius:50%;border:2px solid #3c5128"></div>
+  ${textRing(540,478,'100% NATURAL · PURE · HOMEMADE · AUTHENTIC · DIL SE PURE · ',24,'#3c5128',6)}${ring(540,540,398,62,'#fff')}
+  ${MAIN(190,190,`${logo(170)}${HERO(400)}<div style="display:flex;gap:14px;align-items:center">${natural(70)}${SAHL(100,false)}${veg}</div>`,16)}</div>`);
+add('Round, reversed','Deep green centre, cream rim with the tiny products; the picture on a cream oval.',
+ `<div class="st" style="background:transparent">${roundBase('#f7f2e6',GREEN)}
+  ${ring(540,540,489,68,'#d4a63c')}<div class="ab" style="inset:120px;border-radius:50%;border:1.5px solid #dfb459"></div>
+  ${MAIN(170,170,`${logo(170,false)}<div style="background:#f7f2e6;border-radius:50%/40%;padding:12px 28px">${HERO(380)}</div><div style="display:flex;gap:14px;align-items:center">${natural(70,true)}${SAHL(100,true)}${veg}</div>`,18)}</div>`);
+
+/* ---- from your 9: garland ---- */
+const smile=(ps,x0,x1,base,depth,d,rc='#fff')=>ps.map((p,i)=>{const x=x0+i*(x1-x0)/(ps.length-1),u=(x-540)/((x1-x0)/2),y=base+depth*(1-u*u);return `<div class="ab" style="left:${x-d/2}px;top:${y-d/2}px">${dot(p,d,rc)}</div>`}).join('');
+add('Garland under the picture','Your 9: the same top half, the spice picture in the middle, and the products in two small curved rows beneath it.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(36,380,`${logo(175)}${icons('#2f4a26',.6)}${HERO(480)}`,16)}
+  ${smile(PR.slice(0,10),140,940,730,40,68)}${smile(PR.slice(10),140,940,830,40,68)}${foot()}</div>`);
+add('Garland round the picture','The products frame the spice picture: one arc above it, one below.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(36,700,`${logo(175)}${icons('#2f4a26',.58)}`,14)}
+  ${smile(PR.slice(0,10),130,950,440,-40,68)}<div class="ab" style="left:0;right:0;top:488px;display:flex;justify-content:center">${HERO(500)}</div>${smile(PR.slice(10),130,950,690,52,68)}${foot()}</div>`);
+add('Garland, deep green','The garland on deep green with gold-ringed dots, the picture on a cream panel.',
+ `<div class="st" style="background:${GREEN}"><div class="frame" style="border-color:#dfb459"></div>${corners(true)}
+  ${MAIN(36,380,`${logo(175,false)}${icons('#f1ddab',.6)}<div style="background:#f7f2e6;border-radius:22px;padding:6px 16px">${HERO(440)}</div>`,16)}
+  ${smile(PR.slice(0,10),140,940,730,40,68,'#dfb459')}${smile(PR.slice(10),140,940,830,40,68,'#dfb459')}${foot('#0f180a')}</div>`);
+
+/* ---- 21 Oct 2026, owner: "also incorporate the pictures of 18 and 10 and 25 from this
+   [Satva-Saheli-30-Designs-9-and-14.pdf] and create some stickers also". All three are
+   the mixed spice spread (u-meat-masala.jpg, Unsplash): 10 and 25 as a round photo with
+   a gold ring, 18 as a band across the top. Stickers 16-23. ---- */
+const SPREAD='assets/u-meat-masala.jpg';
+const SPR=(d,pos='50% 50%',ring='#d4a63c',rw=8)=>`<div style="width:${d}px;height:${d}px;border-radius:50%;overflow:hidden;border:${rw}px solid ${ring};box-shadow:0 16px 34px -16px rgba(40,30,10,.6);flex:none"><img src="${SPREAD}" style="width:100%;height:100%;object-fit:cover;object-position:${pos};display:block"></div>`;
+add('Spread band on top','From Saheli 18: the spice spread as a band across the top, a gold line under it, then the logo and the shelves.',
+ `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:0;right:0;top:0;height:300px;overflow:hidden"><img src="${SPREAD}" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%"></div>
+  <div class="ab" style="left:0;right:0;top:300px;height:8px;background:#d4a63c"></div>
+  <div class="ab" style="left:22px;top:20px;background:#f7f2e6;border-radius:50%;padding:4px">${natural(92)}</div><div class="ab" style="right:28px;top:28px">${veg}</div>
+  ${MAIN(318,92,`${logo(150)}${icons('#2f4a26',.58)}${shelves(62,'#fff','#bf8a17')}`,16)}${foot()}</div>`);
+add('Spread in the corner','From Saheli 25: the spread in a big round photo off the top-right corner, the logo and shelves below.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>
+  <div class="ab" style="right:-150px;top:-150px">${SPR(560,'40% 60%','#d4a63c',12)}</div>
+  <div class="ab" style="left:52px;top:46px">${natural(110)}</div>
+  <div class="ab" style="left:60px;top:190px;${col(14)};align-items:flex-start">${logo(170)}</div>
+  ${MAIN(430,92,`${icons('#2f4a26',.6)}${shelves(64,'#fff','#bf8a17')}`,24)}<div class="ab" style="left:200px;top:360px">${veg}</div>${foot()}</div>`);
+add('Orbit, spread window','The orbit with the spice spread in a round gold-ringed window under the logo.',
+ (()=>{const cx=540,cy=505,R=430;return `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:${cx-R}px;top:${cy-R}px;width:${2*R}px;height:${2*R}px;border-radius:50%;border:1.5px solid #d4a63c"></div>
+  ${ring(cx,cy,R,72)}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-345}px;height:690px;${col(16)};justify-content:center">${logo(160)}${SPR(250)}${icons('#2f4a26',.5)}</div>
+  <div class="ab" style="left:26px;top:22px">${natural(96)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot()}</div>`})());
+add('Orbit, spread, deep green','The same on deep green, gold-ringed dots round the spread window.',
+ (()=>{const cx=540,cy=505,R=430;return `<div class="st" style="background:${GREEN}">
+  <div class="ab" style="left:${cx-R}px;top:${cy-R}px;width:${2*R}px;height:${2*R}px;border-radius:50%;border:1.5px dashed #dfb459;opacity:.7"></div>
+  ${ring(cx,cy,R,72,'#dfb459')}<div class="ab" style="left:${cx-330}px;width:660px;top:${cy-345}px;height:690px;${col(16)};justify-content:center">${logo(160,false)}${SPR(250)}${icons('#f1ddab',.5)}</div>
+  <div class="ab" style="left:26px;top:22px">${natural(96,true)}</div><div class="ab" style="right:30px;top:30px">${veg}</div>${foot('#0f180a')}</div>`})());
+add('Round, spread window','A round die-cut: products on the green rim, the spread in a round window in the cream centre.',
+ `<div class="st" style="background:transparent">${roundBase('#3c5128','#f7f2e6','<div class="leafbg"></div>')}
+  ${ring(540,540,489,68,'#f1ddab')}<div class="ab" style="inset:120px;border-radius:50%;border:1.5px solid #bf8a17"></div>
+  ${MAIN(160,160,`${logo(150)}${SPR(270)}<div style="display:flex;gap:14px;align-items:center">${natural(68)}${SAHL(100,false)}${veg}</div>`,18)}</div>`);
+add('Round, all spread','A round die-cut where the whole centre is the spread photo; the logo sits on a cream disc over it.',
+ `<div class="st" style="background:transparent"><div class="ab" style="inset:6px;border-radius:50%;background:#3c5128;border:6px solid #d4a63c"></div>
+  <div class="ab" style="inset:96px;border-radius:50%;overflow:hidden;border:4px solid #d4a63c"><img src="${SPREAD}" style="width:100%;height:100%;object-fit:cover"></div>
+  ${ring(540,540,489,68,'#f1ddab')}
+  <div class="ab" style="left:270px;top:270px;width:540px;height:540px;border-radius:50%;background:rgba(247,242,230,.95);box-shadow:0 20px 40px -18px rgba(0,0,0,.6);${col(16)};justify-content:center">${logo(190)}${icons('#2f4a26',.5)}<div style="display:flex;gap:14px;align-items:center">${natural(64)}${veg}</div></div></div>`);
+add('Garland, spread window','The garland: the spread in a round window, the products in an arc above and below it.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>${corners()}
+  ${MAIN(36,760,`${logo(150)}${icons('#2f4a26',.52)}`,10)}
+  ${smile(PR.slice(0,10),130,950,384,-40,64)}<div class="ab" style="left:0;right:0;top:420px;display:flex;justify-content:center">${SPR(250)}</div>${smile(PR.slice(10),130,950,712,52,64)}${foot()}</div>`);
+add('Spread half-moon','From Saheli 10: the round spread photo half off the right edge, the logo left, the products in a curve along the photo.',
+ (()=>{const cx=1000,cy=500,d=60;let s='';PR.forEach((p,i)=>{const R=i<10?385:465,k=i%10,a=Math.PI-1.3+k*2.6/9;s+=`<div class="ab" style="left:${cx+R*Math.cos(a)-d/2}px;top:${cy+R*Math.sin(a)-d/2}px">${dot(p,d)}</div>`});
+  return `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>
+  <div class="ab" style="left:${cx-330}px;top:${cy-330}px">${SPR(660,'35% 50%','#d4a63c',12)}</div>${s}
+  <div class="ab" style="left:52px;top:46px">${natural(110)}</div>
+  <div class="ab" style="left:64px;top:330px;${col(22)};align-items:flex-start">${logo(170)}${icons('#2f4a26',.5)}${veg}</div>${foot()}</div>`})());
+
+/* 24 = 23 reworked. Owner: "i like the 25 th one" then "sorry 23" - "move DS SATVA LOGO
+   AND DETAIALS TO THE CENTER WITH LITTLE MORE BIGGER AND THE CIRCLES little more bigger".
+   The photo and the two arcs keep the right; the logo, promises, 100% Natural and veg
+   mark are centred (both ways) in the space left of the arcs, and larger. */
+add('Spread half-moon, centred','Your pick (23) with the logo and its details bigger and centred in the space beside the photo, and bigger product circles.',
+ (()=>{const cx=1010,cy=505,d=72;let s='';PR.forEach((p,i)=>{const R=i<10?388:472,k=i%10,a=Math.PI-1.18+k*2.36/9;s+=`<div class="ab" style="left:${cx+R*Math.cos(a)-d/2}px;top:${cy+R*Math.sin(a)-d/2}px">${dot(p,d)}</div>`});
+  return `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>
+  <div class="ab" style="left:${cx-330}px;top:${cy-330}px">${SPR(660,'35% 50%','#d4a63c',12)}</div>${s}
+  <div class="ab" style="left:30px;width:470px;top:40px;bottom:80px;${col(26)};justify-content:center">${logo(235)}${icons('#2f4a26',.6)}<div style="display:flex;gap:18px;align-items:center">${natural(96)}${veg}</div></div>${foot()}</div>`})());
+
+/* 25 and 26 = 16 and 17 reworked the same way as 24. Owner: "also include variation from
+   16 and 17 also and bring the logo to the center and a little bigger". */
+add('Spread band on top, centred','Your 16 with the logo bigger and centred, 100% Natural and the veg mark under it, and bigger product circles.',
+ `<div class="st cream"><div class="leafbg"></div>
+  <div class="ab" style="left:0;right:0;top:0;height:250px;overflow:hidden"><img src="${SPREAD}" style="width:100%;height:100%;object-fit:cover;object-position:50% 45%"></div>
+  <div class="ab" style="left:0;right:0;top:250px;height:8px;background:#d4a63c"></div>
+  <div class="ab" style="left:26px;right:26px;top:258px;bottom:0;border:3px solid #3c5128;border-top:none;border-bottom:none"></div>
+  ${MAIN(270,86,`${logo(200)}${icons('#2f4a26',.66)}<div style="display:flex;gap:18px;align-items:center">${natural(80)}${veg}</div>${shelves(70,'#fff','#bf8a17',10)}`,16)}${foot()}</div>`);
+add('Spread in the corner, centred','Your 17 with the logo bigger and centred, 100% Natural and the veg mark under it, and bigger product circles.',
+ `<div class="st cream"><div class="leafbg"></div><div class="frame"></div>
+  <div class="ab" style="right:-150px;top:-150px">${SPR(560,'40% 60%','#d4a63c',12)}</div>
+  ${MAIN(70,96,`${logo(215)}${icons('#2f4a26',.72)}<div style="display:flex;gap:18px;align-items:center">${natural(84)}${veg}</div>${shelves(74,'#fff','#bf8a17',10)}`,22)}${foot()}</div>`);
+
+const q=new URLSearchParams(location.search).get('only');
+document.getElementById('m').innerHTML=V.map((v,i)=>`<figure data-n="${i+1}"><div class="box">${v.html}</div>
+ <figcaption><b>${String(i+1).padStart(2,'0')}</b>${v.name} <a href="ds-sticker-v3/${String(i+1).padStart(2,'0')}.png" download>PNG</a><small>${v.note}</small></figcaption></figure>`).join('');
+if(q){document.body.classList.add('only');const f=document.querySelector(`figure[data-n="${q}"]`);f&&f.classList.add('on')}
+const fit=()=>document.querySelectorAll('.box').forEach(b=>{b.firstElementChild.style.transform=q?'none':`scale(${b.clientWidth/1080})`});
+fit();addEventListener('resize',fit);
+</script>
+</body>
+</html>

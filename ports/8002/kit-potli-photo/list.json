@@ -1,0 +1,122 @@
+[
+ {
+  "name": "Rose blush",
+  "file": "potli-01.png",
+  "bg": [
+   "#fff6f2",
+   "#efd3ca"
+  ],
+  "ring": "#a6475b",
+  "acc": "#a6475b"
+ },
+ {
+  "name": "Ivory & gold",
+  "file": "potli-02.png",
+  "bg": [
+   "#fffaf0",
+   "#f1e4c8"
+  ],
+  "ring": "#b5832a",
+  "acc": "#94660a"
+ },
+ {
+  "name": "Sage linen",
+  "file": "potli-03.png",
+  "bg": [
+   "#f8fbf3",
+   "#dfe8d2"
+  ],
+  "ring": "#5d7a4a",
+  "acc": "#4a6a3a"
+ },
+ {
+  "name": "Turmeric",
+  "file": "potli-04.png",
+  "bg": [
+   "#fffaee",
+   "#f6e2b0"
+  ],
+  "ring": "#b5832a",
+  "acc": "#8a5a10"
+ },
+ {
+  "name": "Lavender",
+  "file": "potli-05.png",
+  "bg": [
+   "#fbf9ff",
+   "#e6def2"
+  ],
+  "ring": "#6b5a9a",
+  "acc": "#5a4a8a"
+ },
+ {
+  "name": "Terracotta",
+  "file": "potli-06.png",
+  "bg": [
+   "#fff6ee",
+   "#f3d6c4"
+  ],
+  "ring": "#a4492f",
+  "acc": "#a4492f"
+ },
+ {
+  "name": "Forest green",
+  "file": "potli-07.png",
+  "bg": [
+   "#f6f8f1",
+   "#dce6d4"
+  ],
+  "ring": "#2f5238",
+  "acc": "#2f5238"
+ },
+ {
+  "name": "Mustard & maroon",
+  "file": "potli-08.png",
+  "bg": [
+   "#fff8ec",
+   "#f3dcc0"
+  ],
+  "ring": "#7a2630",
+  "acc": "#7a2630"
+ },
+ {
+  "name": "Powder blue",
+  "file": "potli-09.png",
+  "bg": [
+   "#f7fbff",
+   "#dde8f4"
+  ],
+  "ring": "#3a6a96",
+  "acc": "#2f4f72"
+ },
+ {
+  "name": "Peach",
+  "file": "potli-10.png",
+  "bg": [
+   "#fff8f3",
+   "#f8dcc8"
+  ],
+  "ring": "#c0563e",
+  "acc": "#b5583a"
+ },
+ {
+  "name": "Mocha",
+  "file": "potli-11.png",
+  "bg": [
+   "#fbf4ee",
+   "#ead8cc"
+  ],
+  "ring": "#7a5440",
+  "acc": "#6b4423"
+ },
+ {
+  "name": "Mint",
+  "file": "potli-12.png",
+  "bg": [
+   "#f6fcf9",
+   "#d9efe5"
+  ],
+  "ring": "#2f7d64",
+  "acc": "#2a6d55"
+ }
+]

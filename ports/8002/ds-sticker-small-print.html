@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Pictures and numbers only (owner: "i want only the pictures in the pdf with number").
+     Print sheet for the 5 small DS Satva stickers (ds-sticker-small/NN.png).
+     21 Oct 2026, owner: "give me a pdf". Printed with google-chrome --print-to-pdf
+     to DS-Satva-5-Small-Stickers.pdf. -->
+<head><meta charset="UTF-8"><title>DS Satva Small Stickers</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:"Jost",sans-serif;color:#2c2a24;background:#fff}
+  .page{width:210mm;height:297mm;padding:14mm 12mm 10mm;display:flex;flex-direction:column;justify-content:center;page-break-after:always;overflow:hidden}
+  .page:last-child{page-break-after:auto}
+  .ph{display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #e4ddd0;padding-bottom:3mm;margin-bottom:4mm}
+  .ph b{font-family:"Poppins",sans-serif;font-size:13pt;color:#3c5128;letter-spacing:.06em}
+  .ph span{font-size:8.5pt;color:#8a8275;letter-spacing:.14em;text-transform:uppercase}
+  .intro{font-size:9pt;color:#6b6457;line-height:1.5;margin-bottom:6mm}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:8mm 8mm;align-items:end}
+  .art{background:#f3f1ec;border-radius:3mm;padding:6mm;display:flex;align-items:center;justify-content:center;height:92mm}
+  .art img{max-width:100%;max-height:100%;display:block}
+  .cap{padding-top:2mm;display:flex;gap:2.5mm;align-items:baseline;font-size:9.5pt;font-weight:500}
+  .cap i{font-style:normal;font-family:"Poppins",sans-serif;font-weight:700;color:#b8861c;font-size:10pt}
+  .cap small{display:block;font-size:8pt;color:#8a8275;font-weight:400;margin-top:.5mm}
+  .wide{grid-column:1/-1} .wide .art{height:80mm}
+</style></head><body>
+<section class="page"><div class="grid">
+ <figure><div class="art"><img src="ds-sticker-small/01.png"></div><div class="cap"><i>01</i></div></figure>
+ <figure><div class="art"><img src="ds-sticker-small/02.png"></div><div class="cap"><i>02</i></div></figure>
+ <figure class="wide"><div class="art"><img src="ds-sticker-small/03.png"></div><div class="cap"><i>03</i></div></figure>
+</div></section>
+<section class="page"><div class="grid">
+ <figure class="wide"><div class="art" style="height:120mm"><img src="ds-sticker-small/04.png"></div><div class="cap"><i>04</i></div></figure>
+ <figure class="wide"><div class="art"><img src="ds-sticker-small/05.png"></div><div class="cap"><i>05</i></div></figure>
+</div></section>
+</body></html>

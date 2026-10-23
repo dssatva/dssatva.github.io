@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<!-- Owner's shortlist, 21 Oct 2026: "create the stickers with these numbers 1,2 3, 4,5, 7 , 13, 14,
+     16, 21 , 24, 25, 26. Just keep these pictures alone and create a pdf". Numbers kept as on
+     ds-sticker-v3.html. Copied from ds-sticker-v3-print.html.
+     Print sheet for the 26 v3 stickers (ds-sticker-v3/NN.png), pictures and numbers only.
+     21 Oct 2026. Printed with google-chrome --print-to-pdf to DS-Satva-Stickers-Shortlist.pdf. -->
+<head><meta charset="UTF-8"><title>DS Satva Sticker Shortlist</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+<style>
+  @page{size:A4;margin:0}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#fff}
+  .page{width:210mm;height:297mm;padding:14mm 14mm 10mm;page-break-after:always;overflow:hidden;display:flex;flex-direction:column;justify-content:center}
+  .page:last-child{page-break-after:auto}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:7mm 8mm}
+  .art{background:#f3f1ec;border-radius:3mm;padding:3mm}
+  img{display:block;width:100%;height:auto}
+  i{display:block;font:700 10pt Poppins,sans-serif;font-style:normal;color:#b8861c;padding-top:1.6mm}
+</style></head><body><div id="d"></div>
+<script>
+const PICK=[1,2,3,4,5,7,13,14,16,21,24,25,26];let h='';
+for(let p=0;p<PICK.length;p+=6){h+='<section class="page"><div class="grid">';
+ PICK.slice(p,p+6).forEach(n=>{const k=String(n).padStart(2,'0');h+=`<figure><div class="art"><img src="ds-sticker-v3/${k}.png"></div><i>${k}</i></figure>`});
+ h+='</div></section>'}
+document.getElementById('d').innerHTML=h;
+</script></body></html>

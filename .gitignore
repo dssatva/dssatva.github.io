@@ -3,6 +3,7 @@
 # ports/ holds one folder per local preview port; each is an index.html plus
 # symlinks back into site-v3, so committing it would duplicate the whole site
 # as broken links. Recreate with the note in site-v3/README-v3.md.
-ports/
+# 23 Oct 2026, owner: commit all the work - ports/8002 is the live working copy
+# (its css/js/assets are symlinks into site-v3, stored as links).
 # timestamped safety copies taken before editing a live stylesheet
 *.bak-*

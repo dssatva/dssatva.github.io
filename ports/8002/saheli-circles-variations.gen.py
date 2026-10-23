@@ -1,0 +1,80 @@
+#!/usr/bin/env python3
+"""Generates saheli-circles-variations.html - 10 sets of photos for the three
+circles in the Satva Saheli section (Maker / Promoter / You?). 15 Oct 2026.
+Photos already in assets/ from saheli-hero-photos and masala-hero-photos,
+with their credits from those pages' picked.json."""
+import json, os, html as H
+HERE = os.path.dirname(os.path.abspath(__file__))
+CR = {}
+for f in ("saheli-hero-photos/picked.json", "masala-hero-photos/picked.json"):
+    for p in json.load(open(os.path.join(HERE, f))):
+        CR[p["file"]] = p
+# (file, object-position)
+S = {
+ "m02": ("mas-hero-02.jpg", "62% 45%"), "m03": ("mas-hero-03.jpg", "55% 40%"), "m04": ("mas-hero-04.jpg", "50% 25%"),
+ "m05": ("mas-hero-05.jpg", "55% 50%"), "m08": ("mas-hero-08.jpg", "60% 30%"), "m09": ("mas-hero-09.jpg", "50% 50%"),
+ "m11": ("mas-hero-11.jpg", "72% 50%"), "m12": ("mas-hero-12.jpg", "68% 30%"), "m01": ("mas-hero-01.jpg", "60% 40%"),
+ "s01": ("sah-hero-01.jpg", "40% 50%"), "s02": ("sah-hero-02.jpg", "40% 35%"), "s03": ("sah-hero-03.jpg", "78% 45%"),
+ "s06": ("sah-hero-06.jpg", "48% 28%"), "s07": ("sah-hero-07.jpg", "50% 45%"), "s08": ("sah-hero-08.jpg", "60% 45%"),
+ "s09": ("sah-hero-09.jpg", "45% 40%"), "s10": ("sah-hero-10.jpg", "60% 40%"), "s12": ("sah-hero-12.jpg", "55% 45%"),
+ "s13": ("sah-hero-13.jpg", "62% 40%"), "s14": ("sah-hero-14.jpg", "55% 40%"),
+}
+SETS = [("At the stone, together, at home", "m02", "s12", "m04"),
+        ("Fire, market, festival", "s09", "m11", "m08"),
+        ("Hands, seller, a proud smile", "m03", "m12", "s06"),
+        ("The veiled cook and the mela", "s14", "s07", "m04"),
+        ("Winnow, gather, celebrate", "s02", "s12", "m08"),
+        ("Her stove, her neighbours", "m05", "m11", "s06"),
+        ("Chulha, two cooks, her kitchen", "s01", "s10", "m04"),
+        ("Village breakfast, spice market", "s03", "m12", "m08"),
+        ("Turmeric harvest, food mela", "s13", "s07", "s06"),
+        ("Whole spices, side by side", "m09", "s08", "m04")]
+ROLES = [("The Satva Maker", "Blends the masalas at home, to family recipes."),
+         ("The Satva Promoter", "Brings lab-tested staples to her neighbours."),
+         ("You?", "Work from home, on your own hours.")]
+def credit(f):
+    p = CR.get(f, {}); return "%s, %s" % (H.escape(p.get("artist") or "unknown"), H.escape(p.get("lic", "")))
+figs = []
+for i, (name, *keys) in enumerate(SETS, 1):
+    cells = ""
+    for (role, line), k in zip(ROLES, keys):
+        f, pos = S[k]
+        cells += ('<li><span class="c"><img src="assets/%s" alt="" style="object-position:%s"></span><b>%s</b><p>%s</p></li>' % (f, pos, role, line))
+    cr = " &middot; ".join("%s: %s" % (r[0].replace("The Satva ", ""), credit(S[k][0])) for r, k in zip(ROLES, keys))
+    figs.append('<figure><div class="sec"><p class="q">Purity begins at home &mdash; and <em>the work and the wage stay with them.</em></p><ul>%s</ul></div>'
+                '<figcaption><b>%02d</b> <strong>%s</strong><small>Photos (all free to use with credit): %s</small></figcaption></figure>' % (cells, i, name, cr))
+CSS = """*{box-sizing:border-box;margin:0;padding:0}
+body{background:#1e1f1b;color:#f4efe6;font-family:"Jost",system-ui,sans-serif;padding:0 16px 70px}
+header{max-width:1200px;margin:0 auto;padding:36px 0 10px}
+header .k0{letter-spacing:.28em;text-transform:uppercase;font-size:.78rem;color:#e9cf98}
+header h1{font-family:"Fraunces",serif;font-weight:600;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:8px 0}
+header p{color:#c9bfb0;max-width:80ch;line-height:1.6} header a{color:#e9cf98}
+figure{max-width:1200px;margin:34px auto 0}
+.sec{border-radius:16px;overflow:hidden;background:linear-gradient(180deg,#fdf4f2 0 30%,#f9e7e0 30%);padding:28px 24px 30px;text-align:center}
+.q{font:500 clamp(20px,2.4vw,30px)/1.2 "Fraunces",serif;color:#1e2c16;max-width:26ch;margin:0 auto 22px}
+.q em{color:#b0607a}
+.sec ul{list-style:none;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.c{display:block;width:min(220px,100%);aspect-ratio:1;margin:0 auto 14px;border-radius:50%;overflow:hidden;border:6px solid #fff;box-shadow:0 16px 30px -18px rgba(120,60,50,.55)}
+.c img{width:100%;height:100%;object-fit:cover;display:block}
+.sec b{display:block;font:600 13px/1 "Jost";letter-spacing:.2em;text-transform:uppercase;color:#7f5a0f}
+.sec li p{font:300 15px/1.5 "Jost";color:#3c3533;margin-top:8px}
+figcaption{margin-top:10px;color:#d9cfbf;font-size:.98rem}
+figcaption b{color:#e9cf98;font-family:"Fraunces",serif;font-size:1.15rem;margin-right:6px}
+figcaption strong{color:#f4efe6}
+figcaption small{display:block;color:#9d9586;margin-top:3px;font-size:.8rem}
+@media (max-width:640px){.sec ul{grid-template-columns:1fr}}"""
+page = f"""<!DOCTYPE html>
+<html lang="en">
+<!-- 15 Oct 2026. Owner: "i want a different image based on the content for
+     this satva saheli [the three circles] empowering women and enriching
+     kitchens in all three. give me 10 variations in different page". Review
+     page only - not linked, noindex. Generated by saheli-circles-variations.gen.py. -->
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow">
+<title>Saheli Circle Photos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Jost:wght@300..600&display=swap" rel="stylesheet">
+<style>{CSS}</style></head><body>
+<header><p class="k0">DS Satva &middot; Saheli section review</p><h1>The three Saheli circles &mdash; 10 photo sets</h1>
+<p>Each set replaces the three round photos &mdash; The Satva Maker, The Satva Promoter and You? &mdash; with photographs of women making masala, working together and smiling in their own kitchens. Tell me the number you like (or mix: &ldquo;Maker from 3, Promoter from 1&rdquo;). <a href="index.html#saheli">Back to the site</a></p></header>
+{''.join(figs)}</body></html>"""
+open(os.path.join(HERE, "saheli-circles-variations.html"), "w").write(page); print("ok")

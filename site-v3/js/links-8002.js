@@ -11,7 +11,7 @@
    ============================================================= */
 (function () {
   "use strict";
-  var WA = "https://wa.me/917709932222?text=";
+  var WA = "https://wa.me/" + (window.SATVA_WA_NUMBER || "919689888822") + "?text="; /* 20 Oct 2026: was the old number 917709932222 */
   var norm = function (s) { return (s || "").replace(/\s+/g, " ").trim().toLowerCase(); };
 
   /* 1. footer shelves -> the matching category card */

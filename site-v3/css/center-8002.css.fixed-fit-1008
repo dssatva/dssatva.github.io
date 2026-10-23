@@ -1,0 +1,126 @@
+/* ============================================================
+   CENTRED HEADINGS, :8002 ONLY                       7 Oct 2026
+   ------------------------------------------------------------
+   Owner, on "Why choose SATVA": "keep the topics in the center".
+   css/left-align.css (shared with :8003) pulls these to the left
+   edge; this file, linked after it from ports/8002/index.html
+   only, puts the heading and the button under the arches back
+   in the middle. The four arches keep their full-width grid.
+   ============================================================ */
+.reasons .rhead{text-align:center;margin-left:auto;margin-right:auto;}
+.reasons .rhead .rule{margin-inline:auto;}
+.reasons .rcta{text-align:center;margin-inline:auto;}
+
+/* ============================================================
+   "SOMETHING FOR EVERY SHELF", :8002 ONLY             8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "minimize the space and keep the title in the center".
+   .cats was a full-viewport flex box (min-height ~100vh, 84px top
+   padding) with the cards centred vertically, which left a large
+   empty band under the hero's tab strip. Let it size to its
+   content and centre the kicker heading over the cards.
+   ============================================================ */
+/* 8 Oct, second pass. Owner: "set the website to the page" - every
+   block is one screen tall, and dropping min-height let the next block
+   show under this one. So the screen height stays, and the space saved
+   at the top goes to the pictures, not to empty space. The cards stretch
+   to fill whatever is left (flex, not a pixel guess), so the block is
+   exactly one screen at every window size where four cards sit in one
+   row. Narrower or very short windows keep the stacked/scrolling rules
+   from satva.css and density.css. */
+.cats{padding-top:40px;justify-content:flex-start;}
+.cats .chead{text-align:center;margin-left:auto;margin-right:auto;}
+.cats .chead .kick{text-align:center;}
+@media (min-width:1081px) and (min-height:621px){
+  .cats .wrap{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;}
+  .cats .catgrid{flex:1 1 auto;min-height:0;}
+  .cats .catcard .cshot{flex:1 1 0;height:auto;min-height:150px;}
+  .cats .catcard .cmeta{flex:0 0 auto;}   /* words take their own height; the picture takes the rest */
+  /* two lines reserved for every blurb, so a one-line blurb (Seeds) does
+     not make its picture taller and drop its title below the others */
+  .cats .catcard .cblurb{display:block;min-height:2lh;}
+}
+
+/* ============================================================
+   HERO SHELF TABS ON ONE LINE, :8002 ONLY              8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "bring the monk fruit sweetener in the same line". Nine
+   tabs need ~1054px with 26px gaps, so below a ~1300px window the
+   last one wrapped to a second row. The gap now shrinks with the
+   window, and the strip never wraps: if a window is too narrow for
+   even that, it scrolls sideways (scrollbar hidden, swipe/trackpad
+   still work) instead of starting a second row. Padding keeps the
+   focus ring and the gold underline from being clipped.
+   ============================================================ */
+.shtabs{
+  flex-wrap:nowrap;gap:clamp(10px,1.4vw,26px);
+  overflow-x:auto;overflow-y:hidden;scrollbar-width:none;
+  padding:4px 3px;margin:-4px -3px;
+}
+.shtabs::-webkit-scrollbar{display:none;}
+.shtabs .etab{flex:none;white-space:nowrap;}
+/* and the labels may go a touch smaller (.98rem floor -> .86rem) so all
+   nine still show in full down to the 1080px two-column breakpoint */
+.shtabs .etab{font-size:clamp(.86rem,1.1vw,1.1rem);}
+
+/* ============================================================
+   FIRST SCREEN FITS THE WINDOW, :8002 ONLY             8 Oct 2026
+   ------------------------------------------------------------
+   Owner: "the content is not yet fitting the page properly". The
+   hero was sized as the screen less the 81px nav, but the 39px
+   .topline sits above the nav too, and the slides' own floor
+   pushed it a further 17px - so on a 1245x657 window the tab strip
+   ended 56px below the fold. The hero is now exactly one window
+   tall (see the 88px note below), and the slides fill that
+   instead of setting a height of their own.
+   ============================================================ */
+/* 88px, not 81: html has scroll-snap with scroll-padding-top:88px
+   (satva.css), so every block - the hero included - comes to rest with
+   its top 88px down the window. A block that is to fill "the page" is
+   therefore the window less 88px. Desktop only: from 1024px down the
+   slides stack (picture over words) and must be free to grow. */
+@media (min-width:1025px){
+  /* The hero is the exception: it is what you see on arrival, at the
+     very top, with the 39px .topline above the 81px nav - so it is the
+     window less 120px, and it does not snap (snapping it would scroll
+     the topline away and hide the bottom 32px of the tab bar). */
+  .shelves.is-hero{height:calc(100vh - 120px);height:calc(100svh - 120px);min-height:0;scroll-snap-align:none;}
+  .shelves.is-hero .shelf{min-height:0;}
+  .cats,.reasons{min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);}
+}
+/* the 16px top/bottom padding the short-window rule in satva.css gives
+   every block left a sand strip under the tab bar; the hero is a fixed
+   height now, so that space goes to the slides */
+@media (min-width:1025px){ .shelves.is-hero{padding-block:0;} }
+/* On a short window the tallest slides (Spices, Healthy Essentials) were
+   taller than the stage and lost their top and bottom lines. The gaps
+   between kicker, headline, paragraph and button close up instead. */
+@media (min-width:1025px) and (max-height:800px){
+  .shelves.is-hero .sh-copy{padding-block:8px;}
+  .shelves.is-hero .sh-copy .kick{margin-bottom:12px;}
+  .shelves.is-hero .sh-copy h2{margin:4px 0 10px;}
+  .shelves.is-hero .sh-copy > p:not(.kick):not(.sh-count){margin-bottom:16px;}
+  .shelves.is-hero .sh-copy .sh-count{margin-bottom:12px;}
+}
+
+/* "Our mission" at 1245x657 was 621px against a 569px screen: the
+   portrait is 74vh, and with the section padding and the dots/arrows
+   row (60px) under it, the controls were cut off at the bottom. The
+   picture now takes what is left of one screen (window - 88px snap
+   offset - 2x24px padding - 60px controls = 100svh - 196px), and the
+   block centres its content in one screen. Desktop only - the
+   stacked layout below 820px has its own picture height. */
+@media (min-width:821px){
+  .mission{padding-block:24px;min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);
+    display:flex;flex-direction:column;justify-content:center;}
+  .mission .msshot{height:clamp(240px,calc(100vh - 196px),620px);height:clamp(240px,calc(100svh - 196px),620px);}
+}
+
+/* "How we make" was shorter than a screen on anything taller than a
+   laptop (81px short at 1366x768, 212px at 1920x1080), so the next
+   block showed under it. It fills one screen too, content centred. */
+@media (min-width:1025px) and (min-height:621px){
+  .made{min-height:calc(100vh - 88px);min-height:calc(100svh - 88px);
+    display:flex;flex-direction:column;justify-content:center;}
+  .made > .wrap{width:100%;}
+}

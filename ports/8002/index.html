@@ -42,18 +42,19 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..900,0..100,0..1&family=Jost:wght@300..600&family=Tiro+Devanagari+Hindi&family=Cinzel:wght@500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/satva.css">
-<link rel="stylesheet" href="css/grind.css">
-<link rel="stylesheet" href="css/hero-dark.css">
-<link rel="stylesheet" href="css/journey.css">
-<link rel="stylesheet" href="css/journey-still.css">
-<link rel="stylesheet" href="css/recipes-seedlip.css">
-<link rel="stylesheet" href="css/density.css">
-<link rel="stylesheet" href="css/footer-split.css">
-<link rel="stylesheet" href="css/left-align.css">
-<link rel="stylesheet" href="css/saheli.css">
-<link rel="stylesheet" href="css/saheli-slide.css">
-<link rel="stylesheet" href="css/center-8002.css">
+<link rel="stylesheet" href="css/satva.css?v=20261023a">
+<link rel="stylesheet" href="css/grind.css?v=20261023a">
+<link rel="stylesheet" href="css/hero-dark.css?v=20261023a">
+<link rel="stylesheet" href="css/journey.css?v=20261023a">
+<link rel="stylesheet" href="css/journey-still.css?v=20261023a">
+<link rel="stylesheet" href="css/recipes-seedlip.css?v=20261023a">
+<link rel="stylesheet" href="css/density.css?v=20261023a">
+<link rel="stylesheet" href="css/footer-split.css?v=20261023a">
+<link rel="stylesheet" href="css/left-align.css?v=20261023a">
+<link rel="stylesheet" href="css/saheli.css?v=20261023a">
+<link rel="stylesheet" href="css/saheli-slide.css?v=20261023a">
+<link rel="stylesheet" href="css/center-8002.css?v=20261023a">
+<link rel="stylesheet" href="css/kit-custom-8002.css?v=20261023a">
 </head>
 <body class="jrn-still">
 
@@ -65,12 +66,13 @@
          The item count is filled in by js/satva.js from PRODUCTS so it cannot go
          stale. Rotation stops for prefers-reduced-motion and on hover. -->
     <div class="left" id="tickline" aria-live="off">
-      <span class="tmsg is-on"><span class="dv">दिल से शुद्ध</span><span class="sep">·</span>Dil Se Pure</span>
+      <!-- 20 Oct 2026, owner: "Remove Dil se pure and change the word to Processed in small batches". -->
+      <span class="tmsg is-on">Processed in small batches</span>
       <span class="tmsg">Packed in small batches</span>
       <span class="tmsg">Prices quoted per gram, honestly, on WhatsApp</span>
       <span class="tmsg" id="tickcount" hidden></span>
     </div>
-    <a href="https://wa.me/917709932222">WhatsApp +91 77099 32222 &rsaquo;</a>
+    <a href="https://wa.me/919689888822">WhatsApp +91-9689888822 &rsaquo;</a>
   </div>
 </div>
 
@@ -85,10 +87,8 @@
       <!-- nested list, revealed on hover and on keyboard focus. The anchor still
            jumps to #range on its own, so this works with no JS at all; the items
            are filled in from GROUPS by js/satva.js. -->
-      <li class="hasmenu">
-        <a href="#categories">Our Range<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
-        <ul class="submenu" id="rangemenu" aria-label="Our range"></ul>
-      </li>
+      <!-- 20 Oct 2026, owner: menu order "Why Satva, Satva Saheli, Our range,
+           Healthy grocery kit, Recipes, Contact". -->
       <!-- 8 Oct 2026, owner: every topic in the menu, "neat", the important
            ones first. Arranged the way spice brands with good menus do it
            (Diaspora Co., Burlap & Barrel, Rumi Spice): the range, then ONE
@@ -98,19 +98,21 @@
         <a href="#why">Why SATVA<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
         <ul class="submenu" id="whymenu" aria-label="Why SATVA">
           <li><a href="#why">Why choose SATVA</a></li>
-          <li><a href="#made">How it&rsquo;s made</a></li>
           <li><a href="#story">Our story</a></li>
+          <!-- 22 Oct 2026, owner: How it's made moved to the last place in this menu. -->
+          <li><a href="#made">How it&rsquo;s made</a></li>
         </ul>
       </li>
-      <li><a href="#recipes">Recipes</a></li>
       <!-- 7 Oct 2026, owner's pick: Satva Saheli in the top menu. -->
       <li><a href="#saheli">Satva Saheli</a></li>
+      <li class="hasmenu">
+        <a href="#categories">Our Range<svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></a>
+        <ul class="submenu" id="rangemenu" aria-label="Our range"></ul>
+      </li>
+      <li><a href="#kit">Healthy Grocery Kit</a></li>
+      <li><a href="#recipes">Recipes</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a class="btn-gold navcta" href="https://wa.me/917709932222?text=Namaskar%21%20I%20would%20like%20to%20order%20SATVA%20masalas.">
-      <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>
-      Order on WhatsApp
-    </a>
   </div>
 </header>
 
@@ -161,8 +163,9 @@
          of copy is the owner's own, from the Saheli section below.
          Styles: css/saheli-slide.css, linked from this page only. -->
     <article class="shelf plant is-sahspecial is-on" data-shelf="saheli" data-label="Satva Saheli"
-             style="--acc:#d4a63c;--shot-pos:center 40%;--vib:1.12">
-      <div class="sh-shot"><img src="assets/hero-saheli-winnowing.jpg" alt="A woman winnowing grain with a sieve in a village courtyard" fetchpriority="high"></div>
+             style="--acc:#d4a63c;--shot-pos:center;--vib:1.12">
+      <!-- 19 Oct 2026, owner: photo 1 of masala-hero-photos.html - hands at the stone grinder (NJ.., CC BY 2.0, Flickr, credited on credits.html). Replaces the red-chilli sorting photo. -->
+      <div class="sh-shot"><img src="assets/mas-hero-01.jpg" alt="Hands working a traditional stone grinder" fetchpriority="high"></div>
       <div class="wrap">
         <div class="sh-copy">
           <div class="sahlogo" role="img" aria-label="Satva Saheli logo">
@@ -170,51 +173,149 @@
             <span class="sahlogo-w"><b>SATVA</b><i>SAHELI</i></span>
           </div>
           <h2 class="dsp">Empowering Women<em>Enriching <span class="goldtext">Kitchens</span></em></h2>
-          <p>Select masalas are roasted and blended at home by women using their own family recipes. Purity begins at home &mdash; the work and the wage stay with them.</p>
+          <p>Selected ingredients are roasted and blended at home by women using their own family recipes. Purity begins at home &mdash; the work and the wage stay with them.</p>
           <div class="sahbtns">
             <a class="pill" href="#saheli">
               <span>Meet Satva Saheli</span>
               <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
             </a>
-            <a class="sahjoin" href="https://wa.me/917709932222?text=Namaskar%21%20I%20would%20like%20to%20become%20a%20Satva%20Saheli.">Become a Saheli</a>
+            <a class="sahjoin" href="tel:+919689888822" data-sahcall>Become a Saheli</a>
           </div>
         </div>
       </div>
     </article>
 
-    <!-- WHY SATVA, :8002 only (13 Oct 2026). Owner picked option 06 of
-         why-variations.html ("Four cards in a row, the chosen card lifts and
-         opens") as one of the hero slides. The four promises are the #why
-         section's, word for word. The cards step on every 3s and the slide's
-         own script moves the hero on after the fourth (window.SATVA_HERO_NEXT
-         in js/satva.js); data-hold="60000" only keeps the hero's own timer
-         from cutting in first. Styles: WHY SATVA HERO SLIDE in css/center-8002.css;
-         card stepping: the inline script after js/satva.js. -->
-    <article class="shelf whyhero" data-shelf="why" data-label="Why SATVA" data-hold="60000"
-             style="--sg:linear-gradient(180deg,#f6efe0 0%,#eadcbe 100%);--acc:#b5832a">
+    <!-- WHY SATVA, :8002 only. 13 Oct 2026, second pass - owner: "put this
+         in the slider ... and take this section from the hero sliders and put
+         it back here". So the hero now carries the four arch cards that were
+         the #why section (icons, colours and words unchanged), and #why below
+         carries the photograph cards that were here. Held 8s (data-hold, read
+         by js/satva.js). Later the same day: title "Why choose SATVA", only the
+         icon and title in each arch, no button (the four bodies are still in
+         the photograph cards in #why).
+         Styles: WHY SATVA ARCHES IN THE HERO in css/center-8002.css.
+         14 Oct 2026, owner picked option 2 of why-hero-variations.html: each
+         arch is a photograph (img.wa-ph) tinted in its own colour, drawing and
+         title in white. Styles: "WHY HERO, OPTION 2" in css/center-8002.css. -->
+    <!-- 15 Oct 2026: now background 10 "Dark slate" from why-bg-variations.html
+         (dark stone photograph, darkened, heading in cream).
+         14 Oct 2026, owner picked background 02 "Gold glow" from
+         why-bg-variations.html: a soft sunlit halo behind the heading,
+         fading to cream at the edges (was plain #f3efe2). -->
+    <article class="shelf whyarch" data-shelf="why" data-label="Why SATVA" data-hold="8000"
+             style="--sg:#121612">
       <div class="wrap">
-        <div class="wh-head">
-          <div><p class="kick">Why choose SATVA</p><h2 class="wh-h">What we will not do to your food</h2></div>
-          <a class="pill" href="#why"><span>Why SATVA</span><span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span></a>
+        <div class="rhead">
+          <h2 class="wa-h">Why choose SATVA</h2>
         </div>
-        <ul class="wh-row">
-            <li class="wh-card on" data-i="0" tabindex="0">
-              <img src="assets/card-spices.jpg" alt="Whole and ground spices laid out by colour" loading="lazy">
-              <div class="wh-tx"><b>01</b><h3>100% authentic &amp; natural</h3><p>No synthetic colours, no artificial aromas, no chemical preservatives. Nothing in the pouch that was not a spice first.</p></div>
-            </li>
-            <li class="wh-card" data-i="1" tabindex="0">
-              <img src="assets/story-stone.jpg" alt="Dried chillies in a stone mortar" loading="lazy">
-              <div class="wh-tx"><b>02</b><h3>Nutrient-preserved grinding</h3><p>Cold, naturally ground spices that keep the essential oils and the aroma they were grown with &mdash; not driven off by heat.</p></div>
-            </li>
-            <li class="wh-card" data-i="2" tabindex="0">
-              <img src="assets/card-seeds.jpg" alt="A bowl of seeds on a wooden board" loading="lazy">
-              <div class="wh-tx"><b>03</b><h3>Unpolished goodness</h3><p>Seeds packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine.</p></div>
-            </li>
-            <li class="wh-card" data-i="3" tabindex="0">
-              <img src="assets/sah-maker.jpg" alt="A woman pounding spices by hand in a mortar" loading="lazy">
-              <div class="wh-tx"><b>04</b><h3>Uncompromising standards</h3><p>Sourced from trusted farms, tested for safety, packed with hygiene at the core.</p></div>
-            </li>
-        </ul>
+        <div class="rgrid">
+    
+          <div class="reason">
+            <img class="wa-ph" src="assets/card-spices.jpg" alt="" loading="lazy">
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M100 176V78"/>
+                <path d="M100 150c24-2 43-18 47-42-24 3-42 18-47 42Z"/>
+                <path d="M100 132c-24-2-43-18-47-42 24 3 42 18 47 42Z"/>
+                <path d="M100 108c20-2 35-15 38-35-20 3-34 15-38 35Z"/>
+                <path d="M100 92c-18-2-32-14-35-32 18 3 31 14 35 32Z"/>
+                <path d="M100 78c-7-8-7-20 0-28 7 8 7 20 0 28Z"/>
+                <path d="M62 180c12-6 64-6 76 0"/>
+              </svg>
+            </div>
+            <h3>100% authentic &amp; natural</h3>
+          </div>
+    
+          <div class="reason">
+            <img class="wa-ph" src="assets/story-stone.jpg" alt="" loading="lazy">
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M74 60c-7-9 7-16 0-25"/>
+                <path d="M100 51c-7-9 7-16 0-25"/>
+                <path d="M126 60c-7-9 7-16 0-25"/>
+                <path d="M150 66 108 128" stroke-width="11"/>
+                <ellipse cx="100" cy="116" rx="46" ry="12"/>
+                <path d="M54 116c0 34 20 60 46 60s46-26 46-60"/>
+                <path d="M78 180h44"/>
+              </svg>
+            </div>
+            <h3>Nutrient-preserved grinding</h3>
+          </div>
+    
+          <div class="reason">
+            <img class="wa-ph" src="assets/card-seeds.jpg" alt="" loading="lazy">
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M60 116c8-23 23-36 40-36s32 13 40 36"/>
+                <ellipse cx="80" cy="100" rx="9" ry="6" transform="rotate(-22 80 100)"/>
+                <ellipse cx="100" cy="90" rx="9" ry="6" transform="rotate(6 100 90)"/>
+                <ellipse cx="120" cy="100" rx="9" ry="6" transform="rotate(24 120 100)"/>
+                <ellipse cx="87" cy="112" rx="9" ry="6" transform="rotate(-8 87 112)"/>
+                <ellipse cx="113" cy="112" rx="9" ry="6" transform="rotate(16 113 112)"/>
+                <path d="M44 116c0 33 25 60 56 60s56-27 56-60"/>
+                <path d="M44 116c0 13 25 24 56 24s56-11 56-24"/>
+                <ellipse cx="27" cy="168" rx="9" ry="6" transform="rotate(-24 27 168)"/>
+                <ellipse cx="174" cy="160" rx="9" ry="6" transform="rotate(18 174 160)"/>
+              </svg>
+            </div>
+            <h3>Unpolished goodness</h3>
+          </div>
+    
+          <!-- Added 10 Sep 2026: the fourth promise from Our Story, which had no
+               circle of its own. Wording is the owner's, unchanged. -->
+          <div class="reason">
+            <img class="wa-ph" src="assets/sah-maker.jpg" alt="" loading="lazy">
+            <div class="art" aria-hidden="true">
+              <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
+                   stroke-linecap="round" stroke-linejoin="round">
+                <path d="M100 26 164 52v52c0 36-28 62-64 74-36-12-64-38-64-74V52Z"/>
+                <path d="M72 100l20 22 40-46"/>
+              </svg>
+            </div>
+            <h3>Uncompromising standards</h3>
+          </div>
+        </div>
+      </div>
+    </article>
+
+
+    <!-- HEALTHY GROCERY KIT, :8002 only. 14 Oct 2026, owner: "As we are
+         planning to sell as a kit ... Healthy Grocery Kit which comprises of
+         Haldi, Mirchi Powder, Mustard, Jeera, Coriander, maybe 2-3 types of
+         home made masalas, Pink Salt, Coconut Sugar, Chia Seeds, Methi and
+         Monk fruit ... i want a slider in the hero section". The picture is
+         a kit box of the thirteen, each in its own round window, using the
+         site's own product photographs. The three masalas (garam, sambar,
+         chatpat) are a placeholder pick until the owner names them.
+         Styles: "HEALTHY GROCERY KIT SLIDE" in css/center-8002.css. -->
+    <article class="shelf kit" data-shelf="kit" data-label="Grocery Kit">
+      <div class="sh-shot"><img src="assets/hero-dark-slate.jpg" alt="" loading="lazy"></div>
+      <div class="wrap">
+        <div class="sh-copy">
+          <!-- 22 Oct 2026, owner: title only "Healthy Grocery Kit" (Whole kitchen / Your Kitchen removed), "kitchen essentials" in the paragraph, button in the footer green. -->
+          <h2 class="dsp">Healthy Grocery <span class="goldtext">Kit</span></h2>
+          <p>Everyday kitchen essentials, packed together &mdash; the spices, home-made masalas, salt, sweeteners and seeds a kitchen goes through every week, all pure and packed by SATVA.</p>
+          <a class="pill kitpill" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20order%20the%20Satva%20Healthy%20Grocery%20Kit." target="_blank" rel="noopener">
+            <span>Order the kit on WhatsApp</span>
+            <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
+          </a>
+        </div>
+        <!-- 15 Oct 2026, owner: option 01 "Orbit" of kit-potli-hero.html in this
+             slide, in place of the tote photo - masala circles a little bigger,
+             no white band at the foot of the potli, the tag only "Healthy Grocery
+             Kit", and a "Made by our Sahelis" stamp. Styles: "KIT HERO - ORBIT"
+             in css/center-8002.css. -->
+        <div class="kitorbit" role="img" aria-label="The Healthy Grocery Kit potli, packed by Satva Sahelis, with its ingredients circling it">
+          <div class="ko-ring"><span class="ko-orb" style="--a:-1.571rad"><span class="ko-it"><img src="assets/u-turmeric.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:-1.087rad"><span class="ko-it"><img src="assets/u-chilli-powder.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:-0.604rad"><span class="ko-it"><img src="assets/u-mustard-seeds.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:-0.121rad"><span class="ko-it"><img src="assets/u-cumin-seeds.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:0.362rad"><span class="ko-it"><img src="assets/u-coriander-seeds.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:0.846rad"><span class="ko-it"><img src="assets/u-garam-masala.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:1.329rad"><span class="ko-it"><img src="assets/u-sambar-masala-8002.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:1.812rad"><span class="ko-it"><img src="assets/u-chatpat-masala.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:2.296rad"><span class="ko-it"><img src="assets/u-himalayan-pink-salt.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:2.779rad"><span class="ko-it"><img src="assets/u-coconut-sugar.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:3.262rad"><span class="ko-it"><img src="assets/u-chia-seeds.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:3.746rad"><span class="ko-it"><img src="assets/u-methi-seeds.jpg" alt="" loading="lazy"></span></span><span class="ko-orb" style="--a:4.229rad"><span class="ko-it"><img src="assets/j-monk-3-powder.jpg" alt="" loading="lazy"></span></span></div>
+          <div class="ko-sh"></div>
+          <!-- 15 Oct 2026: option 02 "Ivory & gold" of kit-potli-photo.html - the rendered potli (logo printed on it). -->
+          <div class="ko-potli ko-photo"><img src="assets/kit-potli-ivory.png" alt="The Healthy Grocery Kit potli">
+            <div class="ko-tag"><i></i><b>Healthy Grocery Kit</b></div></div>
+          <div class="ko-stamp"><img src="assets/saheli-mark-bright.svg" alt=""><b>Packed by<br>Satva Sahelis</b></div>
+        </div>
       </div>
     </article>
 
@@ -223,14 +324,14 @@
       <div class="sh-shot"><img src="assets/hero-spices-turmeric-field.jpg" alt="A field of turmeric plants in full leaf" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick">Spices</p>
+          <!-- 20 Oct 2026, owner: the small "Spices" line above the heading removed (it said Spices twice); heading in capitals; the whole-spices sentence moved to the Coriander Seeds slide. -->
           <!-- The second line is the old Ground Spices slide's, kept because it
                fits on one line at every width the other three slides do; naming
                all three shelves here ("Ground, Whole & Blended") ran to a third
                line and made the opening slide taller than the rest. The three
                shelves are named in the paragraph instead. -->
-          <h2 class="dsp">Spices<em>In Their <span class="goldtext">Own Colour</span></em></h2>
-          <p>Turmeric, chilli and coriander ground slowly, so the essential oils and the aroma are not driven off by the heat of the mill. Coriander, cumin, mustard and black pepper left whole for the tadka. And the everyday masalas built from both. Colour you can see in the pan &mdash; from whole dried spice, not from a dye drum.</p>
+          <h2 class="dsp">SPICES<em>In Their <span class="goldtext">Own Colour</span></em></h2>
+          <p>Turmeric, chilli and coriander ground slowly, so the essential oils and the aroma are not driven off by the heat of the mill. And the everyday masalas built from them. Colour you can see in the pan &mdash; from whole dried spice, not from a dye drum.</p>
           <a class="pill" href="#categories" data-go="spices">
             <span>See all spices</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
@@ -248,16 +349,17 @@
          No sh-count line - "12 items packed" under one product would mislead.
          13 Oct 2026: Mustard Seeds and Chia Seeds slides removed at the owner's request;
          flax + chia are to share the Seeds slide (options in seeds-variations.html). -->
-    <article class="shelf plant" data-shelf="spices" data-label="Coriander Seeds"
+    <!-- 20 Oct 2026, owner: "remove the hindi words from the sliders" - Devanagari names taken off the Coriander, Flax & Chia and Monk Fruit slides. -->
+    <article class="shelf plant" data-shelf="seeds" data-label="Coriander Seeds"
              style="--acc:#8a9a52;--shot-pos:center;--vib:1.25">
       <div class="sh-shot"><img src="assets/j-coriander-1-flower.jpg" alt="Coriander in flower, before it seeds" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
-          <p class="kick">Spices &middot; Whole</p>
-          <h2 class="dsp">Coriander Seeds<em><span class="dv">धनिया</span></em></h2>
-          <p>Whole dhaniya &mdash; crush it fresh, or roast it for a masala. Left whole, so the grinding is yours to do.</p>
-          <a class="pill" href="#categories" data-go="spices">
-            <span>See all spices</span>
+          <p class="kick">Seeds &middot; Whole</p>
+          <h2 class="dsp">Coriander Seeds</h2>
+          <p>Whole dhaniya &mdash; crush it fresh, or roast it for a masala. Left whole, so the grinding is yours to do. Coriander, cumin, mustard and black pepper left whole for the tadka.</p>
+          <a class="pill" href="#categories" data-go="seeds">
+            <span>See all seeds</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
         </div>
@@ -268,21 +370,28 @@
 
 
 
-    <article class="shelf plant" data-shelf="seeds" data-label="Seeds"
-             style="--sg:linear-gradient(150deg,#fbfcf3 0%,#e7eed3 100%);--acc:#93a04b;--shot-pos:center;--vib:1.34">
-      <div class="sh-shot"><img src="assets/hero-seeds-flax-plant.jpg" alt="A flax field in flower, blue over green to the horizon" loading="lazy"></div>
+    <!-- 15 Oct 2026, owner: "install 04 from seeds-variations.html for the
+         slider seeds" - flax field fading into the chia plant behind, flax and
+         chia each in its own arch, Hindi names. Pictures copied from
+         seeds-variations/ (made from photographs already in assets/).
+         Styles: "SEEDS SLIDE - OPTION 04" in css/center-8002.css. -->
+    <article class="shelf plant seeds04" data-shelf="seeds" data-label="Seeds"
+             style="--sg:linear-gradient(150deg,#fbfcf3 0%,#e7eed3 100%);--acc:#93a04b;--shot-pos:center;--vib:1.2">
+      <div class="sh-shot"><img src="assets/hero-seeds-flax-chia.jpg" alt="A flax field in flower fading into a chia plant" loading="lazy"></div>
       <div class="wrap">
         <div class="sh-copy">
           <p class="kick">Nutrient-dense seeds</p>
-          <h2 class="dsp">Nutrient-Dense Seeds<em>Nothing <span class="goldtext">Polished Off</span></em></h2>
-          <p>Chia, flax, quinoa and methi packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine. Roast and grind the javas for chutney, or cook the quinoa like rice.</p>
+          <h2 class="dsp">Flax &amp; Chia Seeds</h2>
+          <p>Flax and chia packed in their raw, natural form &mdash; cleaned and sieved, no polish, no moisture treatment to make them shine. Grind the flax fresh for chutney; stir the chia into water, curd or a smoothie.</p>
+          <div class="sd-tags"><span>Flax</span><span>Chia</span></div>
           <a class="pill" href="#categories" data-go="seeds">
             <span>See all seeds</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
           </a>
           <p class="sh-count" data-count="seeds"></p>
         </div>
-        <div class="sh-arch"><img src="assets/arch-seeds-flaxseed.jpg" alt="Flax seed in a wooden bowl" loading="lazy"></div>
+        <div class="sh-arch sd-l"><img src="assets/arch-seeds-flax-04.jpg" alt="Flax seed" loading="lazy"></div>
+        <div class="sh-arch sd-r"><img src="assets/arch-seeds-chia-04.jpg" alt="Chia seed" loading="lazy"></div>
       </div>
     </article>
 
@@ -310,7 +419,7 @@
                is the old Pantry slide's, which fits salt and two unrefined sweeteners
                exactly - and it avoids a third "Nothing ..." after Pulses and Seeds. -->
           <h2 class="dsp">Healthy Essentials<em>Unrefined, <span class="goldtext">Unbleached</span></em></h2>
-          <p>Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
+          <p>Himalayan pink salt with none of the chemical polish of table salt. Coconut sugar dried from the sap of the palm, and monk fruit sweetener, which is sweet without being sugar at all &mdash; the things every single dish passes through, taken as they come.</p>
           <a class="pill" href="#categories" data-go="essentials">
             <span>See all healthy essentials</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
@@ -326,8 +435,8 @@
       <div class="wrap">
         <div class="sh-copy">
           <p class="kick">Healthy essentials</p>
-          <h2 class="dsp">Monk Fruit Sweetener<em><span class="dv">मंक फ्रूट</span></em></h2>
-          <p>Sweetness from the fruit itself, with no sugar in it at all. Juiced, then dried to a powder.</p>
+          <h2 class="dsp">Monk Fruit Sweetener</h2>
+          <p>Sweetness from the fruit itself, with no sugar in it at all, and a zero glycemic index. Juiced, then dried to a powder.</p>
           <a class="pill" href="#categories" data-go="essentials">
             <span>See all healthy essentials</span>
             <span class="parrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M12 5l7 7-7 7"/></svg></span>
@@ -389,7 +498,7 @@
         <h2 class="dsp big">Everything we pack</h2>
         <div class="rule"></div>
       </div>
-      <p class="lede">Twenty-one everyday staples, packed in small batches. Tap a shelf to see only that shelf.</p>
+      <!-- 15 Oct 2026, owner: the "Twenty-one everyday staples ..." line removed. -->
     </div>
 
     <div class="etabs rtabs" id="rtabs" role="tablist" aria-label="Filter the range"></div>
@@ -405,94 +514,40 @@
      ("uncompromising standards") stays in the Our Story list.
      The illustrations are hand-drawn monoline SVG - no library, no image
      files, so they stay crisp at any size and recolour with currentColor. -->
-<section class="reasons" id="why">
+<section class="reasons whyhero whysec" id="why">
+  <!-- 14 Oct 2026, owner: the colourful divider between sections of the
+       same shade (this one and the one above are both peach). -->
+  <div class="spectrum sec-div" aria-hidden="true"></div>
+  <!-- 13 Oct 2026: the photograph cards that were the Why SATVA hero slide
+       (option 06 of why-variations.html) - swapped with the arch cards, which
+       are in the hero now. Steps every 3s while on screen and loops. -->
   <div class="wrap">
-    <div class="rhead reveal">
-      <p class="kick">Why choose SATVA</p>
-      <h2 class="dsp big">What we will not do<br>to your food</h2>
-      <div class="rule" style="margin-inline:auto"></div>
+    <div class="wh-head">
+      <div><p class="kick">Why choose SATVA</p><h2 class="wh-h">What we will not do to your food</h2></div>
+      <!-- 14 Oct 2026, owner: "See what we pack" button removed from here. -->
     </div>
-
-    <div class="rgrid">
-
-      <div class="reason reveal">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M100 176V78"/>
-            <path d="M100 150c24-2 43-18 47-42-24 3-42 18-47 42Z"/>
-            <path d="M100 132c-24-2-43-18-47-42 24 3 42 18 47 42Z"/>
-            <path d="M100 108c20-2 35-15 38-35-20 3-34 15-38 35Z"/>
-            <path d="M100 92c-18-2-32-14-35-32 18 3 31 14 35 32Z"/>
-            <path d="M100 78c-7-8-7-20 0-28 7 8 7 20 0 28Z"/>
-            <path d="M62 180c12-6 64-6 76 0"/>
-          </svg>
-        </div>
-        <h3>100% authentic &amp; natural</h3>
-        <p>No synthetic colours, no artificial aromas, no chemical preservatives. Nothing in the pouch that was not a spice first.</p>
-      </div>
-
-      <div class="reason reveal d1">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M74 60c-7-9 7-16 0-25"/>
-            <path d="M100 51c-7-9 7-16 0-25"/>
-            <path d="M126 60c-7-9 7-16 0-25"/>
-            <path d="M150 66 108 128" stroke-width="11"/>
-            <ellipse cx="100" cy="116" rx="46" ry="12"/>
-            <path d="M54 116c0 34 20 60 46 60s46-26 46-60"/>
-            <path d="M78 180h44"/>
-          </svg>
-        </div>
-        <h3>Nutrient-preserved grinding</h3>
-        <p>Cold, naturally ground spices that keep the essential oils and the aroma they were grown with &mdash; not driven off by heat.</p>
-      </div>
-
-      <div class="reason reveal d2">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M60 116c8-23 23-36 40-36s32 13 40 36"/>
-            <ellipse cx="80" cy="100" rx="9" ry="6" transform="rotate(-22 80 100)"/>
-            <ellipse cx="100" cy="90" rx="9" ry="6" transform="rotate(6 100 90)"/>
-            <ellipse cx="120" cy="100" rx="9" ry="6" transform="rotate(24 120 100)"/>
-            <ellipse cx="87" cy="112" rx="9" ry="6" transform="rotate(-8 87 112)"/>
-            <ellipse cx="113" cy="112" rx="9" ry="6" transform="rotate(16 113 112)"/>
-            <path d="M44 116c0 33 25 60 56 60s56-27 56-60"/>
-            <path d="M44 116c0 13 25 24 56 24s56-11 56-24"/>
-            <ellipse cx="27" cy="168" rx="9" ry="6" transform="rotate(-24 27 168)"/>
-            <ellipse cx="174" cy="160" rx="9" ry="6" transform="rotate(18 174 160)"/>
-          </svg>
-        </div>
-        <h3>Unpolished goodness</h3>
-        <p>Seeds packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine.</p>
-      </div>
-
-      <!-- Added 10 Sep 2026: the fourth promise from Our Story, which had no
-           circle of its own. Wording is the owner's, unchanged. -->
-      <div class="reason reveal">
-        <div class="art" aria-hidden="true">
-          <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" stroke-width="3.1"
-               stroke-linecap="round" stroke-linejoin="round">
-            <path d="M100 26 164 52v52c0 36-28 62-64 74-36-12-64-38-64-74V52Z"/>
-            <path d="M72 100l20 22 40-46"/>
-          </svg>
-        </div>
-        <h3>Uncompromising standards</h3>
-        <p>Sourced from trusted farms, tested for safety, packed with hygiene at the core.</p>
-      </div>
-    </div>
-
-    <div class="rcta reveal">
-      <a class="btn-gold" href="#categories">See what we pack</a>
-    </div>
+    <ul class="wh-row">
+        <li class="wh-card on" data-i="0" tabindex="0">
+              <img src="assets/card-spices.jpg" alt="Whole and ground spices laid out by colour" loading="lazy">
+              <div class="wh-tx"><h3>100% authentic &amp; natural</h3><p>No synthetic colours, no artificial aromas, no chemical preservatives. Nothing in the pouch that was not a spice first.</p></div>
+            </li>
+        <li class="wh-card" data-i="1" tabindex="0">
+              <img src="assets/story-stone.jpg" alt="Dried chillies in a stone mortar" loading="lazy">
+              <div class="wh-tx"><h3>Nutrient-preserved grinding</h3><p>Cold, naturally ground spices that keep the essential oils and the aroma they were grown with &mdash; not driven off by heat.</p></div>
+            </li>
+        <li class="wh-card" data-i="2" tabindex="0">
+              <img src="assets/card-seeds.jpg" alt="A bowl of seeds on a wooden board" loading="lazy">
+              <div class="wh-tx"><h3>Unpolished goodness</h3><p>Seeds packed in their raw, natural form &mdash; no dangerous polish, no moisture treatment to make them shine.</p></div>
+            </li>
+        <li class="wh-card" data-i="3" tabindex="0">
+              <img src="assets/sah-maker.jpg" alt="A woman pounding spices by hand in a mortar" loading="lazy">
+              <div class="wh-tx"><h3>Uncompromising standards</h3><p>Sourced from trusted farms, tested for safety, packed with hygiene at the core.</p></div>
+            </li>
+    </ul>
   </div>
 </section>
 
-<div class="marquee" aria-hidden="true">
-  <div class="mtrack"><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span><span>Dal</span><span>Sabzi</span><span>Rajma</span><span>Chole</span><span>Pulao</span><span>Biryani</span><span>Kadhi</span><span>Khichdi</span><span>Paneer</span><span>Mutton curry</span><span>Chicken curry</span><span>Chaat</span><span>Bhel</span><span>Paratha</span><span>Tadka</span><span>Achar</span></div>
-</div>
+<!-- 15 Oct 2026, owner: the moving strip of dish names (Mutton curry, Chicken curry, Chaat ...) between Why choose SATVA and Our Story removed. The footer strip stays. -->
 
 <!-- ============ our mission ============ -->
 <!-- The owner noticed a reference site whose ground changes colour only for its
@@ -550,13 +605,15 @@
             <!-- 8 Oct 2026, owner: the founder's photograph here, "cut half and
                  keep only the face". Cropped from his own photo (dill.jpeg, graded
                  as assets/story-founder.jpg); mission-daily.jpg is kept. -->
-            <div class="msshot msportrait mspol"><img src="assets/mission-founder-sage.jpg" width="900" height="1200" loading="lazy" decoding="async" alt="DS Satva&rsquo;s founder"><span class="mspol-cap" aria-hidden="true">DS Satva Foods</span></div>
+            <div class="msshot msportrait mspol"><img src="assets/mission-founder-sage.jpg" width="900" height="1200" loading="lazy" decoding="async" alt="DS Satva&rsquo;s founder"></div>
             <!-- 9 Oct 2026, 15:11: owner chose founder-variations.html #14 for the
                  site - copy left, the tilted snapshot right, and this sign-off
                  beside it. The top-right corner logo came out. -->
             <div class="mssign">
               <img src="assets/logo-stack-dark.png" width="760" height="722" loading="lazy" decoding="async" alt="">
-              <p class="mssigcap"><b>DS Satva Foods</b>Chhatrapati Sambhajinagar<span>Marathwada</span></p>
+              <!-- 15 Oct 2026, owner: "Chhatrapati Sambhajinagar / Marathwada" removed from beside the founder picture. -->
+              <!-- 20 Oct 2026, owner (corrected): keep DS Satva Foods here beside the photo, remove the caption under the photo; logo made bigger. -->
+              <p class="mssigcap"><b>DS Satva Foods</b></p>
             </div>
             <!-- 9 Oct 2026, 13:34 owner: "remove everything" beside the photo - only the
                  polaroid stays here. (The top-right logo was removed at 15:11.) -->
@@ -675,17 +732,103 @@
      split the owner asked for on 7 Oct ("keep only the essential data and the
      others can be put in a link"). The section it replaces is in
      index.html.bak-1013-*s. Styles: the SAHELI 14 block in css/center-8002.css. -->
-<section class="saheli sah14" id="saheli">
-  <img class="s14-mark" src="assets/saheli-mark-grad.svg" alt="Satva Saheli">
-  <p class="s14-q">Purity begins at home &mdash; and <em>the work and the wage stay with them.</em></p>
-  <ul class="s14-row">
-    <li><img src="assets/sah-maker.jpg" alt="A woman pounding spices by hand in a mortar" loading="lazy"><b>The Satva Maker</b><span>Blends the masalas at home, to family recipes.</span></li>
-    <li><img src="assets/sah-promoter.jpg" alt="Women of a neighbourhood sitting together" loading="lazy"><b>The Satva Promoter</b><span>Brings lab-tested staples to her neighbours.</span></li>
-    <li><img src="assets/sah-join.jpg" alt="A woman laughing as she cooks in her kitchen at home" loading="lazy" style="object-position:72% 50%"><b>You?</b><span>Work from home, on your own hours.</span></li>
-  </ul>
-  <div class="s14-btns" id="join">
-    <a class="btn-gold" href="https://wa.me/917709932222?text=Namaskar%21%20I%20would%20like%20to%20become%20a%20Satva%20Saheli.">Become a Saheli</a>
-    <a class="s14-link" href="saheli.html">Read the Saheli story &rarr;</a>
+<!-- 20 Oct 2026, owner: the new Satva Saheli copy goes here ("Saheli + Kit
+     sections"). The old version of this section and of the kit block is kept,
+     untouched, in index-old-saheli-kit.html. Styles: "SAHELI + KIT - 20 OCT"
+     in css/center-8002.css. -->
+<section class="saheli sah14 sah20" id="saheli">
+  <div class="s20-in">
+    <div class="s20-l">
+      <div class="s20-head"><img src="assets/saheli-mark-grad.svg" alt="Satva Saheli"><p class="s20-k">Satva Saheli</p></div>
+      <h2 class="s20-h">Pure Food with a Purpose: <em>The Spirit of Satva Saheli</em></h2>
+      <p class="s20-lede">A movement of women micro-entrepreneurs, bringing pure food from their hands to your kitchen.</p>
+      <ul class="s20-pill">
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 20c-2-6 1-13 13-14-1 12-8 15-14 13"/><path d="M5 21c3-5 6-8 10-10"/></svg></span><div><b>Crafted by hands you trust</b><span>Masalas blended to time-tested family recipes.</span></div></li>
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M13 5c2.5 0 3.5 2 3.5 4S15 13 12 13H8l7 7"/></svg></span><div><b>Driven by financial freedom</b><span>Every Saheli runs her own small business.</span></div></li>
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 5 6v6c0 4.5 3 7.5 7 9 4-1.5 7-4.5 7-9V6z"/><path d="m9 12 2 2 4-4"/></svg></span><div><b>Trained in quality</b><span>FSSAI food safety, hygiene and nutrition.</span></div></li>
+      </ul>
+    </div>
+    <div class="s20-r">
+      <p class="s20-k s20-k2">Two Roles. <em>One Powerful Movement.</em></p>
+      <ul class="s14-row s20-row">
+        <li><img src="assets/sah-maker.jpg" alt="A woman pounding spices by hand in a mortar" loading="lazy"><b>The Satva Maker</b><span>Roasts and blends our masalas at home.</span></li>
+        <li><img src="assets/sah-promoter.jpg" alt="Women of a neighbourhood sitting together" loading="lazy"><b>The Satva Promoter</b><span>Brings healthy staples to her neighbours.</span></li>
+      </ul>
+      <div class="s14-btns" id="join">
+        <a class="btn-gold" href="#kit">Become a Saheli</a>
+        <a class="s14-link" href="saheli.html" data-sahstory>Read the Saheli story &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ healthy grocery kit ============ -->
+<!-- 14 Oct 2026, owner: "create a block for the grocery kit that people can
+     buy ... the block should be after satva saheli and the concept is
+     whatever the satva saheli is selling, it would be in the form of a kit
+     only". :8002 only. One screen under the nav, like its neighbours. The
+     three masalas (garam, sambar, chatpat) stand in until the owner names
+     them. "Buy the kit" opens the call card (its words set by data-callk /
+     data-calld). Styles: "HEALTHY GROCERY KIT BLOCK" in css/center-8002.css. -->
+<section class="kitsec" id="kit">
+  <div class="wrap kk-wrap">
+    <div class="kk-copy">
+      <!-- 20 Oct 2026, owner: the "Become a Satva Saheli" copy, with the kit beside it. -->
+      <p class="kk-kick">Join us &middot; Healthy Grocery Kit</p>
+      <h2 class="kk-h">Become a Satva Saheli <em>Turn your passion into financial independence</em></h2>
+      <p class="kk-d">Earn from home, on your own hours &mdash; with this kit as your shop.</p>
+      <ul class="kk-perks">
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span><div><b>Zero inventory risk</b><span>No stock to buy up front.</span></div></li>
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><div><b>Full training</b><span>Food safety, selling and support.</span></div></li>
+        <li><span class="s20-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M13 5c2.5 0 3.5 2 3.5 4S15 13 12 13H8l7 7"/></svg></span><div><b>Monthly earnings</b><span>A commission on every kit you sell.</span></div></li>
+      </ul>
+      <div class="kk-cta">
+        <a class="btn-gold" href="https://wa.me/919689888822?text=Namaskar!%20I%20would%20like%20to%20become%20a%20Satva%20Saheli." target="_blank" rel="noopener" data-sahapply-page>Apply to Become a Satva Saheli</a>
+        <a class="kk-buy" href="https://wa.me/919689888822?text=Namaskar%21%20I%20would%20like%20to%20buy%20the%20Satva%20Healthy%20Grocery%20Kit." data-kitbuy>Buy the kit</a>
+      </div>
+      <p class="kk-sign"><b>DS SATVA FOODS</b> <i>Dil Se Pure&hellip; Empowering Lives.</i> <a class="kk-tel" href="tel:+919689888822">+91-9689888822</a></p>
+    </div>
+    <div class="kk-box" role="group" aria-label="Inside every Healthy Grocery Kit: turmeric, chilli powder, mustard, cumin and coriander; garam, sambar, chatpat, biryani and meat masala, made at home by our Sahelis; Himalayan pink salt, coconut sugar, chia seeds, methi and monk fruit sweetener">
+      <div class="kk-tag"><img src="assets/saheli-mark-bright.svg" alt="">Packed by Satva Sahelis</div>
+      <p class="kk-bt"><span>Inside every kit</span></p>
+      <div class="kk-grp" aria-hidden="true">
+        <p class="kk-gl">Spices</p>
+        <ul>
+            <li><span class="kk-p"><img src="assets/u-turmeric.jpg" alt="" loading="lazy"></span><b>Turmeric</b><i class="dv">हल्दी</i></li>
+            <li><span class="kk-p"><img src="assets/u-chilli-powder.jpg" alt="" loading="lazy"></span><b>Chilli Powder</b><i class="dv">मिर्च</i></li>
+            <li><span class="kk-p"><img src="assets/u-mustard-seeds.jpg" alt="" loading="lazy"></span><b>Mustard</b><i class="dv">राई</i></li>
+            <li><span class="kk-p"><img src="assets/u-cumin-seeds.jpg" alt="" loading="lazy"></span><b>Cumin</b><i class="dv">जीरा</i></li>
+            <li><span class="kk-p"><img src="assets/u-coriander-seeds.jpg" alt="" loading="lazy"></span><b>Coriander</b><i class="dv">धनिया</i></li>
+        </ul>
+      </div>
+      <div class="kk-grp kk-home" aria-hidden="true">
+        <p class="kk-gl">Distributed by our Sahelis</p>
+        <ul>
+            <li><span class="kk-p"><img src="assets/u-garam-masala.jpg" alt="" loading="lazy"></span><b>Garam Masala</b><i class="dv">गरम मसाला</i></li>
+            <li><span class="kk-p"><img src="assets/u-sambar-masala-8002.jpg" alt="" loading="lazy"></span><b>Sambar Masala</b><i class="dv">सांबार मसाला</i></li>
+            <li><span class="kk-p"><img src="assets/u-chatpat-masala.jpg" alt="" loading="lazy"></span><b>Chatpat Masala</b><i class="dv">चटपट मसाला</i></li>
+            <li><span class="kk-p"><img src="assets/u-biryani-masala.jpg" alt="" loading="lazy"></span><b>Biryani Masala</b><i class="dv">बिरयानी मसाला</i></li>
+            <li><span class="kk-p"><img src="assets/u-meat-masala.jpg" alt="" loading="lazy"></span><b>Meat Masala</b><i class="dv">मीट मसाला</i></li>
+        </ul>
+      </div>
+      <div class="kk-grp" aria-hidden="true">
+        <p class="kk-gl">Healthy essentials</p>
+        <ul>
+            <li><span class="kk-p"><img src="assets/u-himalayan-pink-salt.jpg" alt="" loading="lazy"></span><b>Pink Salt</b><i class="dv">गुलाबी नमक</i></li>
+            <li><span class="kk-p"><img src="assets/u-coconut-sugar.jpg" alt="" loading="lazy"></span><b>Coconut Sugar</b><i class="dv">नारियल शक्कर</i></li>
+            <li><span class="kk-p"><img src="assets/u-chia-seeds.jpg" alt="" loading="lazy"></span><b>Chia Seeds</b><i class="dv">चिया</i></li>
+            <li><span class="kk-p"><img src="assets/u-methi-seeds.jpg" alt="" loading="lazy"></span><b>Methi</b><i class="dv">मेथी</i></li>
+            <li><span class="kk-p"><img src="assets/j-monk-3-powder.jpg" alt="" loading="lazy"></span><b>Monk Fruit</b><i class="dv">मंक फ्रूट</i></li>
+        </ul>
+      </div>
+      <!-- 21 Oct 2026, owner: "Customise your kit" at the foot of this white box,
+           opening the same picker as the Customise button in the range
+           (js/kit-custom-8002.js, data-kitcustom). -->
+      <div class="kk-foot">
+        <p>Pick your own.</p>
+        <button type="button" class="btn-gold kk-cust" data-kitcustom>Customise your kit <span aria-hidden="true">&rarr;</span></button>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -735,10 +878,13 @@
      correct - FEATURED picks which ones show. Every dish here is built on one
      product from our own range, which is the point of the block. -->
 <section class="recipes" id="recipes">
+  <!-- 14 Oct 2026, owner: the colourful divider between sections of the
+       same shade (this one and the one above are both peach). -->
+  <div class="spectrum sec-div" aria-hidden="true"></div>
   <div class="wrap">
     <div class="rechead reveal">
       <h2 class="dsp big">Cook something for someone</h2>
-      <p class="lede">Four everyday dishes, each built on one thing we pack.</p>
+      <p class="lede">Everyday dishes, each built on something we pack.</p>
     </div>
     <div class="recgrid" id="recipes-grid"></div>
     <div class="recfoot reveal">
@@ -777,10 +923,9 @@
       <img class="logo" src="assets/logo-stack-dark.png" alt="DS SATVA">
       <h2>Dil se pure &mdash; from our kitchen to yours</h2>
       <p>Prices are quoted per gram, honestly, on WhatsApp. Ask for the list and we will send it the same day.</p>
-      <a class="fwa" href="https://wa.me/917709932222?text=Namaste%21%20I%20would%20like%20to%20order%20from%20DS%20Satva%20Foods.">
-        <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>
-        Order on WhatsApp
-      </a>
+      <!-- 15 Oct 2026, owner: the phone number with a WhatsApp symbol here.
+           Styles: .fphone in css/center-8002.css. -->
+      <a class="fphone" href="https://wa.me/919689888822?text=Namaste%21%20Please%20send%20me%20the%20SATVA%20price%20list." target="_blank" rel="noopener" aria-label="WhatsApp +91-9689888822"><svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg><span>+91-9689888822</span></a>
     </div>
   </div>
 
@@ -794,30 +939,34 @@
              same with JS off - but if a shelf is added to GROUPS, it is added
              here too. -->
         <ul>
-          <li><a href="#categories" data-shelf="Spices">Spices</a></li>
-          <li><a href="#categories" data-shelf="Seeds">Seeds</a></li>
-          <li><a href="#categories" data-shelf="Healthy Essentials">Healthy Essentials</a></li>
+          <li><a href="#range" data-fshelf="spices">Spices</a></li>
+          <li><a href="#range" data-fshelf="seeds">Seeds</a></li>
+          <li><a href="#range" data-fshelf="essentials">Healthy Essentials</a></li>
+          <li><a href="#kit">Healthy Grocery Kit</a></li>
         </ul>
       </div>
 
       <div class="fcol">
         <h3>Explore</h3>
         <ul>
-          <li><a href="#categories">Our Range</a></li>
-          <li><a href="#recipes">Recipes</a></li>
-          <li><a href="#made">How it&rsquo;s made</a></li>
-          <li><a href="#mission">Our Mission</a></li>
-          <li><a href="#story">Our Story</a></li>
+          <!-- 21 Oct 2026, owner: "the same menu on the top ... the same order".
+               Mirrors the top nav: Why SATVA, Satva Saheli, Our Range,
+               Healthy Grocery Kit, Recipes, Contact. -->
+          <li><a href="#why">Why SATVA</a></li>
           <li><a href="#saheli">Satva Saheli</a></li>
+          <li><a href="#categories">Our Range</a></li>
+          <li><a href="#kit">Healthy Grocery Kit</a></li>
+          <li><a href="#recipes">Recipes</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
 
       <div class="fcol">
         <h3>Reach us</h3>
         <ul>
-          <li><a href="https://wa.me/917709932222">+91 77099 32222</a></li>
+          <li><a href="https://wa.me/919689888822" target="_blank" rel="noopener">+91-9689888822 (WhatsApp)</a></li>
           <li><a href="mailto:dssatva@gmail.com">dssatva@gmail.com</a></li>
-          <li><a href="https://dssatva.github.io/feedback/">Sample feedback form</a></li>
+          <li><a href="tel:+919689888822">Call +91-9689888822</a></li>
         </ul>
         <!-- TO FILL: Instagram and Google Business links, once those exist.
              Do not add placeholder icons that go nowhere. -->
@@ -846,8 +995,22 @@
     </div>
   </div>
 </footer>
+<script>
+/* 15 Oct 2026: footer shelf links open Our Range on that shelf (they used to
+   land on the category cards unfiltered). They press the range tab with the
+   same data-group, which js/satva.js builds. */
+document.addEventListener("click", function (e) {
+  var a = e.target.closest && e.target.closest("a[data-fshelf]");
+  if (!a) return;
+  var tab = document.querySelector('#rtabs [data-group="' + a.getAttribute("data-fshelf") + '"]');
+  e.preventDefault();
+  if (tab) tab.click();
+  var r = document.getElementById("range");
+  if (r) r.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+</script>
 
-<a class="wafab" href="https://wa.me/917709932222?text=Namaskar%21%20I%20saw%20the%20SATVA%20website." aria-label="Chat on WhatsApp">
+<a class="wafab" href="https://wa.me/919689888822?text=Namaskar%21%20I%20saw%20the%20SATVA%20website." aria-label="Chat on WhatsApp">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.2-1.8-.9-2.1-1-.3-.1-.5-.2-.7.1s-.8 1-1 1.2c-.2.2-.4.3-.7.1a8.2 8.2 0 0 1-2.4-1.5 9.1 9.1 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.7l.6-.7c.1-.2.2-.4.1-.6l-.9-2.1c-.2-.5-.4-.5-.6-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.1 1.1-1.1 2.6s1.1 3 1.3 3.2c.1.2 2 3.2 4.9 4.4 2.4 1 2.9.8 3.4.8.5-.1 1.7-.7 1.9-1.4.2-.7.2-1.3.2-1.4-.1-.2-.3-.2-.6-.4zM12 21.5c-1.7 0-3.4-.5-4.9-1.3l-3.4.9.9-3.3A9.4 9.4 0 0 1 2.6 12 9.4 9.4 0 0 1 12 2.6 9.4 9.4 0 0 1 21.4 12 9.4 9.4 0 0 1 12 21.5z"/></svg>
 </a>
 
@@ -868,6 +1031,13 @@
      pulses section from the whole website"). js/satva.js drops the shelf and
      its products everywhere it builds from GROUPS/PRODUCTS. */
   window.SATVA_HIDE_SHELVES = ["pulses"];
+  /* 14 Oct 2026, owner: remove the third mustard picture in How it's made
+     (the close-up of seeds on wood); the other mustard pictures stay. */
+  window.SATVA_DROP_SHOTS = ["assets/j-mustard-3-seed.jpg"];
+  /* 15 Oct 2026, owner: our sambar masala is olive-green, not orange. The
+     card photo with the powder recoloured to match (u-sambar-masala-8002.jpg;
+     the original stays for :8003). */
+  window.SATVA_STILL_SHOT = { "Sambar Masala": "assets/u-sambar-masala-8002.jpg" };
   window.SATVA_CAT_IMG = {
     spices:     "assets/card-spices.jpg",
     seeds:      "assets/card-seeds.jpg",
@@ -888,7 +1058,25 @@
     "biryani":    "assets/rec-biryani.jpg"
   };
 </script>
-<script src="js/satva.js"></script>
+<script>
+  /* 14 Oct 2026, owner: phone number changed from +91 77099 32222 to
+     +91-9689888822. js/satva.js builds some WhatsApp links itself and reads
+     the number from here (pages that don't set it keep the old one). Same
+     day: the "Order on WhatsApp" buttons in the menu and footer removed. */
+  window.SATVA_WA_NUMBER = "919689888822";
+</script>
+<script src="js/satva.js?v=20261023a"></script>
+<script src="js/kit-custom-8002.js?v=20261023a"></script>
+<script src="js/chilli-varieties-8002.js?v=20261023a"></script>
+<script>
+  /* 20 Oct 2026: "Apply to Become a Satva Saheli" on the page asks the
+     applicant's WhatsApp number first (js/kit-custom-8002.js), then WhatsApp. */
+  [].forEach.call(document.querySelectorAll("[data-sahapply-page]"), function (a) {
+    a.addEventListener("click", function (e) {
+      if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli.", "saheli"); }
+    });
+  });
+</script>
 <script>
   /* "Why SATVA" dropdown, :8002 only - the same close-on-leave and Escape
      handling js/satva.js gives "Our Range", plus closing once a pick is made. */
@@ -919,44 +1107,173 @@
      butter-chicken 1606471191009, kheer 1755090154741, pav-bhaji 1753357303396,
      pepper-mutton 1545247181, quinoa 1623428188495, chicken-curry 1728910107534. -->
 <script>
-  /* Why SATVA hero slide, :8002 only (13 Oct 2026): the chosen card widens
-     and opens. Each card gets 3s; after the fourth the hero moves on to the
-     next slide (owner: "once the slides slide through the 4 images, it
-     should go to the next slider"), even while the pointer pauses the rest
-     of the hero. A click or Enter on a card carries on from that card. */
+  /* Why choose SATVA photograph cards, :8002 only (13 Oct 2026; were a hero
+     slide until the swap): the chosen card widens and opens. Steps every 3s
+     while the section is on screen and loops; a click or Enter on a card
+     picks it and the stepping carries on from there. */
   (function () {
-    var sl = document.querySelector(".whyhero");
-    if (!sl) return;
-    var cards = [].slice.call(sl.querySelectorAll(".wh-card")), t = null, STEP = 3000;
+    var sec = document.querySelector(".whysec");
+    if (!sec) return;
+    var cards = [].slice.call(sec.querySelectorAll(".wh-card")), cur = 0, t = null, seen = false, STEP = 3000;
     var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    function pick(i) { cards.forEach(function (c, k) { c.classList.toggle("on", k === i); }); }
+    function pick(i) { cur = (i + cards.length) % cards.length; cards.forEach(function (c, k) { c.classList.toggle("on", k === cur); }); }
     function step(i) {
       clearTimeout(t); pick(i);
-      if (still) return;
-      t = setTimeout(function () {
-        if (!sl.classList.contains("is-on")) return;
-        if (i < cards.length - 1) step(i + 1);
-        else if (window.SATVA_HERO_NEXT) window.SATVA_HERO_NEXT();
-      }, STEP);
-    }
-    function run() {
-      clearTimeout(t);
-      if (sl.classList.contains("is-on")) step(0);
+      if (still || !seen) return;
+      t = setTimeout(function () { step(cur + 1); }, STEP);
     }
     cards.forEach(function (c, i) {
-      c.addEventListener("click", function (e) { e.stopPropagation(); step(i); });
+      c.addEventListener("click", function () { step(i); });
       c.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); step(i); } });
     });
-    var was = sl.classList.contains("is-on");
-    new MutationObserver(function () {
-      var on = sl.classList.contains("is-on");
-      if (on !== was) { was = on; run(); }
-    }).observe(sl, { attributes: true, attributeFilter: ["class"] });
-    run();
+    new IntersectionObserver(function (es) {
+      var v = es[0].isIntersecting;
+      if (v && !seen) { seen = true; step(0); }
+      else if (!v && seen) { seen = false; clearTimeout(t); }
+    }, { threshold: 0.4 }).observe(sec);
   })();
 </script>
-<script src="js/recipes-rotate-8002.js"></script>
-<script src="js/links-8002.js"></script>
-<script src="js/grind.js"></script>
+<script src="js/recipes-rotate-8002.js?v=20261023a"></script>
+<script src="js/links-8002.js?v=20261023a"></script>
+<script src="js/grind.js?v=20261023a"></script>
+
+<script>
+(function () {
+  var k = document.getElementById("kit");
+  if (!k || !("IntersectionObserver" in window)) return;
+  k.classList.add("kk-wait");
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { k.classList.add("kk-in"); io.disconnect(); } });
+  }, { threshold: .35 });
+  io.observe(k);
+})();
+</script>
+<!-- SAHELI STORY DIALOG, :8002 only. 14 Oct 2026, owner: "when the read the
+     saheli story is clicked, i want a dialogue box to be opened with all the
+     details". Everything on saheli.html, word for word, in a dialog over the
+     page. The link keeps href="saheli.html", so it still works without the
+     script. "Become a Saheli" in here opens the call card below. Styles:
+     "SAHELI STORY DIALOG" in css/center-8002.css. -->
+<div class="sahstory" id="sahstory" role="dialog" aria-modal="true" aria-labelledby="sahstory-t" hidden>
+  <div class="sahstory-card">
+    <button class="sahcall-x sahstory-x" type="button" aria-label="Close">&times;</button>
+    <!-- 20 Oct 2026, owner: "make this content interesting" + the owner's own copy
+         (hero line, the story, the two roles, the call to apply, the tagline).
+         "lab-tested" in the owner's Promoter line is "healthy", as asked on 16 Oct.
+         Styles: "SAHELI STORY - 20 OCT" in css/center-8002.css. -->
+    <div class="sahstory-grid sx">
+      <!-- 21 Oct 2026, owner: nothing that is already on the Satva Saheli
+           section may repeat in here - so no "Pure Food with a Purpose", no
+           three pillars, no two roles. Left: the owner's own story lines from
+           saheli.html, a photo not used on the page, and the two numbers.
+           Styles: "SAHELI STORY - 21 OCT" in css/center-8002.css. -->
+      <div class="sahstory-main sx-main sx21">
+        <div class="sx-head">
+          <img src="assets/saheli-mark-grad.svg" alt="">
+          <div>
+            <p class="sahstory-k">Satva Saheli</p>
+            <h2 id="sahstory-t">Empowering Women. <span>Enriching Kitchens.</span></h2>
+          </div>
+        </div>
+        <p class="sx-sub">A <i>saheli</i> is the friend a woman actually turns to. True purity begins at home &mdash; so instead of a factory network, we work with women in their own communities, and the work and the wage stay with them.</p>
+        <figure class="sx-photo">
+          <!-- 21 Oct 2026, owner: "in the place of this grandma, replace this image" - the owner's own photo (Downloads/mary friends .jpeg). -->
+          <img src="assets/sah-mary-friends.jpg" alt="Women of the Satva Saheli circle talking together at home in the evening light" loading="lazy">
+          <figcaption>
+            <div><b>30+</b><span>households each Saheli reaches</span></div>
+            <div><b>100%</b><span>of this work stays local</span></div>
+          </figcaption>
+        </figure>
+      </div>
+      <aside class="sahstory-join sx-join">
+        <p class="sahstory-k">Join us</p>
+        <h3>Become a Satva Saheli</h3>
+        <p class="sx-jsub">Turn your passion into financial independence</p>
+        <p class="sahstory-jl">Looking to earn a meaningful income, working flexibly from home? Join a growing circle of women transforming their communities through health, purity and entrepreneurship.</p>
+        <ul class="sx-perks">
+          <li><span class="sx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5-9 5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/></svg></span><div><b>Zero inventory risk</b><span>Simple digital ordering tools and kit-based sales.</span></div></li>
+          <li><span class="sx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/></svg></span><div><b>Full onboarding &amp; training</b><span>Food safety standards, marketing and how to talk to customers.</span></div></li>
+          <li><span class="sx-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 5h10M7 9h10M13 5c2.5 0 3.5 2 3.5 4S15 13 12 13H8l7 7"/></svg></span><div><b>Dignified monthly earnings</b><span>Competitive commissions for delivering 100% pure kitchen essentials to local families.</span></div></li>
+        </ul>
+        <a class="btn-gold sahstory-cta sx-apply" href="https://wa.me/919689888822?text=Namaskar!%20I%20would%20like%20to%20become%20a%20Satva%20Saheli." target="_blank" rel="noopener" data-sahstory-close data-sahapply><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.3 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-4-4.7-4.2-.1-.2-1.1-1.5-1.1-2.9s.7-2.1 1-2.4c.3-.3.6-.3.8-.3h.6c.2 0 .4 0 .6.5l.9 2.1c.1.2.1.4 0 .6l-.4.6-.4.4c-.1.2-.3.3-.1.6.2.3.8 1.3 1.7 2.1 1.2 1 2.1 1.4 2.4 1.5.3.1.5.1.7-.1l.9-1.1c.2-.3.4-.2.7-.1l2 1c.3.1.5.2.5.4.1.1.1.7-.1 1.3z"/></svg>Apply to Become a Satva Saheli</a>
+        <a class="sahstory-tel" href="tel:+919689888822">or call +91-9689888822</a>
+        <p class="sx-tag"><b>DS SATVA FOODS</b><i>Dil Se Pure&hellip; Empowering Lives.</i></p>
+      </aside>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var m = document.getElementById("sahstory");
+  if (!m) return;
+  var last = null;
+  function open(e) {
+    e.preventDefault(); last = e.currentTarget;
+    m.hidden = false; m.scrollTop = 0; document.documentElement.classList.add("sahstory-on");
+    m.querySelector(".sahstory-x").focus();
+  }
+  function close(keepFocus) {
+    m.hidden = true; document.documentElement.classList.remove("sahstory-on");
+    if (last && !keepFocus) last.focus();
+  }
+  [].forEach.call(document.querySelectorAll("[data-sahstory]"), function (a) { a.addEventListener("click", open); });
+  m.querySelector(".sahstory-x").addEventListener("click", function () { close(); });
+  // "Become a Saheli" in here: shut the story, the call card opens next
+  m.querySelector("[data-sahstory-close]").addEventListener("click", function () { close(true); });
+  // 20 Oct 2026: "Apply" asks the applicant's WhatsApp number (js/kit-custom-8002.js), then opens WhatsApp
+  var ap = m.querySelector("[data-sahapply]");
+  if (ap) ap.addEventListener("click", function (e) {
+    if (window.satvaAskNumber) { e.preventDefault(); window.satvaAskNumber("Namaskar! I would like to become a Satva Saheli.", "saheli"); }
+  });
+  m.addEventListener("click", function (e) { if (e.target === m) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !m.hidden) close(); });
+})();
+</script>
+
+<!-- BECOME A SAHELI - CALL CARD, :8002 only. 14 Oct 2026, owner: "when
+     clicked Become a saheli, let the DS SATVA and the phone number be
+     displayed and they can call that number". Both Become a Saheli buttons
+     carry data-sahcall and href="tel:..." (so they still dial if this script
+     never runs); the script opens this card instead. Styles: "SAHELI CALL
+     CARD" in css/center-8002.css. -->
+<div class="sahcall" id="sahcall" role="dialog" aria-modal="true" aria-labelledby="sahcall-t" hidden>
+  <div class="sahcall-card">
+    <button class="sahcall-x" type="button" aria-label="Close">&times;</button>
+    <img class="sahcall-logo" src="assets/logo-stack-dark.png" alt="DS SATVA">
+    <p class="sahcall-k">Become a Satva Saheli</p>
+    <h2 id="sahcall-t">DS SATVA</h2>
+    <p class="sahcall-d">Call us to join &mdash; work from home, on your own hours.</p>
+    <a class="sahcall-no" href="tel:+919689888822">+91-9689888822</a>
+    <a class="btn-gold sahcall-btn" href="tel:+919689888822">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+      Call now
+    </a>
+  </div>
+</div>
+<script>
+(function () {
+  var m = document.getElementById("sahcall");
+  if (!m) return;
+  var last = null;
+  var kEl = m.querySelector(".sahcall-k"), dEl = m.querySelector(".sahcall-d");
+  var kDef = kEl.innerHTML, dDef = dEl.innerHTML;
+  function open(e) {
+    e.preventDefault(); last = e.currentTarget;
+    // a button can set its own words (the kit block's "Buy the kit" does)
+    kEl.innerHTML = last.getAttribute("data-callk") || kDef;
+    dEl.innerHTML = last.getAttribute("data-calld") || dDef;
+    m.hidden = false; document.documentElement.classList.add("sahcall-on");
+    m.querySelector(".sahcall-btn").focus();
+  }
+  function close() {
+    m.hidden = true; document.documentElement.classList.remove("sahcall-on");
+    if (last) last.focus();
+  }
+  [].forEach.call(document.querySelectorAll("[data-sahcall]"), function (a) { a.addEventListener("click", open); });
+  m.querySelector(".sahcall-x").addEventListener("click", close);
+  m.addEventListener("click", function (e) { if (e.target === m) close(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !m.hidden) close(); });
+})();
+</script>
 </body>
 </html>

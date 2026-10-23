@@ -7,7 +7,10 @@
 (function () {
   "use strict";
 
-  var WA = "https://wa.me/917709932222?text=";
+  /* a page can give its own WhatsApp number: window.SATVA_WA_NUMBER
+     (ports/8002, 14 Oct 2026, owner's new number). Unset - the old one. */
+  var WA_NO = window.SATVA_WA_NUMBER || "919689888822"; /* 20 Oct 2026: default is the new number too */
+  var WA = "https://wa.me/" + WA_NO + "?text=";
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------------------------------------------------------
@@ -52,16 +55,6 @@
       img:"assets/p-dhane.jpg", photo:true, tint:"linear-gradient(150deg,#bcae63,#948537)" },
 
     /* ---- SPICES · whole, for tadka ---- */
-    /* hideInAll: kept on the Spices shelf but held back from "Everything".
-       At five columns twenty-one cards is four full rows plus one card left
-       hanging on its own; twenty is four clean rows. The owner picked this
-       one to drop because Coriander Powder sits right beside it and covers
-       the same ingredient. It is NOT removed from the range - tap Spices
-       and it is there, and its journey still works. */
-    { acc:"#8a9a52", ink:"#57632a", en:"Coriander Seeds", hi:"धनिया", cat:"spices", form:"Whole", glyph:"ध", hideInAll:true,
-      d:"Whole dhaniya — crush it fresh, or roast it for a masala.",
-      make:"Cleaned and graded whole. Nothing ground, nothing polished.",
-      img:"assets/p-dhaniya-whole.jpg", tint:"linear-gradient(150deg,#a6b268,#7d8a3c)" },
     { acc:"#a3763f", ink:"#6b5029", en:"Cumin Seeds", hi:"जीरा", cat:"spices", form:"Whole", glyph:"जी",
       d:"Whole, for the first crackle in hot oil.",
       make:"Threshed, winnowed and sieved. Sold whole so you roast it fresh.",
@@ -124,10 +117,12 @@
       d:"Roast and grind for chutney, or stir into roti dough.",
       make:"Cleaned cold and left whole, so the oil stays in the seed until you grind it.", mfilm:"seeds",
       img:"assets/p-flax.jpg", photo:true, tint:"linear-gradient(150deg,#b39468,#8a6244)" },
-    { acc:"#c2a878", ink:"#7d6a42", en:"Quinoa", hi:"क्विनोआ", cat:"seeds", glyph:"क्वि",
-      d:"Cooks like rice, in about fifteen minutes.",
-      make:"Washed to take the saponin off the outside, then dried. That is the whole process.",
-      img:"assets/p-quinoa.jpg", photo:true, tint:"linear-gradient(150deg,#d0ba92,#a88d5c)" },
+    /* 20 Oct 2026, owner: "remove quinoa ... and keep coriander seeds here" -
+       Quinoa is off the whole site; Coriander Seeds moved from Spices into its place. */
+    { acc:"#8a9a52", ink:"#57632a", en:"Coriander Seeds", hi:"धनिया", cat:"seeds", form:"Whole", glyph:"ध",
+      d:"Whole dhaniya — crush it fresh, or roast it for a masala.",
+      make:"Cleaned and graded whole. Nothing ground, nothing polished.",
+      img:"assets/p-dhaniya-whole.jpg", tint:"linear-gradient(150deg,#a6b268,#7d8a3c)" },
     /* moved here from Spices on 20 Sep 2026 */
     { acc:"#b08b2e", ink:"#7d6118", en:"Methi Seeds", hi:"मेथी दाना", cat:"seeds", glyph:"मे",
       d:"A bitter edge for pickles, dal and tadka.",
@@ -152,7 +147,7 @@
       make:"Sap from the flower, boiled down and dried. Nothing refined out of it.",
       img:"assets/p-coconutsugar.jpg", tint:"linear-gradient(150deg,#c48f57,#96682c)" },
     { acc:"#7fa06a", ink:"#4e6a3c", en:"Monk Fruit Sweetener", hi:"मंक फ्रूट", cat:"essentials", glyph:"मं",
-      d:"Sweetness from the fruit itself, with no sugar in it at all.",
+      d:"Sweetness from the fruit itself, with no sugar in it at all, and a zero glycemic index.",
       make:"The fruit juiced and dried to a powder. No sugar alcohols added.",
       img:"assets/p-monkfruit.jpg", tint:"linear-gradient(150deg,#96b380,#64854e)" }
   ];
@@ -545,38 +540,6 @@
       end: { title: "Grind it the morning you use it",
         text: "A coffee grinder, ten seconds. That is the freshest flax you will ever eat.",
         shot: "assets/j-flax-3-seed.jpg" }
-    },
-
-    "Quinoa": {
-      hi: "क्विनोआ",
-      intro: { kick: "Field to plate", title: "How quinoa is washed, not polished",
-        text: "It is not a grain, and the one thing that has to be done to it is the " +
-              "one thing that cannot be skipped.",
-        shot: "assets/j-quinoa-1-field.jpg" },
-      stages: [
-        { when: "Month 4–6", title: "A goosefoot, not a grass",
-          text: "Chenopodium quinoa is a cousin of spinach and beetroot, not of wheat. " +
-                "The heads turn red, gold or near black as they ripen, often in one field.",
-          short: "A cousin of spinach, not of wheat.",
-          shot: "assets/j-quinoa-1-field.jpg",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Red_quinoa_plants.JPG" target="_blank" rel="noopener">Red quinoa plants</a>, CC BY-SA 4.0.' },
-        { when: "Harvest", title: "Cut and beaten from the head",
-          text: "The seed heads are cut and threshed. Each head carries thousands of " +
-                "seeds, each one wrapped in a bitter coat.",
-          short: "Thousands of seeds to a head.",
-          shot: "assets/j-quinoa-2-heads.jpg",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Red_quinoa_closeup.JPG" target="_blank" rel="noopener">Red quinoa closeup</a>, CC BY-SA 4.0.' },
-        { when: "The last step", title: "Washed until the bitterness goes",
-          text: "Quinoa carries saponin, a soapy coat that protects it from birds and " +
-                "tastes foul. It is washed off and the seed is dried. That is the entire " +
-                "process — nothing is polished and nothing is added.",
-          short: "Saponin washed off, then dried. That is all.",
-          shot: "assets/j-quinoa-3-grain.jpg",
-          credit: 'Photograph: <a href="https://commons.wikimedia.org/wiki/File:Colored_quinoa_Genebank_INIA_Juliaca.jpg" target="_blank" rel="noopener">Coloured quinoa, INIA Juliaca genebank</a>, CC BY-SA.' }
-      ],
-      end: { title: "Rinse it once more anyway",
-        text: "Thirty seconds under a tap before it goes in the pot. It costs nothing and it always helps.",
-        shot: "assets/j-quinoa-3-grain.jpg" }
     },
 
     "Monk Fruit Sweetener": {
@@ -1025,6 +988,25 @@
     }
   };
 
+  /* A page can take single photographs out of the "How it is made" stories
+     without editing this file: window.SATVA_DROP_SHOTS = ["assets/x.jpg"]
+     (ports/8002, 14 Oct 2026, owner on the third mustard picture: "i want to
+     remove this particular picture of the mustard seed. others are ok").
+     Any stage showing a listed photograph is dropped, and an end card that
+     used it takes the last remaining stage's photograph instead.
+     Unset - every other page - nothing changes. */
+  var DROP_SHOTS = window.SATVA_DROP_SHOTS || [];
+  if (DROP_SHOTS.length) {
+    Object.keys(JOURNEYS).forEach(function (k) {
+      var j = JOURNEYS[k];
+      if (!j.stages) return;
+      j.stages = j.stages.filter(function (st) { return DROP_SHOTS.indexOf(st.shot) < 0; });
+      var last = j.stages[j.stages.length - 1];
+      if (j.end && DROP_SHOTS.indexOf(j.end.shot) > -1 && last) j.end.shot = last.shot;
+      if (j.intro && DROP_SHOTS.indexOf(j.intro.shot) > -1 && j.stages[0]) j.intro.shot = j.stages[0].shot;
+    });
+  }
+
   function productCard(p) {
     var card = document.createElement("article");
     card.className = "pcard reveal";
@@ -1145,7 +1127,6 @@
                  '<img src="' + s.shot + '" alt="" loading="lazy">' +
                  (s.video ? '<span class="jfilm-play">' + PLAY_ICON + "</span>" : "") +
                "</span>" +
-               '<span class="jfilm-no">' + (n + 1 < 10 ? "0" + (n + 1) : n + 1) + "</span>" +
                '<span class="jfilm-when">' + s.when + "</span>" +
                "<b>" + s.title + "</b>" +
                "<i>" + (s.short || "") + "</i>" +
@@ -1201,7 +1182,7 @@
                media +
                '<figcaption class="jcs-cap">' +
                  '<span class="jcs-meta">' +
-                   '<b>' + (n + 1 < 10 ? "0" + (n + 1) : n + 1) + "</b>" + s.when +
+                   s.when + /* 20 Oct 2026: step number removed */
                  "</span>" +
                  "<strong>" + s.title + "</strong>" +
                "</figcaption>" +
@@ -1263,12 +1244,17 @@
     "Chana Dal":            "assets/u-chana-dal.jpg",
     "Chia Seeds":           "assets/u-chia-seeds.jpg",
     "Flax Seeds":           "assets/u-flax-seeds.jpg",
-    "Quinoa":               "assets/u-quinoa.jpg",
     "Methi Seeds":          "assets/u-methi-seeds.jpg",
     "Himalayan Pink Salt":  "assets/u-himalayan-pink-salt.jpg",
     "Coconut Sugar":        "assets/u-coconut-sugar.jpg",
     "Monk Fruit Sweetener": "assets/j-monk-3-powder.jpg"
   };
+  /* a page can swap single card pictures: window.SATVA_STILL_SHOT =
+     {"Name": "assets/x.jpg"} (ports/8002, 15 Oct 2026: Sambar Masala in
+     the colour of the owner's own blend). Unset - nothing changes. */
+  if (window.SATVA_STILL_SHOT) {
+    Object.keys(window.SATVA_STILL_SHOT).forEach(function (k) { STILL_SHOT[k] = window.SATVA_STILL_SHOT[k]; });
+  }
 
   /* The dish behind each "How it's made" card's Recipe button - an id in
      RECIPES (name, time, line) and RECIPE_BOOK (ingredients, method).
@@ -1291,7 +1277,6 @@
     "Chana Dal":            "chana-dal",
     "Chia Seeds":           "chia",
     "Flax Seeds":           "javas-chutney",
-    "Quinoa":               "quinoa",
     "Methi Seeds":          "methi-dal",
     "Himalayan Pink Salt":  "nimbu-pani",
     "Coconut Sugar":        "kheer",
@@ -1407,13 +1392,12 @@
            number and the cards on screen cannot quietly disagree. */
         var held = PRODUCTS.filter(function (p) { return p.hideInAll; })
                            .map(function (p) { return p.en; });
-        rSub.textContent = PRODUCTS.length + " staples, across " +
-          (["no", "one", "two", "three", "four", "five", "six"][GROUPS.length] || GROUPS.length) + " shelves" +
-          (held.length ? " \u2014 " + held.join(", ") +
-             (held.length === 1 ? " is" : " are") + " on the Spices shelf." : ".");
+        /* 20 Oct 2026, owner: no numbers anywhere on the site - the count of
+           staples and shelves is gone; only the held-back note stays. */
+        rSub.textContent = held.length ? held.join(", ") +
+             (held.length === 1 ? " is" : " are") + " on the Spices shelf." : "";
       } else {
-        rSub.textContent = list.length +
-          (list.length === 1 ? " item on the " : " items on the ") + g.label + " shelf";
+        rSub.textContent = "Everything on the " + g.label + " shelf"; /* 20 Oct 2026: count removed */
       }
     }
     if (rTabs) [].forEach.call(rTabs.children, function (b) {
@@ -1466,7 +1450,7 @@
       b.setAttribute("role", "tab");
       b.setAttribute("aria-selected", g.id === "all" ? "true" : "false");
       b.dataset.group = g.id;
-      b.innerHTML = g.label + '<span class="ecount">' + n + "</span>";
+      b.innerHTML = g.label; /* 20 Oct 2026: count removed (owner: no numbers) */
       b.addEventListener("click", function () { showGroup(g.id); });
       rTabs.appendChild(b);
     });
@@ -1535,7 +1519,6 @@
         '</span>' +
         '<span class="cmeta">' +
           '<span class="cblurb">' + a.blurb + '</span>' +
-          '<span class="ccount">' + count + (count === 1 ? " item" : " items") + '</span>' +
         '</span>';
 
       // the photograph replaces the icon tile, same probe pattern as everywhere else
@@ -1594,7 +1577,7 @@
       var g = GROUPS.filter(function (o) { return o.id === s.dataset.shelf; })[0];
       if (!g) return;
       var n = PRODUCTS.filter(function (p) { return inGroup(g, p.cat); }).length;
-      if (n) el.textContent = n + (n === 1 ? " item packed" : " items packed");
+      el.hidden = true; /* 20 Oct 2026: "N items packed" removed (owner: no numbers) */
     });
 
     function shGo(to) {
@@ -1768,8 +1751,7 @@
       var li = document.createElement("li");
       var a  = document.createElement("a");
       a.href = "#range";
-      a.innerHTML = (g.id === "all" ? "Everything" : g.label) +
-                    '<span class="mn">' + count + "</span>";
+      a.innerHTML = (g.id === "all" ? "Everything" : g.label); /* 20 Oct 2026: count removed */
       if (g.id === "all") li.className = "all";
       a.addEventListener("click", function (e) {
         e.preventDefault();
@@ -1806,8 +1788,8 @@
   if (tick) {
     var countMsg = document.getElementById("tickcount");
     if (countMsg) {
-      countMsg.textContent = PRODUCTS.length + " daily kitchen staples, and counting";
-      countMsg.hidden = false;
+      /* 20 Oct 2026, owner: no numbers - the "N daily kitchen staples" line stays hidden. */
+      countMsg.remove();
     }
 
     var msgs = [].slice.call(tick.querySelectorAll(".tmsg"));
@@ -2282,7 +2264,7 @@
                   '<source src="' + st.video + '" type="video/mp4"></video>'
               : '<img src="' + st.shot + '" alt="" loading="lazy">';
             return '<figure class="mkjs"' + (n === 0 ? ' data-on="1"' : "") + ">" + media +
-                     '<figcaption><b>' + (n + 1 < 10 ? "0" + (n + 1) : n + 1) + "</b>" +
+                     '<figcaption>' + /* 20 Oct 2026: step number removed */
                        "<span>" + st.when + "</span>" + st.title +
                      "</figcaption></figure>";
           }).join("") +
@@ -2370,12 +2352,11 @@
         /* "film" was the wrong word once journeys arrived: most of these are
            photographs of the process, not footage of it. The count is the
            union of the two, so the sentence has to cover both. */
-        mkNote.textContent = list.length + " on this shelf. " +
-          (filmed === 0
+        /* 20 Oct 2026, owner: no numbers - same sentence, without the counts. */
+        mkNote.textContent = filmed === 0
             ? "None have their process documented yet - each card shows the product itself until we shoot our own."
-            : filmed + (filmed === 1 ? " shows how it is" : " show how they are") + " made, step by step" +
-              (rest ? "; the " + (rest === 1 ? "other shows" : "rest show") +
-                      " the product itself until we shoot our own." : "."));
+            : (rest ? "Some show how they are made, step by step; the rest show the product itself until we shoot our own."
+                    : "Each shows how it is made, step by step.");
       }
     }
 
@@ -2488,7 +2469,7 @@
         b.className = "etab"; b.type = "button";
         b.setAttribute("role", "tab");
         b.setAttribute("aria-selected", i === 0 ? "true" : "false");
-        b.innerHTML = g.label + ' <sup>' + PRODUCTS.filter(function (p) { return p.cat === g.id; }).length + "</sup>";
+        b.innerHTML = g.label; /* 20 Oct 2026: count removed */
         b.addEventListener("click", function () { mkShelfGo(i); });
         mTabs.appendChild(b);
       });
@@ -2636,11 +2617,6 @@
       icon:POT, tint:"linear-gradient(150deg,#e4e6ef,#9aa3bd)",
       desc:"Three spoons of chia to a cup of milk, sweetened however you take it, left in the fridge overnight. Fruit in the morning. Nothing is cooked and nothing can go wrong.",
       uses:"Chia Seeds" },
-
-    { id:"quinoa", group:"seed", name:"Quinoa Bowl", hi:"क्विनोआ", time:"25 min",
-      icon:RICE, tint:"linear-gradient(150deg,#dfe3c9,#8a9457)",
-      desc:"Rinse it properly first — that bitter coating is why most people decide they dislike quinoa. Then treat it as bhaat: a fodni, whatever vegetable is in the house, lime.",
-      uses:"Quinoa" },
 
     /* ---- for the "How it's made" Recipe button (RECIPE_FOR), 8 Oct 2026 ---- */
     { id:"haldi-doodh", group:"masala", name:"Haldi Doodh", hi:"हळदीचे दूध", time:"10 min",
@@ -2894,17 +2870,6 @@
              "Grind the flax, chillies, cumin and salt in short pulses until coarse.",
              "Add the garlic and pulse 2-3 more times. It should stay coarse and dry. Keeps a fortnight in an airtight dabba."] },
 
-    "quinoa": { serves:"3",
-      ing:[["1 cup","Satva Quinoa"],["1¾ cups","water"],["1½ tbsp","oil"],["½ tsp","Satva Mustard Seeds"],
-           ["½ tsp","Satva Cumin Seeds"],["8","curry leaves"],["1","green chilli, chopped"],["1","onion, chopped"],
-           ["1 cup","mixed vegetables (peas, carrot, capsicum)"],["¼ tsp","Satva Turmeric"],["¾ tsp","salt"],
-           ["½","lemon"],["2 tbsp","roasted peanuts"],["2 tbsp","coriander leaves"]],
-      steps:["Rinse the quinoa in a fine sieve under running water, rubbing it between your fingers, for 1-2 minutes until it stops foaming. This is what takes the bitterness away.",
-             "Cook it with the water and a pinch of salt, covered, on low for 15 minutes. Rest 5 minutes, then fluff with a fork.",
-             "Heat the oil, let the mustard seeds pop, then add the cumin, curry leaves and chilli.",
-             "Add the onion for 2 minutes, then the vegetables for 4-5 minutes. Stir in the turmeric and salt.",
-             "Add the quinoa and toss for 2 minutes. Finish with lemon, peanuts and coriander."] },
-
     "methi-dal": { serves:"4",
       ing:[["¾ cup","Satva Toor Dal"],["½ tsp","Satva Turmeric"],["1","tomato, chopped"],["1 tsp","salt"],
            ["2 tbsp","ghee"],["4-5 seeds","Satva Methi Seeds (no more)"],["½ tsp","Satva Mustard Seeds"],
@@ -3141,7 +3106,7 @@
      is built on a DIFFERENT product we actually pack, so the row reads as four
      reasons to buy four different things. The other eleven recipes stay in
      RECIPES; change FEATURED to change what shows. */
-  var FEATURED = ["fodni-poha", "methi-dal", "bharli-vangi", "quinoa"];
+  var FEATURED = ["fodni-poha", "methi-dal", "bharli-vangi", "jeera-bhaat"]; /* 20 Oct 2026: quinoa removed */
   /* A page may choose its own four and their photographs
      (window.SATVA_FEATURED / window.SATVA_RECIPE_IMG, set before this
      script, e.g. ports/8002). Without them nothing changes. */
@@ -3504,7 +3469,7 @@
                '<button type="button" data-jclose>Back to the range</button>' +
              "</div>";
     } else {
-      body = '<span class="jstage-no">' + (i < 10 ? "0" + i : i) + "</span>" +
+      body = /* 20 Oct 2026: stage number removed */
              '<span class="jstage-when">' + s.when + "</span>" +
              "<h3>" + s.title + "</h3>" +
              "<p>" + s.text + "</p>";
@@ -3523,7 +3488,7 @@
     var total = j.stages.length;
     var html = jStageHTML(j.intro, 0, total, "intro");
     j.stages.forEach(function (s, n) { html += jStageHTML(s, n + 1, total, "stage"); });
-    j.end.ask = "https://wa.me/917709932222?text=" +
+    j.end.ask = "https://wa.me/" + WA_NO + "?text=" +
       encodeURIComponent("Namaskar! I watched how " + name + " is made. Please send me the price.");
     html += jStageHTML(j.end, 0, total, "end");
 
