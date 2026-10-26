@@ -36,8 +36,8 @@
       ["Kashmiri Chilli Powder", "Very mild \u00b7 brightest red", "cv-kashmiri.jpg"] ] },
     { name: "Home-made masalas", items: [
       ["Garam Masala", "गरम मसाला", "u-garam-masala.jpg"], ["Biryani Masala", "बिरयानी मसाला", "u-biryani-masala.jpg"],
-      ["Meat Masala", "मीट मसाला", "u-meat-masala.jpg"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.jpg"],
-      ["Chatpat Masala", "चटपट मसाला", "u-chatpat-masala.jpg"] ] },
+      ["Chaat Masala", "चाट मसाला", "u-chaat-masala.jpg"], ["Sambar Masala", "सांबार मसाला", "u-sambar-masala-8002.jpg"],
+      ["Chatpat / Kanda Lasun Masala", "चटपट / कांदा लसूण मसाला", "u-chatpat-masala.jpg"] ] },
     { name: "Seeds", items: [
       ["Chia Seeds", "चिया बीज", "u-chia-seeds.jpg"], ["Flax Seeds", "अलसी", "u-flax-seeds.jpg"],
       ["Methi Seeds", "मेथी दाना", "u-methi-seeds.jpg"] ] },
@@ -87,6 +87,9 @@
     var cols = getComputedStyle(grid).gridTemplateColumns.split(" ").filter(Boolean).length || 1;
     var used = (grid.children.length - 1) % cols;
     block.style.gridColumn = "span " + (used ? cols - used : cols);
+    /* 24 Oct 2026: alone in its row there is no card to take its height from,
+       so it sizes itself (kit-custom-8002.css, .kc-alone) */
+    block.classList.toggle("kc-alone", !used);
   }
   addEventListener("resize", fit);
   function place() {
