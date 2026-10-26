@@ -38,11 +38,11 @@ def main():
     for f in PAGES:
         if os.path.exists(os.path.join(SRC, f)):
             shutil.copy2(os.path.join(SRC, f), os.path.join(OUT, f))
-    copy_tree("css"); copy_tree("js")
+    copy_tree("css"); copy_tree("js"); copy_tree("recipes")  # recipes/: recipe-pages.gen.py, 26 Oct 2026
 
     # pictures referenced by the pages or scripts (by name, or by the part after a prefix)
     text = ""
-    for root in (OUT, os.path.join(OUT, "css"), os.path.join(OUT, "js")):
+    for root in (OUT, os.path.join(OUT, "css"), os.path.join(OUT, "js"), os.path.join(OUT, "recipes")):
         for f in os.listdir(root):
             if f.endswith((".html", ".css", ".js", ".webmanifest")):
                 text += open(os.path.join(root, f), encoding="utf-8", errors="ignore").read()
@@ -86,7 +86,7 @@ def main():
 
     # point pages and scripts at the WebP copies
     stamp = time.strftime("%Y%m%d%H%M")
-    for root in (OUT, os.path.join(OUT, "css"), os.path.join(OUT, "js")):
+    for root in (OUT, os.path.join(OUT, "css"), os.path.join(OUT, "js"), os.path.join(OUT, "recipes")):
         for f in os.listdir(root):
             if not f.endswith((".html", ".css", ".js")):
                 continue
@@ -101,6 +101,25 @@ def main():
                 s = re.sub(r'((?:href|src)="(?:css|js)/[^"?]+\.(?:css|js))(?:\?v=[0-9a-z]+)?"', r'\1?v=' + stamp + '"', s)
             if s != o:
                 open(p, "w", encoding="utf-8").write(s)
+    # 26 Oct 2026: one stylesheet per page instead of 11-13 (each was a separate
+    # wait on a phone). The links sit next to each other in the head, so joining
+    # them in the same order keeps the same look. Working copy keeps its files.
+    run = re.compile(r'(?:<link rel="stylesheet" href="css/([^"?]+\.css)\?v=[0-9a-z]+">\n?){2,}')
+    for f in os.listdir(OUT):
+        if not f.endswith(".html"):
+            continue
+        p = os.path.join(OUT, f); s = open(p, encoding="utf-8").read()
+        m = run.search(s)
+        if not m:
+            continue
+        names = re.findall(r'href="css/([^"?]+\.css)', m.group(0))
+        bundle = "site-" + os.path.splitext(f)[0] + ".css"
+        with open(os.path.join(OUT, "css", bundle), "w", encoding="utf-8") as out:
+            for n in names:
+                out.write("/* ---- " + n + " ---- */\n" + open(os.path.join(OUT, "css", n), encoding="utf-8").read() + "\n")
+        s = s[:m.start()] + '<link rel="stylesheet" href="css/' + bundle + '?v=' + stamp + '">\n' + s[m.end():]
+        open(p, "w", encoding="utf-8").write(s)
+        print("css:", f, "->", bundle, "(" + str(len(names)) + " files)")
     print("pictures:", len(os.listdir(out_assets)), "webp made for", len(converted), "| version", stamp)
 
 if __name__ == "__main__":
