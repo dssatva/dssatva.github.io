@@ -77,7 +77,7 @@ def main():
             continue
         w = os.path.splitext(p)[0] + ".webp"
         if not os.path.exists(w) or os.path.getmtime(w) < os.path.getmtime(p):
-            im = Image.open(p); im.thumbnail((1600, 1600))
+            im = Image.open(p); im.thumbnail((1280, 1280))  # 2 Nov 2026: 1600 -> 1280, lighter site
             if im.mode in ("RGBA", "LA", "P"):
                 im.convert("RGBA").save(w, "WEBP", quality=80, method=6)
             else:
