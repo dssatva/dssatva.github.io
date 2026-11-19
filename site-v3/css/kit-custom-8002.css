@@ -184,3 +184,44 @@ html.kc-on{overflow:hidden}
    tall and the whole block, button included, was clipped away. The script adds
    .kc-alone then, and the block sizes itself. */
 .kitcust.kc-alone{height:auto;min-height:0;align-self:start}
+
+/* 10 Nov 2026, owner: "make it mobile friendly by having two items side by
+   side" (the "Your qty" button was taken out the same day). Phones only: the
+   picker shows two items per row - photo and name on top, the size buttons
+   in one line underneath. */
+@media (max-width:640px){
+  .kc-grp ul{grid-template-columns:1fr 1fr !important;gap:8px !important}
+  .kc-item{flex-direction:column !important;flex-wrap:nowrap !important;align-items:center !important;
+    text-align:center;gap:6px !important;padding:10px 6px !important}
+  .kc-item img{width:52px !important;height:52px !important}
+  .kc-nm{flex:none !important;width:100%}
+  .kc-nm b{font-size:13px !important;line-height:1.2 !important}
+  .kc-nm i{font-size:11px !important}
+  .kc-opts{width:100% !important;justify-content:center !important;gap:4px !important;margin-top:auto}
+  .kc-opt{min-width:0 !important;flex:1 1 0;max-width:48px;padding:7px 0 !important;font-size:12px !important}
+}
+
+/* 10 Nov 2026: - / + packs on the order slip (js/kit-custom-8002.js renderSummary). Phones and computers. */
+.kc-tbl3 td:nth-child(2){white-space:nowrap;color:#4a5a3c;font-size:14px}
+.kc-tbl3 th:nth-child(2){text-align:left}
+.kc-pk{display:inline-flex;align-items:center;border:1.5px solid rgba(31,58,38,.25);border-radius:999px;background:#fff}
+.kc-pk button{width:32px;height:32px;border:0;background:none;color:#1f3a26;font:600 18px/1 "Jost",sans-serif;cursor:pointer;border-radius:999px}
+.kc-pk button:hover{background:#f3f7ef}
+.kc-pk button:focus-visible{outline:2px solid #1f3a26;outline-offset:1px}
+.kc-pk output{min-width:22px;text-align:center;font:600 14px/1 "Jost",sans-serif}
+@media (max-width:640px){
+  .kc-tbl3{font-size:13.5px}
+  .kc-tbl3 td{padding:6px 3px}
+  .kc-tbl3 td img{width:26px;height:26px}
+  .kc-pk button{width:28px;height:28px;font-size:16px}
+}
+
+/* 19 Nov 2026, owner: align the spaces in the Build-your-own-kit block (computers only).
+   Potli circle + words sit as one centred group with an even gap; words block is
+   vertically centred and the strip stays at the foot. Phones untouched. */
+@media (min-width:900px){
+  #pgrid .kitcust .kc-in{justify-content:center;align-items:center;gap:clamp(24px,3vw,56px);padding:0 clamp(16px,3vw,48px)}
+  #pgrid .kitcust .kc-art{flex:0 0 auto;width:clamp(260px,34%,430px);align-self:stretch;display:flex;align-items:center;justify-content:center}
+  #pgrid .kitcust .kc-copy{flex:0 1 auto;width:min(400px,52%);padding:14px 0 10px;align-self:center}
+  #pgrid .kitcust .kc-d2{max-width:none}
+}
